@@ -22,8 +22,14 @@ Preferred communication style: Simple, everyday language.
 - **Language**: TypeScript throughout for type safety and better developer experience
 - **Authentication**: Passport.js with local strategy for user authentication and session-based auth
 - **Session Management**: Express-session with PostgreSQL session store for persistent sessions
-- **File Processing**: Multer middleware for handling file uploads with validation for .txt and .log files
-- **API Structure**: RESTful endpoints for user management, file uploads, log processing, and anomaly retrieval
+- **Rate Limiting**: Custom in-memory rate limiter with automatic cleanup and per-user tracking
+- **File Processing**: Enhanced Multer middleware with comprehensive security validation
+  - File size limits (50MB max)
+  - File type and MIME type validation
+  - Filename length and character restrictions
+  - Automatic cleanup on validation failures
+- **Error Handling**: Production-ready error handling middleware with structured logging
+- **API Structure**: RESTful endpoints with comprehensive rate limiting and validation
 
 ### Data Storage Architecture
 - **Primary Database**: PostgreSQL with Neon serverless driver for scalable cloud deployment
@@ -55,8 +61,22 @@ Preferred communication style: Simple, everyday language.
 ### Security Architecture
 - **Authentication**: Local strategy with secure password hashing using scrypt
 - **Session Security**: HTTP-only cookies with secure flags in production
+- **Rate Limiting**: Comprehensive rate limiting system with in-memory storage
+  - File uploads: 10 per 15 minutes per user
+  - AI analysis requests: 20 per 5 minutes (resource-intensive operations)
+  - General API calls: 100 per 15 minutes per user
+  - Login attempts: 5 per 15 minutes (brute force protection)
+- **File Security**: Multi-layer file validation and size protection
+  - Maximum file size: 50MB (protection against 1GB+ uploads)
+  - Maximum log entries: 100,000 per file (performance protection)
+  - File type validation: Only .txt and .log files with MIME type checking
+  - Filename sanitization: Alphanumeric characters and safe symbols only
+  - Automatic file cleanup on validation failures
 - **Input Validation**: Zod schemas for API request validation and type checking
-- **File Security**: Restricted file upload types and size limits with temporary file storage
+- **Error Handling**: Comprehensive error handling with user-friendly messages
+  - Custom error classes for different failure types
+  - Detailed logging for debugging while hiding sensitive information in production
+  - Graceful degradation with helpful user guidance
 
 ## External Dependencies
 
@@ -95,8 +115,17 @@ Preferred communication style: Simple, everyday language.
 - **Contributing Guidelines**: CONTRIBUTING.md for development workflow and standards
 - **License**: MIT License for open-source distribution
 
+### Production Security Features
+- **Rate Limiting**: Enterprise-grade rate limiting to prevent abuse and resource exhaustion
+- **File Upload Security**: Multi-layer validation to prevent malicious file uploads
+- **Error Handling**: Production-ready error handling with security-conscious information disclosure
+- **Input Validation**: Comprehensive input sanitization and validation at all entry points
+- **Resource Protection**: Memory and processing limits to prevent system overload
+
 ### Deployment Ready Features
 - **Multi-cloud Support**: Ready for deployment on GCP Cloud Run, Azure Container Instances, or AWS ECS
 - **Production Configuration**: Environment variables, security headers, and scaling configurations
 - **Database Migration**: Drizzle ORM schema management and migration support
 - **Monitoring**: Health check endpoints and structured logging for production monitoring
+- **Security Hardening**: Rate limiting, file validation, and comprehensive error handling
+- **Metrics Tracking**: Real-time success/failure metrics with performance monitoring

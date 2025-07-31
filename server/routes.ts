@@ -5,6 +5,8 @@ import { storage } from "./storage";
 import { zscalerLogParser } from "./services/log-parser";
 import { anomalyDetector, AnomalyDetector } from "./services/anomaly-detector";
 import { metricsService } from "./services/metrics-service";
+import { uploadRateLimit, apiRateLimit, loginRateLimit, analysisRateLimit } from "./middleware/rate-limiter";
+import { handleMulterErrors, globalErrorHandler, notFoundHandler, asyncHandler, ValidationError, FileSizeError, ProcessingError } from "./middleware/error-handler";
 import multer from "multer";
 import { z } from "zod";
 import fs from "fs/promises";
@@ -13,16 +15,32 @@ import path from "path";
 const upload = multer({
   dest: "uploads/",
   limits: {
-    fileSize: 100 * 1024 * 1024, // 100MB
+    fileSize: 50 * 1024 * 1024, // 50MB limit for security
+    files: 1, // Only one file at a time
   },
   fileFilter: (req, file, cb) => {
     const allowedTypes = ['.txt', '.log'];
+    const allowedMimeTypes = ['text/plain', 'application/octet-stream'];
     const ext = path.extname(file.originalname).toLowerCase();
-    if (allowedTypes.includes(ext)) {
-      cb(null, true);
-    } else {
-      cb(new Error('Only .txt and .log files are allowed'));
+    
+    if (!allowedTypes.includes(ext)) {
+      return cb(new Error('Only .txt and .log files are allowed'));
     }
+    
+    if (!allowedMimeTypes.includes(file.mimetype)) {
+      return cb(new Error('Invalid file type detected'));
+    }
+    
+    // Additional filename validation
+    if (file.originalname.length > 255) {
+      return cb(new Error('Filename too long'));
+    }
+    
+    if (!/^[a-zA-Z0-9._-]+$/.test(file.originalname.replace(/\.(txt|log)$/, ''))) {
+      return cb(new Error('Filename contains invalid characters'));
+    }
+    
+    cb(null, true);
   },
 });
 
@@ -34,26 +52,52 @@ function requireAuth(req: any, res: any, next: any) {
 }
 
 export function registerRoutes(app: Express): Server {
-  // Health check endpoint
+  // Trust proxy for rate limiting
+  app.set('trust proxy', 1);
+  
+  // Global API rate limiting
+  app.use('/api', apiRateLimit);
+  
+  // Error handling middleware
+  app.use(handleMulterErrors);
+
+  // Health check endpoint (no rate limiting)
   app.get('/health', (req, res) => {
     res.json({ 
       status: 'healthy', 
       timestamp: new Date().toISOString(),
-      version: '1.0.0'
+      version: '1.0.0',
+      uptime: process.uptime()
     });
   });
 
   setupAuth(app);
 
-  // File upload endpoint
-  app.post("/api/upload", requireAuth, upload.single("logFile"), async (req, res) => {
-    try {
-      if (!req.file) {
-        return res.status(400).json({ message: "No file uploaded" });
-      }
+  // File upload endpoint with rate limiting
+  app.post("/api/upload", requireAuth, uploadRateLimit, upload.single("logFile"), asyncHandler(async (req, res) => {
+    if (!req.file) {
+      throw new ValidationError("No file uploaded");
+    }
 
-      const { originalname, filename, size, mimetype } = req.file;
-      const userId = req.user!.id;
+    const { originalname, filename, size, mimetype } = req.file;
+    const userId = req.user!.id;
+
+    // Additional file size validation
+    if (size === 0) {
+      await fs.unlink(path.join("uploads", filename)); // Clean up empty file
+      throw new ValidationError("Empty file is not allowed");
+    }
+
+    // Check file size against user limits (could be user-tier based)
+    const maxSizeBytes = 50 * 1024 * 1024; // 50MB
+    if (size > maxSizeBytes) {
+      await fs.unlink(path.join("uploads", filename)); // Clean up oversized file
+      throw new FileSizeError(
+        `File size ${Math.round(size / (1024 * 1024))}MB exceeds limit of ${Math.round(maxSizeBytes / (1024 * 1024))}MB`,
+        size,
+        maxSizeBytes
+      );
+    }
 
       // Create log file record
       const logFile = await storage.createLogFile({
@@ -65,59 +109,83 @@ export function registerRoutes(app: Express): Server {
         status: "pending",
       });
 
-      // Read and validate file content
-      const filePath = path.join("uploads", filename);
-      const content = await fs.readFile(filePath, 'utf-8');
-      
-      const validation = zscalerLogParser.validateLogFormat(content);
-      if (!validation.isValid) {
-        await storage.updateLogFileStatus(logFile.id, "failed", undefined, validation.error);
-        await fs.unlink(filePath); // Clean up file
-        
-        // Track failed file upload
-        metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'failure', validation.error);
-        
-        return res.status(400).json({ message: validation.error });
-      }
-
-      // Parse logs
-      const logEntries = zscalerLogParser.parseLogFile(content);
-      await storage.updateLogFileStatus(logFile.id, "processing", logEntries.length);
-
-      // Create processing job
-      const processingJob = await storage.createProcessingJob({
-        logFileId: logFile.id,
-        userId,
-        status: "queued",
-        settings: {
-          sensitivity: "high",
-          threshold: 7.0,
-        },
-      });
-
-      // Track successful file upload
-      metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'success');
-
-      // Start async processing
-      processLogFileAsync(logFile.id, logEntries, userId);
-
-      res.json({
-        logFile,
-        processingJob,
-        totalEntries: logEntries.length,
-      });
-    } catch (error) {
-      console.error("Upload error:", error);
-      
-      // Track failed upload attempt
-      if (req.file) {
-        const errorMessage = error instanceof Error ? error.message : String(error);
-        metricsService.trackFileUpload(req.user!.id, 'unknown', req.file.originalname, req.file.size, 'failure', errorMessage);
-      }
-      
-      res.status(500).json({ message: "Upload failed" });
+    // Read and validate file content with error handling
+    const filePath = path.join("uploads", filename);
+    let content: string;
+    
+    try {
+      content = await fs.readFile(filePath, 'utf-8');
+    } catch (readError) {
+      await fs.unlink(filePath).catch(() => {}); // Clean up file, ignore errors
+      throw new ProcessingError("Failed to read uploaded file", "file_read", readError as Error);
     }
-  });
+
+    // Validate file content isn't suspiciously large when parsed
+    if (content.length > 100 * 1024 * 1024) { // 100MB of text content
+      await fs.unlink(filePath).catch(() => {});
+      throw new ValidationError("File content too large to process safely");
+    }
+    
+    const validation = zscalerLogParser.validateLogFormat(content);
+    if (!validation.isValid) {
+      await storage.updateLogFileStatus(logFile.id, "failed", undefined, validation.error);
+      await fs.unlink(filePath).catch(() => {}); // Clean up file
+      
+      // Track failed file upload
+      metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'failure', validation.error);
+      
+      throw new ValidationError(validation.error || "Invalid log format");
+    }
+
+    // Parse logs with timeout protection
+    let logEntries: any[];
+    try {
+      logEntries = zscalerLogParser.parseLogFile(content);
+      
+      if (logEntries.length === 0) {
+        await storage.updateLogFileStatus(logFile.id, "failed", 0, "No valid log entries found");
+        await fs.unlink(filePath).catch(() => {});
+        throw new ValidationError("No valid log entries found in file");
+      }
+      
+      if (logEntries.length > 100000) { // Limit to 100k entries for performance
+        await storage.updateLogFileStatus(logFile.id, "failed", logEntries.length, "File contains too many log entries for processing");
+        await fs.unlink(filePath).catch(() => {});
+        throw new ValidationError(`File contains ${logEntries.length} entries. Maximum allowed is 100,000 entries`);
+      }
+      
+    } catch (parseError) {
+      await storage.updateLogFileStatus(logFile.id, "failed", 0, "Failed to parse log file");
+      await fs.unlink(filePath).catch(() => {});
+      throw new ProcessingError("Failed to parse log file", "log_parsing", parseError as Error);
+    }
+
+    await storage.updateLogFileStatus(logFile.id, "processing", logEntries.length);
+
+    // Create processing job
+    const processingJob = await storage.createProcessingJob({
+      logFileId: logFile.id,
+      userId,
+      status: "queued",
+      settings: {
+        sensitivity: "high",
+        threshold: 7.0,
+      },
+    });
+
+    // Track successful file upload
+    metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'success');
+
+    // Start async processing
+    processLogFileAsync(logFile.id, logEntries, userId);
+
+    res.json({
+      logFile,
+      processingJob,
+      totalEntries: logEntries.length,
+      estimatedProcessingTime: Math.ceil(logEntries.length / 10) * 2, // rough estimate in seconds
+    });
+  }));
 
   // Get user stats
   app.get("/api/stats", requireAuth, async (req, res) => {
@@ -151,34 +219,29 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // Get anomalies
-  app.get("/api/anomalies", requireAuth, async (req, res) => {
-    try {
-      const userId = req.user!.id;
-      const { logFileId, limit } = req.query;
+  // Get anomalies with rate limiting for AI analysis
+  app.get("/api/anomalies", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
+    const userId = req.user!.id;
+    const { logFileId, limit } = req.query;
+    
+    let anomalies;
+    if (logFileId) {
+      anomalies = await storage.getAnomaliesByLogFile(logFileId as string);
       
-      let anomalies;
-      if (logFileId) {
-        anomalies = await storage.getAnomaliesByLogFile(logFileId as string);
-        
-        // Track analysis view for specific file
-        const logFile = await storage.getLogFile(logFileId as string);
-        if (logFile) {
-          metricsService.trackAnalysisView(userId, logFileId as string, logFile.originalName, anomalies.length);
-        }
-      } else {
-        anomalies = await storage.getAnomaliesByUser(userId, limit ? parseInt(limit as string) : undefined);
-        
-        // Track general analysis view
-        metricsService.trackAnalysisView(userId, 'all', 'dashboard', anomalies.length);
+      // Track analysis view for specific file
+      const logFile = await storage.getLogFile(logFileId as string);
+      if (logFile) {
+        metricsService.trackAnalysisView(userId, logFileId as string, logFile.originalName, anomalies.length);
       }
+    } else {
+      anomalies = await storage.getAnomaliesByUser(userId, limit ? parseInt(limit as string) : undefined);
       
-      res.json(anomalies);
-    } catch (error) {
-      console.error("Anomalies error:", error);
-      res.status(500).json({ message: "Failed to get anomalies" });
+      // Track general analysis view
+      metricsService.trackAnalysisView(userId, 'all', 'dashboard', anomalies.length);
     }
-  });
+    
+    res.json(anomalies);
+  }));
 
   // Update anomaly status
   app.patch("/api/anomalies/:id", requireAuth, async (req, res) => {
@@ -236,51 +299,40 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // Process logs with custom AI configuration
-  app.post("/api/process-logs/:id", requireAuth, async (req, res) => {
-    try {
-      const logFileId = req.params.id;
-      const userId = req.user!.id;
-      const aiConfig = req.body.aiConfig; // Optional AI configuration from frontend
+  // Process logs with custom AI configuration (heavy rate limiting)
+  app.post("/api/process-logs/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
+    const logFileId = req.params.id;
+    const userId = req.user!.id;
+    const aiConfig = req.body.aiConfig; // Optional AI configuration from frontend
 
-      const logFile = await storage.getLogFile(logFileId);
-      if (!logFile || logFile.userId !== userId) {
-        return res.status(404).json({ message: "Log file not found" });
-      }
-
-      if (logFile.status === "processing") {
-        return res.status(400).json({ message: "Log file is already being processed" });
-      }
-
-      // Update the processing job with custom AI config
-      await storage.updateLogFileStatus(logFileId, "processing");
-
-      // Parse the log file again and process with custom config
-      const fs = await import("fs");
-      const path = await import("path");
-      const uploadsDir = path.join(process.cwd(), "uploads");
-      const filePath = path.join(uploadsDir, logFile.filename);
-      
-      if (!fs.existsSync(filePath)) {
-        return res.status(404).json({ message: "Log file data not found" });
-      }
-
-      const content = fs.readFileSync(filePath, "utf-8");
-      const logEntries = zscalerLogParser.parseLogFile(content);
-
-      // Process with custom AI configuration
-      processLogFileAsync(logFile.id, logEntries, userId, aiConfig);
-
-      res.json({ 
-        message: "Reprocessing started with custom AI configuration", 
-        logFileId,
-        aiConfig: aiConfig || "default" 
-      });
-    } catch (error) {
-      console.error("Error reprocessing logs:", error);
-      res.status(500).json({ message: "Failed to start reprocessing" });
+    const logFile = await storage.getLogFile(logFileId);
+    if (!logFile || logFile.userId !== userId) {
+      return res.status(404).json({ message: "Log file not found" });
     }
-  });
+
+    if (logFile.status === "processing") {
+      return res.status(400).json({ message: "Log file is already being processed" });
+    }
+
+    // Update the processing job with custom AI config
+    await storage.updateLogFileStatus(logFileId, "processing");
+
+    // Parse the log file again and process with custom config
+    const uploadsDir = path.join(process.cwd(), "uploads");
+    const filePath = path.join(uploadsDir, logFile.fileName);
+    
+    const content = await fs.readFile(filePath, "utf-8");
+    const logEntries = zscalerLogParser.parseLogFile(content);
+
+    // Process with custom AI configuration
+    processLogFileAsync(logFile.id, logEntries, userId, aiConfig);
+
+    res.json({ 
+      message: "Reprocessing started with custom AI configuration", 
+      logFileId,
+      aiConfig: aiConfig || "default" 
+    });
+  }));
 
   // Get metrics endpoint
   app.get("/api/metrics", requireAuth, async (req, res) => {
@@ -301,6 +353,10 @@ export function registerRoutes(app: Express): Server {
   });
 
   const httpServer = createServer(app);
+  
+  // Note: Global error handlers will be added after Vite setup in index.ts
+  // to ensure they don't interfere with Vite's catch-all route
+  
   return httpServer;
 }
 
