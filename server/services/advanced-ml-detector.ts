@@ -144,7 +144,7 @@ export class AdvancedMLDetector {
     userStats.forEach((stats, key) => {
       const profile: UserBehaviorProfile = {
         userId: key,
-        sourceIp: key.includes('.') ? key : '',
+        sourceIp: (typeof key === 'string' && key.includes('.')) ? key : '',
         avgDailyRequests: stats.requests,
         avgRequestSize: stats.totalBytes / stats.requests,
         avgResponseTime: stats.totalDuration / stats.requests,
@@ -234,7 +234,7 @@ export class AdvancedMLDetector {
 
       // Behavioral deviation detection
       const currentHour = new Date(entry.timestamp).getHours();
-      const isOffHours = !profile.commonTimeRanges.includes(currentHour);
+      const isOffHours = !profile.commonTimeRanges || !profile.commonTimeRanges.includes(currentHour);
       
       if (isOffHours && (currentHour < 6 || currentHour > 22)) {
         features.push('off_hours_activity');
@@ -243,14 +243,14 @@ export class AdvancedMLDetector {
       }
 
       // User agent deviation
-      if (entry.userAgent && !profile.commonUserAgents.includes(entry.userAgent)) {
+      if (entry.userAgent && profile.commonUserAgents && !profile.commonUserAgents.includes(entry.userAgent)) {
         features.push('unusual_user_agent');
         riskScore += 1.5;
         confidence += 0.1;
       }
 
       // Category deviation
-      if (entry.category && !profile.commonCategories.includes(entry.category)) {
+      if (entry.category && profile.commonCategories && !profile.commonCategories.includes(entry.category)) {
         features.push('unusual_category_access');
         riskScore += 1;
         confidence += 0.08;
@@ -580,8 +580,8 @@ export class AdvancedMLDetector {
 
     let score = 0;
     const currentHour = new Date(entry.timestamp).getHours();
-    if (!profile.commonTimeRanges.includes(currentHour)) score += 0.3;
-    if (entry.userAgent && !profile.commonUserAgents.includes(entry.userAgent)) score += 0.2;
+    if (!profile.commonTimeRanges || !profile.commonTimeRanges.includes(currentHour)) score += 0.3;
+    if (entry.userAgent && profile.commonUserAgents && !profile.commonUserAgents.includes(entry.userAgent)) score += 0.2;
     if (profile.riskPattern === 'high') score += 0.5;
 
     return Math.min(score, 1);
