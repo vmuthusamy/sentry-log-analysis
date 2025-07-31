@@ -124,6 +124,20 @@ export type InsertAnomaly = z.infer<typeof insertAnomalySchema>;
 export type ProcessingJob = typeof processingJobs.$inferSelect;
 export type InsertProcessingJob = z.infer<typeof insertProcessingJobSchema>;
 
+// Metrics Events Table
+export const metricsEvents = pgTable("metrics_events", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull(),
+  eventType: varchar("event_type").notNull(), // 'file_upload', 'file_analysis_view', 'anomaly_detection', 'ai_analysis'
+  status: varchar("status").notNull(), // 'success', 'failure', 'error'
+  metadata: jsonb("metadata").default(sql`'{}'::jsonb`),
+  timestamp: timestamp("timestamp", { withTimezone: true }).defaultNow(),
+});
+
+export const insertMetricsEventSchema = createInsertSchema(metricsEvents);
+export type MetricsEvent = typeof metricsEvents.$inferSelect;
+export type InsertMetricsEvent = z.infer<typeof insertMetricsEventSchema>;
+
 // AI Configuration Schema
 export const aiConfigSchema = z.object({
   provider: z.enum(["openai", "gcp_gemini"]).default("openai"),

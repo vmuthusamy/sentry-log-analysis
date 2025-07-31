@@ -6,6 +6,7 @@ import { AnalysisSection } from "@/components/dashboard/analysis-section";
 import { HistorySection } from "@/components/dashboard/history-section";
 import { SettingsSection } from "@/components/dashboard/settings-section";
 import LogManagement from "@/components/dashboard/log-management";
+import { MetricsSection } from "@/components/dashboard/metrics-section";
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState<string>("overview");
@@ -22,6 +23,8 @@ export default function HomePage() {
         return <HistorySection />;
       case "management":
         return <LogManagement />;
+      case "metrics":
+        return <MetricsSection />;
       case "settings":
         return <SettingsSection />;
       default:
