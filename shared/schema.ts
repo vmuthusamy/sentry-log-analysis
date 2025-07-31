@@ -35,6 +35,7 @@ export const anomalies = pgTable("anomalies", {
   riskScore: decimal("risk_score", { precision: 3, scale: 1 }).notNull(),
   sourceData: jsonb("source_data").notNull(),
   aiAnalysis: jsonb("ai_analysis").notNull(),
+  detectionMethod: text("detection_method").notNull().default("traditional"),
   status: text("status").notNull().default("pending"), // pending, reviewed, false_positive
   reviewedAt: timestamp("reviewed_at"),
   createdAt: timestamp("created_at").defaultNow(),

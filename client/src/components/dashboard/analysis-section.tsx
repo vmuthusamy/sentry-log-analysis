@@ -144,6 +144,7 @@ export function AnalysisSection() {
                     <TableHead className="text-slate-300">Timestamp</TableHead>
                     <TableHead className="text-slate-300">Anomaly Type</TableHead>
                     <TableHead className="text-slate-300">Risk Score</TableHead>
+                    <TableHead className="text-slate-300">Detection Method</TableHead>
                     <TableHead className="text-slate-300">Source</TableHead>
                     <TableHead className="text-slate-300">Status</TableHead>
                     <TableHead className="text-slate-300">Actions</TableHead>
@@ -152,7 +153,7 @@ export function AnalysisSection() {
                 <TableBody>
                   {!anomalies || (Array.isArray(anomalies) && anomalies.length === 0) ? (
                     <TableRow>
-                      <TableCell colSpan={7} className="text-center py-12">
+                      <TableCell colSpan={8} className="text-center py-12">
                         <Search className="h-12 w-12 text-slate-500 mx-auto mb-4" />
                         <p className="text-slate-400">No anomalies found</p>
                         <p className="text-xs text-slate-500 mt-2">
@@ -184,6 +185,11 @@ export function AnalysisSection() {
                               parseFloat(anomaly.riskScore) >= 7 ? "High" :
                               parseFloat(anomaly.riskScore) >= 4 ? "Medium" : "Low"
                             }
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant="outline" className="text-purple-400 border-purple-400">
+                            {anomaly.detectionMethod || "Traditional ML"}
                           </Badge>
                         </TableCell>
                         <TableCell className="text-slate-300">

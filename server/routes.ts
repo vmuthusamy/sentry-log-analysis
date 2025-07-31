@@ -330,13 +330,17 @@ export function registerRoutes(app: Express): Server {
         id: anomaly.id,
         logFileId: logFile.id,
         userId,
+        timestamp: new Date(anomaly.logEntry.timestamp),
         anomalyType: anomaly.anomalyType,
-        riskScore: anomaly.riskScore,
-        confidence: anomaly.confidence,
         description: anomaly.description,
-        recommendation: anomaly.recommendation,
-        logData: JSON.stringify(anomaly.logEntry),
-        metadata: JSON.stringify(anomaly.metadata),
+        riskScore: anomaly.riskScore.toString(),
+        sourceData: anomaly.logEntry,
+        aiAnalysis: {
+          confidence: anomaly.confidence,
+          recommendation: anomaly.recommendation,
+          metadata: anomaly.metadata
+        },
+        detectionMethod: "Advanced ML",
       }));
 
       // Store anomalies
@@ -403,13 +407,17 @@ export function registerRoutes(app: Express): Server {
         id: anomaly.id,
         logFileId: logFile.id,
         userId,
+        timestamp: new Date(anomaly.logEntry.timestamp),
         anomalyType: anomaly.anomalyType,
-        riskScore: anomaly.riskScore,
-        confidence: anomaly.confidence,
         description: anomaly.description,
-        recommendation: anomaly.recommendation,
-        logData: JSON.stringify(anomaly.logEntry),
-        metadata: JSON.stringify(anomaly.metadata),
+        riskScore: anomaly.riskScore.toString(),
+        sourceData: anomaly.logEntry,
+        aiAnalysis: {
+          confidence: anomaly.confidence,
+          recommendation: anomaly.recommendation,
+          metadata: anomaly.metadata
+        },
+        detectionMethod: "Traditional ML",
       }));
 
       // Store anomalies
