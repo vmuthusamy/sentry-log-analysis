@@ -140,3 +140,21 @@ Preferred communication style: Simple, everyday language.
 - **Monitoring**: Health check endpoints and structured logging for production monitoring
 - **Security Hardening**: Rate limiting, file validation, and comprehensive error handling
 - **Metrics Tracking**: Real-time success/failure metrics with performance monitoring
+
+## Recent Bug Fixes
+
+### Cross-User Data Isolation Bug Fix (January 31, 2025)
+- **Critical Issue Resolved**: Fixed cross-user data contamination in metrics and statistics where new users saw cached data from previous users
+- **Enhanced Query Caching**: Updated React Query configuration to clear all cached data on login/logout/register operations  
+- **Stale Time Reduction**: Changed from infinite caching (staleTime: Infinity) to fresh data requests (staleTime: 0) to prevent stale cross-user data
+- **Session Isolation**: Implemented comprehensive cache clearing in authentication mutations to ensure complete user data separation
+- **Debug Logging**: Added user ID tracking in stats endpoint for verification and monitoring
+- **Data Security**: Each user now sees only their own logs, anomalies, and statistics without any cross-contamination
+
+### Frontend Cache Management Improvements
+- Login: Clears all cached data before setting new user data
+- Registration: Clears all cached data before setting new user data  
+- Logout: Clears all cached data after logout
+- Reduced cache lifetime (gcTime: 2 minutes) to prevent persistent cross-user data
+
+This fix ensures complete data privacy and isolation between user sessions, preventing any possibility of users seeing data from other accounts.
