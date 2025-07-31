@@ -1,4 +1,5 @@
 import { MultiProviderAIService, AIConfig, AIProvider, ModelTier } from "./ai-providers";
+import { SimpleTraditionalDetector } from "./simple-traditional-detector";
 
 export interface LogEntry {
   timestamp: string;
@@ -28,10 +29,14 @@ export interface AnomalyResult {
 
 export class AnomalyDetector {
   private aiService: MultiProviderAIService;
+  private traditionalDetector: SimpleTraditionalDetector;
   private defaultConfig: AIConfig;
+  private useTraditionalFallback: boolean;
 
-  constructor(config?: Partial<AIConfig>) {
+  constructor(config?: Partial<AIConfig> & { useTraditionalFallback?: boolean }) {
     this.aiService = new MultiProviderAIService();
+    this.traditionalDetector = new SimpleTraditionalDetector();
+    this.useTraditionalFallback = config?.useTraditionalFallback !== false; // Default to true
     this.defaultConfig = {
       provider: (config?.provider || process.env.AI_PROVIDER || "openai") as AIProvider,
       tier: (config?.tier || process.env.AI_MODEL_TIER || "standard") as ModelTier,
@@ -40,6 +45,15 @@ export class AnomalyDetector {
   }
 
   async analyzeLogEntry(logEntry: LogEntry, config?: Partial<AIConfig>): Promise<AnomalyResult> {
+    // Always try traditional detection first (fast and reliable)
+    let traditionalResult: AnomalyResult | null = null;
+    try {
+      traditionalResult = await this.traditionalDetector.analyzeLogEntry(logEntry);
+    } catch (error) {
+      console.warn("Traditional analysis failed:", error);
+    }
+
+    // Try AI analysis
     try {
       const analyzeConfig = { ...this.defaultConfig, ...config };
       const prompt = this.buildAnalysisPrompt(logEntry);
@@ -54,27 +68,97 @@ export class AnomalyDetector {
 
       const result = JSON.parse(response.content || "{}");
       
-      return {
+      const aiResult = {
         isAnomaly: result.isAnomaly || false,
         riskScore: Math.min(10, Math.max(0, result.riskScore || 0)),
         anomalyType: result.anomalyType || "unknown",
         description: result.description || "No description available",
         confidence: Math.min(1, Math.max(0, result.confidence || 0)),
-        explanation: result.explanation || "",
+        explanation: `AI Analysis: ${result.explanation || ""}`,
         recommendations: result.recommendations || [],
       };
+
+      // Combine results - prefer higher risk score or traditional if AI fails
+      if (traditionalResult && traditionalResult.isAnomaly) {
+        if (traditionalResult.riskScore >= aiResult.riskScore) {
+          return {
+            ...traditionalResult,
+            explanation: `Traditional ML + AI: ${traditionalResult.explanation}`,
+            recommendations: [...new Set([...traditionalResult.recommendations, ...aiResult.recommendations])]
+          };
+        }
+      }
+
+      return aiResult;
+
     } catch (error) {
-      console.error("Error analyzing log entry:", error);
+      console.error("AI analysis failed:", error);
+      
+      // Fall back to traditional detection
+      if (traditionalResult) {
+        return {
+          ...traditionalResult,
+          explanation: `Traditional ML Fallback: ${traditionalResult.explanation} (AI unavailable)`,
+          recommendations: [...traditionalResult.recommendations, "AI analysis failed - using rule-based detection"]
+        };
+      }
+
+      // Simple rule-based fallback if everything fails
+      const ruleBasedResult = this.simpleRuleBasedDetection(logEntry);
       return {
-        isAnomaly: false,
-        riskScore: 0,
-        anomalyType: "analysis_failed",
-        description: "Failed to analyze log entry",
-        confidence: 0,
-        explanation: "AI analysis service unavailable",
-        recommendations: ["Review log manually", "Check system connectivity"],
+        ...ruleBasedResult,
+        explanation: `Fallback Detection: ${ruleBasedResult.explanation} (Both AI and traditional ML unavailable)`,
+        recommendations: [...ruleBasedResult.recommendations, "Manual review required"]
       };
     }
+  }
+
+  private simpleRuleBasedDetection(logEntry: LogEntry): AnomalyResult {
+    const url = logEntry.url?.toLowerCase() || '';
+    const statusCode = logEntry.statusCode || '';
+    const action = logEntry.action?.toLowerCase() || '';
+    const userAgent = logEntry.userAgent?.toLowerCase() || '';
+    const category = logEntry.category?.toLowerCase() || '';
+
+    let riskScore = 0;
+    const threats = [];
+
+    // Basic threat detection
+    if (statusCode === '403' || action === 'blocked') {
+      riskScore += 4;
+      threats.push('blocked action');
+    }
+
+    if (url.includes('.ru') || url.includes('.biz') || url.includes('malware') || url.includes('phish')) {
+      riskScore += 5;
+      threats.push('suspicious domain');
+    }
+
+    if (userAgent.includes('curl') || userAgent.includes('wget') || userAgent.includes('python')) {
+      riskScore += 3;
+      threats.push('automated tool');
+    }
+
+    if (category.includes('malware') || category.includes('proxy')) {
+      riskScore += 6;
+      threats.push('malicious category');
+    }
+
+    if (logEntry.bytes && logEntry.bytes > 100000) {
+      riskScore += 2;
+      threats.push('large transfer');
+    }
+
+    const isAnomaly = riskScore >= 4;
+    return {
+      isAnomaly,
+      riskScore: Math.min(10, riskScore),
+      anomalyType: isAnomaly ? threats.join('_') : 'normal',
+      description: isAnomaly ? `Basic rule detection: ${threats.join(', ')}` : 'No threats detected',
+      confidence: 0.7,
+      explanation: isAnomaly ? `Rule-based detection found ${threats.length} threat indicators` : 'Basic scan shows normal activity',
+      recommendations: isAnomaly ? ['Review security policies', 'Monitor source IP'] : []
+    };
   }
 
   async analyzeBatch(logEntries: LogEntry[]): Promise<AnomalyResult[]> {
