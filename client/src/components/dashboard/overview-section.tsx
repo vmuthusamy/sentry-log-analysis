@@ -7,6 +7,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 export function OverviewSection() {
   const { data: stats, isLoading } = useQuery({
     queryKey: ["/api/stats"],
+    refetchOnMount: true, // Always refetch when component mounts
+    refetchOnWindowFocus: true, // Refetch when window gains focus
   });
 
   if (isLoading) {

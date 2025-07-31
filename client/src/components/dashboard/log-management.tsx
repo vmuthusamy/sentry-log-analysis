@@ -10,6 +10,7 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 import AISettings from "./ai-settings";
 import { TraditionalAnalysisButton } from "./traditional-analysis-button";
 import { AdvancedMLButton } from "./advanced-ml-button";
+import { RefreshCacheButton } from "../refresh-cache-button";
 
 interface LogFile {
   id: string;
@@ -27,8 +28,10 @@ export default function LogManagement() {
   const { toast } = useToast();
   const [selectedConfig, setSelectedConfig] = useState(null);
 
-  const { data: logFiles, isLoading } = useQuery<LogFile[]>({
+  const { data: logFiles, isLoading, refetch } = useQuery<LogFile[]>({
     queryKey: ["/api/log-files"],
+    refetchOnMount: true, // Always refetch when component mounts
+    refetchOnWindowFocus: true, // Refetch when window gains focus
   });
 
   const reprocessMutation = useMutation({
@@ -112,13 +115,18 @@ export default function LogManagement() {
         <div className="lg:col-span-2">
           <Card className="bg-dark-secondary border-slate-700">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-white">
-                <FileText className="h-5 w-5" />
-                Uploaded Log Files
-              </CardTitle>
-              <p className="text-sm text-slate-400">
-                Reprocess files with different AI configurations for comparison
-              </p>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center gap-2 text-white">
+                    <FileText className="h-5 w-5" />
+                    Uploaded Log Files
+                  </CardTitle>
+                  <p className="text-sm text-slate-400">
+                    Reprocess files with different AI configurations for comparison
+                  </p>
+                </div>
+                <RefreshCacheButton />
+              </div>
             </CardHeader>
             <CardContent>
               {!logFiles || logFiles.length === 0 ? (
