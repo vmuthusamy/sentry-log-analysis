@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+
+  /* Custom dark theme colors matching the design */
+  --dark-primary: hsl(222, 84%, 5%);
+  --dark-secondary: hsl(217, 33%, 17%);
+  --dark-tertiary: hsl(215, 25%, 27%);
+  --accent-blue: hsl(199, 89%, 48%);
+  --accent-green: hsl(158, 64%, 52%);
+  --accent-amber: hsl(43, 96%, 56%);
+  --accent-red: hsl(0, 84%, 60%);
+}
+
+.dark {
+  --background: hsl(222, 84%, 5%);
+  --foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217, 33%, 17%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --popover: hsl(222, 84%, 5%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --card: hsl(217, 33%, 17%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --border: hsl(215, 25%, 27%);
+  --input: hsl(215, 25%, 27%);
+  --primary: hsl(199, 89%, 48%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(217, 33%, 17%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --accent: hsl(217, 33%, 17%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(215, 25%, 27%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-dark-primary text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Custom utility classes for the dark theme */
+  .bg-dark-primary {
+    background-color: hsl(222, 84%, 5%);
+  }
+
+  .bg-dark-secondary {
+    background-color: hsl(217, 33%, 17%);
+  }
+
+  .bg-dark-tertiary {
+    background-color: hsl(215, 25%, 27%);
+  }
+
+  .text-accent-blue {
+    color: hsl(199, 89%, 48%);
+  }
+
+  .text-accent-green {
+    color: hsl(158, 64%, 52%);
+  }
+
+  .text-accent-amber {
+    color: hsl(43, 96%, 56%);
+  }
+
+  .text-accent-red {
+    color: hsl(0, 84%, 60%);
+  }
+
+  .bg-accent-blue {
+    background-color: hsl(199, 89%, 48%);
+  }
+
+  .bg-accent-green {
+    background-color: hsl(158, 64%, 52%);
+  }
+
+  .bg-accent-amber {
+    background-color: hsl(43, 96%, 56%);
+  }
+
+  .bg-accent-red {
+    background-color: hsl(0, 84%, 60%);
+  }
+
+  /* Hover states */
+  .hover\:bg-blue-600:hover {
+    background-color: hsl(221, 83%, 53%);
+  }
+
+  .hover\:bg-green-600:hover {
+    background-color: hsl(142, 71%, 45%);
+  }
+
+  .hover\:text-blue-400:hover {
+    color: hsl(213, 94%, 68%);
+  }
+
+  /* Focus states */
+  .focus\:ring-accent-blue:focus {
+    --tw-ring-color: hsl(199, 89%, 48%);
+  }
+
+  .focus\:border-accent-blue:focus {
+    border-color: hsl(199, 89%, 48%);
+  }
+
+  /* Accent color utilities */
+  .accent-accent-blue {
+    accent-color: hsl(199, 89%, 48%);
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-security {
+    background: linear-gradient(135deg, hsl(222, 84%, 5%) 0%, hsl(217, 33%, 17%) 50%, hsl(220, 26%, 14%) 100%);
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-dark::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-dark::-webkit-scrollbar-track {
+    background: hsl(217, 33%, 17%);
+  }
+
+  .scrollbar-dark::-webkit-scrollbar-thumb {
+    background: hsl(215, 25%, 27%);
+    border-radius: 3px;
+  }
+
+  .scrollbar-dark::-webkit-scrollbar-thumb:hover {
+    background: hsl(199, 89%, 48%);
+  }
+
+  /* Animation for security elements */
+  @keyframes security-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .animate-security-pulse {
+    animation: security-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Risk score color indicators */
+  .risk-critical {
+    color: hsl(0, 84%, 60%);
+    background-color: hsl(0, 84%, 60%, 0.1);
+  }
+
+  .risk-high {
+    color: hsl(43, 96%, 56%);
+    background-color: hsl(43, 96%, 56%, 0.1);
+  }
+
+  .risk-medium {
+    color: hsl(213, 94%, 68%);
+    background-color: hsl(213, 94%, 68%, 0.1);
+  }
+
+  .risk-low {
+    color: hsl(158, 64%, 52%);
+    background-color: hsl(158, 64%, 52%, 0.1);
+  }
+
+  /* Status indicators */
+  .status-completed {
+    color: hsl(158, 64%, 52%);
+    background-color: hsl(158, 64%, 52%, 0.1);
+  }
+
+  .status-processing {
+    color: hsl(43, 96%, 56%);
+    background-color: hsl(43, 96%, 56%, 0.1);
+  }
+
+  .status-failed {
+    color: hsl(0, 84%, 60%);
+    background-color: hsl(0, 84%, 60%, 0.1);
+  }
+
+  .status-pending {
+    color: hsl(215, 20%, 65%);
+    background-color: hsl(215, 20%, 65%, 0.1);
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  .nav-item-active {
+    @apply bg-accent-blue/10 text-accent-blue border-l-4 border-accent-blue;
+  }
+
+  .nav-item-inactive {
+    @apply text-slate-300 hover:bg-slate-700/50 transition-colors;
+  }
+
+  .security-card {
+    @apply bg-dark-secondary rounded-xl border border-slate-700 p-6 transition-all duration-200 hover:border-accent-blue/50;
+  }
+
+  .security-button-primary {
+    @apply bg-accent-blue hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 focus:ring-offset-dark-secondary;
+  }
+
+  .security-button-secondary {
+    @apply bg-dark-tertiary border border-slate-600 text-slate-300 hover:bg-slate-600 hover:text-white py-2 px-4 rounded-lg transition-colors;
+  }
+
+  .security-input {
+    @apply bg-dark-tertiary border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-400 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue transition-colors;
+  }
+
+  .anomaly-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .file-upload-zone {
+    @apply border-2 border-dashed border-slate-600 rounded-xl p-12 text-center hover:border-accent-blue transition-colors cursor-pointer bg-dark-tertiary/20;
+  }
+
+  .stats-card {
+    @apply bg-dark-secondary rounded-xl p-6 border border-slate-700 transition-all duration-200 hover:shadow-lg hover:shadow-accent-blue/5;
+  }
+}
