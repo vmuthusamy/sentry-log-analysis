@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { setupAuth } from "./auth";
 import { storage } from "./storage";
 import { zscalerLogParser } from "./services/log-parser";
-import { anomalyDetector } from "./services/anomaly-detector";
+import { anomalyDetector, AnomalyDetector } from "./services/anomaly-detector";
 import multer from "multer";
 import { z } from "zod";
 import fs from "fs/promises";

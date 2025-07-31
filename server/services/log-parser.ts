@@ -4,16 +4,25 @@ export class ZscalerLogParser {
   parseLogFile(content: string): LogEntry[] {
     const lines = content.split('\n').filter(line => line.trim());
     const entries: LogEntry[] = [];
+    let successfulParsed = 0;
 
     for (const line of lines) {
       try {
         const entry = this.parseZscalerLogLine(line);
         if (entry) {
           entries.push(entry);
+          successfulParsed++;
         }
       } catch (error) {
-        console.warn("Failed to parse log line:", line, error);
+        console.warn("Failed to parse log line:", line.substring(0, 100), error);
       }
+    }
+
+    const parseRate = lines.length > 0 ? (successfulParsed / lines.length) * 100 : 0;
+    console.log(`Parsed ${successfulParsed}/${lines.length} lines (${parseRate.toFixed(1)}%)`);
+
+    if (parseRate < 50) {
+      throw new Error(`Only ${parseRate.toFixed(1)}% of lines could be parsed. Check file format.`);
     }
 
     return entries;
@@ -40,16 +49,18 @@ export class ZscalerLogParser {
     // Clean up quoted fields
     fields = fields.map(field => field.replace(/^"/, '').replace(/"$/, '').trim());
 
-    // Map fields based on common Zscaler format
-    // Based on your file: "timestamp","department","protocol","url","action","category",...
+    // Map fields based on actual Zscaler NSS format
+    // Fields: timestamp,department,protocol,url,action,category,subcategory,bytes_out,bytes_in,upload_bytes,download_bytes,threat_category,threat_name,rule_type,policy,dpi_category,dpi_count,dpi_rule,dpi_engine,location,user,client_ip,server_ip,method,status_code,user_agent,ssl_decryption,url_category,app_name,app_type,content_type,http_transaction_method,reason,md5_hash
     const timestamp = fields[0]?.trim();
     const department = fields[1]?.trim();
     const protocol = fields[2]?.trim();
     const url = fields[3]?.trim();
     const action = fields[4]?.trim() || 'unknown';
     const category = fields[5]?.trim();
-    const clientIP = fields[22]?.trim(); // Adjusted for your format
-    const serverIP = fields[23]?.trim();  // Adjusted for your format
+    const subcategory = fields[6]?.trim();
+    const clientIP = fields[21]?.trim(); // user field
+    const serverIP = fields[22]?.trim(); // client_ip
+    const realServerIP = fields[23]?.trim(); // server_ip  
     const method = fields[24]?.trim();
     const statusCode = fields[25]?.trim();
     const userAgent = fields[26]?.trim();
@@ -61,9 +72,9 @@ export class ZscalerLogParser {
 
     return {
       timestamp: this.normalizeTimestamp(timestamp),
-      sourceIP: clientIP || 'unknown',
-      destinationIP: serverIP,
-      user: department || undefined,
+      sourceIP: serverIP || 'unknown', // client_ip (field 22)
+      destinationIP: realServerIP,      // server_ip (field 23)
+      user: clientIP || department || undefined, // user field (field 21) or department
       action,
       url: url || undefined,
       statusCode: statusCode || undefined,
@@ -71,6 +82,7 @@ export class ZscalerLogParser {
       userAgent: userAgent || undefined,
       protocol: protocol || undefined,
       category: category || undefined,
+      subcategory: subcategory || undefined,
       rawLog: line,
     };
   }

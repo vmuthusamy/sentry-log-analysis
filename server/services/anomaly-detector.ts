@@ -12,6 +12,7 @@ export interface LogEntry {
   userAgent?: string;
   protocol?: string;
   category?: string;
+  subcategory?: string;
   rawLog: string;
 }
 
