@@ -33,6 +33,15 @@ function requireAuth(req: any, res: any, next: any) {
 }
 
 export function registerRoutes(app: Express): Server {
+  // Health check endpoint
+  app.get('/health', (req, res) => {
+    res.json({ 
+      status: 'healthy', 
+      timestamp: new Date().toISOString(),
+      version: '1.0.0'
+    });
+  });
+
   setupAuth(app);
 
   // File upload endpoint
