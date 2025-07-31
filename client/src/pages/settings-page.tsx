@@ -1,6 +1,8 @@
 import { APIKeySettings } from "@/components/dashboard/api-key-settings";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Settings, User, Shield, Bell } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Settings, User, Shield, Bell, ArrowLeft } from "lucide-react";
+import { Link } from "wouter";
 
 export default function SettingsPage() {
   return (
@@ -9,9 +11,17 @@ export default function SettingsPage() {
         {/* Header */}
         <header className="bg-dark-secondary border-b border-slate-700 px-6 py-4 -mx-4 -mt-8 mb-8">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-white">Settings</h1>
-              <p className="text-slate-400 mt-1">Manage your LogGuard configuration and preferences</p>
+            <div className="flex items-center gap-4">
+              <Link href="/">
+                <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white hover:bg-slate-700">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back to LogGuard
+                </Button>
+              </Link>
+              <div>
+                <h1 className="text-3xl font-bold text-white">Settings</h1>
+                <p className="text-slate-400 mt-1">Manage your LogGuard configuration and preferences</p>
+              </div>
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-right">
