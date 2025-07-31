@@ -5,17 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import { CloudUpload, FileText, Check, AlertCircle, Loader2 } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CloudUpload, FileText, Check, AlertCircle, Loader2, Settings } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import AISettings from "./ai-settings";
 
 export function UploadSection() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [sensitivity, setSensitivity] = useState("high");
-  const [threshold, setThreshold] = useState(7);
-  const [realTime, setRealTime] = useState(true);
-  const [emailNotifications, setEmailNotifications] = useState(true);
+  const [aiConfig, setAiConfig] = useState(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();

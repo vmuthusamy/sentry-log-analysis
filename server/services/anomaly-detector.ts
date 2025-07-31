@@ -1,8 +1,4 @@
-import OpenAI from "openai";
-
-const openai = new OpenAI({ 
-  apiKey: process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY_ENV_VAR || "sk-dummy-key"
-});
+import { MultiProviderAIService, AIConfig, AIProvider, ModelTier } from "./ai-providers";
 
 export interface LogEntry {
   timestamp: string;
@@ -30,30 +26,32 @@ export interface AnomalyResult {
 }
 
 export class AnomalyDetector {
-  // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
-  private readonly model = "gpt-4o";
+  private aiService: MultiProviderAIService;
+  private defaultConfig: AIConfig;
 
-  async analyzeLogEntry(logEntry: LogEntry): Promise<AnomalyResult> {
+  constructor(config?: Partial<AIConfig>) {
+    this.aiService = new MultiProviderAIService();
+    this.defaultConfig = {
+      provider: (config?.provider || process.env.AI_PROVIDER || "openai") as AIProvider,
+      tier: (config?.tier || process.env.AI_MODEL_TIER || "standard") as ModelTier,
+      temperature: config?.temperature || 0.1,
+    };
+  }
+
+  async analyzeLogEntry(logEntry: LogEntry, config?: Partial<AIConfig>): Promise<AnomalyResult> {
     try {
+      const analyzeConfig = { ...this.defaultConfig, ...config };
       const prompt = this.buildAnalysisPrompt(logEntry);
 
-      const response = await openai.chat.completions.create({
-        model: this.model,
-        messages: [
-          {
-            role: "system",
-            content: "You are an expert cybersecurity analyst specializing in log analysis and anomaly detection. Analyze the provided log entry and identify potential security threats, unusual patterns, or anomalous behavior. Respond with JSON only."
-          },
-          {
-            role: "user",
-            content: prompt
-          }
-        ],
-        response_format: { type: "json_object" },
-        temperature: 0.1,
+      const systemPrompt = "You are an expert cybersecurity analyst specializing in log analysis and anomaly detection. Analyze the provided log entry and identify potential security threats, unusual patterns, or anomalous behavior. Respond with JSON only.";
+
+      const response = await this.aiService.analyze({
+        systemPrompt,
+        userPrompt: prompt,
+        config: analyzeConfig,
       });
 
-      const result = JSON.parse(response.choices[0].message.content || "{}");
+      const result = JSON.parse(response.content || "{}");
       
       return {
         isAnomaly: result.isAnomaly || false,

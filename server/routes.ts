@@ -186,12 +186,86 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  // Get available AI providers and models
+  app.get("/api/ai-providers", requireAuth, async (req, res) => {
+    try {
+      const { MultiProviderAIService } = await import("./services/ai-providers");
+      const aiService = new MultiProviderAIService();
+      
+      const [models, availability] = await Promise.all([
+        aiService.getAvailableModels(),
+        aiService.checkProviderAvailability(),
+      ]);
+
+      res.json({
+        models,
+        availability,
+        defaultConfig: {
+          provider: "openai",
+          tier: "standard", 
+          temperature: 0.1,
+        },
+      });
+    } catch (error) {
+      console.error("Error getting AI providers:", error);
+      res.status(500).json({ message: "Failed to get AI providers" });
+    }
+  });
+
+  // Process logs with custom AI configuration
+  app.post("/api/process-logs/:id", requireAuth, async (req, res) => {
+    try {
+      const logFileId = req.params.id;
+      const userId = req.user!.id;
+      const aiConfig = req.body.aiConfig; // Optional AI configuration from frontend
+
+      const logFile = await storage.getLogFile(logFileId);
+      if (!logFile || logFile.userId !== userId) {
+        return res.status(404).json({ message: "Log file not found" });
+      }
+
+      if (logFile.status === "processing") {
+        return res.status(400).json({ message: "Log file is already being processed" });
+      }
+
+      // Update the processing job with custom AI config
+      await storage.updateLogFileStatus(logFileId, "processing");
+
+      // Parse the log file again and process with custom config
+      const fs = await import("fs");
+      const path = await import("path");
+      const uploadsDir = path.join(process.cwd(), "uploads");
+      const filePath = path.join(uploadsDir, logFile.filename);
+      
+      if (!fs.existsSync(filePath)) {
+        return res.status(404).json({ message: "Log file data not found" });
+      }
+
+      const content = fs.readFileSync(filePath, "utf-8");
+      const logEntries = zscalerLogParser.parseLogFile(content);
+
+      // Process with custom AI configuration
+      reprocessLogFileAsync(logFile.id, logEntries, userId, aiConfig);
+
+      res.json({ 
+        message: "Reprocessing started with custom AI configuration", 
+        logFileId,
+        aiConfig: aiConfig || "default" 
+      });
+    } catch (error) {
+      console.error("Error reprocessing logs:", error);
+      res.status(500).json({ message: "Failed to start reprocessing" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
 
-// Async processing function
-async function processLogFileAsync(logFileId: string, logEntries: any[], userId: string) {
+// Async processing function with AI configuration support
+async function processLogFileAsync(logFileId: string, logEntries: any[], userId: string, aiConfig?: any) {
+  const detector = aiConfig ? new AnomalyDetector(aiConfig) : anomalyDetector;
+  
   try {
     await storage.updateLogFileStatus(logFileId, "processing");
     
@@ -201,7 +275,7 @@ async function processLogFileAsync(logFileId: string, logEntries: any[], userId:
     
     for (let i = 0; i < logEntries.length; i += batchSize) {
       const batch = logEntries.slice(i, i + batchSize);
-      const results = await anomalyDetector.analyzeBatch(batch);
+      const results = await detector.analyzeBatch(batch);
       
       // Save anomalies to database
       for (let j = 0; j < results.length; j++) {
@@ -226,15 +300,66 @@ async function processLogFileAsync(logFileId: string, logEntries: any[], userId:
       
       // Update progress
       const progress = Math.min(100, Math.round(((i + batchSize) / logEntries.length) * 100));
-      // Note: We're not updating job progress here since we don't have the job ID
-      // In a production system, you'd want to pass the job ID to this function
     }
     
     await storage.updateLogFileStatus(logFileId, "completed");
-    console.log(`Processing completed for file ${logFileId}. Found ${anomalies.length} anomalies.`);
+    console.log(`Processing completed for file ${logFileId} with ${aiConfig?.provider || 'default'} AI. Found ${anomalies.length} anomalies.`);
     
   } catch (error) {
     console.error("Processing error:", error);
+    await storage.updateLogFileStatus(logFileId, "failed", undefined, error instanceof Error ? error.message : "Unknown error");
+  }
+}
+
+// Reprocessing function for custom AI configurations
+async function reprocessLogFileAsync(logFileId: string, logEntries: any[], userId: string, aiConfig?: any) {
+  const detector = aiConfig ? new AnomalyDetector(aiConfig) : anomalyDetector;
+  
+  try {
+    await storage.updateLogFileStatus(logFileId, "processing");
+    
+    // Clear existing anomalies for this log file (we'll skip this for now)
+    // await storage.clearAnomaliesByLogFile(logFileId);
+    
+    // Process logs in batches with new AI configuration
+    const batchSize = 10;
+    const anomalies = [];
+    
+    for (let i = 0; i < logEntries.length; i += batchSize) {
+      const batch = logEntries.slice(i, i + batchSize);
+      const results = await detector.analyzeBatch(batch);
+      
+      // Save anomalies to database
+      for (let j = 0; j < results.length; j++) {
+        const result = results[j];
+        const logEntry = batch[j];
+        
+        if (result.isAnomaly && result.riskScore >= 4) {
+          const anomaly = await storage.createAnomaly({
+            logFileId,
+            userId,
+            timestamp: new Date(logEntry.timestamp),
+            anomalyType: result.anomalyType,
+            description: result.description,
+            riskScore: result.riskScore.toString(),
+            sourceData: logEntry,
+            aiAnalysis: {
+              ...result,
+              aiProvider: aiConfig?.provider || 'openai',
+              modelTier: aiConfig?.tier || 'standard',
+            },
+            status: "pending",
+          });
+          anomalies.push(anomaly);
+        }
+      }
+    }
+    
+    await storage.updateLogFileStatus(logFileId, "completed");
+    console.log(`Reprocessing completed for file ${logFileId} with ${aiConfig?.provider || 'default'} AI (${aiConfig?.tier || 'standard'} tier). Found ${anomalies.length} anomalies.`);
+    
+  } catch (error) {
+    console.error("Reprocessing error:", error);
     await storage.updateLogFileStatus(logFileId, "failed", undefined, error instanceof Error ? error.message : "Unknown error");
   }
 }

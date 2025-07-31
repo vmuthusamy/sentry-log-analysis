@@ -1,5 +1,5 @@
 import { useAuth } from "@/hooks/use-auth";
-import { Shield, ChartLine, Upload, Search, History, Settings, LogOut } from "lucide-react";
+import { Shield, ChartLine, Upload, Search, History, Settings, LogOut, FolderCog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface SidebarProps {
@@ -15,6 +15,7 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
     { id: "upload", label: "Upload Logs", icon: Upload },
     { id: "analysis", label: "Analysis Results", icon: Search },
     { id: "history", label: "History", icon: History },
+    { id: "management", label: "AI & Log Management", icon: FolderCog },
     { id: "settings", label: "Settings", icon: Settings },
   ];
 

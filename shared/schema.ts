@@ -123,3 +123,12 @@ export type Anomaly = typeof anomalies.$inferSelect;
 export type InsertAnomaly = z.infer<typeof insertAnomalySchema>;
 export type ProcessingJob = typeof processingJobs.$inferSelect;
 export type InsertProcessingJob = z.infer<typeof insertProcessingJobSchema>;
+
+// AI Configuration Schema
+export const aiConfigSchema = z.object({
+  provider: z.enum(["openai", "gcp"]).default("openai"),
+  tier: z.enum(["premium", "standard", "economy"]).default("standard"),
+  temperature: z.number().min(0).max(2).default(0.1),
+});
+
+export type AIConfig = z.infer<typeof aiConfigSchema>;

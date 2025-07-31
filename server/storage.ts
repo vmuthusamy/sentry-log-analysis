@@ -226,6 +226,21 @@ export class DatabaseStorage implements IStorage {
       averageRiskScore: Math.round(averageRiskScore * 10) / 10,
     };
   }
+
+  // Update log file
+  async updateLogFile(id: string, updates: Partial<LogFile>): Promise<void> {
+    await db
+      .update(logFiles)
+      .set(updates)
+      .where(eq(logFiles.id, id));
+  }
+
+  // Clear anomalies for a log file (for reprocessing)
+  async clearAnomaliesByLogFile(logFileId: string): Promise<void> {
+    await db
+      .delete(anomalies)
+      .where(eq(anomalies.logFileId, logFileId));
+  }
 }
 
 export const storage = new DatabaseStorage();
