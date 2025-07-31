@@ -5,12 +5,15 @@ import { storage } from "./storage";
 import { zscalerLogParser } from "./services/log-parser";
 import { anomalyDetector, AnomalyDetector } from "./services/anomaly-detector";
 import { metricsService } from "./services/metrics-service";
+import { TraditionalAnomalyDetector } from "./services/traditional-anomaly-detector";
 import { uploadRateLimit, apiRateLimit, loginRateLimit, analysisRateLimit } from "./middleware/rate-limiter";
 import { handleMulterErrors, globalErrorHandler, notFoundHandler, asyncHandler, ValidationError, FileSizeError, ProcessingError } from "./middleware/error-handler";
 import multer from "multer";
 import { z } from "zod";
 import fs from "fs/promises";
 import path from "path";
+
+const traditionalDetector = new TraditionalAnomalyDetector();
 
 const upload = multer({
   dest: "uploads/",
@@ -299,6 +302,77 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  // Traditional anomaly detection (no LLM) endpoint
+  app.post("/api/analyze-traditional/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
+    const logFileId = req.params.id;
+    const userId = req.user!.id;
+
+    try {
+      const logFile = await storage.getLogFile(logFileId);
+      if (!logFile || logFile.userId !== userId) {
+        return res.status(404).json({ message: "Log file not found" });
+      }
+
+      // Parse the log file
+      const uploadsDir = path.join(process.cwd(), "uploads");
+      const filePath = path.join(uploadsDir, logFile.filename);
+      
+      const content = await fs.readFile(filePath, "utf-8");
+      const logEntries = zscalerLogParser.parseLogFile(content);
+
+      // Run traditional anomaly detection
+      const anomalies = traditionalDetector.analyzeLogEntries(logEntries);
+
+      // Convert to storage format
+      const anomalyInserts = anomalies.map(anomaly => ({
+        id: anomaly.id,
+        logFileId: logFile.id,
+        userId,
+        anomalyType: anomaly.anomalyType,
+        riskScore: anomaly.riskScore,
+        confidence: anomaly.confidence,
+        description: anomaly.description,
+        recommendation: anomaly.recommendation,
+        logData: JSON.stringify(anomaly.logEntry),
+        metadata: JSON.stringify(anomaly.metadata),
+      }));
+
+      // Store anomalies
+      for (const anomaly of anomalyInserts) {
+        await storage.createAnomaly(anomaly);
+      }
+
+      // Track success metrics
+      await metricsService.trackEvent(userId, 'analysis_success', 'traditional_ml', {
+        anomalies_found: anomalies.length,
+        log_entries: logEntries.length,
+        file_id: logFile.id
+      });
+
+      res.json({ 
+        message: "Traditional analysis completed successfully",
+        anomaliesFound: anomalies.length,
+        logEntriesAnalyzed: logEntries.length,
+        method: "Traditional ML (rule-based + statistical)",
+        anomalies: anomalies.slice(0, 10) // Return top 10 for preview
+      });
+
+    } catch (error) {
+      console.error("Traditional analysis error:", error);
+      
+      // Track failure metrics
+      await metricsService.trackEvent(userId, 'analysis_failure', 'traditional_ml', {
+        error: error instanceof Error ? error.message : 'unknown',
+        file_id: logFileId
+      });
+
+      res.status(500).json({ 
+        message: "Traditional analysis failed", 
+        error: error instanceof Error ? error.message : "Unknown error" 
+      });
+    }
+  }));
+
   // Process logs with custom AI configuration (heavy rate limiting)
   app.post("/api/process-logs/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
     const logFileId = req.params.id;
@@ -319,7 +393,7 @@ export function registerRoutes(app: Express): Server {
 
     // Parse the log file again and process with custom config
     const uploadsDir = path.join(process.cwd(), "uploads");
-    const filePath = path.join(uploadsDir, logFile.fileName);
+    const filePath = path.join(uploadsDir, logFile.filename);
     
     const content = await fs.readFile(filePath, "utf-8");
     const logEntries = zscalerLogParser.parseLogFile(content);
