@@ -310,6 +310,159 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  // User API Key Management Endpoints
+  
+  // Get user API key status
+  app.get("/api/user-api-keys/status", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user!.id;
+      const { userApiKeys } = await import("@shared/schema");
+      const { eq } = await import("drizzle-orm");
+      
+      const keys = await db.select().from(userApiKeys).where(eq(userApiKeys.userId, userId));
+      
+      const status = {
+        openai: { configured: false, working: false },
+        gemini: { configured: false, working: false },
+      };
+      
+      keys.forEach(key => {
+        if (key.provider === 'openai') {
+          status.openai = {
+            configured: true,
+            working: key.testStatus === 'success',
+            error: key.testError || undefined
+          };
+        } else if (key.provider === 'gemini') {
+          status.gemini = {
+            configured: true,
+            working: key.testStatus === 'success',
+            error: key.testError || undefined
+          };
+        }
+      });
+      
+      res.json(status);
+    } catch (error) {
+      console.error("Error getting API key status:", error);
+      res.status(500).json({ message: "Failed to get API key status" });
+    }
+  });
+
+  // Save user API key
+  app.post("/api/user-api-keys", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user!.id;
+      const { provider, apiKey } = req.body;
+      
+      if (!provider || !apiKey) {
+        return res.status(400).json({ message: "Provider and API key are required" });
+      }
+      
+      if (!['openai', 'gemini'].includes(provider)) {
+        return res.status(400).json({ message: "Invalid provider" });
+      }
+      
+      const { userApiKeys } = await import("@shared/schema");
+      const { eq, and } = await import("drizzle-orm");
+      const crypto = await import("crypto");
+      
+      // Simple encryption for demo purposes (in production, use proper encryption)
+      const encrypted = Buffer.from(apiKey).toString('base64');
+      
+      // Check if key already exists for this user and provider
+      const existingKey = await db.select().from(userApiKeys).where(
+        and(eq(userApiKeys.userId, userId), eq(userApiKeys.provider, provider))
+      );
+      
+      if (existingKey.length > 0) {
+        // Update existing key
+        await db.update(userApiKeys)
+          .set({ 
+            encryptedApiKey: encrypted, 
+            updatedAt: new Date(),
+            testStatus: 'pending'
+          })
+          .where(eq(userApiKeys.id, existingKey[0].id));
+      } else {
+        // Create new key
+        await db.insert(userApiKeys).values({
+          userId,
+          provider,
+          encryptedApiKey: encrypted,
+          testStatus: 'pending'
+        });
+      }
+      
+      res.json({ message: "API key saved successfully" });
+    } catch (error) {
+      console.error("Error saving API key:", error);
+      res.status(500).json({ message: "Failed to save API key" });
+    }
+  });
+
+  // Test user API key
+  app.post("/api/user-api-keys/:provider/test", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user!.id;
+      const { provider } = req.params;
+      
+      const { userApiKeys } = await import("@shared/schema");
+      const { eq, and } = await import("drizzle-orm");
+      
+      const keyRecord = await db.select().from(userApiKeys).where(
+        and(eq(userApiKeys.userId, userId), eq(userApiKeys.provider, provider))
+      );
+      
+      if (keyRecord.length === 0) {
+        return res.status(404).json({ message: "API key not found" });
+      }
+      
+      // Decrypt API key (simple demo decryption)
+      const apiKey = Buffer.from(keyRecord[0].encryptedApiKey, 'base64').toString();
+      
+      let testResult = { success: false, error: '' };
+      
+      try {
+        if (provider === 'openai') {
+          const OpenAI = (await import("openai")).default;
+          const openai = new OpenAI({ apiKey });
+          await openai.models.list();
+          testResult = { success: true, error: '' };
+        } else if (provider === 'gemini') {
+          const { GoogleGenAI } = await import("@google/genai");
+          const genai = new GoogleGenAI({ apiKey });
+          await genai.models.list();
+          testResult = { success: true, error: '' };
+        }
+      } catch (error: any) {
+        testResult = { 
+          success: false, 
+          error: error.message || 'Connection test failed' 
+        };
+      }
+      
+      // Update test status
+      await db.update(userApiKeys)
+        .set({ 
+          testStatus: testResult.success ? 'success' : 'failed',
+          testError: testResult.error || null,
+          lastTested: new Date(),
+          updatedAt: new Date()
+        })
+        .where(eq(userApiKeys.id, keyRecord[0].id));
+      
+      if (testResult.success) {
+        res.json({ message: "API key test successful" });
+      } else {
+        res.status(400).json({ message: testResult.error });
+      }
+    } catch (error) {
+      console.error("Error testing API key:", error);
+      res.status(500).json({ message: "Failed to test API key" });
+    }
+  });
+
   // Advanced ML anomaly detection endpoint
   app.post("/api/analyze-advanced-ml/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
     const logFileId = req.params.id;
@@ -346,7 +499,7 @@ export function registerRoutes(app: Express): Server {
           recommendation: anomaly.recommendation,
           metadata: anomaly.metadata
         },
-        detectionMethod: "Advanced ML",
+        detectionMethod: "advanced",
       }));
 
       // Store anomalies
@@ -423,7 +576,7 @@ export function registerRoutes(app: Express): Server {
           recommendation: anomaly.recommendation,
           metadata: anomaly.metadata
         },
-        detectionMethod: "Traditional ML",
+        detectionMethod: "traditional",
       }));
 
       // Store anomalies

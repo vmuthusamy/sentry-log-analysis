@@ -1,6 +1,7 @@
 import { useAuth } from "@/hooks/use-auth";
 import { Shield, ChartLine, Upload, Search, History, Settings, LogOut, FolderCog, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
 
 interface SidebarProps {
   activeSection: string;
@@ -9,6 +10,7 @@ interface SidebarProps {
 
 export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
   const { user, logoutMutation } = useAuth();
+  const [, setLocation] = useLocation();
 
   const menuItems = [
     { id: "overview", label: "Overview", icon: ChartLine },
@@ -47,7 +49,13 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
               <Button
                 key={item.id}
                 variant="ghost"
-                onClick={() => onSectionChange(item.id)}
+                onClick={() => {
+                  if (item.id === "settings") {
+                    setLocation("/settings");
+                  } else {
+                    onSectionChange(item.id);
+                  }
+                }}
                 className={`w-full justify-start px-4 py-3 rounded-lg transition-colors ${
                   isActive
                     ? "bg-accent-blue/10 text-accent-blue border-l-4 border-accent-blue"

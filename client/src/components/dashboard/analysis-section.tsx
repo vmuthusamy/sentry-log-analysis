@@ -4,8 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Filter, Download, Search, MoreHorizontal } from "lucide-react";
+import { Filter, Download, Search, MoreHorizontal, Brain, BarChart3, Database } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { FullCycleTest } from "./full-cycle-test";
 
 export function AnalysisSection() {
   const [riskFilter, setRiskFilter] = useState("all");
@@ -38,8 +39,36 @@ export function AnalysisSection() {
     return new Date(timestamp).toLocaleString();
   };
 
+  const getDetectionMethodBadge = (method: string) => {
+    switch (method) {
+      case 'traditional':
+        return (
+          <Badge className="bg-green-100 text-green-800">
+            <Database className="w-3 h-3 mr-1" />
+            Traditional ML
+          </Badge>
+        );
+      case 'advanced':
+        return (
+          <Badge className="bg-purple-100 text-purple-800">
+            <BarChart3 className="w-3 h-3 mr-1" />
+            Advanced ML
+          </Badge>
+        );
+      case 'ai':
+        return (
+          <Badge className="bg-blue-100 text-blue-800">
+            <Brain className="w-3 h-3 mr-1" />
+            AI-Powered
+          </Badge>
+        );
+      default:
+        return <Badge variant="secondary">{method}</Badge>;
+    }
+  };
+
   return (
-    <div className="p-6">
+    <div className="p-6 space-y-6">
       {/* Header */}
       <header className="bg-dark-secondary border-b border-slate-700 px-6 py-4 -mx-6 -mt-6 mb-6">
         <div className="flex items-center justify-between">
@@ -59,6 +88,9 @@ export function AnalysisSection() {
           </div>
         </div>
       </header>
+
+      {/* Full Cycle Test Section */}
+      <FullCycleTest />
 
       {/* Filter Bar */}
       <Card className="bg-dark-secondary border-slate-700 mb-6">
@@ -188,9 +220,7 @@ export function AnalysisSection() {
                           </Badge>
                         </TableCell>
                         <TableCell>
-                          <Badge variant="outline" className="text-purple-400 border-purple-400">
-                            {anomaly.detectionMethod || "Traditional ML"}
-                          </Badge>
+                          {getDetectionMethodBadge(anomaly.detectionMethod || 'traditional')}
                         </TableCell>
                         <TableCell className="text-slate-300">
                           {anomaly.sourceData?.sourceIP || "Unknown"}

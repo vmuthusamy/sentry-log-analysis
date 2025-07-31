@@ -125,6 +125,9 @@ export type InsertAnomaly = z.infer<typeof insertAnomalySchema>;
 export type ProcessingJob = typeof processingJobs.$inferSelect;
 export type InsertProcessingJob = z.infer<typeof insertProcessingJobSchema>;
 
+// Export user API keys schema
+export * from "./user-api-keys-schema";
+
 // Metrics Events Table
 export const metricsEvents = pgTable("metrics_events", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
