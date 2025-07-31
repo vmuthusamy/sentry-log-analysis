@@ -20,41 +20,81 @@ export class ZscalerLogParser {
   }
 
   private parseZscalerLogLine(line: string): LogEntry | null {
-    // Zscaler NSS feed format parsing
-    // Example format: timestamp,user,department,location_name,action,threatened_category,policy,clienttranstime,url,refererURL,useragent,reqmethod,respcode,reqsize,respsize,clientip,status,reason,threatcat,threatname,filetype,appname,appclass,dlpmd5,dlpdict,dlpdictnames,dlpengine,urlcat,malwarecat,bandwidth_throttle,dept,urlsupercat,devicename,devicetype,recordid
+    // Zscaler NSS feed format parsing with quoted CSV support
+    // Handle both comma-separated and tab-separated formats, including quoted fields
 
-    // Handle both comma-separated and tab-separated formats
-    const fields = line.includes('\t') ? line.split('\t') : line.split(',');
+    let fields: string[];
+    
+    if (line.includes('\t')) {
+      // Tab-separated format
+      fields = line.split('\t');
+    } else {
+      // CSV format with potential quoted fields
+      fields = this.parseCSVLine(line);
+    }
     
     if (fields.length < 10) {
       return null; // Not enough fields for a valid Zscaler log
     }
 
-    // Map fields based on common Zscaler format
-    const timestamp = fields[0]?.trim();
-    const user = fields[1]?.trim();
-    const action = fields[4]?.trim() || 'unknown';
-    const url = fields[8]?.trim();
-    const userAgent = fields[10]?.trim();
-    const statusCode = fields[12]?.trim();
-    const clientIP = fields[16]?.trim();
-    const bytes = parseInt(fields[14]?.trim()) || 0;
+    // Clean up quoted fields
+    fields = fields.map(field => field.replace(/^"/, '').replace(/"$/, '').trim());
 
-    if (!timestamp || !clientIP) {
+    // Map fields based on common Zscaler format
+    // Based on your file: "timestamp","department","protocol","url","action","category",...
+    const timestamp = fields[0]?.trim();
+    const department = fields[1]?.trim();
+    const protocol = fields[2]?.trim();
+    const url = fields[3]?.trim();
+    const action = fields[4]?.trim() || 'unknown';
+    const category = fields[5]?.trim();
+    const clientIP = fields[22]?.trim(); // Adjusted for your format
+    const serverIP = fields[23]?.trim();  // Adjusted for your format
+    const method = fields[24]?.trim();
+    const statusCode = fields[25]?.trim();
+    const userAgent = fields[26]?.trim();
+    const bytes = parseInt(fields[7]?.trim()) || 0;
+
+    if (!timestamp) {
       return null;
     }
 
     return {
       timestamp: this.normalizeTimestamp(timestamp),
-      sourceIP: clientIP,
-      user: user || undefined,
+      sourceIP: clientIP || 'unknown',
+      destinationIP: serverIP,
+      user: department || undefined,
       action,
       url: url || undefined,
       statusCode: statusCode || undefined,
       bytes: bytes > 0 ? bytes : undefined,
       userAgent: userAgent || undefined,
+      protocol: protocol || undefined,
+      category: category || undefined,
       rawLog: line,
     };
+  }
+
+  private parseCSVLine(line: string): string[] {
+    const result: string[] = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === ',' && !inQuotes) {
+        result.push(current);
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    
+    result.push(current); // Add the last field
+    return result;
   }
 
   private normalizeTimestamp(timestamp: string): string {

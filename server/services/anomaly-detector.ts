@@ -14,6 +14,8 @@ export interface LogEntry {
   statusCode?: string;
   bytes?: number;
   userAgent?: string;
+  protocol?: string;
+  category?: string;
   rawLog: string;
 }
 
