@@ -114,6 +114,23 @@ export class MetricsService {
     console.log(`📊 Tracked AI analysis: ${aiProvider} (${status}) - ${processingTime}ms`);
   }
 
+  // Generic track method for analysis events
+  track(userId: string, eventType: string, analysisType: string, metadata: any) {
+    const metric: MetricEvent = {
+      userId,
+      eventType: eventType as any, // Type assertion for flexibility
+      status: 'success',
+      metadata: {
+        ...metadata,
+        analysisType
+      },
+      timestamp: new Date()
+    };
+    
+    this.metricsBuffer.push(metric);
+    console.log(`📊 Tracked ${eventType}: ${analysisType} (${metadata.anomalies_found || 0} anomalies)`);
+  }
+
   // Get success/failure rates
   async getMetricsSummary(userId: string, timeRange: '1h' | '24h' | '7d' | '30d' = '24h'): Promise<{
     fileUploads: { total: number; success: number; failure: number; successRate: number };

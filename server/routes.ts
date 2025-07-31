@@ -349,7 +349,7 @@ export function registerRoutes(app: Express): Server {
       }
 
       // Track success metrics
-      await metricsService.trackEvent(userId, 'analysis_success', 'advanced_ml', {
+      await metricsService.track(userId, 'analysis_success', 'advanced_ml', {
         anomalies_found: anomalies.length,
         log_entries: logEntries.length,
         file_id: logFile.id,
@@ -369,7 +369,7 @@ export function registerRoutes(app: Express): Server {
       console.error("Advanced ML analysis error:", error);
       
       // Track failure metrics
-      await metricsService.trackEvent(userId, 'analysis_failure', 'advanced_ml', {
+      await metricsService.track(userId, 'analysis_failure', 'advanced_ml', {
         error: error instanceof Error ? error.message : 'unknown',
         file_id: logFileId
       });
@@ -426,7 +426,7 @@ export function registerRoutes(app: Express): Server {
       }
 
       // Track success metrics
-      await metricsService.trackEvent(userId, 'analysis_success', 'traditional_ml', {
+      await metricsService.track(userId, 'analysis_success', 'traditional_ml', {
         anomalies_found: anomalies.length,
         log_entries: logEntries.length,
         file_id: logFile.id
@@ -444,7 +444,7 @@ export function registerRoutes(app: Express): Server {
       console.error("Traditional analysis error:", error);
       
       // Track failure metrics
-      await metricsService.trackEvent(userId, 'analysis_failure', 'traditional_ml', {
+      await metricsService.track(userId, 'analysis_failure', 'traditional_ml', {
         error: error instanceof Error ? error.message : 'unknown',
         file_id: logFileId
       });
