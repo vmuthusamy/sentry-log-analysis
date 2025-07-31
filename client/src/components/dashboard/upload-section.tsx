@@ -181,75 +181,17 @@ export function UploadSection() {
               </Card>
             )}
 
-            {/* Processing Options */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <Card className="bg-dark-tertiary/30 border-slate-600">
-                <CardHeader>
-                  <CardTitle className="text-lg font-semibold text-white">AI Model Settings</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <Label className="text-slate-300">Detection Sensitivity</Label>
-                    <select 
-                      className="w-full mt-2 bg-dark-tertiary border border-slate-600 rounded-lg px-3 py-2 text-white"
-                      value={sensitivity}
-                      onChange={(e) => setSensitivity(e.target.value)}
-                    >
-                      <option value="high">High (Recommended)</option>
-                      <option value="medium">Medium</option>
-                      <option value="low">Low</option>
-                    </select>
+            {/* AI Configuration Note */}
+            <div className="mb-8">
+              <Card className="bg-blue-950/50 border-blue-800">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-2 text-blue-200">
+                    <Settings className="h-4 w-4" />
+                    <span className="font-medium">AI Configuration</span>
                   </div>
-                  <div>
-                    <Label className="text-slate-300">Risk Threshold</Label>
-                    <Input
-                      type="range"
-                      min="1"
-                      max="10"
-                      value={threshold}
-                      onChange={(e) => setThreshold(parseInt(e.target.value))}
-                      className="w-full mt-2"
-                    />
-                    <div className="flex justify-between text-xs text-slate-400 mt-1">
-                      <span>Low</span>
-                      <span className="text-accent-amber">{threshold}.0</span>
-                      <span>High</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-dark-tertiary/30 border-slate-600">
-                <CardHeader>
-                  <CardTitle className="text-lg font-semibold text-white">Processing Options</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      checked={realTime}
-                      onChange={(e) => setRealTime(e.target.checked)}
-                      className="mr-3 accent-accent-blue"
-                    />
-                    <span className="text-slate-300">Real-time analysis</span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      checked={emailNotifications}
-                      onChange={(e) => setEmailNotifications(e.target.checked)}
-                      className="mr-3 accent-accent-blue"
-                    />
-                    <span className="text-slate-300">Email notifications</span>
-                  </label>
-                  <label className="flex items-center">
-                    <input type="checkbox" className="mr-3 accent-accent-blue" />
-                    <span className="text-slate-300">Batch processing</span>
-                  </label>
-                  <label className="flex items-center">
-                    <input type="checkbox" className="mr-3 accent-accent-blue" />
-                    <span className="text-slate-300">Auto-export results</span>
-                  </label>
+                  <p className="text-sm text-blue-300 mt-1">
+                    Files will be processed with default AI settings. Use the "AI & Log Management" section to configure different models and reprocess files.
+                  </p>
                 </CardContent>
               </Card>
             </div>

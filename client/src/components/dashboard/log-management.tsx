@@ -3,7 +3,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { FileText, RefreshCw, Settings, Calendar, AlertTriangle, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -126,66 +126,49 @@ export default function LogManagement() {
                   <p className="text-sm text-slate-500">Upload files to see them here</p>
                 </div>
               ) : (
-                <div className="overflow-x-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow className="border-slate-600">
-                        <TableHead className="text-slate-300">File Name</TableHead>
-                        <TableHead className="text-slate-300">Size</TableHead>
-                        <TableHead className="text-slate-300">Status</TableHead>
-                        <TableHead className="text-slate-300">Uploaded</TableHead>
-                        <TableHead className="text-slate-300">Entries</TableHead>
-                        <TableHead className="text-slate-300">Actions</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {logFiles.map((file) => (
-                        <TableRow key={file.id} className="border-slate-600">
-                          <TableCell className="text-white">
-                            <div className="flex items-center gap-2">
-                              <FileText className="h-4 w-4 text-slate-400" />
-                              <div>
-                                <div className="font-medium">{file.originalName}</div>
-                                <div className="text-xs text-slate-400">{file.filename}</div>
+                <div className="space-y-4">
+                  {logFiles.map((file) => (
+                    <Card key={file.id} className="bg-dark-tertiary/30 border-slate-600">
+                      <CardContent className="p-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <FileText className="h-5 w-5 text-slate-400" />
+                            <div>
+                              <div className="font-medium text-white">{file.originalName}</div>
+                              <div className="text-xs text-slate-400">
+                                {formatFileSize(file.fileSize)} • Uploaded {formatDate(file.uploadedAt)}
                               </div>
                             </div>
-                          </TableCell>
-                          <TableCell className="text-slate-300">{formatFileSize(file.fileSize)}</TableCell>
-                          <TableCell>{getStatusBadge(file.status)}</TableCell>
-                          <TableCell className="text-slate-300">
-                            <div className="flex items-center gap-1">
-                              <Calendar className="h-3 w-3" />
-                              {formatDate(file.uploadedAt)}
-                            </div>
-                          </TableCell>
-                          <TableCell className="text-slate-300">
-                            {file.totalEntries ? file.totalEntries.toLocaleString() : '-'}
-                          </TableCell>
-                          <TableCell>
-                            <div className="flex gap-2">
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                className="border-slate-600 text-slate-300 hover:bg-slate-700"
-                                onClick={() => reprocessMutation.mutate({ 
-                                  logFileId: file.id, 
-                                  aiConfig: selectedConfig 
-                                })}
-                                disabled={reprocessMutation.isPending || file.status === "processing"}
-                              >
-                                {reprocessMutation.isPending ? (
-                                  <RefreshCw className="h-3 w-3 animate-spin mr-1" />
-                                ) : (
-                                  <Settings className="h-3 w-3 mr-1" />
-                                )}
-                                Reprocess
-                              </Button>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            {getStatusBadge(file.status)}
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="border-slate-600 text-slate-300 hover:bg-slate-700"
+                              onClick={() => reprocessMutation.mutate({ 
+                                logFileId: file.id, 
+                                aiConfig: selectedConfig 
+                              })}
+                              disabled={reprocessMutation.isPending || file.status === "processing"}
+                            >
+                              {reprocessMutation.isPending ? (
+                                <RefreshCw className="h-3 w-3 animate-spin mr-1" />
+                              ) : (
+                                <Settings className="h-3 w-3 mr-1" />
+                              )}
+                              Reprocess
+                            </Button>
+                          </div>
+                        </div>
+                        {file.totalEntries && (
+                          <div className="mt-2 text-sm text-slate-400">
+                            {file.totalEntries.toLocaleString()} log entries
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               )}
             </CardContent>
@@ -201,7 +184,7 @@ export default function LogManagement() {
               <span className="font-medium">AI Configuration Selected</span>
             </div>
             <p className="text-sm text-blue-300 mt-1">
-              Files will be reprocessed with {selectedConfig.provider} AI using {selectedConfig.tier} tier models.
+              Files will be reprocessed with {(selectedConfig as any)?.provider || 'default'} AI using {(selectedConfig as any)?.tier || 'standard'} tier models.
             </p>
           </CardContent>
         </Card>
