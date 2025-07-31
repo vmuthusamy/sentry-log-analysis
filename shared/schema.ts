@@ -126,7 +126,7 @@ export type InsertProcessingJob = z.infer<typeof insertProcessingJobSchema>;
 
 // AI Configuration Schema
 export const aiConfigSchema = z.object({
-  provider: z.enum(["openai", "gcp"]).default("openai"),
+  provider: z.enum(["openai", "gcp_gemini"]).default("openai"),
   tier: z.enum(["premium", "standard", "economy"]).default("standard"),
   temperature: z.number().min(0).max(2).default(0.1),
 });

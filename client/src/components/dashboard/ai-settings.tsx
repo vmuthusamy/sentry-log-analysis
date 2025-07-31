@@ -12,7 +12,7 @@ import { aiConfigSchema } from "@shared/schema";
 
 interface AIProvider {
   openai: Record<string, string>;
-  gcp: Record<string, string>;
+  gcp_gemini: Record<string, string>;
 }
 
 interface AIProvidersResponse {
@@ -132,14 +132,14 @@ export default function AISettings({ onConfigChange }: { onConfigChange?: (confi
                   )}
                 </div>
               </SelectItem>
-              <SelectItem value="gcp" disabled={!providers?.availability.gcp}>
+              <SelectItem value="gcp_gemini" disabled={!providers?.availability.gcp_gemini}>
                 <div className="flex items-center gap-2">
                   <Bot className="h-4 w-4" />
-                  <span>Google Cloud (GCP)</span>
-                  {providers?.availability.gcp ? (
+                  <span>Google Gemini (GCP)</span>
+                  {providers?.availability.gcp_gemini ? (
                     <Badge variant="secondary" className="bg-green-100 text-green-800">Available</Badge>
                   ) : (
-                    <Badge variant="secondary" className="bg-orange-100 text-orange-800">Coming Soon</Badge>
+                    <Badge variant="secondary" className="bg-orange-100 text-orange-800">Configure API Key</Badge>
                   )}
                 </div>
               </SelectItem>

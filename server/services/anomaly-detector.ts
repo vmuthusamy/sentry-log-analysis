@@ -84,7 +84,7 @@ export class AnomalyDetector {
           return {
             ...traditionalResult,
             explanation: `Traditional ML + AI: ${traditionalResult.explanation}`,
-            recommendations: [...new Set([...traditionalResult.recommendations, ...aiResult.recommendations])]
+            recommendations: Array.from(new Set([...traditionalResult.recommendations, ...aiResult.recommendations]))
           };
         }
       }
