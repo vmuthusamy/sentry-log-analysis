@@ -532,7 +532,7 @@ async function processLogFileAsync(logFileId: string, logEntries: any[], userId:
     await storage.updateLogFileStatus(logFileId, "processing");
     
     // Process logs in batches to avoid overwhelming the AI service
-    const batchSize = 10;
+    const batchSize = 5; // Reduced from 10 to 5 for better performance
     const anomalies = [];
     
     for (let i = 0; i < logEntries.length; i += batchSize) {
@@ -542,6 +542,11 @@ async function processLogFileAsync(logFileId: string, logEntries: any[], userId:
       try {
         const results = await detector.analyzeBatch(batch);
         const batchTime = Date.now() - batchStartTime;
+        
+        // Add delay between batches to prevent overwhelming services
+        if (i + batchSize < logEntries.length) {
+          await new Promise(resolve => setTimeout(resolve, 100)); // 100ms delay
+        }
         
         // Track AI analysis success
         metricsService.trackAIAnalysis(
@@ -582,7 +587,10 @@ async function processLogFileAsync(logFileId: string, logEntries: any[], userId:
           undefined,
           batchError instanceof Error ? batchError.message : String(batchError)
         );
-        console.error(`Batch processing error:`, batchError);
+        console.error(`Batch processing error (batch ${Math.floor(i/batchSize) + 1}):`, batchError);
+        
+        // Continue processing even if one batch fails
+        // This prevents the entire file from getting stuck due to API issues
       }
       
       // Update progress
