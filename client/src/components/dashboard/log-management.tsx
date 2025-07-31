@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import AISettings from "./ai-settings";
 import { TraditionalAnalysisButton } from "./traditional-analysis-button";
+import { AdvancedMLButton } from "./advanced-ml-button";
 
 interface LogFile {
   id: string;
@@ -168,8 +169,16 @@ export default function LogManagement() {
                           </div>
                         )}
                         
-                        {/* Traditional Analysis Option */}
-                        <div className="mt-3 pt-3 border-t border-slate-600">
+                        {/* Analysis Options */}
+                        <div className="mt-3 pt-3 border-t border-slate-600 space-y-4">
+                          <AdvancedMLButton 
+                            logFileId={file.id}
+                            filename={file.originalName}
+                            onAnalysisComplete={() => {
+                              queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
+                              queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
+                            }}
+                          />
                           <TraditionalAnalysisButton 
                             logFileId={file.id}
                             filename={file.originalName}

@@ -6,6 +6,7 @@ import { zscalerLogParser } from "./services/log-parser";
 import { anomalyDetector, AnomalyDetector } from "./services/anomaly-detector";
 import { metricsService } from "./services/metrics-service";
 import { TraditionalAnomalyDetector } from "./services/traditional-anomaly-detector";
+import { AdvancedMLDetector } from "./services/advanced-ml-detector";
 import { uploadRateLimit, apiRateLimit, loginRateLimit, analysisRateLimit } from "./middleware/rate-limiter";
 import { handleMulterErrors, globalErrorHandler, notFoundHandler, asyncHandler, ValidationError, FileSizeError, ProcessingError } from "./middleware/error-handler";
 import multer from "multer";
@@ -14,6 +15,7 @@ import fs from "fs/promises";
 import path from "path";
 
 const traditionalDetector = new TraditionalAnomalyDetector();
+const advancedMLDetector = new AdvancedMLDetector();
 
 const upload = multer({
   dest: "uploads/",
@@ -301,6 +303,79 @@ export function registerRoutes(app: Express): Server {
       res.status(500).json({ message: "Failed to get AI providers" });
     }
   });
+
+  // Advanced ML anomaly detection endpoint
+  app.post("/api/analyze-advanced-ml/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
+    const logFileId = req.params.id;
+    const userId = req.user!.id;
+
+    try {
+      const logFile = await storage.getLogFile(logFileId);
+      if (!logFile || logFile.userId !== userId) {
+        return res.status(404).json({ message: "Log file not found" });
+      }
+
+      // Parse the log file
+      const uploadsDir = path.join(process.cwd(), "uploads");
+      const filePath = path.join(uploadsDir, logFile.filename);
+      
+      const content = await fs.readFile(filePath, "utf-8");
+      const logEntries = zscalerLogParser.parseLogFile(content);
+
+      // Run advanced ML detection
+      const anomalies = advancedMLDetector.analyzeLogEntries(logEntries);
+
+      // Convert to storage format
+      const anomalyInserts = anomalies.map(anomaly => ({
+        id: anomaly.id,
+        logFileId: logFile.id,
+        userId,
+        anomalyType: anomaly.anomalyType,
+        riskScore: anomaly.riskScore,
+        confidence: anomaly.confidence,
+        description: anomaly.description,
+        recommendation: anomaly.recommendation,
+        logData: JSON.stringify(anomaly.logEntry),
+        metadata: JSON.stringify(anomaly.metadata),
+      }));
+
+      // Store anomalies
+      for (const anomaly of anomalyInserts) {
+        await storage.createAnomaly(anomaly);
+      }
+
+      // Track success metrics
+      await metricsService.trackEvent(userId, 'analysis_success', 'advanced_ml', {
+        anomalies_found: anomalies.length,
+        log_entries: logEntries.length,
+        file_id: logFile.id,
+        models_used: ['statistical', 'behavioral', 'network', 'temporal', 'ensemble']
+      });
+
+      res.json({ 
+        message: "Advanced ML analysis completed successfully",
+        anomaliesFound: anomalies.length,
+        logEntriesAnalyzed: logEntries.length,
+        method: "Advanced ML (Multi-Model Ensemble)",
+        modelsUsed: ['Statistical Analysis', 'Behavioral Profiling', 'Network Analysis', 'Time Series', 'Ensemble Learning'],
+        anomalies: anomalies.slice(0, 15) // Return top 15 for preview
+      });
+
+    } catch (error) {
+      console.error("Advanced ML analysis error:", error);
+      
+      // Track failure metrics
+      await metricsService.trackEvent(userId, 'analysis_failure', 'advanced_ml', {
+        error: error instanceof Error ? error.message : 'unknown',
+        file_id: logFileId
+      });
+
+      res.status(500).json({ 
+        message: "Advanced ML analysis failed", 
+        error: error instanceof Error ? error.message : "Unknown error" 
+      });
+    }
+  }));
 
   // Traditional anomaly detection (no LLM) endpoint
   app.post("/api/analyze-traditional/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {

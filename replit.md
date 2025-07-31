@@ -32,8 +32,9 @@ Preferred communication style: Simple, everyday language.
 - **API Structure**: RESTful endpoints with comprehensive rate limiting and validation
 - **Analysis Endpoints**: 
   - `/api/process-logs/:id` - AI-powered analysis with configurable models
+  - `/api/analyze-advanced-ml/:id` - Advanced ML analysis with multi-model ensemble
   - `/api/analyze-traditional/:id` - Traditional ML analysis (no LLM required)
-  - Support for both hybrid and LLM-free detection modes
+  - Support for hybrid, advanced ML, and LLM-free detection modes
 
 ### Data Storage Architecture
 - **Primary Database**: PostgreSQL with Neon serverless driver for scalable cloud deployment
@@ -46,19 +47,21 @@ Preferred communication style: Simple, everyday language.
 - **Session Storage**: PostgreSQL-based session store using connect-pg-simple
 
 ### AI/ML Integration
-- **Multi-Modal Analysis**: Hybrid approach supporting both AI-powered and traditional ML detection
+- **Multi-Modal Analysis**: Comprehensive approach supporting traditional, advanced ML, and AI-powered detection
 - **Primary AI Models**: OpenAI GPT-4o and Google Gemini for advanced log analysis
+- **Advanced ML System**: Multi-model ensemble with statistical analysis, behavioral profiling, network analysis, time series detection, and ensemble learning
 - **Traditional ML System**: Rule-based detection with pattern matching and statistical analysis (no LLM required)
-- **Skip LLM Option**: Complete traditional ML analysis without external AI services
-- **Analysis Capabilities**:
-  - Cryptocurrency mining detection (Stratum protocol, pool domains)
-  - Tor/Dark web access detection (.onion domains, Tor Browser)
-  - Blocked traffic analysis with intelligent risk scoring
-  - Suspicious category filtering and URL pattern matching
-  - Statistical anomaly detection for unusual traffic volumes
-  - Time-based detection for off-hours suspicious activity
+- **Skip LLM Option**: Complete traditional or advanced ML analysis without external AI services
+- **Advanced ML Capabilities**:
+  - Z-score anomaly detection with isolation forest algorithms
+  - User behavior profiling and deviation analysis 
+  - Network scanning detection and traffic pattern analysis
+  - Time series spike detection with statistical modeling
+  - Ensemble learning with weighted consensus across multiple models
+  - Sequence anomaly detection with sliding window analysis
+- **Traditional Detection**: Cryptocurrency mining, Tor/Dark web access, blocked traffic analysis, suspicious categories
 - **Risk Scoring**: Comprehensive 0-10 scale risk assessment with 75-95% confidence levels
-- **Detection Methods**: Rule-based triggers, pattern matching, statistical analysis, and AI-powered analysis
+- **Detection Methods**: Rule-based triggers, statistical modeling, machine learning ensemble, and AI-powered analysis
 
 ### Log Processing Pipeline
 - **Parser**: Specialized Zscaler NSS feed format parser supporting both comma and tab-separated formats

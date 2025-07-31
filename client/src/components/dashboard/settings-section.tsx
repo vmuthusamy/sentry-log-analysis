@@ -71,18 +71,24 @@ export function SettingsSection() {
                   onChange={(e) => setAiModel(e.target.value)}
                 >
                   <option value="traditional-ml">Traditional ML Only (No LLM)</option>
+                  <option value="advanced-ml">Advanced ML (Multi-Model Ensemble)</option>
                   <option value="gpt-4o">GPT-4o (OpenAI)</option>
                   <option value="gemini">Google Gemini</option>
-                  <option value="hybrid">Hybrid (Traditional + AI)</option>
+                  <option value="hybrid">Hybrid (AI + Advanced ML)</option>
                 </select>
                 {aiModel === "traditional-ml" && (
                   <p className="text-sm text-slate-400 mt-2">
                     Uses rule-based detection, pattern matching, and statistical analysis. No external AI services required.
                   </p>
                 )}
+                {aiModel === "advanced-ml" && (
+                  <p className="text-sm text-slate-400 mt-2">
+                    Advanced machine learning with statistical analysis, behavioral profiling, network analysis, time series detection, and ensemble learning.
+                  </p>
+                )}
                 {aiModel === "hybrid" && (
                   <p className="text-sm text-slate-400 mt-2">
-                    Combines traditional ML detection with AI analysis for comprehensive coverage.
+                    Combines advanced ML detection with AI analysis for maximum coverage and accuracy.
                   </p>
                 )}
                 <p className="text-xs text-slate-500 mt-1">Choose the detection method for anomaly analysis</p>
