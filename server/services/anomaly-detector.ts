@@ -94,15 +94,9 @@ export class AnomalyDetector {
   }
 
   private buildAnalysisPrompt(logEntry: LogEntry): string {
-    return `Analyze this log entry for security anomalies and threats. Consider patterns like:
-- Unusual login attempts or locations
-- Suspicious file access patterns
-- Abnormal traffic volumes or destinations
-- Known attack signatures
-- Time-based anomalies
-- User behavior deviations
+    return `Analyze this network security log for threats and anomalies. Be highly sensitive to security indicators.
 
-Log Entry Details:
+Log Entry:
 - Timestamp: ${logEntry.timestamp}
 - Source IP: ${logEntry.sourceIP}
 - Destination IP: ${logEntry.destinationIP || "N/A"}
@@ -112,17 +106,27 @@ Log Entry Details:
 - Status Code: ${logEntry.statusCode || "N/A"}
 - Bytes: ${logEntry.bytes || "N/A"}
 - User Agent: ${logEntry.userAgent || "N/A"}
-- Raw Log: ${logEntry.rawLog}
+- Category: ${logEntry.category || "N/A"}
 
-Respond with JSON containing:
+CRITICAL THREAT PATTERNS:
+1. BLOCKED ACTIONS (403 status): Indicate security policy violations - score 7+
+2. MALICIOUS DOMAINS: .ru, .biz, unknown-*, suspicious-*, tor-*, dark-*, proxy-* - score 8+
+3. MALWARE CATEGORIES: Any "Malware" or "Proxy Avoidance" category - score 9+
+4. SUSPICIOUS USER AGENTS: curl/*, automated tools, non-browser agents on blocked content - score 8+
+5. LARGE DATA TRANSFERS: >100KB (100,000+ bytes) especially from unknown sources - score 7+
+6. PHISHING/MARKET TERMS: URLs with phish, malware, buy, dark-market - score 9+
+
+Be aggressive with scoring. Any combination of blocked + suspicious should score 8+.
+
+Respond with JSON:
 {
   "isAnomaly": boolean,
-  "riskScore": number (0-10, where 10 is highest risk),
-  "anomalyType": string (e.g., "unusual_login", "suspicious_file_access", "bandwidth_spike", "malicious_traffic"),
-  "description": string (brief description of the anomaly),
-  "confidence": number (0-1, confidence in the analysis),
-  "explanation": string (detailed explanation of why this is considered anomalous),
-  "recommendations": array of strings (recommended actions)
+  "riskScore": number (0-10, be aggressive - blocked malicious = 8+),
+  "anomalyType": string,
+  "description": string,
+  "confidence": number (0-1),
+  "explanation": string,
+  "recommendations": array of strings
 }`;
   }
 

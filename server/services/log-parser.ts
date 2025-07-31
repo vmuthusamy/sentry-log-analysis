@@ -29,12 +29,15 @@ export class ZscalerLogParser {
   }
 
   private parseZscalerLogLine(line: string): LogEntry | null {
-    // Zscaler NSS feed format parsing with quoted CSV support
-    // Handle both comma-separated and tab-separated formats, including quoted fields
+    // Zscaler NSS feed format parsing with multiple delimiter support
+    // Handle pipe-delimited, tab-separated, and CSV formats
 
     let fields: string[];
     
-    if (line.includes('\t')) {
+    if (line.includes('|')) {
+      // Pipe-delimited format (new test file)
+      fields = line.split('|');
+    } else if (line.includes('\t')) {
       // Tab-separated format
       fields = line.split('\t');
     } else {
@@ -49,22 +52,37 @@ export class ZscalerLogParser {
     // Clean up quoted fields
     fields = fields.map(field => field.replace(/^"/, '').replace(/"$/, '').trim());
 
-    // Map fields based on actual Zscaler NSS format
-    // Fields: timestamp,department,protocol,url,action,category,subcategory,bytes_out,bytes_in,upload_bytes,download_bytes,threat_category,threat_name,rule_type,policy,dpi_category,dpi_count,dpi_rule,dpi_engine,location,user,client_ip,server_ip,method,status_code,user_agent,ssl_decryption,url_category,app_name,app_type,content_type,http_transaction_method,reason,md5_hash
-    const timestamp = fields[0]?.trim();
-    const department = fields[1]?.trim();
-    const protocol = fields[2]?.trim();
-    const url = fields[3]?.trim();
-    const action = fields[4]?.trim() || 'unknown';
-    const category = fields[5]?.trim();
-    const subcategory = fields[6]?.trim();
-    const clientIP = fields[21]?.trim(); // user field
-    const serverIP = fields[22]?.trim(); // client_ip
-    const realServerIP = fields[23]?.trim(); // server_ip  
-    const method = fields[24]?.trim();
-    const statusCode = fields[25]?.trim();
-    const userAgent = fields[26]?.trim();
-    const bytes = parseInt(fields[7]?.trim()) || 0;
+    // Auto-detect format and map fields accordingly
+    let timestamp, sourceIP, destinationIP, url, action, statusCode, userAgent, category, bytes;
+
+    if (line.includes('|') && fields.length >= 10) {
+      // Pipe-delimited format: TimeStamp|SourceIP|DestinationIP|URL|Action|StatusCode|User-Agent|Referer|Bytes Sent|Bytes Received|Duration|Category
+      timestamp = fields[0]?.trim();
+      sourceIP = fields[1]?.trim();
+      destinationIP = fields[2]?.trim();
+      url = fields[3]?.trim();
+      action = fields[4]?.trim() || 'unknown';
+      statusCode = fields[5]?.trim();
+      userAgent = fields[6]?.trim();
+      category = fields[11]?.trim();
+      bytes = parseInt(fields[8]?.trim()) || parseInt(fields[9]?.trim()) || 0;
+    } else {
+      // Original CSV format: timestamp,department,protocol,url,action,category,subcategory,...
+      timestamp = fields[0]?.trim();
+      const department = fields[1]?.trim();
+      const protocol = fields[2]?.trim();
+      url = fields[3]?.trim();
+      action = fields[4]?.trim() || 'unknown';
+      category = fields[5]?.trim();
+      const subcategory = fields[6]?.trim();
+      const clientIP = fields[21]?.trim(); // user field
+      sourceIP = fields[22]?.trim(); // client_ip
+      destinationIP = fields[23]?.trim(); // server_ip  
+      const method = fields[24]?.trim();
+      statusCode = fields[25]?.trim();
+      userAgent = fields[26]?.trim();
+      bytes = parseInt(fields[7]?.trim()) || 0;
+    }
 
     if (!timestamp) {
       return null;
@@ -72,17 +90,17 @@ export class ZscalerLogParser {
 
     return {
       timestamp: this.normalizeTimestamp(timestamp),
-      sourceIP: serverIP || 'unknown', // client_ip (field 22)
-      destinationIP: realServerIP,      // server_ip (field 23)
-      user: clientIP || department || undefined, // user field (field 21) or department
+      sourceIP: sourceIP || 'unknown',
+      destinationIP: destinationIP,
+      user: undefined, // Will be extracted from context if needed
       action,
       url: url || undefined,
       statusCode: statusCode || undefined,
       bytes: bytes > 0 ? bytes : undefined,
       userAgent: userAgent || undefined,
-      protocol: protocol || undefined,
+      protocol: undefined,
       category: category || undefined,
-      subcategory: subcategory || undefined,
+      subcategory: undefined,
       rawLog: line,
     };
   }

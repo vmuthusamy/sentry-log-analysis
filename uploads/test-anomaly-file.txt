@@ -1,0 +1,15 @@
+TimeStamp|SourceIP|DestinationIP|URL|Action|StatusCode|User-Agent|Referer|Bytes Sent|Bytes Received|Duration|Category
+2025-07-31T10:01:23|192.168.1.10|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0|https://google.com|350|3000|200|Search Engines
+2025-07-31T10:02:45|192.168.1.11|151.101.1.69|https://news.com/article|allowed|200|Mozilla/5.0|https://facebook.com|1200|5000|300|News
+2025-07-31T10:03:10|192.168.1.10|8.8.8.8|https://unknown-domain.xyz/malware|blocked|403|curl/7.64.1|-|500|2500|150|Malware     <-- ⚠️ Suspicious domain + blocked
+2025-07-31T10:04:32|192.168.1.12|93.184.216.34|https://example.com/docs|allowed|200|Python-urllib/3.8|https://example.com|800|4000|180|Business
+2025-07-31T10:05:01|192.168.1.13|104.244.42.1|https://twitter.com/home|allowed|200|Mozilla/5.0|https://twitter.com|1600|8500|220|Social Media
+2025-07-31T10:06:22|192.168.1.18|185.199.108.1|https://suspicious.ru/phish|blocked|403|curl/7.64.1|-|4000|10000|520|Malware     <-- ⚠️ Anomalous bytes + malicious domain
+2025-07-31T10:06:45|192.168.1.10|172.217.14.206|https://google.com/maps|allowed|200|Mozilla/5.0|https://google.com|300|2000|180|Search Engines
+2025-07-31T10:07:12|192.168.1.20|203.0.113.55|https://legit-site.com/download|allowed|200|Mozilla/5.0|-|250000|500000|420|Business   <-- ⚠️ Huge data transfer
+2025-07-31T10:07:30|192.168.1.14|34.117.59.81|https://education.org/learn|allowed|200|Mozilla/5.0|https://education.org|450|3100|170|Education
+2025-07-31T10:08:15|192.168.1.15|13.107.246.45|https://microsoft.com/login|allowed|200|Mozilla/5.0|https://microsoft.com|250|2100|160|Business
+2025-07-31T10:08:45|192.168.1.22|198.51.100.99|https://tor-exit-node.org/connect|blocked|403|curl/7.64.1|-|1000|2000|180|Proxy Avoidance   <-- ⚠️ Blocked + suspicious endpoint
+2025-07-31T10:09:22|192.168.1.16|198.51.100.2|https://proxy-avoid.com/bypass|blocked|403|PostmanRuntime/7.28.4|-|1000|6000|500|Proxy Avoidance
+2025-07-31T10:10:00|192.168.1.17|192.0.2.123|https://weird-malware.biz/phish|blocked|403|curl/7.64.1|-|2000|10000|600|Malware     <-- ⚠️ Malware with maxed duration
+2025-07-31T10:10:42|192.168.1.18|198.51.100.3|https://dark-market.net/buy|blocked|403|curl/7.64.1|-|1000|8000|520|Malware      <-- ⚠️ Black market domain
