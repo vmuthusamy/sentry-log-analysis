@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { setupAuth } from "./auth";
 import { storage } from "./storage";
+import { db } from "./db";
 import { zscalerLogParser } from "./services/log-parser";
 import { anomalyDetector, AnomalyDetector } from "./services/anomaly-detector";
 import { metricsService } from "./services/metrics-service";
@@ -725,6 +726,7 @@ async function processLogFileAsync(logFileId: string, logEntries: any[], userId:
               riskScore: result.riskScore.toString(),
               sourceData: logEntry,
               aiAnalysis: result,
+              detectionMethod: "ai",
               status: "pending",
             });
             anomalies.push(anomaly);
@@ -803,6 +805,7 @@ async function reprocessLogFileAsync(logFileId: string, logEntries: any[], userI
               aiProvider: aiConfig?.provider || 'openai',
               modelTier: aiConfig?.tier || 'standard',
             },
+            detectionMethod: "ai",
             status: "pending",
           });
           anomalies.push(anomaly);
