@@ -1,0 +1,501 @@
+TimeStamp|SourceIP|DestinationIP|URL|Action|StatusCode|User-Agent|Referer|Bytes Sent|Bytes Received|Duration|Category
+2025-07-31T09:51:04|192.168.1.202|203.0.113.100|https://target-server.com/|blocked|429|wget/1.20.3|-|198|70|36|DDoS
+2025-07-31T13:52:43|192.168.1.90|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|883|18566|681|Development
+2025-07-31T15:58:50|192.168.1.30|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|402|5813|128|Development
+2025-07-31T11:43:21|192.168.1.52|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|903|8277|572|Social Media
+2025-07-31T12:35:02|192.168.1.31|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|782|13307|589|Social Media
+2025-07-31T10:30:20|192.168.1.43|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|442|16953|708|Reference
+2025-07-31T10:44:24|192.168.1.30|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|280|1346|593|Development
+2025-07-31T08:19:57|192.168.1.82|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|970|14076|716|Social Media
+2025-07-31T10:58:05|192.168.1.201|203.0.113.100|https://target-server.com/api/v1|blocked|429|Python-urllib/3.8|-|128|67|12|DDoS
+2025-07-31T08:17:49|192.168.1.97|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|892|9238|698|Reference
+2025-07-31T11:03:16|192.168.1.57|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|380|8937|183|Social Media
+2025-07-31T12:52:29|192.168.1.73|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|302|6885|474|Development
+2025-07-31T11:15:22|192.168.1.18|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|344|10599|675|Development
+2025-07-31T12:16:19|192.168.1.6|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|901|10681|673|Reference
+2025-07-31T13:00:55|192.168.1.90|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|721|18414|517|Development
+2025-07-31T12:22:03|192.168.1.216|203.0.113.70|https://203.0.113.70:24504/test|blocked|404|nmap/7.80|-|64|0|2|Network Scanning
+2025-07-31T15:02:27|192.168.1.201|203.0.113.100|https://target-server.com/api/v1|blocked|503|curl/7.64.1|-|155|62|42|DDoS
+2025-07-31T13:58:27|192.168.1.16|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|203|6117|593|Social Media
+2025-07-31T10:01:27|192.168.1.20|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|757|1457|426|Development
+2025-07-31T12:22:30|192.168.1.32|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|805|10305|246|Social Media
+2025-07-31T09:47:36|192.168.1.89|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|523|7479|591|Development
+2025-07-31T15:33:06|192.168.1.89|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|848|12304|612|Development
+2025-07-31T10:27:50|192.168.1.77|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|531|11266|389|Social Media
+2025-07-31T11:39:37|192.168.1.65|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|683|19017|606|Reference
+2025-07-31T08:10:51|192.168.1.203|203.0.113.100|https://target-server.com/|blocked|403|Python-urllib/3.8|-|90|96|25|DDoS
+2025-07-31T13:30:55|192.168.1.13|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|833|14682|270|Development
+2025-07-31T13:52:33|192.168.1.76|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|854|18592|324|Reference
+2025-07-31T10:49:16|192.168.1.80|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|215|3425|705|Development
+2025-07-31T15:33:07|192.168.1.51|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|695|2722|176|Reference
+2025-07-31T08:57:55|192.168.1.67|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|678|12789|699|Reference
+2025-07-31T08:24:36|192.168.1.219|203.0.113.80|https://203.0.113.80:41917/|blocked|500|nmap/7.80|-|64|0|8|Network Scanning
+2025-07-31T12:21:07|192.168.1.92|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|731|10923|259|Social Media
+2025-07-31T13:22:46|192.168.1.200|203.0.113.100|https://target-server.com/|blocked|403|curl/7.64.1|-|110|33|32|DDoS
+2025-07-31T11:16:06|192.168.1.8|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|291|10700|483|Reference
+2025-07-31T08:36:32|192.168.1.17|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|384|16250|254|Development
+2025-07-31T09:57:30|192.168.1.2|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|605|16238|380|Reference
+2025-07-31T09:38:25|192.168.1.95|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|770|11152|221|Development
+2025-07-31T10:18:49|192.168.1.82|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|289|17108|253|Reference
+2025-07-31T13:54:19|192.168.1.55|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|222|9182|210|Reference
+2025-07-31T14:41:04|192.168.1.48|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|993|16472|101|Reference
+2025-07-31T12:32:30|192.168.1.202|203.0.113.100|https://target-server.com/login|blocked|403|wget/1.20.3|-|138|17|41|DDoS
+2025-07-31T15:32:19|192.168.1.44|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|271|15934|380|Development
+2025-07-31T09:30:50|192.168.1.21|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|704|12764|114|Development
+2025-07-31T14:06:32|192.168.1.30|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|623|8459|108|Social Media
+2025-07-31T09:57:21|192.168.1.42|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|297|12282|563|Social Media
+2025-07-31T11:10:20|192.168.1.212|203.0.113.172|https://203.0.113.172:52925/admin|blocked|404|nmap/7.80|-|64|0|10|Network Scanning
+2025-07-31T10:21:01|192.168.1.5|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|471|18660|284|Development
+2025-07-31T13:01:24|192.168.1.83|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|623|19805|250|Development
+2025-07-31T15:27:48|192.168.1.203|203.0.113.100|https://target-server.com/api/v1|blocked|429|wget/1.20.3|-|107|42|45|DDoS
+2025-07-31T13:36:47|192.168.1.30|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|776|8872|693|Development
+2025-07-31T10:29:10|192.168.1.53|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|261|6458|633|Social Media
+2025-07-31T12:35:34|192.168.1.38|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|357|18299|296|Reference
+2025-07-31T14:47:06|192.168.1.74|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|542|6481|387|Reference
+2025-07-31T12:53:42|192.168.1.19|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|979|15810|193|Development
+2025-07-31T09:48:26|192.168.1.56|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|227|17789|164|Development
+2025-07-31T14:32:06|192.168.1.78|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|354|9707|492|Reference
+2025-07-31T10:34:25|192.168.1.203|203.0.113.100|https://target-server.com/login|blocked|503|curl/7.64.1|-|93|67|31|DDoS
+2025-07-31T08:52:26|192.168.1.69|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|913|17462|493|Development
+2025-07-31T12:22:07|192.168.1.1|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|794|2884|439|Development
+2025-07-31T09:31:56|192.168.1.64|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|354|7050|364|Social Media
+2025-07-31T14:09:08|192.168.1.216|203.0.113.141|https://203.0.113.141:36360/|blocked|500|nmap/7.80|-|64|0|3|Network Scanning
+2025-07-31T12:35:56|192.168.1.47|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|433|2358|200|Development
+2025-07-31T13:35:57|192.168.1.9|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|622|19567|130|Development
+2025-07-31T10:42:47|192.168.1.49|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|628|12549|748|Development
+2025-07-31T08:12:15|192.168.1.200|203.0.113.100|https://target-server.com/|blocked|403|Python-urllib/3.8|-|115|87|9|DDoS
+2025-07-31T08:06:40|192.168.1.82|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|393|12829|268|Development
+2025-07-31T08:51:56|192.168.1.8|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|906|13149|344|Social Media
+2025-07-31T12:04:08|192.168.1.65|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|210|3027|329|Social Media
+2025-07-31T10:25:43|192.168.1.58|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|963|7105|304|Development
+2025-07-31T09:36:46|192.168.1.40|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|986|18367|799|Development
+2025-07-31T09:28:44|192.168.1.14|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|445|6077|190|Development
+2025-07-31T12:18:07|192.168.1.63|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|835|19257|104|Development
+2025-07-31T11:40:47|192.168.1.202|203.0.113.100|https://target-server.com/index.html|blocked|503|curl/7.64.1|-|88|67|18|DDoS
+2025-07-31T15:26:13|192.168.1.50|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|206|10747|711|Reference
+2025-07-31T08:59:45|192.168.1.59|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|767|9214|409|Development
+2025-07-31T08:43:55|192.168.1.220|203.0.113.10|https://203.0.113.10:35896/test|blocked|500|nmap/7.80|-|64|0|5|Network Scanning
+2025-07-31T11:56:50|192.168.1.39|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|634|12108|733|Development
+2025-07-31T12:39:05|192.168.1.24|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|922|16000|263|Development
+2025-07-31T14:36:20|192.168.1.57|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|492|12513|628|Reference
+2025-07-31T14:41:57|192.168.1.68|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|722|16787|275|Development
+2025-07-31T14:44:27|192.168.1.200|203.0.113.100|https://target-server.com/|blocked|403|Python-urllib/3.8|-|139|81|21|DDoS
+2025-07-31T09:08:03|192.168.1.62|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|465|10005|664|Development
+2025-07-31T12:59:27|192.168.1.38|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|750|1284|135|Development
+2025-07-31T10:29:18|192.168.1.85|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|792|3800|375|Social Media
+2025-07-31T08:11:37|192.168.1.29|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|784|15912|727|Reference
+2025-07-31T12:01:27|192.168.1.51|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|940|11098|584|Development
+2025-07-31T13:31:41|192.168.1.63|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|744|15671|376|Development
+2025-07-31T12:04:06|192.168.1.31|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|451|7494|462|Development
+2025-07-31T11:42:29|192.168.1.202|203.0.113.100|https://target-server.com/|blocked|403|wget/1.20.3|-|93|28|20|DDoS
+2025-07-31T13:12:02|192.168.1.86|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|990|4931|536|Development
+2025-07-31T13:56:17|192.168.1.220|203.0.113.152|https://203.0.113.152:2290/test|blocked|403|nmap/7.80|-|64|0|4|Network Scanning
+2025-07-31T08:50:56|192.168.1.30|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|435|16356|403|Development
+2025-07-31T10:44:45|192.168.1.48|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|605|15203|494|Social Media
+2025-07-31T15:09:09|192.168.1.76|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|585|14931|587|Social Media
+2025-07-31T10:01:12|192.168.1.99|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|919|6890|430|Social Media
+2025-07-31T13:43:09|192.168.1.56|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|982|15883|571|Social Media
+2025-07-31T10:53:00|192.168.1.201|203.0.113.100|https://target-server.com/login|blocked|429|Python-urllib/3.8|-|51|35|1|DDoS
+2025-07-31T12:57:03|192.168.1.85|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|515|3280|309|Reference
+2025-07-31T12:06:18|192.168.1.5|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|992|11997|133|Development
+2025-07-31T09:44:23|192.168.1.30|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|310|4439|752|Reference
+2025-07-31T13:35:05|192.168.1.58|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|570|17929|795|Social Media
+2025-07-31T09:06:28|192.168.1.39|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|541|5224|109|Development
+2025-07-31T09:26:30|192.168.1.36|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|874|7241|766|Development
+2025-07-31T09:37:59|192.168.1.7|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|387|12840|256|Development
+2025-07-31T11:09:50|192.168.1.203|203.0.113.100|https://target-server.com/index.html|blocked|429|wget/1.20.3|-|79|50|48|DDoS
+2025-07-31T10:09:05|192.168.1.210|203.0.113.38|https://203.0.113.38:60156/api|blocked|500|nmap/7.80|-|64|0|7|Network Scanning
+2025-07-31T10:02:34|192.168.1.25|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|489|18502|235|Development
+2025-07-31T13:46:59|192.168.1.100|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|255|7352|625|Social Media
+2025-07-31T11:38:47|192.168.1.25|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|644|18970|632|Development
+2025-07-31T14:12:35|192.168.1.29|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|280|7617|604|Development
+2025-07-31T08:06:00|192.168.1.84|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|490|2333|417|Reference
+2025-07-31T12:22:51|192.168.1.58|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|331|12379|655|Development
+2025-07-31T10:37:15|192.168.1.202|203.0.113.100|https://target-server.com/index.html|blocked|403|Python-urllib/3.8|-|150|88|9|DDoS
+2025-07-31T11:29:46|192.168.1.77|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|692|6545|331|Reference
+2025-07-31T11:16:02|192.168.1.22|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|509|6809|559|Social Media
+2025-07-31T14:39:03|192.168.1.1|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|694|9586|597|Development
+2025-07-31T12:16:27|192.168.1.37|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|242|9789|399|Social Media
+2025-07-31T15:11:16|192.168.1.37|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|403|11761|313|Development
+2025-07-31T15:12:59|192.168.1.39|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|859|7313|765|Development
+2025-07-31T08:05:12|192.168.1.55|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|516|19139|765|Development
+2025-07-31T10:36:24|192.168.1.203|203.0.113.100|https://target-server.com/login|blocked|403|curl/7.64.1|-|78|30|12|DDoS
+2025-07-31T11:02:28|192.168.1.12|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|271|18208|286|Development
+2025-07-31T11:51:10|192.168.1.60|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|317|10663|649|Reference
+2025-07-31T09:56:27|192.168.1.71|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|369|1494|581|Development
+2025-07-31T08:51:42|192.168.1.66|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|739|6342|385|Development
+2025-07-31T08:24:17|192.168.1.92|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|463|2821|756|Development
+2025-07-31T13:19:38|192.168.1.14|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|352|15598|264|Reference
+2025-07-31T13:30:38|192.168.1.65|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|329|3862|611|Development
+2025-07-31T14:39:55|192.168.1.200|203.0.113.100|https://target-server.com/login|blocked|403|curl/7.64.1|-|191|94|4|DDoS
+2025-07-31T14:45:39|192.168.1.45|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|448|5467|444|Development
+2025-07-31T15:09:24|192.168.1.93|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|478|17814|256|Development
+2025-07-31T11:45:34|192.168.1.55|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|419|9257|795|Social Media
+2025-07-31T14:20:21|192.168.1.48|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|801|3357|710|Development
+2025-07-31T11:53:23|192.168.1.81|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|355|14107|439|Social Media
+2025-07-31T14:14:12|192.168.1.86|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|226|3742|680|Development
+2025-07-31T11:12:14|192.168.1.212|203.0.113.6|https://203.0.113.6:19665/test|blocked|403|nmap/7.80|-|64|0|4|Network Scanning
+2025-07-31T13:29:01|192.168.1.201|203.0.113.100|https://target-server.com/index.html|blocked|403|Python-urllib/3.8|-|111|46|29|DDoS
+2025-07-31T12:11:10|192.168.1.39|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|219|13491|251|Development
+2025-07-31T08:04:50|192.168.1.39|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|350|4576|223|Development
+2025-07-31T12:42:37|192.168.1.21|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|802|13982|152|Reference
+2025-07-31T13:40:51|192.168.1.91|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|927|18639|315|Social Media
+2025-07-31T13:50:19|192.168.1.25|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|305|16597|447|Development
+2025-07-31T10:09:47|192.168.1.30|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|202|10270|259|Development
+2025-07-31T08:37:58|192.168.1.87|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|318|9487|547|Social Media
+2025-07-31T09:30:45|192.168.1.201|203.0.113.100|https://target-server.com/index.html|blocked|403|Python-urllib/3.8|-|146|99|10|DDoS
+2025-07-31T14:50:25|192.168.1.19|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|807|9807|533|Development
+2025-07-31T15:03:55|192.168.1.26|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|346|8643|386|Development
+2025-07-31T11:47:22|192.168.1.94|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|969|8103|246|Development
+2025-07-31T08:15:04|192.168.1.60|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|725|6224|505|Development
+2025-07-31T12:14:28|192.168.1.92|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|301|12286|113|Development
+2025-07-31T10:26:56|192.168.1.220|203.0.113.86|https://203.0.113.86:62616/admin|blocked|403|nmap/7.80|-|64|0|10|Network Scanning
+2025-07-31T08:09:12|192.168.1.39|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|529|17476|749|Social Media
+2025-07-31T13:30:11|192.168.1.201|203.0.113.100|https://target-server.com/api/v1|blocked|403|curl/7.64.1|-|64|90|31|DDoS
+2025-07-31T09:32:32|192.168.1.73|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|492|1288|573|Reference
+2025-07-31T15:21:48|192.168.1.91|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|239|7643|311|Development
+2025-07-31T12:54:24|192.168.1.79|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|405|8620|501|Reference
+2025-07-31T10:54:18|192.168.1.48|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|720|13200|788|Reference
+2025-07-31T09:57:27|192.168.1.10|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|253|12031|709|Reference
+2025-07-31T09:42:53|192.168.1.90|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|940|15138|345|Social Media
+2025-07-31T08:12:59|192.168.1.57|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|516|13750|126|Development
+2025-07-31T08:47:16|192.168.1.200|203.0.113.100|https://target-server.com/api/v1|blocked|429|wget/1.20.3|-|125|83|28|DDoS
+2025-07-31T14:42:35|192.168.1.28|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|337|9762|317|Development
+2025-07-31T14:44:44|192.168.1.84|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|564|1475|165|Reference
+2025-07-31T11:25:15|192.168.1.72|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|269|8631|596|Development
+2025-07-31T15:40:38|192.168.1.63|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|251|16516|495|Development
+2025-07-31T12:56:25|192.168.1.216|203.0.113.88|https://203.0.113.88:32817/|blocked|403|nmap/7.80|-|64|0|2|Network Scanning
+2025-07-31T10:59:37|192.168.1.28|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|421|6921|520|Development
+2025-07-31T12:35:18|192.168.1.10|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|796|12359|790|Reference
+2025-07-31T10:29:23|192.168.1.203|203.0.113.100|https://target-server.com/login|blocked|503|wget/1.20.3|-|92|67|43|DDoS
+2025-07-31T13:17:25|192.168.1.39|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|767|15352|190|Development
+2025-07-31T10:12:28|192.168.1.87|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|238|3891|353|Development
+2025-07-31T08:25:31|192.168.1.9|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|589|5868|334|Development
+2025-07-31T15:30:42|192.168.1.51|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|394|13626|784|Development
+2025-07-31T14:35:43|192.168.1.6|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|906|13355|761|Development
+2025-07-31T10:51:07|192.168.1.61|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|805|1492|434|Reference
+2025-07-31T13:19:25|192.168.1.33|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|619|7399|570|Reference
+2025-07-31T14:15:34|192.168.1.200|203.0.113.100|https://target-server.com/login|blocked|503|wget/1.20.3|-|179|96|6|DDoS
+2025-07-31T12:40:33|192.168.1.6|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|575|13108|544|Social Media
+2025-07-31T10:35:16|192.168.1.94|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|553|7246|124|Social Media
+2025-07-31T13:24:34|192.168.1.14|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|264|18559|440|Development
+2025-07-31T10:19:42|192.168.1.216|203.0.113.252|https://203.0.113.252:8385/api|blocked|404|nmap/7.80|-|64|0|9|Network Scanning
+2025-07-31T14:44:29|192.168.1.2|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|494|11884|151|Reference
+2025-07-31T13:35:36|192.168.1.10|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|405|13988|338|Social Media
+2025-07-31T11:46:18|192.168.1.23|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|561|11610|499|Reference
+2025-07-31T13:49:58|192.168.1.201|203.0.113.100|https://target-server.com/login|blocked|503|Python-urllib/3.8|-|90|94|42|DDoS
+2025-07-31T11:50:55|192.168.1.15|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|352|4426|798|Reference
+2025-07-31T14:14:01|192.168.1.33|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|777|15680|259|Development
+2025-07-31T10:28:02|192.168.1.80|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|966|4636|575|Development
+2025-07-31T08:22:26|192.168.1.33|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|566|16499|660|Development
+2025-07-31T14:29:10|192.168.1.5|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|768|17752|427|Reference
+2025-07-31T14:57:05|192.168.1.69|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|989|12600|189|Reference
+2025-07-31T15:59:45|192.168.1.59|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|801|7237|413|Reference
+2025-07-31T14:26:22|192.168.1.200|203.0.113.100|https://target-server.com/|blocked|403|wget/1.20.3|-|144|88|38|DDoS
+2025-07-31T10:16:35|192.168.1.52|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|677|15475|433|Development
+2025-07-31T12:22:19|192.168.1.21|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|491|17362|360|Development
+2025-07-31T11:45:15|192.168.1.211|203.0.113.165|https://203.0.113.165:28597/test|blocked|500|nmap/7.80|-|64|0|9|Network Scanning
+2025-07-31T08:49:01|192.168.1.36|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|900|9894|725|Development
+2025-07-31T13:50:05|192.168.1.19|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|962|15767|298|Social Media
+2025-07-31T12:54:08|192.168.1.4|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|777|15118|409|Reference
+2025-07-31T08:56:20|192.168.1.13|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|743|2517|263|Reference
+2025-07-31T10:42:30|192.168.1.202|203.0.113.100|https://target-server.com/|blocked|429|curl/7.64.1|-|116|51|43|DDoS
+2025-07-31T11:39:20|192.168.1.58|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|861|16005|104|Development
+2025-07-31T11:41:09|192.168.1.66|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|537|1387|193|Social Media
+2025-07-31T12:39:41|192.168.1.95|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|313|13453|646|Development
+2025-07-31T08:52:48|192.168.1.48|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|894|1134|625|Development
+2025-07-31T12:48:18|192.168.1.51|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|648|13870|188|Reference
+2025-07-31T11:04:46|192.168.1.64|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|534|11520|168|Reference
+2025-07-31T15:31:46|192.168.1.98|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|428|3847|741|Reference
+2025-07-31T12:14:50|192.168.1.201|203.0.113.100|https://target-server.com/|blocked|403|Python-urllib/3.8|-|199|68|37|DDoS
+2025-07-31T09:49:59|192.168.1.19|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|880|4812|234|Development
+2025-07-31T15:32:19|192.168.1.220|203.0.113.153|https://203.0.113.153:10561/admin|blocked|403|nmap/7.80|-|64|0|5|Network Scanning
+2025-07-31T11:08:23|192.168.1.9|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|904|16104|428|Reference
+2025-07-31T15:35:20|192.168.1.48|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|348|18780|357|Reference
+2025-07-31T11:02:20|192.168.1.32|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|608|14282|101|Reference
+2025-07-31T13:56:08|192.168.1.69|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|717|18118|219|Reference
+2025-07-31T10:25:31|192.168.1.45|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|945|13362|303|Reference
+2025-07-31T13:17:18|192.168.1.200|203.0.113.100|https://target-server.com/|blocked|403|curl/7.64.1|-|78|27|23|DDoS
+2025-07-31T14:53:42|192.168.1.19|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|252|1274|399|Development
+2025-07-31T13:26:07|192.168.1.53|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|789|19790|789|Social Media
+2025-07-31T09:07:03|192.168.1.68|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|322|18916|249|Social Media
+2025-07-31T15:41:53|192.168.1.48|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|891|2036|716|Social Media
+2025-07-31T11:13:21|192.168.1.21|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|240|13287|613|Social Media
+2025-07-31T15:14:19|192.168.1.88|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|274|16262|630|Reference
+2025-07-31T14:12:42|192.168.1.39|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|655|1543|779|Development
+2025-07-31T12:41:48|192.168.1.200|203.0.113.100|https://target-server.com/login|blocked|403|wget/1.20.3|-|145|32|21|DDoS
+2025-07-31T08:24:03|192.168.1.214|203.0.113.122|https://203.0.113.122:20843/test|blocked|500|nmap/7.80|-|64|0|8|Network Scanning
+2025-07-31T10:22:52|192.168.1.87|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|999|16716|187|Development
+2025-07-31T15:17:44|192.168.1.99|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|658|5601|389|Development
+2025-07-31T10:29:34|192.168.1.64|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|550|9357|291|Development
+2025-07-31T08:34:26|192.168.1.20|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|818|3326|183|Development
+2025-07-31T14:06:48|192.168.1.46|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|589|19059|448|Development
+2025-07-31T08:32:30|192.168.1.5|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|299|2157|771|Reference
+2025-07-31T10:02:56|192.168.1.200|203.0.113.100|https://target-server.com/api/v1|blocked|403|Python-urllib/3.8|-|86|10|34|DDoS
+2025-07-31T11:22:09|192.168.1.1|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|984|12882|655|Development
+2025-07-31T14:23:01|192.168.1.83|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|301|8139|200|Development
+2025-07-31T13:39:47|192.168.1.5|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|946|5817|606|Development
+2025-07-31T10:13:07|192.168.1.93|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|990|2199|404|Development
+2025-07-31T08:46:34|192.168.1.3|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|504|19908|691|Development
+2025-07-31T09:45:06|192.168.1.30|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|712|6904|468|Development
+2025-07-31T14:40:06|192.168.1.54|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|425|4428|637|Development
+2025-07-31T15:51:39|192.168.1.200|203.0.113.100|https://target-server.com/index.html|blocked|503|wget/1.20.3|-|129|87|37|DDoS
+2025-07-31T12:31:41|192.168.1.72|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|457|2569|516|Development
+2025-07-31T15:54:13|192.168.1.33|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|715|19890|285|Social Media
+2025-07-31T14:30:09|192.168.1.98|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|681|7986|544|Development
+2025-07-31T10:29:01|192.168.1.90|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|592|5823|671|Development
+2025-07-31T09:01:57|192.168.1.82|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|504|16608|152|Development
+2025-07-31T08:17:22|192.168.1.83|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|755|3559|409|Development
+2025-07-31T12:23:09|192.168.1.49|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|260|2682|758|Social Media
+2025-07-31T09:16:18|192.168.1.201|203.0.113.100|https://target-server.com/|blocked|429|wget/1.20.3|-|55|18|12|DDoS
+2025-07-31T13:54:37|192.168.1.43|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|238|4295|798|Development
+2025-07-31T12:56:13|192.168.1.52|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|501|12083|471|Development
+2025-07-31T08:24:37|192.168.1.28|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|566|3910|419|Social Media
+2025-07-31T10:50:25|192.168.1.31|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|694|17588|643|Social Media
+2025-07-31T13:54:57|192.168.1.81|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|214|14454|315|Reference
+2025-07-31T12:38:51|192.168.1.75|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|502|6141|564|Social Media
+2025-07-31T11:53:39|192.168.1.214|203.0.113.83|https://203.0.113.83:16964/api|blocked|404|nmap/7.80|-|64|0|2|Network Scanning
+2025-07-31T15:09:25|192.168.1.201|203.0.113.100|https://target-server.com/api/v1|blocked|503|Python-urllib/3.8|-|177|5|49|DDoS
+2025-07-31T10:34:45|192.168.1.77|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|445|3927|485|Development
+2025-07-31T11:33:54|192.168.1.83|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|924|15520|655|Development
+2025-07-31T12:00:32|192.168.1.41|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|324|7694|745|Reference
+2025-07-31T12:55:10|192.168.1.31|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|664|5733|129|Social Media
+2025-07-31T10:08:19|192.168.1.91|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|752|9574|231|Social Media
+2025-07-31T08:59:11|192.168.1.61|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|818|18114|637|Reference
+2025-07-31T11:17:10|192.168.1.16|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|952|7013|483|Development
+2025-07-31T09:26:02|192.168.1.200|203.0.113.100|https://target-server.com/|blocked|429|Python-urllib/3.8|-|129|39|22|DDoS
+2025-07-31T13:22:02|192.168.1.6|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|313|11843|245|Social Media
+2025-07-31T08:03:14|192.168.1.47|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|848|4593|377|Development
+2025-07-31T08:53:21|192.168.1.24|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|965|19538|275|Development
+2025-07-31T09:50:27|192.168.1.89|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|571|10502|297|Reference
+2025-07-31T11:44:30|192.168.1.81|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|909|5142|438|Social Media
+2025-07-31T14:19:28|192.168.1.217|203.0.113.215|https://203.0.113.215:4583/admin|blocked|404|nmap/7.80|-|64|0|7|Network Scanning
+2025-07-31T14:50:49|192.168.1.78|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|929|2254|149|Social Media
+2025-07-31T08:12:05|192.168.1.201|203.0.113.100|https://target-server.com/api/v1|blocked|403|curl/7.64.1|-|101|90|46|DDoS
+2025-07-31T13:36:34|192.168.1.4|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|814|14919|507|Social Media
+2025-07-31T09:26:20|192.168.1.6|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|606|5299|398|Reference
+2025-07-31T13:44:51|192.168.1.17|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|985|1965|194|Development
+2025-07-31T15:25:16|192.168.1.34|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|423|11848|703|Development
+2025-07-31T15:42:06|192.168.1.85|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|690|13962|646|Development
+2025-07-31T14:13:23|192.168.1.95|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|427|16839|526|Development
+2025-07-31T10:18:46|192.168.1.24|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|799|19359|316|Development
+2025-07-31T15:08:29|192.168.1.202|203.0.113.100|https://target-server.com/login|blocked|503|curl/7.64.1|-|125|27|16|DDoS
+2025-07-31T09:40:33|192.168.1.71|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|452|4316|202|Development
+2025-07-31T15:05:06|192.168.1.49|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|906|15542|328|Social Media
+2025-07-31T11:01:31|192.168.1.67|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|910|14818|744|Reference
+2025-07-31T10:00:08|192.168.1.16|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|219|9368|322|Development
+2025-07-31T10:47:28|192.168.1.214|203.0.113.251|https://203.0.113.251:15060/api|blocked|403|nmap/7.80|-|64|0|8|Network Scanning
+2025-07-31T08:58:30|192.168.1.38|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|831|5613|710|Development
+2025-07-31T12:10:54|192.168.1.89|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|693|19828|557|Development
+2025-07-31T11:31:43|192.168.1.202|203.0.113.100|https://target-server.com/|blocked|429|wget/1.20.3|-|133|82|33|DDoS
+2025-07-31T15:44:57|192.168.1.78|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|651|8662|221|Development
+2025-07-31T09:03:33|192.168.1.91|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|207|8828|159|Reference
+2025-07-31T11:53:40|192.168.1.57|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|639|18027|466|Social Media
+2025-07-31T09:47:22|192.168.1.28|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|718|2460|790|Development
+2025-07-31T08:21:06|192.168.1.99|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|277|8932|595|Reference
+2025-07-31T08:17:06|192.168.1.80|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|495|10868|402|Social Media
+2025-07-31T08:17:00|192.168.1.38|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|554|17265|210|Social Media
+2025-07-31T15:47:44|192.168.1.203|203.0.113.100|https://target-server.com/index.html|blocked|503|Python-urllib/3.8|-|118|98|33|DDoS
+2025-07-31T13:18:30|192.168.1.39|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|355|19671|593|Development
+2025-07-31T12:42:17|192.168.1.5|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|952|14265|799|Reference
+2025-07-31T09:53:11|192.168.1.87|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|531|11334|421|Social Media
+2025-07-31T12:23:46|192.168.1.212|203.0.113.84|https://203.0.113.84:40393/|blocked|403|nmap/7.80|-|64|0|7|Network Scanning
+2025-07-31T15:08:57|192.168.1.95|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|690|1362|699|Development
+2025-07-31T12:41:22|192.168.1.35|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|242|10982|254|Development
+2025-07-31T09:56:01|192.168.1.15|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|984|3282|193|Social Media
+2025-07-31T08:49:25|192.168.1.202|203.0.113.100|https://target-server.com/login|blocked|429|wget/1.20.3|-|120|26|23|DDoS
+2025-07-31T14:51:55|192.168.1.61|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|694|5443|675|Social Media
+2025-07-31T14:17:53|192.168.1.67|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|421|19282|404|Social Media
+2025-07-31T11:19:28|192.168.1.40|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|889|8666|616|Development
+2025-07-31T09:07:30|192.168.1.41|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|795|11771|677|Development
+2025-07-31T13:13:39|192.168.1.46|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|519|1197|551|Development
+2025-07-31T08:15:49|192.168.1.78|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|453|9713|135|Social Media
+2025-07-31T10:37:13|192.168.1.14|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|832|2008|750|Reference
+2025-07-31T09:10:11|192.168.1.201|203.0.113.100|https://target-server.com/login|blocked|503|curl/7.64.1|-|110|8|17|DDoS
+2025-07-31T12:12:29|192.168.1.98|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|332|12484|305|Social Media
+2025-07-31T13:28:49|192.168.1.28|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|413|15790|474|Reference
+2025-07-31T08:24:12|192.168.1.217|203.0.113.221|https://203.0.113.221:57591/admin|blocked|500|nmap/7.80|-|64|0|3|Network Scanning
+2025-07-31T08:00:48|192.168.1.94|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|392|13758|772|Social Media
+2025-07-31T09:28:07|192.168.1.60|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|637|2879|779|Development
+2025-07-31T12:27:57|192.168.1.32|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|683|18118|494|Development
+2025-07-31T09:57:42|192.168.1.78|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|202|17914|708|Reference
+2025-07-31T11:54:49|192.168.1.203|203.0.113.100|https://target-server.com/|blocked|503|curl/7.64.1|-|157|58|24|DDoS
+2025-07-31T09:49:29|192.168.1.55|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|813|11270|392|Development
+2025-07-31T09:13:00|192.168.1.51|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|469|19880|396|Development
+2025-07-31T13:18:41|192.168.1.94|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|623|6577|642|Social Media
+2025-07-31T13:46:20|192.168.1.28|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|496|14343|552|Development
+2025-07-31T13:02:05|192.168.1.52|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|710|11279|726|Development
+2025-07-31T14:13:02|192.168.1.50|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|435|10445|618|Development
+2025-07-31T10:00:52|192.168.1.57|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|611|9518|416|Development
+2025-07-31T08:45:58|192.168.1.203|203.0.113.100|https://target-server.com/login|blocked|403|Python-urllib/3.8|-|137|39|27|DDoS
+2025-07-31T11:23:22|192.168.1.41|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|580|19431|475|Development
+2025-07-31T15:46:28|192.168.1.218|203.0.113.95|https://203.0.113.95:16530/admin|blocked|404|nmap/7.80|-|64|0|2|Network Scanning
+2025-07-31T08:59:24|192.168.1.29|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|364|2167|335|Reference
+2025-07-31T09:46:38|192.168.1.74|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|413|15519|337|Development
+2025-07-31T10:03:11|192.168.1.65|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|462|18082|218|Social Media
+2025-07-31T13:11:39|192.168.1.1|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|982|5835|534|Reference
+2025-07-31T08:07:56|192.168.1.18|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|704|14874|445|Reference
+2025-07-31T11:37:53|192.168.1.201|203.0.113.100|https://target-server.com/login|blocked|503|Python-urllib/3.8|-|189|10|9|DDoS
+2025-07-31T13:56:45|192.168.1.70|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|265|1902|122|Development
+2025-07-31T11:43:13|192.168.1.66|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|366|3890|511|Development
+2025-07-31T08:45:02|192.168.1.13|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|461|15839|208|Reference
+2025-07-31T15:25:38|192.168.1.71|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|909|8372|190|Development
+2025-07-31T13:05:41|192.168.1.81|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|547|11359|154|Development
+2025-07-31T09:11:42|192.168.1.16|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|427|18635|433|Reference
+2025-07-31T15:11:39|192.168.1.100|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|497|11601|738|Social Media
+2025-07-31T11:38:12|192.168.1.202|203.0.113.100|https://target-server.com/login|blocked|503|Python-urllib/3.8|-|108|48|5|DDoS
+2025-07-31T13:12:05|192.168.1.215|203.0.113.119|https://203.0.113.119:51861/|blocked|500|nmap/7.80|-|64|0|6|Network Scanning
+2025-07-31T10:48:47|192.168.1.41|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|727|19860|173|Reference
+2025-07-31T12:07:48|192.168.1.58|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|568|5721|282|Social Media
+2025-07-31T09:23:38|192.168.1.47|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|673|7098|614|Reference
+2025-07-31T08:58:30|192.168.1.26|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|342|4395|462|Development
+2025-07-31T15:27:03|192.168.1.90|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|311|11546|680|Social Media
+2025-07-31T10:13:03|192.168.1.2|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|647|15207|485|Reference
+2025-07-31T14:10:33|192.168.1.201|203.0.113.100|https://target-server.com/api/v1|blocked|403|wget/1.20.3|-|105|67|44|DDoS
+2025-07-31T11:16:06|192.168.1.11|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|416|12120|384|Reference
+2025-07-31T10:52:44|192.168.1.77|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|485|17680|507|Reference
+2025-07-31T15:09:40|192.168.1.20|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|403|13309|150|Development
+2025-07-31T13:02:52|192.168.1.86|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|456|15608|260|Reference
+2025-07-31T14:14:21|192.168.1.53|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|949|5162|514|Development
+2025-07-31T14:18:19|192.168.1.53|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|308|2332|530|Development
+2025-07-31T11:51:50|192.168.1.55|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|301|18770|453|Social Media
+2025-07-31T13:27:44|192.168.1.201|203.0.113.100|https://target-server.com/api/v1|blocked|403|Python-urllib/3.8|-|144|8|26|DDoS
+2025-07-31T11:28:11|192.168.1.16|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|722|6619|349|Reference
+2025-07-31T15:17:15|192.168.1.11|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|794|17420|470|Development
+2025-07-31T13:30:45|192.168.1.91|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|499|9337|138|Reference
+2025-07-31T13:35:41|192.168.1.48|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|268|7008|323|Development
+2025-07-31T08:06:51|192.168.1.77|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|603|2064|307|Social Media
+2025-07-31T09:48:32|192.168.1.42|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|696|9955|734|Social Media
+2025-07-31T12:45:57|192.168.1.23|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|429|6943|569|Social Media
+2025-07-31T11:26:14|192.168.1.201|203.0.113.100|https://target-server.com/index.html|blocked|503|Python-urllib/3.8|-|120|83|13|DDoS
+2025-07-31T14:44:37|192.168.1.48|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|602|12617|137|Social Media
+2025-07-31T12:42:14|192.168.1.16|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|835|15578|555|Social Media
+2025-07-31T12:53:29|192.168.1.60|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|712|9864|585|Development
+2025-07-31T10:17:48|192.168.1.86|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|427|13542|216|Social Media
+2025-07-31T08:08:51|192.168.1.16|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|842|17359|753|Development
+2025-07-31T10:25:56|192.168.1.84|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|263|4698|373|Development
+2025-07-31T10:59:25|192.168.1.211|203.0.113.242|https://203.0.113.242:26013/admin|blocked|500|nmap/7.80|-|64|0|2|Network Scanning
+2025-07-31T08:20:15|192.168.1.201|203.0.113.100|https://target-server.com/login|blocked|403|wget/1.20.3|-|149|27|12|DDoS
+2025-07-31T09:54:57|192.168.1.66|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|892|18352|189|Reference
+2025-07-31T12:32:23|192.168.1.21|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|943|7641|690|Development
+2025-07-31T08:59:30|192.168.1.75|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|407|1139|469|Development
+2025-07-31T11:26:30|192.168.1.84|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|810|12257|458|Development
+2025-07-31T11:52:13|192.168.1.34|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|357|9852|419|Reference
+2025-07-31T13:49:20|192.168.1.52|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|306|18288|664|Social Media
+2025-07-31T10:12:36|192.168.1.92|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|907|18629|504|Social Media
+2025-07-31T15:58:38|192.168.1.201|203.0.113.100|https://target-server.com/index.html|blocked|503|wget/1.20.3|-|158|78|13|DDoS
+2025-07-31T15:51:30|192.168.1.40|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|684|12656|679|Reference
+2025-07-31T15:45:01|192.168.1.75|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|709|16372|357|Social Media
+2025-07-31T14:29:30|192.168.1.36|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|691|13904|266|Reference
+2025-07-31T15:00:02|192.168.1.18|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|369|1679|327|Development
+2025-07-31T13:42:10|192.168.1.21|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|312|19910|616|Development
+2025-07-31T09:28:17|192.168.1.210|203.0.113.33|https://203.0.113.33:62332/admin|blocked|403|nmap/7.80|-|64|0|3|Network Scanning
+2025-07-31T09:05:29|192.168.1.70|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|426|13623|356|Development
+2025-07-31T10:32:51|192.168.1.200|203.0.113.100|https://target-server.com/api/v1|blocked|403|curl/7.64.1|-|133|73|43|DDoS
+2025-07-31T13:55:41|192.168.1.82|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|894|9816|579|Social Media
+2025-07-31T11:46:47|192.168.1.49|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|500|11505|139|Social Media
+2025-07-31T12:18:39|192.168.1.32|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|310|4365|129|Reference
+2025-07-31T14:25:40|192.168.1.45|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|810|2043|452|Development
+2025-07-31T10:44:07|192.168.1.74|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|455|12418|722|Social Media
+2025-07-31T08:55:46|192.168.1.96|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|541|9606|750|Development
+2025-07-31T10:41:03|192.168.1.74|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|831|18118|616|Development
+2025-07-31T08:05:07|192.168.1.200|203.0.113.100|https://target-server.com/login|blocked|403|wget/1.20.3|-|142|57|48|DDoS
+2025-07-31T13:24:24|192.168.1.95|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|266|12363|292|Social Media
+2025-07-31T10:52:46|192.168.1.65|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|453|17660|473|Development
+2025-07-31T10:56:40|192.168.1.65|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|633|9172|703|Social Media
+2025-07-31T12:55:20|192.168.1.6|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|721|3493|496|Reference
+2025-07-31T08:48:03|192.168.1.216|203.0.113.92|https://203.0.113.92:38167/api|blocked|403|nmap/7.80|-|64|0|3|Network Scanning
+2025-07-31T10:27:00|192.168.1.81|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|851|1099|152|Reference
+2025-07-31T11:05:16|192.168.1.24|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|634|17599|223|Reference
+2025-07-31T09:59:37|192.168.1.201|203.0.113.100|https://target-server.com/login|blocked|429|curl/7.64.1|-|149|8|32|DDoS
+2025-07-31T11:28:41|192.168.1.47|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|683|18072|221|Development
+2025-07-31T15:28:40|192.168.1.91|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|593|2836|466|Reference
+2025-07-31T10:51:56|192.168.1.55|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|635|11941|293|Development
+2025-07-31T12:05:41|192.168.1.97|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|946|18846|332|Reference
+2025-07-31T14:56:54|192.168.1.27|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|644|10333|798|Development
+2025-07-31T15:14:31|192.168.1.87|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|839|14036|763|Reference
+2025-07-31T11:27:01|192.168.1.33|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|355|3022|326|Social Media
+2025-07-31T14:18:50|192.168.1.202|203.0.113.100|https://target-server.com/index.html|blocked|429|curl/7.64.1|-|114|83|24|DDoS
+2025-07-31T09:07:05|192.168.1.67|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|767|13835|124|Social Media
+2025-07-31T09:24:57|192.168.1.49|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|623|5280|651|Reference
+2025-07-31T08:32:13|192.168.1.57|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|260|11440|563|Development
+2025-07-31T12:29:48|192.168.1.216|203.0.113.15|https://203.0.113.15:13957/test|blocked|403|nmap/7.80|-|64|0|8|Network Scanning
+2025-07-31T13:41:07|192.168.1.100|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|675|19084|479|Social Media
+2025-07-31T09:28:10|192.168.1.16|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|484|6996|224|Social Media
+2025-07-31T09:10:34|192.168.1.18|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|769|14204|180|Reference
+2025-07-31T13:00:06|192.168.1.200|203.0.113.100|https://target-server.com/api/v1|blocked|403|wget/1.20.3|-|66|92|2|DDoS
+2025-07-31T12:05:28|192.168.1.58|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|774|6703|312|Development
+2025-07-31T09:22:55|192.168.1.15|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|778|9052|576|Development
+2025-07-31T08:21:12|192.168.1.45|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|561|13114|480|Social Media
+2025-07-31T12:11:10|192.168.1.21|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|694|16502|716|Development
+2025-07-31T10:43:56|192.168.1.86|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|852|16845|469|Development
+2025-07-31T13:53:00|192.168.1.33|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|374|7967|538|Reference
+2025-07-31T12:22:05|192.168.1.67|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|926|7173|720|Social Media
+2025-07-31T14:14:00|192.168.1.200|203.0.113.100|https://target-server.com/index.html|blocked|403|wget/1.20.3|-|154|71|29|DDoS
+2025-07-31T12:52:55|192.168.1.81|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|816|12506|115|Development
+2025-07-31T09:55:26|192.168.1.98|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|892|13331|758|Reference
+2025-07-31T11:30:29|192.168.1.213|203.0.113.73|https://203.0.113.73:33435/admin|blocked|404|nmap/7.80|-|64|0|1|Network Scanning
+2025-07-31T09:21:38|192.168.1.41|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|200|3788|184|Social Media
+2025-07-31T15:11:40|192.168.1.77|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|975|10963|280|Reference
+2025-07-31T08:21:41|192.168.1.98|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|229|17670|308|Development
+2025-07-31T08:05:21|192.168.1.9|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|767|17950|500|Development
+2025-07-31T12:16:14|192.168.1.203|203.0.113.100|https://target-server.com/login|blocked|403|Python-urllib/3.8|-|79|39|20|DDoS
+2025-07-31T14:29:17|192.168.1.44|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|411|5987|495|Reference
+2025-07-31T11:43:52|192.168.1.31|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|290|17762|343|Development
+2025-07-31T08:43:45|192.168.1.52|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|231|14318|541|Development
+2025-07-31T13:30:36|192.168.1.90|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|729|2351|369|Development
+2025-07-31T14:24:52|192.168.1.87|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|784|16170|586|Development
+2025-07-31T09:21:56|192.168.1.31|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|980|6075|412|Reference
+2025-07-31T13:36:24|192.168.1.45|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|769|14605|294|Development
+2025-07-31T15:06:20|192.168.1.200|203.0.113.100|https://target-server.com/index.html|blocked|403|wget/1.20.3|-|168|38|32|DDoS
+2025-07-31T13:48:22|192.168.1.30|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|881|13540|665|Development
+2025-07-31T08:26:28|192.168.1.218|203.0.113.245|https://203.0.113.245:51235/test|blocked|403|nmap/7.80|-|64|0|7|Network Scanning
+2025-07-31T09:02:25|192.168.1.14|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|509|13761|302|Social Media
+2025-07-31T14:28:14|192.168.1.39|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|703|16363|435|Social Media
+2025-07-31T11:03:19|192.168.1.80|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|563|6204|245|Reference
+2025-07-31T15:55:10|192.168.1.81|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|531|15243|509|Development
+2025-07-31T08:53:59|192.168.1.63|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|966|2927|266|Social Media
+2025-07-31T14:05:12|192.168.1.201|203.0.113.100|https://target-server.com/login|blocked|403|wget/1.20.3|-|87|44|4|DDoS
+2025-07-31T13:59:39|192.168.1.56|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|434|1694|474|Social Media
+2025-07-31T08:03:41|192.168.1.61|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|664|19297|101|Reference
+2025-07-31T14:41:31|192.168.1.45|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|603|11293|352|Development
+2025-07-31T15:43:42|192.168.1.92|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|378|16455|110|Development
+2025-07-31T13:52:11|192.168.1.31|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|207|15338|149|Reference
+2025-07-31T15:10:36|192.168.1.2|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|704|4639|513|Development
+2025-07-31T13:50:04|192.168.1.60|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|366|9913|361|Reference
+2025-07-31T13:16:35|192.168.1.200|203.0.113.100|https://target-server.com/|blocked|403|curl/7.64.1|-|164|20|19|DDoS
+2025-07-31T09:41:29|192.168.1.220|203.0.113.139|https://203.0.113.139:19496/test|blocked|403|nmap/7.80|-|64|0|7|Network Scanning
+2025-07-31T10:27:30|192.168.1.45|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|683|1082|353|Reference
+2025-07-31T12:34:18|192.168.1.44|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|493|2126|647|Social Media
+2025-07-31T14:24:08|192.168.1.93|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|740|1863|636|Development
+2025-07-31T08:11:33|192.168.1.41|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|567|14743|349|Development
+2025-07-31T08:41:39|192.168.1.27|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|375|14598|729|Development
+2025-07-31T15:34:28|192.168.1.28|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|335|6051|476|Development
+2025-07-31T14:13:58|192.168.1.202|203.0.113.100|https://target-server.com/|blocked|429|wget/1.20.3|-|132|82|46|DDoS
+2025-07-31T10:25:58|192.168.1.71|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|721|13193|787|Social Media
+2025-07-31T15:40:55|192.168.1.75|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|900|9103|208|Development
+2025-07-31T12:05:32|192.168.1.90|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|967|15192|782|Development
+2025-07-31T12:14:26|192.168.1.52|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|902|11710|344|Development
+2025-07-31T12:36:09|192.168.1.40|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|601|13128|674|Reference
+2025-07-31T08:20:40|192.168.1.80|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|760|16488|279|Development
+2025-07-31T14:47:17|192.168.1.58|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|237|11417|181|Development
+2025-07-31T14:15:58|192.168.1.203|203.0.113.100|https://target-server.com/index.html|blocked|403|curl/7.64.1|-|54|10|10|DDoS
+2025-07-31T15:37:45|192.168.1.83|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|291|4887|444|Reference
+2025-07-31T10:46:33|192.168.1.88|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|829|18285|658|Reference
+2025-07-31T12:42:00|192.168.1.90|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|643|8340|476|Reference
+2025-07-31T09:30:03|192.168.1.9|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|681|2914|126|Development
+2025-07-31T15:44:26|192.168.1.97|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|573|4614|717|Social Media
+2025-07-31T11:30:41|192.168.1.77|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|516|7214|213|Development
+2025-07-31T15:36:29|192.168.1.62|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|271|19038|632|Development
+2025-07-31T14:12:11|192.168.1.200|203.0.113.100|https://target-server.com/api/v1|blocked|429|wget/1.20.3|-|87|60|8|DDoS
+2025-07-31T15:43:50|192.168.1.13|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|901|14762|719|Social Media
+2025-07-31T13:11:25|192.168.1.89|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|659|3727|452|Development
+2025-07-31T14:08:14|192.168.1.90|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|424|11595|126|Development
+2025-07-31T12:05:46|192.168.1.16|151.101.1.69|https://stackoverflow.com/search|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://stackoverflow.com|285|14086|777|Development
+2025-07-31T08:42:57|192.168.1.92|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|209|8777|438|Development
+2025-07-31T10:46:17|192.168.1.77|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|290|3708|690|Development
+2025-07-31T08:53:19|192.168.1.217|203.0.113.201|https://203.0.113.201:28442/admin|blocked|404|nmap/7.80|-|64|0|4|Network Scanning
+2025-07-31T15:40:33|192.168.1.200|203.0.113.100|https://target-server.com/index.html|blocked|403|Python-urllib/3.8|-|137|56|38|DDoS
+2025-07-31T09:01:32|192.168.1.18|151.101.1.140|https://reddit.com/r/all|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://reddit.com|685|2988|159|Social Media
+2025-07-31T14:50:10|192.168.1.16|91.198.174.192|https://wikipedia.org/article|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://wikipedia.org|991|14454|354|Reference
+2025-07-31T13:46:45|192.168.1.78|140.82.114.4|https://github.com/explore|allowed|200|Mozilla/5.0 (Linux; Android 10)|https://github.com|412|15463|489|Development

@@ -171,22 +171,66 @@ export default function LogManagement() {
                         
                         {/* Analysis Options */}
                         <div className="mt-3 pt-3 border-t border-slate-600 space-y-4">
-                          <AdvancedMLButton 
-                            logFileId={file.id}
-                            filename={file.originalName}
-                            onAnalysisComplete={() => {
-                              queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
-                              queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
-                            }}
-                          />
-                          <TraditionalAnalysisButton 
-                            logFileId={file.id}
-                            filename={file.originalName}
-                            onAnalysisComplete={() => {
-                              queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
-                              queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
-                            }}
-                          />
+                          {/* Default Analysis: Traditional ML */}
+                          <div>
+                            <h4 className="text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
+                              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                              Recommended Analysis
+                            </h4>
+                            <TraditionalAnalysisButton 
+                              logFileId={file.id}
+                              filename={file.originalName}
+                              onAnalysisComplete={() => {
+                                queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
+                                queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
+                              }}
+                            />
+                          </div>
+
+                          {/* Advanced Options */}
+                          <div>
+                            <h4 className="text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
+                              <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                              Advanced Analysis
+                            </h4>
+                            <AdvancedMLButton 
+                              logFileId={file.id}
+                              filename={file.originalName}
+                              onAnalysisComplete={() => {
+                                queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
+                                queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
+                              }}
+                            />
+                          </div>
+
+                          {/* AI-Powered Options */}
+                          <div>
+                            <h4 className="text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
+                              <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                              AI-Powered Analysis (Requires API Keys)
+                            </h4>
+                            <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-600/50">
+                              <div className="flex items-center justify-between mb-3">
+                                <div className="flex items-center gap-2">
+                                  <Brain className="h-4 w-4 text-blue-400" />
+                                  <span className="text-sm font-medium text-white">LLM Analysis</span>
+                                </div>
+                                <Badge variant="outline" className="text-xs text-blue-400 border-blue-400">
+                                  Premium
+                                </Badge>
+                              </div>
+                              <p className="text-xs text-slate-400 mb-3">
+                                Advanced AI analysis using GPT-4o or Gemini for deep behavioral insights
+                              </p>
+                              <AISettings
+                                logFileId={file.id}
+                                onAnalysisComplete={() => {
+                                  queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
+                                  queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
+                                }}
+                              />
+                            </div>
+                          </div>
                         </div>
                       </CardContent>
                     </Card>

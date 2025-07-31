@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Brain, CheckCircle, AlertTriangle, Shield, Zap } from "lucide-react";
+import { Brain, CheckCircle, AlertTriangle, Shield, Zap, Cpu } from "lucide-react";
 
 interface TraditionalAnalysisButtonProps {
   logFileId: string;
@@ -57,8 +57,8 @@ export function TraditionalAnalysisButton({
       <Card className="bg-dark-secondary border-slate-700">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-white">
-            <Brain className="h-5 w-5" />
-            Traditional ML Analysis
+            <Cpu className="h-5 w-5" />
+            Traditional ML Analysis (Default)
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -94,7 +94,7 @@ export function TraditionalAnalysisButton({
           <Button 
             onClick={handleTraditionalAnalysis}
             disabled={isAnalyzing}
-            className="w-full bg-blue-600 hover:bg-blue-700"
+            className="w-full bg-green-600 hover:bg-green-700"
           >
             {isAnalyzing ? (
               <>
@@ -103,8 +103,8 @@ export function TraditionalAnalysisButton({
               </>
             ) : (
               <>
-                <Brain className="mr-2 h-4 w-4" />
-                Run Traditional Analysis
+                <Cpu className="mr-2 h-4 w-4" />
+                Start Analysis (Recommended)
               </>
             )}
           </Button>
