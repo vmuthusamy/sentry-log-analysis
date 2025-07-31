@@ -196,16 +196,22 @@ export function registerRoutes(app: Express): Server {
   app.get("/api/stats", requireAuth, async (req, res) => {
     try {
       const userId = req.user!.id;
+      console.log(`📊 Stats request for user: ${userId}`);
+      
       const stats = await storage.getStats(userId);
+      console.log(`📊 Stats for user ${userId}:`, stats);
       
       const recentAnomalies = await storage.getAnomaliesByUser(userId, 10);
       const highRiskAnomalies = await storage.getHighRiskAnomalies(userId, 7);
       
-      res.json({
+      const response = {
         ...stats,
         recentAnomalies,
         highRiskAnomalies,
-      });
+        userId, // Add userId to response for debugging
+      };
+      
+      res.json(response);
     } catch (error) {
       console.error("Stats error:", error);
       res.status(500).json({ message: "Failed to get stats" });

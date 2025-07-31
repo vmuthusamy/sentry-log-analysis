@@ -1,0 +1,401 @@
+TimeStamp|SourceIP|DestinationIP|URL|Action|StatusCode|User-Agent|Referer|Bytes Sent|Bytes Received|Duration|Category
+2025-07-31T03:50:00|192.168.1.123|164.97.137.88|https://db-1.company.com/export|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://db-1.company.com|1042|220511|319|Database
+2025-07-31T09:58:00|192.168.1.59|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|946|11288|239|Business
+2025-07-31T09:40:00|192.168.1.53|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1292|13552|242|File Sharing
+2025-07-31T21:41:00|192.168.1.132|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|583|4559|246|Business
+2025-07-31T17:56:00|192.168.1.35|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|334|11731|307|File Sharing
+2025-07-31T10:59:00|192.168.1.140|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|549|13365|600|Development
+2025-07-31T10:12:00|192.168.1.90|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1102|11104|290|Business
+2025-07-31T21:38:00|192.168.1.165|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|352|11174|305|File Sharing
+2025-07-31T18:09:00|192.168.1.53|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1241|9913|519|Development
+2025-07-31T21:32:00|192.168.1.111|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|433|7089|210|File Sharing
+2025-07-31T20:10:00|192.168.1.166|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|339|6047|360|File Sharing
+2025-07-31T12:15:00|192.168.1.135|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|741|5644|272|Business
+2025-07-31T21:12:00|192.168.1.17|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1246|12061|461|Development
+2025-07-31T15:13:00|192.168.1.40|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|560|11149|525|Business
+2025-07-31T22:23:00|192.168.1.181|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|451|10865|264|File Sharing
+2025-07-31T21:22:00|192.168.1.72|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|903|7342|205|File Sharing
+2025-07-31T22:21:00|192.168.1.2|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|597|12226|404|Business
+2025-07-31T23:10:00|192.168.1.24|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1344|9811|204|Development
+2025-07-31T21:01:00|192.168.1.64|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|737|9475|370|Development
+2025-07-31T23:46:00|192.168.1.114|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|620|14589|207|Business
+2025-07-31T13:07:00|192.168.1.142|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|398|4576|319|Business
+2025-07-31T15:03:00|192.168.1.90|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1335|10016|380|Business
+2025-07-31T18:55:00|192.168.1.121|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1033|4905|246|Business
+2025-07-31T20:00:00|192.168.1.71|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|710|4371|239|Business
+2025-07-31T19:45:00|192.168.1.78|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|701|4406|168|File Sharing
+2025-07-31T14:01:00|192.168.1.94|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1183|12473|377|Business
+2025-07-31T09:42:00|192.168.1.67|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1232|2949|585|Development
+2025-07-31T08:40:00|192.168.1.22|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|962|8561|224|Development
+2025-07-31T18:16:00|192.168.1.105|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1174|2210|224|Development
+2025-07-31T16:05:00|192.168.1.193|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|708|8065|498|File Sharing
+2025-07-31T05:26:00|192.168.1.123|136.43.175.112|https://fileserver.company.com/confidential/6318.zip|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://fileserver.company.com|814|88079|598|File Sharing
+2025-07-31T16:22:00|192.168.1.35|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|476|8726|551|Business
+2025-07-31T10:20:00|192.168.1.38|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|426|4658|161|File Sharing
+2025-07-31T20:28:00|192.168.1.156|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|847|6027|203|Business
+2025-07-31T14:33:00|192.168.1.16|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1385|2307|580|Business
+2025-07-31T18:57:00|192.168.1.151|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|700|3834|579|Business
+2025-07-31T10:34:00|192.168.1.12|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|655|7718|482|Business
+2025-07-31T17:56:00|192.168.1.42|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|779|13054|154|Business
+2025-07-31T18:15:00|192.168.1.11|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|868|9518|205|Development
+2025-07-31T09:17:00|192.168.1.162|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|705|14574|504|Business
+2025-07-31T13:14:00|192.168.1.189|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|561|5681|568|File Sharing
+2025-07-31T18:22:00|192.168.1.114|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1104|2213|193|Business
+2025-07-31T17:21:00|192.168.1.37|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1473|7339|197|Development
+2025-07-31T17:44:00|192.168.1.140|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1334|7624|249|Development
+2025-07-31T08:19:00|192.168.1.181|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1153|8955|440|File Sharing
+2025-07-31T22:50:00|192.168.1.198|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|363|5904|328|Business
+2025-07-31T22:13:00|192.168.1.190|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|953|12787|429|File Sharing
+2025-07-31T09:49:00|192.168.1.154|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|420|10761|398|Development
+2025-07-31T10:20:00|192.168.1.83|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|675|10889|459|Business
+2025-07-31T20:38:00|192.168.1.192|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1104|8602|429|File Sharing
+2025-07-31T08:47:00|192.168.1.110|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1371|5188|552|File Sharing
+2025-07-31T16:43:00|192.168.1.70|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|825|6124|493|File Sharing
+2025-07-31T09:26:00|192.168.1.4|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|383|14770|426|File Sharing
+2025-07-31T16:08:00|192.168.1.73|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1364|14617|381|Business
+2025-07-31T16:45:00|192.168.1.89|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|684|7163|211|Development
+2025-07-31T15:38:00|192.168.1.75|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|444|9427|328|Business
+2025-07-31T13:32:00|192.168.1.146|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|473|14500|196|Business
+2025-07-31T19:47:00|192.168.1.169|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|780|9273|361|File Sharing
+2025-07-31T08:47:00|192.168.1.159|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1222|9413|381|Business
+2025-07-31T10:20:00|192.168.1.168|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|824|8176|225|Business
+2025-07-31T04:30:00|192.168.1.123|78.142.179.54|https://fileserver.company.com/confidential/6306.zip|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://fileserver.company.com|1029|233315|396|File Sharing
+2025-07-31T11:59:00|192.168.1.21|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|754|7539|529|Development
+2025-07-31T17:19:00|192.168.1.192|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1382|2465|521|Development
+2025-07-31T08:21:00|192.168.1.87|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1128|14555|398|Business
+2025-07-31T08:07:00|192.168.1.31|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1231|2950|427|Business
+2025-07-31T10:09:00|192.168.1.71|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|807|10977|304|Development
+2025-07-31T13:12:00|192.168.1.27|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|608|14314|552|Development
+2025-07-31T13:36:00|192.168.1.151|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|510|5991|272|Business
+2025-07-31T19:48:00|192.168.1.84|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1311|6453|318|Business
+2025-07-31T13:47:00|192.168.1.43|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1235|9481|437|Development
+2025-07-31T11:52:00|192.168.1.72|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1374|6142|588|Business
+2025-07-31T10:51:00|192.168.1.18|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1017|8048|574|Business
+2025-07-31T12:54:00|192.168.1.134|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|762|4812|562|File Sharing
+2025-07-31T14:19:00|192.168.1.22|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1401|11911|560|Development
+2025-07-31T11:52:00|192.168.1.1|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|825|4727|501|Business
+2025-07-31T21:32:00|192.168.1.82|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1294|3837|267|Development
+2025-07-31T21:05:00|192.168.1.54|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1396|8255|285|Business
+2025-07-31T19:48:00|192.168.1.128|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|765|11163|422|Development
+2025-07-31T11:13:00|192.168.1.125|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|895|3496|151|Business
+2025-07-31T23:19:00|192.168.1.134|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|589|12343|531|Business
+2025-07-31T18:56:00|192.168.1.139|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1487|6745|362|Business
+2025-07-31T10:36:00|192.168.1.59|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|857|8434|182|Business
+2025-07-31T22:05:00|192.168.1.63|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|596|11164|468|File Sharing
+2025-07-31T08:47:00|192.168.1.28|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1341|13153|589|Business
+2025-07-31T19:39:00|192.168.1.185|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1452|13479|257|Business
+2025-07-31T16:33:00|192.168.1.167|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1343|10469|388|Business
+2025-07-31T19:05:00|192.168.1.137|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|763|4732|550|Business
+2025-07-31T21:03:00|192.168.1.110|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1086|6372|425|Business
+2025-07-31T20:55:00|192.168.1.163|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|553|4590|400|Business
+2025-07-31T23:05:00|192.168.1.40|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|836|7761|448|File Sharing
+2025-07-31T22:24:00|192.168.1.123|65.229.57.121|https://fileserver.company.com/confidential/6695.zip|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://fileserver.company.com|1631|210713|581|File Sharing
+2025-07-31T14:33:00|192.168.1.123|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|884|6702|315|Business
+2025-07-31T22:12:00|192.168.1.6|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1189|7278|314|Business
+2025-07-31T12:35:00|192.168.1.124|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1138|5627|525|File Sharing
+2025-07-31T13:46:00|192.168.1.158|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1450|10980|267|Business
+2025-07-31T10:59:00|192.168.1.177|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1166|12049|497|Business
+2025-07-31T11:18:00|192.168.1.154|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|366|5049|404|Business
+2025-07-31T15:12:00|192.168.1.191|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|986|7207|467|Business
+2025-07-31T17:18:00|192.168.1.198|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|413|9291|166|Development
+2025-07-31T08:57:00|192.168.1.150|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|823|6245|367|File Sharing
+2025-07-31T08:45:00|192.168.1.20|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1159|14650|362|Development
+2025-07-31T12:46:00|192.168.1.64|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1435|9316|422|File Sharing
+2025-07-31T19:58:00|192.168.1.112|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1319|13249|460|Business
+2025-07-31T10:26:00|192.168.1.119|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|973|6731|468|Business
+2025-07-31T22:54:00|192.168.1.162|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1393|7158|251|Development
+2025-07-31T18:05:00|192.168.1.135|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|532|13625|360|Business
+2025-07-31T21:43:00|192.168.1.122|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|808|13245|502|File Sharing
+2025-07-31T18:34:00|192.168.1.58|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|648|7645|304|File Sharing
+2025-07-31T08:43:00|192.168.1.9|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|953|3992|525|Business
+2025-07-31T08:45:00|192.168.1.12|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1162|3997|557|Development
+2025-07-31T17:34:00|192.168.1.75|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|543|11878|415|File Sharing
+2025-07-31T20:32:00|192.168.1.68|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1404|7530|260|Business
+2025-07-31T15:08:00|192.168.1.73|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1018|5392|489|File Sharing
+2025-07-31T12:44:00|192.168.1.78|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1450|10289|345|File Sharing
+2025-07-31T15:27:00|192.168.1.68|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1204|9571|457|Business
+2025-07-31T16:13:00|192.168.1.169|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|543|3273|422|File Sharing
+2025-07-31T19:36:00|192.168.1.122|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1176|9013|212|File Sharing
+2025-07-31T10:06:00|192.168.1.140|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|659|12222|537|File Sharing
+2025-07-31T10:58:00|192.168.1.155|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1020|13134|392|Business
+2025-07-31T20:07:00|192.168.1.133|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|815|8948|209|Business
+2025-07-31T04:52:00|192.168.1.123|50.124.67.170|https://db-3.company.com/export|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://db-3.company.com|2295|940621|1196|Database
+2025-07-31T09:50:00|192.168.1.59|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|436|9420|554|Business
+2025-07-31T16:49:00|192.168.1.153|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1051|4611|325|File Sharing
+2025-07-31T09:30:00|192.168.1.77|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1031|7819|515|File Sharing
+2025-07-31T08:05:00|192.168.1.38|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|373|11623|166|Business
+2025-07-31T12:27:00|192.168.1.40|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|597|5621|409|Business
+2025-07-31T20:06:00|192.168.1.68|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1063|6393|526|File Sharing
+2025-07-31T10:10:00|192.168.1.1|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1067|13137|189|Business
+2025-07-31T18:18:00|192.168.1.82|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|929|11480|325|File Sharing
+2025-07-31T16:10:00|192.168.1.187|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1422|3516|554|Business
+2025-07-31T23:03:00|192.168.1.19|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|585|13803|441|Business
+2025-07-31T12:32:00|192.168.1.77|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1295|3990|157|File Sharing
+2025-07-31T17:04:00|192.168.1.18|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|300|6682|236|File Sharing
+2025-07-31T20:17:00|192.168.1.20|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|735|12465|506|Development
+2025-07-31T17:04:00|192.168.1.196|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1240|14765|405|File Sharing
+2025-07-31T21:00:00|192.168.1.71|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|783|9532|173|Development
+2025-07-31T14:21:00|192.168.1.77|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|561|7189|278|Development
+2025-07-31T18:29:00|192.168.1.120|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1308|11891|339|Business
+2025-07-31T16:40:00|192.168.1.35|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|349|5240|479|Development
+2025-07-31T12:51:00|192.168.1.17|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|900|10471|229|Business
+2025-07-31T13:53:00|192.168.1.68|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1033|6404|328|File Sharing
+2025-07-31T19:28:00|192.168.1.27|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|458|5087|429|Development
+2025-07-31T13:47:00|192.168.1.11|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1458|12319|409|Business
+2025-07-31T20:53:00|192.168.1.122|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1358|9488|546|Business
+2025-07-31T16:51:00|192.168.1.161|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|983|14872|548|File Sharing
+2025-07-31T20:00:00|192.168.1.25|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|530|10996|309|Business
+2025-07-31T22:57:00|192.168.1.173|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|482|7743|176|File Sharing
+2025-07-31T16:05:00|192.168.1.160|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|447|9135|387|Business
+2025-07-31T13:31:00|192.168.1.80|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1462|5692|470|Business
+2025-07-31T17:05:00|192.168.1.8|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1097|7537|309|Business
+2025-07-31T23:20:00|192.168.1.123|78.14.30.218|https://fileserver.company.com/confidential/5948.zip|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://fileserver.company.com|539|66808|994|File Sharing
+2025-07-31T12:11:00|192.168.1.195|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|350|11498|372|Development
+2025-07-31T17:17:00|192.168.1.189|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|637|4219|247|File Sharing
+2025-07-31T23:02:00|192.168.1.18|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1383|13341|439|Business
+2025-07-31T20:05:00|192.168.1.64|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|436|13916|200|Business
+2025-07-31T19:33:00|192.168.1.117|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|326|9089|591|Business
+2025-07-31T08:03:00|192.168.1.18|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|302|4079|575|Business
+2025-07-31T08:38:00|192.168.1.55|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|961|14163|321|File Sharing
+2025-07-31T10:11:00|192.168.1.21|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|713|5273|420|Development
+2025-07-31T18:52:00|192.168.1.144|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1129|10267|450|Business
+2025-07-31T18:25:00|192.168.1.46|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|458|8514|351|Business
+2025-07-31T08:38:00|192.168.1.121|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|750|6320|238|Business
+2025-07-31T08:17:00|192.168.1.6|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|453|4735|280|Business
+2025-07-31T14:02:00|192.168.1.184|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1226|7932|341|Development
+2025-07-31T14:17:00|192.168.1.69|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|768|7292|299|File Sharing
+2025-07-31T08:26:00|192.168.1.158|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|655|2952|331|Development
+2025-07-31T17:09:00|192.168.1.72|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1250|7129|495|Business
+2025-07-31T08:03:00|192.168.1.197|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1427|9109|436|Business
+2025-07-31T17:24:00|192.168.1.36|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|873|3495|229|Business
+2025-07-31T23:09:00|192.168.1.75|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|971|13888|224|Development
+2025-07-31T23:15:00|192.168.1.74|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1200|10110|445|Business
+2025-07-31T21:57:00|192.168.1.193|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|480|8081|456|Business
+2025-07-31T21:08:00|192.168.1.124|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1127|6775|223|Business
+2025-07-31T19:15:00|192.168.1.54|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|787|9071|174|Development
+2025-07-31T15:09:00|192.168.1.139|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|968|4322|327|Business
+2025-07-31T17:54:00|192.168.1.172|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1468|11747|153|Business
+2025-07-31T12:58:00|192.168.1.81|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|574|9840|183|File Sharing
+2025-07-31T12:30:00|192.168.1.173|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1476|14380|437|Business
+2025-07-31T17:07:00|192.168.1.4|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|881|3105|455|Business
+2025-07-31T17:34:00|192.168.1.5|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|358|9523|467|File Sharing
+2025-07-31T01:35:00|192.168.1.123|148.214.95.169|https://db-4.company.com/export|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://db-4.company.com|1469|979693|409|Database
+2025-07-31T18:21:00|192.168.1.131|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|531|8747|328|Business
+2025-07-31T09:07:00|192.168.1.100|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|631|4246|509|File Sharing
+2025-07-31T09:46:00|192.168.1.176|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|724|3572|264|Business
+2025-07-31T12:57:00|192.168.1.199|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1001|12756|464|Business
+2025-07-31T12:06:00|192.168.1.117|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|619|6003|260|Business
+2025-07-31T11:30:00|192.168.1.137|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|469|12804|330|File Sharing
+2025-07-31T11:58:00|192.168.1.135|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|347|5493|302|File Sharing
+2025-07-31T21:40:00|192.168.1.44|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|407|4314|155|File Sharing
+2025-07-31T11:07:00|192.168.1.117|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1352|10410|303|File Sharing
+2025-07-31T22:04:00|192.168.1.198|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|812|8497|273|Business
+2025-07-31T17:39:00|192.168.1.91|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1500|12410|246|Business
+2025-07-31T14:22:00|192.168.1.110|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1188|3588|460|File Sharing
+2025-07-31T22:32:00|192.168.1.179|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1241|13611|469|Development
+2025-07-31T21:51:00|192.168.1.69|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1452|11487|562|Development
+2025-07-31T12:53:00|192.168.1.70|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1330|8286|490|Business
+2025-07-31T10:25:00|192.168.1.161|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|946|8743|301|Development
+2025-07-31T14:26:00|192.168.1.7|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|714|12070|375|File Sharing
+2025-07-31T20:58:00|192.168.1.34|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|369|13479|410|Business
+2025-07-31T08:32:00|192.168.1.63|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|781|10909|369|Development
+2025-07-31T22:58:00|192.168.1.72|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|916|11193|277|Development
+2025-07-31T15:42:00|192.168.1.11|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1471|3164|173|Business
+2025-07-31T18:12:00|192.168.1.99|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|894|14945|521|Business
+2025-07-31T21:05:00|192.168.1.26|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|770|9162|349|Business
+2025-07-31T15:51:00|192.168.1.95|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1114|7667|235|Business
+2025-07-31T13:51:00|192.168.1.175|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|900|6576|161|File Sharing
+2025-07-31T18:16:00|192.168.1.53|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1100|5589|211|Business
+2025-07-31T18:07:00|192.168.1.86|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1451|3273|255|Development
+2025-07-31T19:55:00|192.168.1.140|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1092|6013|590|Business
+2025-07-31T22:32:00|192.168.1.187|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|413|14270|284|Business
+2025-07-31T05:42:00|192.168.1.123|97.27.18.67|https://fileserver.company.com/confidential/9297.zip|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://fileserver.company.com|1460|91930|1188|File Sharing
+2025-07-31T16:18:00|192.168.1.1|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1153|2275|308|Business
+2025-07-31T19:37:00|192.168.1.186|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1242|12782|252|Business
+2025-07-31T16:40:00|192.168.1.111|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|509|6382|377|Business
+2025-07-31T14:30:00|192.168.1.193|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|603|9778|590|Business
+2025-07-31T12:01:00|192.168.1.101|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|877|5171|398|Development
+2025-07-31T18:03:00|192.168.1.89|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1466|13971|353|Business
+2025-07-31T15:48:00|192.168.1.133|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1190|4053|323|Business
+2025-07-31T12:13:00|192.168.1.178|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|739|14697|337|File Sharing
+2025-07-31T19:47:00|192.168.1.104|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|910|9964|504|Development
+2025-07-31T18:39:00|192.168.1.7|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1133|6828|379|Business
+2025-07-31T16:11:00|192.168.1.195|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|449|14856|315|Business
+2025-07-31T23:46:00|192.168.1.51|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1260|13826|208|Business
+2025-07-31T08:17:00|192.168.1.48|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1015|11122|373|Business
+2025-07-31T12:27:00|192.168.1.139|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|614|9714|573|Business
+2025-07-31T20:02:00|192.168.1.124|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|780|12239|167|Business
+2025-07-31T15:28:00|192.168.1.36|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|526|9110|311|Business
+2025-07-31T20:20:00|192.168.1.137|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1334|9590|308|Development
+2025-07-31T23:23:00|192.168.1.46|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1009|10279|305|File Sharing
+2025-07-31T11:30:00|192.168.1.131|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1101|5452|415|Development
+2025-07-31T13:25:00|192.168.1.186|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1265|6920|415|Development
+2025-07-31T13:22:00|192.168.1.167|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1213|9660|482|Business
+2025-07-31T21:09:00|192.168.1.10|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1346|13852|200|Development
+2025-07-31T19:28:00|192.168.1.183|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|779|8657|461|Business
+2025-07-31T21:01:00|192.168.1.19|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|694|4551|507|Business
+2025-07-31T08:38:00|192.168.1.15|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|504|9465|253|Business
+2025-07-31T23:43:00|192.168.1.91|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|932|13447|548|Business
+2025-07-31T18:41:00|192.168.1.112|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1151|11491|273|File Sharing
+2025-07-31T18:49:00|192.168.1.120|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|355|6931|260|Business
+2025-07-31T16:43:00|192.168.1.169|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|965|3441|190|File Sharing
+2025-07-31T05:47:00|192.168.1.123|227.69.155.117|https://db-5.company.com/export|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://db-5.company.com|4317|322967|1262|Database
+2025-07-31T23:43:00|192.168.1.94|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|823|2316|304|File Sharing
+2025-07-31T10:31:00|192.168.1.83|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|721|6172|155|Development
+2025-07-31T14:48:00|192.168.1.143|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|328|6152|457|File Sharing
+2025-07-31T22:20:00|192.168.1.11|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|735|3044|396|Business
+2025-07-31T18:10:00|192.168.1.105|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|644|8377|361|File Sharing
+2025-07-31T15:35:00|192.168.1.32|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1253|14372|202|Business
+2025-07-31T19:29:00|192.168.1.46|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|665|12079|270|Development
+2025-07-31T21:28:00|192.168.1.44|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1124|11732|302|Business
+2025-07-31T12:27:00|192.168.1.117|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1001|10582|260|Development
+2025-07-31T15:25:00|192.168.1.91|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1479|11079|438|Development
+2025-07-31T20:53:00|192.168.1.78|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|773|3919|596|Business
+2025-07-31T09:30:00|192.168.1.116|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|855|14609|425|Development
+2025-07-31T11:12:00|192.168.1.53|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1385|4988|468|Business
+2025-07-31T13:11:00|192.168.1.166|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|584|3911|186|Development
+2025-07-31T12:49:00|192.168.1.196|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1324|5899|208|File Sharing
+2025-07-31T22:07:00|192.168.1.26|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|689|14814|487|Development
+2025-07-31T23:18:00|192.168.1.153|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1090|8776|222|File Sharing
+2025-07-31T09:16:00|192.168.1.172|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1143|9088|525|File Sharing
+2025-07-31T18:01:00|192.168.1.51|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1244|2685|294|Business
+2025-07-31T13:17:00|192.168.1.157|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|558|9364|440|Development
+2025-07-31T17:41:00|192.168.1.34|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1064|7039|234|Development
+2025-07-31T12:24:00|192.168.1.30|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1216|12213|441|File Sharing
+2025-07-31T16:36:00|192.168.1.2|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1079|7456|550|Business
+2025-07-31T10:33:00|192.168.1.57|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|611|14575|428|Business
+2025-07-31T08:49:00|192.168.1.154|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1332|4817|180|Development
+2025-07-31T23:37:00|192.168.1.55|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|542|12383|388|File Sharing
+2025-07-31T21:48:00|192.168.1.3|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|769|6729|300|Development
+2025-07-31T08:20:00|192.168.1.138|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1410|3944|421|Business
+2025-07-31T13:14:00|192.168.1.190|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|664|10829|283|File Sharing
+2025-07-31T23:41:00|192.168.1.123|193.251.219.208|https://db-4.company.com/export|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://db-4.company.com|4723|589648|1245|Database
+2025-07-31T17:41:00|192.168.1.190|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1107|13258|273|Development
+2025-07-31T23:04:00|192.168.1.67|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1356|8434|375|Business
+2025-07-31T22:18:00|192.168.1.37|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|480|8995|221|Business
+2025-07-31T10:40:00|192.168.1.2|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|639|13293|200|File Sharing
+2025-07-31T15:55:00|192.168.1.15|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|595|6202|354|File Sharing
+2025-07-31T13:41:00|192.168.1.52|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1402|6942|284|Business
+2025-07-31T14:05:00|192.168.1.160|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|430|9290|536|Business
+2025-07-31T15:44:00|192.168.1.72|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|745|6074|373|File Sharing
+2025-07-31T15:46:00|192.168.1.195|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|860|4132|352|Business
+2025-07-31T23:29:00|192.168.1.122|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|487|4336|498|File Sharing
+2025-07-31T19:03:00|192.168.1.107|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1172|9063|300|Business
+2025-07-31T21:56:00|192.168.1.132|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|922|13614|209|Development
+2025-07-31T22:24:00|192.168.1.43|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1067|8728|186|Development
+2025-07-31T11:13:00|192.168.1.132|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1000|2280|579|Business
+2025-07-31T15:52:00|192.168.1.93|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1060|13401|242|File Sharing
+2025-07-31T23:23:00|192.168.1.169|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1164|5606|335|Business
+2025-07-31T18:55:00|192.168.1.53|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|471|8808|442|Development
+2025-07-31T22:35:00|192.168.1.130|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|434|9675|456|Business
+2025-07-31T13:10:00|192.168.1.144|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|639|7877|592|File Sharing
+2025-07-31T21:07:00|192.168.1.7|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|884|7230|310|Business
+2025-07-31T10:08:00|192.168.1.191|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1260|5493|324|Development
+2025-07-31T16:51:00|192.168.1.4|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1328|12843|405|Business
+2025-07-31T14:11:00|192.168.1.62|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|862|11946|186|Development
+2025-07-31T11:46:00|192.168.1.166|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|979|10318|277|Development
+2025-07-31T22:51:00|192.168.1.53|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|763|13042|585|File Sharing
+2025-07-31T23:16:00|192.168.1.85|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1003|11618|442|File Sharing
+2025-07-31T23:31:00|192.168.1.141|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|774|4893|550|Development
+2025-07-31T08:26:00|192.168.1.191|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1025|9863|456|Development
+2025-07-31T09:32:00|192.168.1.62|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1110|10860|497|Business
+2025-07-31T22:22:00|192.168.1.123|182.149.4.193|https://db-3.company.com/export|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://db-3.company.com|1092|391566|555|Database
+2025-07-31T19:02:00|192.168.1.45|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|355|6047|237|Business
+2025-07-31T10:23:00|192.168.1.133|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|822|11872|391|File Sharing
+2025-07-31T23:25:00|192.168.1.55|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|330|2064|599|Development
+2025-07-31T21:49:00|192.168.1.1|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|445|3886|514|Business
+2025-07-31T23:02:00|192.168.1.175|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1486|13042|492|Development
+2025-07-31T13:14:00|192.168.1.190|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1090|13563|220|Development
+2025-07-31T11:46:00|192.168.1.62|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|349|2299|318|File Sharing
+2025-07-31T11:50:00|192.168.1.73|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1037|13053|568|Business
+2025-07-31T10:37:00|192.168.1.108|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1286|13162|199|Business
+2025-07-31T22:10:00|192.168.1.161|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|443|3014|445|File Sharing
+2025-07-31T14:25:00|192.168.1.171|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|553|7413|456|File Sharing
+2025-07-31T16:26:00|192.168.1.93|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|694|2493|258|File Sharing
+2025-07-31T21:16:00|192.168.1.40|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|515|5962|309|Business
+2025-07-31T23:04:00|192.168.1.180|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1337|2705|436|Business
+2025-07-31T09:12:00|192.168.1.57|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1182|5979|198|Business
+2025-07-31T11:23:00|192.168.1.40|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|639|13241|435|File Sharing
+2025-07-31T18:21:00|192.168.1.43|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|479|3493|256|Development
+2025-07-31T19:13:00|192.168.1.49|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|786|7417|456|Business
+2025-07-31T23:00:00|192.168.1.120|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1469|5597|288|Business
+2025-07-31T10:03:00|192.168.1.163|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1481|4290|524|Business
+2025-07-31T14:38:00|192.168.1.145|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1456|8744|558|Development
+2025-07-31T17:34:00|192.168.1.103|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|930|9535|573|File Sharing
+2025-07-31T13:43:00|192.168.1.47|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|536|4701|400|Business
+2025-07-31T16:13:00|192.168.1.185|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1484|8871|217|Development
+2025-07-31T23:27:00|192.168.1.140|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1043|6308|308|Business
+2025-07-31T22:14:00|192.168.1.147|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|923|9147|533|File Sharing
+2025-07-31T20:51:00|192.168.1.95|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|319|11748|165|Development
+2025-07-31T18:21:00|192.168.1.121|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1227|6935|256|Business
+2025-07-31T22:49:00|192.168.1.141|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1409|7405|240|Business
+2025-07-31T23:47:00|192.168.1.123|5.216.76.81|https://db-1.company.com/export|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://db-1.company.com|4821|526019|461|Database
+2025-07-31T11:45:00|192.168.1.12|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|372|6483|204|File Sharing
+2025-07-31T15:05:00|192.168.1.199|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|770|9003|241|File Sharing
+2025-07-31T11:37:00|192.168.1.188|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1021|11817|459|Business
+2025-07-31T16:37:00|192.168.1.66|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|827|9501|276|Business
+2025-07-31T08:49:00|192.168.1.37|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|462|12367|427|File Sharing
+2025-07-31T15:12:00|192.168.1.94|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1117|5242|236|Development
+2025-07-31T10:32:00|192.168.1.166|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1486|3772|278|Business
+2025-07-31T13:50:00|192.168.1.37|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1024|5571|370|File Sharing
+2025-07-31T10:18:00|192.168.1.14|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|984|4873|278|File Sharing
+2025-07-31T18:20:00|192.168.1.116|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1047|13964|198|Business
+2025-07-31T14:20:00|192.168.1.7|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1067|5071|587|Development
+2025-07-31T22:53:00|192.168.1.195|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|654|11412|593|File Sharing
+2025-07-31T12:37:00|192.168.1.22|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|755|2356|302|Business
+2025-07-31T16:08:00|192.168.1.159|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1193|2925|182|Development
+2025-07-31T21:50:00|192.168.1.150|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|316|4286|321|File Sharing
+2025-07-31T12:52:00|192.168.1.38|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|532|6197|571|Business
+2025-07-31T17:56:00|192.168.1.40|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|749|9824|307|Development
+2025-07-31T13:06:00|192.168.1.108|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1101|2649|363|Development
+2025-07-31T14:38:00|192.168.1.72|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|496|8727|465|Business
+2025-07-31T10:59:00|192.168.1.11|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|912|8835|268|Business
+2025-07-31T13:40:00|192.168.1.190|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|421|5319|341|Business
+2025-07-31T16:41:00|192.168.1.106|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|591|4937|581|Development
+2025-07-31T16:33:00|192.168.1.33|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|669|11061|510|File Sharing
+2025-07-31T09:42:00|192.168.1.134|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|573|9256|507|Business
+2025-07-31T20:06:00|192.168.1.53|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1292|9118|469|File Sharing
+2025-07-31T12:12:00|192.168.1.166|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1251|6687|392|Business
+2025-07-31T22:25:00|192.168.1.15|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1098|10734|396|Business
+2025-07-31T08:43:00|192.168.1.23|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1192|8418|590|File Sharing
+2025-07-31T09:54:00|192.168.1.66|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|736|8304|593|Business
+2025-07-31T23:44:00|192.168.1.123|82.163.158.182|https://fileserver.company.com/confidential/8234.zip|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://fileserver.company.com|666|272372|562|File Sharing
+2025-07-31T19:45:00|192.168.1.109|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|629|7356|171|File Sharing
+2025-07-31T18:14:00|192.168.1.143|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1045|8693|236|Business
+2025-07-31T09:43:00|192.168.1.159|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|925|5750|341|Business
+2025-07-31T18:40:00|192.168.1.145|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|949|14798|353|File Sharing
+2025-07-31T16:08:00|192.168.1.169|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|526|5150|308|Business
+2025-07-31T10:00:00|192.168.1.109|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|878|9526|326|Development
+2025-07-31T14:48:00|192.168.1.90|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1323|7406|596|Development
+2025-07-31T13:07:00|192.168.1.124|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|769|11177|399|Business
+2025-07-31T15:41:00|192.168.1.40|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|602|9619|535|Development
+2025-07-31T21:21:00|192.168.1.20|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1386|12640|552|Development
+2025-07-31T19:26:00|192.168.1.154|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|724|5766|472|Business
+2025-07-31T19:10:00|192.168.1.62|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|810|2540|387|File Sharing
+2025-07-31T10:48:00|192.168.1.85|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|732|8737|177|Development
+2025-07-31T11:12:00|192.168.1.187|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|435|14459|292|Business
+2025-07-31T22:07:00|192.168.1.19|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1343|9490|489|Business
+2025-07-31T12:59:00|192.168.1.38|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1109|11095|330|Business
+2025-07-31T17:11:00|192.168.1.193|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1265|5402|499|Development
+2025-07-31T17:29:00|192.168.1.57|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|452|8830|360|Business
+2025-07-31T23:51:00|192.168.1.60|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|381|9192|415|Development
+2025-07-31T19:05:00|192.168.1.163|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|1375|6017|417|Business
+2025-07-31T22:05:00|192.168.1.122|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|829|11990|467|Business
+2025-07-31T12:14:00|192.168.1.199|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|1108|6470|162|File Sharing
+2025-07-31T18:33:00|192.168.1.109|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|936|9651|550|Business
+2025-07-31T18:54:00|192.168.1.200|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|984|10478|388|File Sharing
+2025-07-31T18:57:00|192.168.1.100|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|378|9460|351|Business
+2025-07-31T21:12:00|192.168.1.8|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1394|14044|326|Development
+2025-07-31T15:30:00|192.168.1.61|13.107.246.45|https://teams.microsoft.com/chat|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://teams.microsoft.com|916|12413|569|Business
+2025-07-31T22:56:00|192.168.1.5|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1455|4497|292|Business
+2025-07-31T14:25:00|192.168.1.163|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|988|12523|413|Business
+2025-07-31T03:12:00|192.168.1.123|91.120.108.145|https://db-3.company.com/export|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://db-3.company.com|2301|469440|445|Database
+2025-07-31T23:13:00|192.168.1.72|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|742|3851|365|File Sharing
+2025-07-31T23:11:00|192.168.1.82|52.244.160.207|https://sharepoint.company.com/docs|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://sharepoint.company.com|1355|6130|591|Business
+2025-07-31T14:25:00|192.168.1.191|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|575|2720|206|Development
+2025-07-31T22:52:00|192.168.1.124|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|896|4047|528|Development
+2025-07-31T11:37:00|192.168.1.159|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|858|5826|199|File Sharing
+2025-07-31T22:28:00|192.168.1.96|162.125.248.1|https://dropbox.com/files|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://dropbox.com|724|6129|285|File Sharing
+2025-07-31T14:07:00|192.168.1.131|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|420|6266|554|Development
+2025-07-31T23:57:00|192.168.1.7|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1029|11661|322|Development
+2025-07-31T13:11:00|192.168.1.88|104.192.143.1|https://jira.company.com/issues|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://jira.company.com|1332|6695|198|Development

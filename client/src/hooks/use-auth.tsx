@@ -41,6 +41,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return await res.json();
     },
     onSuccess: (user: SelectUser) => {
+      // Clear all cached data before setting new user to prevent cross-user contamination
+      queryClient.clear();
       queryClient.setQueryData(["/api/user"], user);
       toast({
         title: "Welcome back!",
@@ -62,6 +64,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return await res.json();
     },
     onSuccess: (user: SelectUser) => {
+      // Clear all cached data before setting new user to prevent cross-user contamination
+      queryClient.clear();
       queryClient.setQueryData(["/api/user"], user);
       toast({
         title: "Account created!",
@@ -83,6 +87,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     onSuccess: () => {
       queryClient.setQueryData(["/api/user"], null);
+      // Clear all cached data on logout to prevent cross-user contamination
+      queryClient.clear();
       toast({
         title: "Logged out",
         description: "You have been successfully logged out.",
