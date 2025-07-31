@@ -1,0 +1,201 @@
+TimeStamp|SourceIP|DestinationIP|URL|Action|StatusCode|User-Agent|Referer|Bytes Sent|Bytes Received|Duration|Category
+2025-07-31T16:09:00|192.168.1.72|8.8.8.8|https://i9249570xmlxxwrkwyny8d0894pkg410kifxmu9x4sgq368bnaq8xg03wjf3um6.tunnel.com/dns|blocked|403|dig/9.16.1|-|1983|191|135|DNS Tunneling
+2025-07-31T13:08:00|192.168.1.39|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|954|5758|248|Business
+2025-07-31T17:32:00|192.168.1.47|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|967|7803|420|Business
+2025-07-31T08:36:00|192.168.1.41|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|850|2845|295|Business
+2025-07-31T16:56:00|192.168.1.4|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|909|4032|462|Business
+2025-07-31T15:47:00|192.168.1.21|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|668|5896|412|Business
+2025-07-31T13:39:00|192.168.1.44|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|924|4417|211|Business
+2025-07-31T08:25:00|192.168.1.17|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|696|3540|357|Business
+2025-07-31T12:45:00|192.168.1.24|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|662|5844|427|Business
+2025-07-31T14:28:00|192.168.1.19|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|1140|8674|203|Business
+2025-07-31T15:35:00|192.168.1.28|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|770|8630|415|Business
+2025-07-31T08:54:00|192.168.1.32|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|895|9915|459|Business
+2025-07-31T09:36:00|192.168.1.21|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|850|7824|464|Business
+2025-07-31T13:18:00|192.168.1.41|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|1164|8673|298|Business
+2025-07-31T14:57:00|192.168.1.50|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|963|8331|243|Business
+2025-07-31T14:22:00|192.168.1.81|8.8.8.8|https://3j1j71aksa4m7cftota2a6ay0qxas4ghkedxzfldse7cuqt47w24msdgi5loewp.tunnel.org/dns|blocked|403|dig/9.16.1|-|1110|311|174|DNS Tunneling
+2025-07-31T08:29:00|192.168.1.45|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|575|4317|181|Business
+2025-07-31T16:23:00|192.168.1.25|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|429|8177|403|Business
+2025-07-31T16:11:00|192.168.1.21|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|1046|4943|272|Business
+2025-07-31T11:55:00|192.168.1.6|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|934|5262|451|Business
+2025-07-31T15:21:00|192.168.1.2|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|718|6688|474|Business
+2025-07-31T11:14:00|192.168.1.49|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|407|9113|384|Business
+2025-07-31T11:03:00|192.168.1.20|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|388|7738|279|Business
+2025-07-31T08:53:00|192.168.1.36|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|657|7581|421|Business
+2025-07-31T14:56:00|192.168.1.37|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|682|6140|340|Business
+2025-07-31T17:07:00|192.168.1.77|198.51.100.74|https://beacon-24.ga/ping|allowed|200|curl/7.64.1|https://beacon-24.ga|64|32|50|Unknown
+2025-07-31T14:31:00|192.168.1.45|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|947|6907|400|Business
+2025-07-31T11:00:00|192.168.1.27|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|832|6092|304|Business
+2025-07-31T15:13:00|192.168.1.5|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|826|6119|229|Business
+2025-07-31T09:36:00|192.168.1.50|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|748|4959|396|Business
+2025-07-31T14:17:00|192.168.1.56|8.8.8.8|https://yzguvte531k7sppdxi0pagxg6m9eir8chdkr4q6f9i12b0wrizk4gw1bqlu63l1.tunnel.org/dns|blocked|403|dig/9.16.1|-|1369|115|159|DNS Tunneling
+2025-07-31T14:22:00|192.168.1.39|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|725|6518|378|Business
+2025-07-31T10:27:00|192.168.1.33|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|695|3193|369|Business
+2025-07-31T13:07:00|192.168.1.46|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|830|8732|495|Business
+2025-07-31T15:51:00|192.168.1.7|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|1113|6372|400|Business
+2025-07-31T13:32:00|192.168.1.13|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|492|3004|279|Business
+2025-07-31T17:29:00|192.168.1.37|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|567|8087|430|Business
+2025-07-31T08:49:00|192.168.1.50|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|753|4243|402|Business
+2025-07-31T14:04:00|192.168.1.45|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|419|5230|443|Business
+2025-07-31T09:08:00|192.168.1.15|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|841|3465|303|Business
+2025-07-31T11:10:00|192.168.1.18|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|950|8322|183|Business
+2025-07-31T09:05:00|192.168.1.19|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|503|5692|332|Business
+2025-07-31T09:15:00|192.168.1.11|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|306|5681|456|Business
+2025-07-31T08:59:00|192.168.1.32|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|958|5209|245|Business
+2025-07-31T16:50:00|192.168.1.37|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|734|3868|380|Business
+2025-07-31T16:28:00|192.168.1.83|8.8.8.8|https://xuouiwlk7b69k8ofpnttai563lk1knqhqnkl60q7oyat7f4y5gdxcv1cnq86q7k.tunnel.org/dns|blocked|403|dig/9.16.1|-|631|248|51|DNS Tunneling
+2025-07-31T14:39:00|192.168.1.40|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|346|7464|352|Business
+2025-07-31T14:48:00|192.168.1.47|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|785|4025|153|Business
+2025-07-31T15:11:00|192.168.1.17|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|577|7002|418|Business
+2025-07-31T12:52:00|192.168.1.36|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|339|2153|490|Business
+2025-07-31T15:31:00|192.168.1.77|198.51.100.170|https://beacon-40.ga/ping|allowed|200|curl/7.64.1|https://beacon-40.ga|64|32|50|Unknown
+2025-07-31T13:20:00|192.168.1.9|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|335|3466|422|Business
+2025-07-31T14:45:00|192.168.1.42|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|1142|8825|154|Business
+2025-07-31T15:09:00|192.168.1.17|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|563|3151|369|Business
+2025-07-31T15:20:00|192.168.1.38|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|765|9953|197|Business
+2025-07-31T14:31:00|192.168.1.4|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|942|2757|474|Business
+2025-07-31T08:58:00|192.168.1.49|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|1107|7128|455|Business
+2025-07-31T14:46:00|192.168.1.18|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|990|2890|385|Business
+2025-07-31T16:44:00|192.168.1.45|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|847|7755|412|Business
+2025-07-31T17:02:00|192.168.1.5|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|753|7530|314|Business
+2025-07-31T14:59:00|192.168.1.64|8.8.8.8|https://l20pf53z0mvmwrgucc18q2ochh9iawcso2gjdxnqvnqn9jn7stz5im9rkva272l.tunnel.net/dns|blocked|403|dig/9.16.1|-|853|186|173|DNS Tunneling
+2025-07-31T14:19:00|192.168.1.5|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|1140|6323|227|Business
+2025-07-31T17:41:00|192.168.1.3|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|601|9293|161|Business
+2025-07-31T16:07:00|192.168.1.27|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|1141|5556|167|Business
+2025-07-31T10:57:00|192.168.1.18|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|658|4221|165|Business
+2025-07-31T13:12:00|192.168.1.18|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|1055|4277|232|Business
+2025-07-31T09:24:00|192.168.1.45|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|402|7213|241|Business
+2025-07-31T16:20:00|192.168.1.36|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|977|3386|336|Business
+2025-07-31T11:20:00|192.168.1.9|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|752|6864|330|Business
+2025-07-31T16:09:00|192.168.1.37|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|458|2911|429|Business
+2025-07-31T08:22:00|192.168.1.14|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|371|5149|335|Business
+2025-07-31T10:20:00|192.168.1.1|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|343|3275|461|Business
+2025-07-31T14:27:00|192.168.1.34|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|814|5987|379|Business
+2025-07-31T13:31:00|192.168.1.30|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|1017|5048|210|Business
+2025-07-31T09:35:00|192.168.1.23|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|1145|5745|416|Business
+2025-07-31T16:32:00|192.168.1.56|8.8.8.8|https://aiuzyib934w2p5qmvdf06mcbsxlj9b6iv988mosovvhx2ah0vb2163hqejl2m6p.tunnel.net/dns|blocked|403|dig/9.16.1|-|1503|301|167|DNS Tunneling
+2025-07-31T16:47:00|192.168.1.50|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|924|6203|185|Business
+2025-07-31T17:26:00|192.168.1.21|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|1138|9461|430|Business
+2025-07-31T16:25:00|192.168.1.28|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|952|6821|166|Business
+2025-07-31T09:52:00|192.168.1.24|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|952|6036|478|Business
+2025-07-31T17:06:00|192.168.1.27|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|755|8489|161|Business
+2025-07-31T09:58:00|192.168.1.18|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|517|8004|239|Business
+2025-07-31T11:01:00|192.168.1.19|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|842|9991|315|Business
+2025-07-31T09:27:00|192.168.1.13|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|738|2664|181|Business
+2025-07-31T12:31:00|192.168.1.43|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|744|4436|368|Business
+2025-07-31T12:55:00|192.168.1.5|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|675|2254|356|Business
+2025-07-31T09:00:00|192.168.1.41|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|843|4965|263|Business
+2025-07-31T10:05:00|192.168.1.9|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|592|2478|432|Business
+2025-07-31T15:36:00|192.168.1.36|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|1150|5082|209|Business
+2025-07-31T08:11:00|192.168.1.48|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|1060|9788|403|Business
+2025-07-31T14:39:00|192.168.1.64|8.8.8.8|https://z2q9r0v9vo5smu7p0eg0mua27vgzsrq6xcgsvud43gahwyt1cdyjxm6p0ox0avl.tunnel.org/dns|blocked|403|dig/9.16.1|-|1388|410|123|DNS Tunneling
+2025-07-31T13:22:00|192.168.1.17|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|560|7020|338|Business
+2025-07-31T09:14:00|192.168.1.44|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|956|2526|243|Business
+2025-07-31T16:35:00|192.168.1.1|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|774|2463|162|Business
+2025-07-31T11:58:00|192.168.1.11|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|1173|2739|409|Business
+2025-07-31T11:36:00|192.168.1.18|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|305|8677|339|Business
+2025-07-31T14:55:00|192.168.1.6|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|522|5375|336|Business
+2025-07-31T17:12:00|192.168.1.16|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|346|5792|199|Business
+2025-07-31T15:59:00|192.168.1.21|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|722|4458|446|Business
+2025-07-31T15:27:00|192.168.1.23|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|976|4662|173|Business
+2025-07-31T17:41:00|192.168.1.77|198.51.100.235|https://beacon-25.ga/ping|allowed|200|curl/7.64.1|https://beacon-25.ga|64|32|50|Unknown
+2025-07-31T08:03:00|192.168.1.1|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|1190|8456|383|Business
+2025-07-31T11:07:00|192.168.1.28|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|555|5106|372|Business
+2025-07-31T13:39:00|192.168.1.35|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|454|4639|195|Business
+2025-07-31T14:39:00|192.168.1.1|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|542|9972|455|Business
+2025-07-31T08:06:00|192.168.1.52|8.8.8.8|https://oj4o1uocdt0k95gvroken0m4g9fq58hhad1a2z7j2ua25c1qw7gnfq3lc3m94kh.tunnel.org/dns|blocked|403|dig/9.16.1|-|502|467|90|DNS Tunneling
+2025-07-31T10:16:00|192.168.1.22|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|714|9215|433|Business
+2025-07-31T14:05:00|192.168.1.16|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|869|6038|319|Business
+2025-07-31T10:08:00|192.168.1.48|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|576|8917|287|Business
+2025-07-31T14:07:00|192.168.1.13|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|405|3449|202|Business
+2025-07-31T11:45:00|192.168.1.6|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|886|7861|421|Business
+2025-07-31T11:39:00|192.168.1.9|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|805|4481|168|Business
+2025-07-31T14:12:00|192.168.1.27|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|315|9345|310|Business
+2025-07-31T08:11:00|192.168.1.26|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|941|4069|326|Business
+2025-07-31T17:39:00|192.168.1.19|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|734|3775|197|Business
+2025-07-31T08:15:00|192.168.1.17|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|895|9083|367|Business
+2025-07-31T12:52:00|192.168.1.16|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|1155|7815|474|Business
+2025-07-31T14:26:00|192.168.1.21|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|603|2832|232|Business
+2025-07-31T12:04:00|192.168.1.32|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|1194|3664|244|Business
+2025-07-31T16:58:00|192.168.1.28|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|1157|4864|286|Business
+2025-07-31T16:58:00|192.168.1.60|8.8.8.8|https://962my740njqocw85rv0bmpn1bg6gohtdl5brz3sc68s3h6k7rp16faigxkrkt9i.tunnel.com/dns|blocked|403|dig/9.16.1|-|576|408|198|DNS Tunneling
+2025-07-31T09:59:00|192.168.1.45|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|959|3936|342|Business
+2025-07-31T08:18:00|192.168.1.48|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|460|2628|358|Business
+2025-07-31T11:12:00|192.168.1.16|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|725|6341|193|Business
+2025-07-31T08:26:00|192.168.1.25|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|489|5289|306|Business
+2025-07-31T10:47:00|192.168.1.77|198.51.100.152|https://beacon-88.ga/ping|allowed|200|curl/7.64.1|https://beacon-88.ga|64|32|50|Unknown
+2025-07-31T11:38:00|192.168.1.12|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|1185|9260|443|Business
+2025-07-31T16:00:00|192.168.1.16|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|758|3645|337|Business
+2025-07-31T11:38:00|192.168.1.29|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|953|9556|400|Business
+2025-07-31T08:46:00|192.168.1.36|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|1085|3056|206|Business
+2025-07-31T10:59:00|192.168.1.46|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|431|6859|485|Business
+2025-07-31T10:01:00|192.168.1.5|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|425|2719|320|Business
+2025-07-31T16:15:00|192.168.1.40|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|339|8586|412|Business
+2025-07-31T13:25:00|192.168.1.31|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|615|5188|240|Business
+2025-07-31T09:23:00|192.168.1.3|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|595|5871|164|Business
+2025-07-31T17:20:00|192.168.1.60|8.8.8.8|https://0kscpx9zzmdf54wjhr41va5cadtcul09nl9zw4hsk8ythdna0ze8gqeovs0gv53.tunnel.net/dns|blocked|403|dig/9.16.1|-|1617|147|60|DNS Tunneling
+2025-07-31T17:13:00|192.168.1.35|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|675|2582|477|Business
+2025-07-31T10:07:00|192.168.1.29|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|804|7854|281|Business
+2025-07-31T14:02:00|192.168.1.42|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|1098|4483|283|Business
+2025-07-31T09:22:00|192.168.1.5|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|662|2276|448|Business
+2025-07-31T12:48:00|192.168.1.49|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|535|8283|321|Business
+2025-07-31T17:08:00|192.168.1.47|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|691|3811|207|Business
+2025-07-31T08:17:00|192.168.1.1|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|869|3084|406|Business
+2025-07-31T17:30:00|192.168.1.4|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|713|6084|242|Business
+2025-07-31T14:24:00|192.168.1.10|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|814|3925|168|Business
+2025-07-31T16:22:00|192.168.1.30|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|926|5066|158|Business
+2025-07-31T08:49:00|192.168.1.31|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|851|2977|296|Business
+2025-07-31T11:28:00|192.168.1.8|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|1035|2198|208|Business
+2025-07-31T08:52:00|192.168.1.5|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|721|8997|391|Business
+2025-07-31T08:29:00|192.168.1.22|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|855|5123|312|Business
+2025-07-31T13:23:00|192.168.1.74|8.8.8.8|https://ws0722rgkabumtkf1p67h6jhiccvtgsayn9i6u29mqo7quzhcw89ue942i0sucd.tunnel.net/dns|blocked|403|dig/9.16.1|-|1507|250|103|DNS Tunneling
+2025-07-31T10:04:00|192.168.1.7|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|434|3804|392|Business
+2025-07-31T08:50:00|192.168.1.31|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|1117|4655|382|Business
+2025-07-31T12:30:00|192.168.1.34|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|1032|9253|187|Business
+2025-07-31T15:35:00|192.168.1.47|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|1096|3574|425|Business
+2025-07-31T14:50:00|192.168.1.23|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|718|4620|369|Business
+2025-07-31T14:44:00|192.168.1.47|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|1054|5548|415|Business
+2025-07-31T12:47:00|192.168.1.34|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|803|5884|228|Business
+2025-07-31T11:56:00|192.168.1.28|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|864|6186|276|Business
+2025-07-31T09:50:00|192.168.1.46|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|454|8970|278|Business
+2025-07-31T09:14:00|192.168.1.5|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|495|2592|170|Business
+2025-07-31T14:34:00|192.168.1.48|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|713|3643|308|Business
+2025-07-31T10:51:00|192.168.1.45|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|1175|8740|162|Business
+2025-07-31T10:52:00|192.168.1.5|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|329|3841|391|Business
+2025-07-31T16:33:00|192.168.1.48|136.147.174.25|https://salesforce.com/crm|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://salesforce.com|314|7439|481|Business
+2025-07-31T10:23:00|192.168.1.86|8.8.8.8|https://ooiwhbzlmer4l27hxhrje09yn6xkauzleuk4cjioofp5atxyfy3it6vrywy2tji.tunnel.net/dns|blocked|403|dig/9.16.1|-|1340|403|56|DNS Tunneling
+2025-07-31T08:08:00|192.168.1.41|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|799|2920|315|Business
+2025-07-31T12:12:00|192.168.1.32|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|413|3023|435|Business
+2025-07-31T15:26:00|192.168.1.28|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|500|6477|447|Business
+2025-07-31T09:16:00|192.168.1.48|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|608|4153|410|Business
+2025-07-31T12:24:00|192.168.1.9|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|441|7887|262|Business
+2025-07-31T08:14:00|192.168.1.7|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|385|7482|491|Business
+2025-07-31T08:23:00|192.168.1.13|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|567|4673|197|Business
+2025-07-31T12:55:00|192.168.1.38|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|696|8457|321|Business
+2025-07-31T16:31:00|192.168.1.29|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|753|9865|412|Business
+2025-07-31T12:18:00|192.168.1.77|198.51.100.72|https://beacon-31.ml/ping|allowed|200|curl/7.64.1|https://beacon-31.ml|64|32|50|Unknown
+2025-07-31T16:37:00|192.168.1.30|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|731|3757|307|Business
+2025-07-31T13:42:00|192.168.1.5|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|884|4339|323|Business
+2025-07-31T11:51:00|192.168.1.49|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|468|8871|480|Business
+2025-07-31T11:12:00|192.168.1.9|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|601|4654|271|Business
+2025-07-31T13:13:00|192.168.1.75|8.8.8.8|https://210ddm85d4f9bo0s3tp5izohx6tpy2xm9wvcxu8iefr9xilz7p6hug65efjykvx.tunnel.org/dns|blocked|403|dig/9.16.1|-|1161|456|106|DNS Tunneling
+2025-07-31T13:56:00|192.168.1.22|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|1149|5146|247|Business
+2025-07-31T08:07:00|192.168.1.21|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|991|7471|402|Business
+2025-07-31T12:04:00|192.168.1.47|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|1168|4621|158|Business
+2025-07-31T14:10:00|192.168.1.31|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|668|7230|282|Business
+2025-07-31T16:48:00|192.168.1.3|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|1046|2284|382|Business
+2025-07-31T11:43:00|192.168.1.24|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|632|4212|183|Business
+2025-07-31T08:15:00|192.168.1.9|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|928|5587|215|Business
+2025-07-31T09:21:00|192.168.1.46|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|681|5010|467|Business
+2025-07-31T13:31:00|192.168.1.22|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|777|9819|370|Business
+2025-07-31T16:59:00|192.168.1.15|54.230.50.100|https://slack.com/messages|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://slack.com|1019|7868|320|Business
+2025-07-31T12:55:00|192.168.1.30|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|334|6755|150|Business
+2025-07-31T15:06:00|192.168.1.16|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|497|4171|436|Business
+2025-07-31T12:28:00|192.168.1.44|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|844|7242|290|Business
+2025-07-31T10:12:00|192.168.1.48|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|875|5387|448|Business
+2025-07-31T11:52:00|192.168.1.93|8.8.8.8|https://ge0wxfw72m4ez9tmabpd93mm4lupja52xnupqb6z24fthl1hzuw2gzxhvh6mnfw.tunnel.com/dns|blocked|403|dig/9.16.1|-|1278|109|87|DNS Tunneling
+2025-07-31T12:00:00|192.168.1.37|13.107.246.45|https://office365.com/login|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://office365.com|1104|2508|379|Business
+2025-07-31T09:21:00|192.168.1.15|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|1191|4987|244|Business
+2025-07-31T09:36:00|192.168.1.30|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|365|9170|477|Business
+2025-07-31T09:32:00|192.168.1.27|3.7.35.0|https://zoom.us/meeting|allowed|200|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)|https://zoom.us|445|4436|365|Business

@@ -453,7 +453,8 @@ export class AdvancedMLDetector {
     const features = [
       entry.bytesSent + entry.bytesReceived,
       entry.duration,
-      entry.sourceIp.split('.').reduce((a, b) => a + parseInt(b), 0)
+      entry.sourceIp && typeof entry.sourceIp === 'string' ? 
+        entry.sourceIp.split('.').reduce((a, b) => a + parseInt(b), 0) : 0
     ];
 
     let isolationDepth = 0;
@@ -465,7 +466,8 @@ export class AdvancedMLDetector {
       subset = subset.filter(e => {
         const eFeature = feature === 0 ? e.bytesSent + e.bytesReceived :
                         feature === 1 ? e.duration :
-                        e.sourceIp.split('.').reduce((a, b) => a + parseInt(b), 0);
+                        e.sourceIp && typeof e.sourceIp === 'string' ? 
+                          e.sourceIp.split('.').reduce((a, b) => a + parseInt(b), 0) : 0;
         return eFeature < threshold;
       });
       isolationDepth++;
