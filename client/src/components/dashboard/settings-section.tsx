@@ -7,7 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 
 export function SettingsSection() {
-  const [aiModel, setAiModel] = useState("gpt-4o");
+  const [aiModel, setAiModel] = useState("traditional-ml");
   const [confidenceThreshold, setConfidenceThreshold] = useState(0.7);
   const [emailAlerts, setEmailAlerts] = useState(true);
   const [realTimeNotifications, setRealTimeNotifications] = useState(false);
@@ -27,7 +27,7 @@ export function SettingsSection() {
   };
 
   const handleReset = () => {
-    setAiModel("gpt-4o");
+    setAiModel("traditional-ml");
     setConfidenceThreshold(0.7);
     setEmailAlerts(true);
     setRealTimeNotifications(false);
@@ -64,17 +64,28 @@ export function SettingsSection() {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <Label className="text-slate-300">Default Detection Model</Label>
+                <Label className="text-slate-300">Detection Method</Label>
                 <select 
                   className="w-full mt-2 bg-dark-tertiary border border-slate-600 rounded-lg px-3 py-2 text-white"
                   value={aiModel}
                   onChange={(e) => setAiModel(e.target.value)}
                 >
-                  <option value="gpt-4o">GPT-4o (Recommended)</option>
-                  <option value="claude-3-opus">Claude-3 Opus</option>
-                  <option value="custom">Custom Fine-tuned Model</option>
+                  <option value="traditional-ml">Traditional ML Only (No LLM)</option>
+                  <option value="gpt-4o">GPT-4o (OpenAI)</option>
+                  <option value="gemini">Google Gemini</option>
+                  <option value="hybrid">Hybrid (Traditional + AI)</option>
                 </select>
-                <p className="text-xs text-slate-500 mt-1">Choose the LLM for anomaly detection analysis</p>
+                {aiModel === "traditional-ml" && (
+                  <p className="text-sm text-slate-400 mt-2">
+                    Uses rule-based detection, pattern matching, and statistical analysis. No external AI services required.
+                  </p>
+                )}
+                {aiModel === "hybrid" && (
+                  <p className="text-sm text-slate-400 mt-2">
+                    Combines traditional ML detection with AI analysis for comprehensive coverage.
+                  </p>
+                )}
+                <p className="text-xs text-slate-500 mt-1">Choose the detection method for anomaly analysis</p>
               </div>
               <div>
                 <Label className="text-slate-300">Confidence Threshold</Label>

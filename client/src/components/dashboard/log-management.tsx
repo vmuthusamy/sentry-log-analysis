@@ -4,10 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 // import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FileText, RefreshCw, Settings, Calendar, AlertTriangle, CheckCircle } from "lucide-react";
+import { FileText, RefreshCw, Settings, Calendar, AlertTriangle, CheckCircle, Brain } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import AISettings from "./ai-settings";
+import { TraditionalAnalysisButton } from "./traditional-analysis-button";
 
 interface LogFile {
   id: string;
@@ -166,6 +167,18 @@ export default function LogManagement() {
                             {file.totalEntries.toLocaleString()} log entries
                           </div>
                         )}
+                        
+                        {/* Traditional Analysis Option */}
+                        <div className="mt-3 pt-3 border-t border-slate-600">
+                          <TraditionalAnalysisButton 
+                            logFileId={file.id}
+                            filename={file.originalName}
+                            onAnalysisComplete={() => {
+                              queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
+                              queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
+                            }}
+                          />
+                        </div>
                       </CardContent>
                     </Card>
                   ))}
