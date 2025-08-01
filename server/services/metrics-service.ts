@@ -116,13 +116,31 @@ export class MetricsService {
 
   // Generic track method for analysis events
   track(userId: string, eventType: string, analysisType: string, metadata: any) {
+    // Map analysis events to proper metric event types
+    let mappedEventType: 'file_upload' | 'file_analysis_view' | 'anomaly_detection' | 'ai_analysis';
+    let status: 'success' | 'failure' | 'error' = 'success';
+    
+    if (eventType.includes('failure') || eventType.includes('error')) {
+      status = 'failure';
+    }
+    
+    // Map analysis types to proper event categories
+    if (analysisType === 'traditional_ml' || analysisType === 'advanced_ml') {
+      mappedEventType = 'anomaly_detection';
+    } else if (analysisType === 'ai_powered' || analysisType === 'openai' || analysisType === 'gemini') {
+      mappedEventType = 'ai_analysis';
+    } else {
+      mappedEventType = 'anomaly_detection'; // Default fallback
+    }
+    
     const metric: MetricEvent = {
       userId,
-      eventType: eventType as any, // Type assertion for flexibility
-      status: 'success',
+      eventType: mappedEventType,
+      status,
       metadata: {
         ...metadata,
-        analysisType
+        analysisType,
+        aiProvider: analysisType === 'ai_powered' ? metadata.ai_provider || 'openai' : analysisType
       },
       timestamp: new Date()
     };
