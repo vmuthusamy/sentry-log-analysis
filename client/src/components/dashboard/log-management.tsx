@@ -105,14 +105,9 @@ export default function LogManagement() {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* AI Configuration Panel */}
-        <div className="lg:col-span-1">
-          <AISettings onConfigChange={setSelectedConfig} />
-        </div>
-
+      <div className="space-y-6">
         {/* Log Files Table */}
-        <div className="lg:col-span-2">
+        <div>
           <Card className="bg-dark-secondary border-slate-700">
             <CardHeader>
               <div className="flex items-center justify-between">
@@ -177,14 +172,11 @@ export default function LogManagement() {
                           </div>
                         )}
                         
-                        {/* Analysis Options */}
-                        <div className="mt-3 pt-3 border-t border-slate-600 space-y-4">
-                          {/* Default Analysis: Traditional ML */}
-                          <div>
-                            <h4 className="text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
-                              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                              Recommended Analysis
-                            </h4>
+                        {/* Simple 3-Option Analysis */}
+                        <div className="mt-3 pt-3 border-t border-slate-600">
+                          <h4 className="text-sm font-medium text-slate-300 mb-3">Choose Analysis Method</h4>
+                          <div className="grid grid-cols-1 gap-3">
+                            {/* Traditional ML - Option 1 */}
                             <TraditionalAnalysisButton 
                               logFileId={file.id}
                               filename={file.originalName}
@@ -193,14 +185,8 @@ export default function LogManagement() {
                                 queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
                               }}
                             />
-                          </div>
 
-                          {/* Advanced Options */}
-                          <div>
-                            <h4 className="text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
-                              <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                              Advanced Analysis
-                            </h4>
+                            {/* Advanced ML - Option 2 */}
                             <AdvancedMLButton 
                               logFileId={file.id}
                               filename={file.originalName}
@@ -209,14 +195,8 @@ export default function LogManagement() {
                                 queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
                               }}
                             />
-                          </div>
 
-                          {/* AI-Powered Options */}
-                          <div>
-                            <h4 className="text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
-                              <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                              AI-Powered Analysis (Requires API Keys)
-                            </h4>
+                            {/* AI-Powered - Option 3 */}
                             <AIAnalysisButton 
                               logFileId={file.id}
                               filename={file.originalName}
@@ -236,20 +216,6 @@ export default function LogManagement() {
           </Card>
         </div>
       </div>
-
-      {selectedConfig && (
-        <Card className="bg-blue-950/50 border-blue-800">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-2 text-blue-200">
-              <Settings className="h-4 w-4" />
-              <span className="font-medium">AI Configuration Selected</span>
-            </div>
-            <p className="text-sm text-blue-300 mt-1">
-              Files will be reprocessed with {(selectedConfig as any)?.provider || 'default'} AI using {(selectedConfig as any)?.tier || 'standard'} tier models.
-            </p>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 }

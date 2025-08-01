@@ -20,16 +20,13 @@ export function AIAnalysisButton({
   onAnalysisComplete 
 }: AIAnalysisButtonProps) {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [showConfig, setShowConfig] = useState(false);
   const [selectedProvider, setSelectedProvider] = useState("openai");
   const [selectedTier, setSelectedTier] = useState("standard");
   const { toast } = useToast();
 
   const { data: apiKeyStatus } = useQuery({
     queryKey: ["/api/user-api-keys/status"],
-  });
-
-  const { data: providers } = useQuery({
-    queryKey: ["/api/ai-providers"],
   });
 
   const handleAIAnalysis = async () => {
@@ -81,9 +78,9 @@ export function AIAnalysisButton({
 
   const isProviderAvailable = (provider: string) => {
     if (provider === "openai") {
-      return (apiKeyStatus as any)?.openai?.configured && (providers as any)?.availability?.openai;
+      return (apiKeyStatus as any)?.openai?.configured;
     } else if (provider === "gemini") {
-      return (apiKeyStatus as any)?.gemini?.configured && (providers as any)?.availability?.gcp_gemini;
+      return (apiKeyStatus as any)?.gemini?.configured;
     }
     return false;
   };
@@ -91,123 +88,99 @@ export function AIAnalysisButton({
   const hasConfiguredKeys = (apiKeyStatus as any)?.openai?.configured || (apiKeyStatus as any)?.gemini?.configured;
 
   return (
-    <div className="space-y-4">
-      <Card className="bg-dark-secondary border-slate-700">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-white">
-            <Brain className="h-5 w-5" />
-            AI-Powered Analysis
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-start gap-3">
-            <Bot className="h-5 w-5 text-blue-400 mt-0.5" />
-            <div>
-              <h4 className="font-medium text-white">Advanced AI Analysis</h4>
-              <p className="text-sm text-slate-400">
-                Deep behavioral insights using GPT-4o or Gemini
-              </p>
+    <div className="space-y-2">
+      <Button 
+        onClick={() => hasConfiguredKeys ? handleAIAnalysis() : setShowConfig(true)}
+        disabled={isAnalyzing}
+        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 h-auto py-3"
+      >
+        <div className="flex items-center justify-between w-full">
+          <div className="flex items-center gap-2">
+            {isAnalyzing ? (
+              <Zap className="h-4 w-4 animate-spin" />
+            ) : (
+              <Brain className="h-4 w-4" />
+            )}
+            <div className="text-left">
+              <div className="font-medium">AI-Powered Analysis</div>
+              <div className="text-xs opacity-90">GPT-4o or Gemini deep insights</div>
             </div>
           </div>
-
-          {!hasConfiguredKeys && (
-            <div className="bg-amber-950/50 border border-amber-800 rounded-lg p-3">
-              <div className="flex items-center gap-2 text-amber-200">
-                <AlertTriangle className="h-4 w-4" />
-                <span className="text-sm font-medium">API Keys Required</span>
-              </div>
-              <p className="text-xs text-amber-300 mt-1">
-                Configure your OpenAI or Gemini API keys in Settings to use AI analysis.
-              </p>
-            </div>
-          )}
-
           {hasConfiguredKeys && (
-            <>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-slate-300">Provider</label>
-                  <Select value={selectedProvider} onValueChange={setSelectedProvider}>
-                    <SelectTrigger className="bg-dark-tertiary border-slate-600 text-white">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem 
-                        value="openai" 
-                        disabled={!isProviderAvailable("openai")}
-                      >
-                        <div className="flex items-center gap-2">
-                          <span>OpenAI</span>
-                          {isProviderAvailable("openai") ? (
-                            <Badge className="bg-green-100 text-green-800 text-xs">Ready</Badge>
-                          ) : (
-                            <Badge className="bg-red-100 text-red-800 text-xs">Unavailable</Badge>
-                          )}
-                        </div>
-                      </SelectItem>
-                      <SelectItem 
-                        value="gemini" 
-                        disabled={!isProviderAvailable("gemini")}
-                      >
-                        <div className="flex items-center gap-2">
-                          <span>Gemini</span>
-                          {isProviderAvailable("gemini") ? (
-                            <Badge className="bg-green-100 text-green-800 text-xs">Ready</Badge>
-                          ) : (
-                            <Badge className="bg-red-100 text-red-800 text-xs">Unavailable</Badge>
-                          )}
-                        </div>
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium text-slate-300">Model Tier</label>
-                  <Select value={selectedTier} onValueChange={setSelectedTier}>
-                    <SelectTrigger className="bg-dark-tertiary border-slate-600 text-white">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="standard">Standard</SelectItem>
-                      <SelectItem value="premium">Premium</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              <div className="bg-blue-950/30 rounded-lg p-3 border border-blue-800/50">
-                <h5 className="text-sm font-medium text-blue-200 mb-2">AI Capabilities</h5>
-                <div className="grid grid-cols-1 gap-2 text-xs text-slate-300">
-                  <div>• Advanced behavioral pattern analysis</div>
-                  <div>• Contextual threat assessment</div>
-                  <div>• Natural language threat descriptions</div>
-                  <div>• AI-powered risk scoring</div>
-                  <div>• Deep anomaly insights</div>
-                </div>
-              </div>
-            </>
+            <Badge className="bg-blue-100 text-blue-800 text-xs">
+              {selectedProvider.toUpperCase()}
+            </Badge>
           )}
+          {!hasConfiguredKeys && (
+            <Badge className="bg-amber-100 text-amber-800 text-xs">
+              Setup Required
+            </Badge>
+          )}
+        </div>
+      </Button>
 
+      {showConfig && !hasConfiguredKeys && (
+        <div className="bg-amber-950/50 border border-amber-800 rounded-lg p-3 text-sm">
+          <div className="flex items-center gap-2 text-amber-200 mb-2">
+            <AlertTriangle className="h-4 w-4" />
+            <span className="font-medium">API Keys Required</span>
+          </div>
+          <p className="text-amber-300 text-xs mb-2">
+            Configure your OpenAI or Gemini API keys in Settings first.
+          </p>
           <Button 
-            onClick={handleAIAnalysis}
-            disabled={isAnalyzing || !hasConfiguredKeys || !isProviderAvailable(selectedProvider)}
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+            size="sm" 
+            variant="outline" 
+            onClick={() => setShowConfig(false)}
+            className="text-amber-300 border-amber-600"
           >
-            {isAnalyzing ? (
-              <>
-                <Zap className="mr-2 h-4 w-4 animate-spin" />
-                Running AI Analysis...
-              </>
-            ) : (
-              <>
-                <Brain className="mr-2 h-4 w-4" />
-                Start AI Analysis
-              </>
-            )}
+            Close
           </Button>
-        </CardContent>
-      </Card>
+        </div>
+      )}
+
+      {showConfig && hasConfiguredKeys && (
+        <div className="bg-blue-950/30 border border-blue-800 rounded-lg p-3 space-y-3">
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-xs font-medium text-slate-300">Provider</label>
+              <Select value={selectedProvider} onValueChange={setSelectedProvider}>
+                <SelectTrigger className="bg-dark-tertiary border-slate-600 text-white h-8">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="openai" disabled={!isProviderAvailable("openai")}>
+                    OpenAI {isProviderAvailable("openai") ? "✓" : "✗"}
+                  </SelectItem>
+                  <SelectItem value="gemini" disabled={!isProviderAvailable("gemini")}>
+                    Gemini {isProviderAvailable("gemini") ? "✓" : "✗"}
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="text-xs font-medium text-slate-300">Tier</label>
+              <Select value={selectedTier} onValueChange={setSelectedTier}>
+                <SelectTrigger className="bg-dark-tertiary border-slate-600 text-white h-8">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="standard">Standard</SelectItem>
+                  <SelectItem value="premium">Premium</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <Button 
+            size="sm" 
+            variant="outline" 
+            onClick={() => setShowConfig(false)}
+            className="w-full"
+          >
+            Done
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
