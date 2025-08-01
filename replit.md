@@ -141,7 +141,23 @@ Preferred communication style: Simple, everyday language.
 - **Security Hardening**: Rate limiting, file validation, and comprehensive error handling
 - **Metrics Tracking**: Real-time success/failure metrics with performance monitoring
 
-## Recent Bug Fixes
+## Recent Updates and Bug Fixes
+
+### Processing Concurrency Protection (January 31, 2025)
+- **Critical Performance Protection**: Implemented 3-file concurrent processing limit per user to prevent system overload
+- **Resource Management**: Added `getActiveProcessingJobsCount()` method to track active processing jobs in real-time
+- **Analysis Time Tracking**: Enhanced all detection methods (Traditional ML, Advanced ML, AI) with comprehensive timing measurement
+- **Database Schema Updates**: Added analysis_time_ms, detection_method, anomalies_found, log_entries_processed columns to processing_jobs table
+- **Enhanced Error Handling**: Clear user-friendly messages when processing limits are reached (HTTP 429 responses)
+- **Processing Job Lifecycle**: Proper job creation with "processing" status, then completion with results and timing data
+- **Frontend Integration**: All analysis buttons now handle processing limit errors with helpful user guidance
+
+### Analysis Time and Performance Features
+- **Precise Timing**: Millisecond-accurate analysis time tracking from start to completion
+- **Multiple Formats**: Returns both analysisTimeMs (exact) and analysisTimeSec (rounded to 2 decimal places)
+- **Processing Metadata**: Complete tracking of anomalies found, log entries processed, and detection methods used
+- **Performance Metrics**: Integration with metrics service for success/failure tracking with timing data
+- **Concurrency Safety**: Prevents system resource exhaustion from multiple simultaneous file uploads
 
 ### Cross-User Data Isolation Bug Fix (January 31, 2025)
 - **Critical Issue Resolved**: Fixed cross-user data contamination in metrics and statistics where new users saw cached data from previous users
@@ -157,4 +173,4 @@ Preferred communication style: Simple, everyday language.
 - Logout: Clears all cached data after logout
 - Reduced cache lifetime (gcTime: 2 minutes) to prevent persistent cross-user data
 
-This fix ensures complete data privacy and isolation between user sessions, preventing any possibility of users seeing data from other accounts.
+This comprehensive update ensures system stability under load while providing detailed performance tracking and maintaining complete data privacy between user sessions.

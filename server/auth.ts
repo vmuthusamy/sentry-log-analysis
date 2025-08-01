@@ -7,6 +7,7 @@ import { promisify } from "util";
 import { storage } from "./storage";
 import { User as SelectUser, insertUserSchema } from "@shared/schema";
 import { loginRateLimit } from "./middleware/rate-limiter";
+import { setupGoogleAuth } from "./google-auth";
 
 declare global {
   namespace Express {
@@ -73,6 +74,11 @@ export function setupAuth(app: Express) {
       done(error);
     }
   });
+
+  // Setup Google OAuth (only if credentials are provided)
+  if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+    setupGoogleAuth(app);
+  }
 
   app.post("/api/register", async (req, res, next) => {
     try {
