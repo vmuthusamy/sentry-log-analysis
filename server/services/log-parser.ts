@@ -35,8 +35,11 @@ export class ZscalerLogParser {
     let fields: string[];
     
     if (line.includes('|')) {
-      // Pipe-delimited format (new test file)
+      // Pipe-delimited format
       fields = line.split('|');
+    } else if (line.includes(';')) {
+      // Semicolon-delimited format
+      fields = line.split(';');
     } else if (line.includes('\t')) {
       // Tab-separated format
       fields = line.split('\t');
@@ -55,8 +58,8 @@ export class ZscalerLogParser {
     // Auto-detect format and map fields accordingly
     let timestamp, sourceIP, destinationIP, url, action, statusCode, userAgent, category, bytes;
 
-    if (line.includes('|') && fields.length >= 10) {
-      // Pipe-delimited format: TimeStamp|SourceIP|DestinationIP|URL|Action|StatusCode|User-Agent|Referer|Bytes Sent|Bytes Received|Duration|Category
+    if ((line.includes('|') || line.includes(';')) && fields.length >= 9) {
+      // Pipe/Semicolon-delimited format: TimeStamp|SourceIP|DestinationIP|URL|Action|StatusCode|User-Agent|Bytes Sent|Duration
       timestamp = fields[0]?.trim();
       sourceIP = fields[1]?.trim();
       destinationIP = fields[2]?.trim();
@@ -64,8 +67,8 @@ export class ZscalerLogParser {
       action = fields[4]?.trim() || 'unknown';
       statusCode = fields[5]?.trim();
       userAgent = fields[6]?.trim();
-      category = fields[11]?.trim();
-      bytes = parseInt(fields[8]?.trim()) || parseInt(fields[9]?.trim()) || 0;
+      bytes = parseInt(fields[7]?.trim()) || 0;
+      category = fields.length > 8 ? fields[8]?.trim() : undefined;
     } else {
       // Original CSV format: timestamp,department,protocol,url,action,category,subcategory,...
       timestamp = fields[0]?.trim();

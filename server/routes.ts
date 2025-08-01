@@ -145,7 +145,7 @@ export function registerRoutes(app: Express): Server {
       return res.status(400).json({ 
         message: validation.error || "Invalid log file format",
         details: {
-          expectedFormat: "Zscaler NSS feed format (comma or tab separated)",
+          expectedFormat: "Zscaler NSS feed format (comma, semicolon, tab or pipe separated)",
           suggestion: "Please upload a valid Zscaler log file with proper field headers.",
           fileName: originalname
         }
@@ -165,7 +165,7 @@ export function registerRoutes(app: Express): Server {
         return res.status(400).json({ 
           message: "No valid log entries found in file",
           details: {
-            expectedFormat: "Zscaler NSS feed format (comma or tab separated)",
+            expectedFormat: "Zscaler NSS feed format (comma, semicolon, tab or pipe separated)",
             suggestion: "Please check that your file contains valid Zscaler log entries with proper field headers.",
             fileName: originalname
           }
@@ -197,7 +197,7 @@ export function registerRoutes(app: Express): Server {
         message: "Failed to parse log file",
         details: {
           error: parseError instanceof Error ? parseError.message : 'Unknown parsing error',
-          expectedFormat: "Zscaler NSS feed format (comma or tab separated)",
+          expectedFormat: "Zscaler NSS feed format (comma, semicolon, tab or pipe separated)",
           suggestion: "Please check that your file follows the correct Zscaler log format.",
           fileName: originalname
         }
