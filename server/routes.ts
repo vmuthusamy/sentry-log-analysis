@@ -891,6 +891,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Health check endpoint for deployment
+  app.get("/api/health", (req, res) => {
+    res.json({ 
+      status: "healthy", 
+      timestamp: new Date().toISOString(),
+      service: "sentry-log-analysis",
+      version: "1.0.0"
+    });
+  });
+
   const httpServer = createServer(app);
   
   // Note: Global error handlers will be added after Vite setup in index.ts

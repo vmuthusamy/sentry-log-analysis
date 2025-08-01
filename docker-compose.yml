@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # Sentry Application
+  sentry:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://sentry_user:sentry_password@postgres:5432/sentry_db
+      - SESSION_SECRET=your_super_secure_session_secret_change_this_in_production
+      - REPL_ID=${REPL_ID}
+      - REPLIT_DEPLOYMENT_TOKEN=${REPLIT_DEPLOYMENT_TOKEN}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - uploads_data:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_DB=sentry_db
+      - POSTGRES_USER=sentry_user
+      - POSTGRES_PASSWORD=sentry_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sentry_user -d sentry_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  postgres_data:
+  uploads_data:
+
+networks:
+  default:
+    name: sentry_network
