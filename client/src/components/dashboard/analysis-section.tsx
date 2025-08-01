@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Filter, Download, Search, MoreHorizontal, Brain, BarChart3, Database, Eye, CheckSquare, X, Clock } from "lucide-react";
+import { Filter, Download, Search, MoreHorizontal, Brain, BarChart3, Database, Eye, CheckSquare, X, Clock, Copy, ChevronDown, ChevronRight, Code } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FullCycleTest } from "./full-cycle-test";
 import { AnomalyDetailsModal } from "./anomaly-details-modal";
@@ -18,6 +18,7 @@ export function AnalysisSection() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [selectedAnomalyId, setSelectedAnomalyId] = useState<string | null>(null);
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
+  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
   const { data: anomalies, isLoading } = useQuery({
     queryKey: ["/api/anomalies"],
@@ -164,6 +165,32 @@ export function AnalysisSection() {
         reviewedAt: new Date().toISOString()
       }
     });
+  };
+
+  const handleRowExpansion = (anomalyId: string) => {
+    const newExpandedRows = new Set(expandedRows);
+    if (newExpandedRows.has(anomalyId)) {
+      newExpandedRows.delete(anomalyId);
+    } else {
+      newExpandedRows.add(anomalyId);
+    }
+    setExpandedRows(newExpandedRows);
+  };
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast({ title: "Copied to clipboard" });
+    } catch (error) {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      toast({ title: "Copied to clipboard" });
+    }
   };
 
   const formatTimestamp = (timestamp: string) => {
@@ -371,6 +398,7 @@ export function AnalysisSection() {
                     <TableHead className="text-slate-300">Risk Score</TableHead>
                     <TableHead className="text-slate-300">Detection Method</TableHead>
                     <TableHead className="text-slate-300">Source</TableHead>
+                    <TableHead className="text-slate-300">Raw Log</TableHead>
                     <TableHead className="text-slate-300">Status</TableHead>
                     <TableHead className="text-slate-300">Actions</TableHead>
                   </TableRow>
@@ -378,7 +406,7 @@ export function AnalysisSection() {
                 <TableBody>
                   {!anomalies || (Array.isArray(anomalies) && anomalies.length === 0) ? (
                     <TableRow>
-                      <TableCell colSpan={8} className="text-center py-12">
+                      <TableCell colSpan={9} className="text-center py-12">
                         <Search className="h-12 w-12 text-slate-500 mx-auto mb-4" />
                         <p className="text-slate-400">No anomalies found</p>
                         <p className="text-xs text-slate-500 mt-2">
@@ -422,6 +450,67 @@ export function AnalysisSection() {
                         </TableCell>
                         <TableCell className="text-slate-300">
                           {anomaly.sourceData?.sourceIP || "Unknown"}
+                        </TableCell>
+                        <TableCell className="max-w-xs">
+                          <div className="flex items-center space-x-2">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleRowExpansion(anomaly.id)}
+                              className="text-slate-400 hover:text-white p-1"
+                            >
+                              {expandedRows.has(anomaly.id) ? (
+                                <ChevronDown className="h-4 w-4" />
+                              ) : (
+                                <ChevronRight className="h-4 w-4" />
+                              )}
+                            </Button>
+                            <div className="flex-1 min-w-0">
+                              {expandedRows.has(anomaly.id) ? (
+                                <div className="bg-dark-primary p-3 rounded-lg border border-slate-600">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <span className="text-xs text-slate-400 flex items-center">
+                                      <Code className="h-3 w-3 mr-1" />
+                                      Raw Log Entry
+                                      {anomaly.logLineNumber && (
+                                        <span className="ml-2 bg-slate-700 px-2 py-1 rounded text-xs">
+                                          Line {anomaly.logLineNumber}
+                                        </span>
+                                      )}
+                                    </span>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      onClick={() => copyToClipboard(anomaly.rawLogEntry || JSON.stringify(anomaly.sourceData))}
+                                      className="text-slate-400 hover:text-white p-1"
+                                    >
+                                      <Copy className="h-3 w-3" />
+                                    </Button>
+                                  </div>
+                                  <pre className="text-xs text-slate-300 font-mono whitespace-pre-wrap break-all bg-slate-900/50 p-2 rounded border max-h-32 overflow-y-auto">
+                                    {anomaly.rawLogEntry || JSON.stringify(anomaly.sourceData, null, 2)}
+                                  </pre>
+                                </div>
+                              ) : (
+                                <div className="flex items-center justify-between">
+                                  <span className="text-slate-400 text-xs truncate">
+                                    {anomaly.rawLogEntry ? 
+                                      anomaly.rawLogEntry.substring(0, 50) + "..." : 
+                                      "Click to view raw log"
+                                    }
+                                  </span>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => copyToClipboard(anomaly.rawLogEntry || JSON.stringify(anomaly.sourceData))}
+                                    className="text-slate-400 hover:text-white p-1 ml-2"
+                                  >
+                                    <Copy className="h-3 w-3" />
+                                  </Button>
+                                </div>
+                              )}
+                            </div>
+                          </div>
                         </TableCell>
                         <TableCell>
                           <Badge className={getStatusBadgeColor(anomaly.status)}>
