@@ -734,15 +734,35 @@ async function processLogFileAsync(logFileId: string, logEntries: any[], userId:
         }
       } catch (batchError) {
         // Track AI analysis failure
+        // Enhanced error handling for AI provider issues
+        const errorMessage = batchError instanceof Error ? batchError.message : String(batchError);
+        let aiErrorType = "unknown";
+        
+        if (errorMessage.includes("AI_PROVIDER_ERROR:")) {
+          // Extract structured error from anomaly detector
+          const errorParts = errorMessage.split(":");
+          if (errorParts.length >= 3) {
+            aiErrorType = errorParts[1];
+          }
+        } else if (errorMessage.includes("429") || errorMessage.includes("quota") || errorMessage.includes("rate limit")) {
+          aiErrorType = "rate_limited";
+        } else if (errorMessage.includes("401") || errorMessage.includes("unauthorized") || errorMessage.includes("invalid api key")) {
+          aiErrorType = "auth_failed";
+        } else if (errorMessage.includes("403") || errorMessage.includes("billing") || errorMessage.includes("payment")) {
+          aiErrorType = "billing_issue";
+        } else if (errorMessage.includes("timeout") || errorMessage.includes("network")) {
+          aiErrorType = "network_issue";
+        }
+        
         metricsService.trackAIAnalysis(
           userId, 
           aiConfig?.provider || 'openai', 
           Date.now() - batchStartTime, 
           'failure',
           undefined,
-          batchError instanceof Error ? batchError.message : String(batchError)
+          `${aiErrorType}:${errorMessage}`
         );
-        console.error(`Batch processing error (batch ${Math.floor(i/batchSize) + 1}):`, batchError);
+        console.error(`Batch processing error (batch ${Math.floor(i/batchSize) + 1}, type: ${aiErrorType}):`, batchError);
         
         // Continue processing even if one batch fails
         // This prevents the entire file from getting stuck due to API issues

@@ -66,9 +66,30 @@ export function AIAnalysisButton({
       
     } catch (error) {
       console.error("AI analysis failed:", error);
+      
+      // Parse error message to determine if it's a provider issue
+      const errorMessage = error instanceof Error ? error.message : "AI analysis failed";
+      let title = "Analysis Failed";
+      let description = errorMessage;
+      
+      // Check for common AI provider throttling/quota issues
+      if (errorMessage.includes("429") || errorMessage.includes("quota") || errorMessage.includes("rate limit")) {
+        title = "AI Provider Rate Limited";
+        description = `${selectedProvider === "openai" ? "OpenAI" : "Google"} is currently rate limiting requests. This is not an issue with our platform. Please wait a few minutes and try again, or try switching to the other AI provider.`;
+      } else if (errorMessage.includes("401") || errorMessage.includes("unauthorized") || errorMessage.includes("invalid api key")) {
+        title = "API Key Issue";
+        description = `Your ${selectedProvider === "openai" ? "OpenAI" : "Google"} API key appears to be invalid or expired. Please check your API key in Settings.`;
+      } else if (errorMessage.includes("403") || errorMessage.includes("billing") || errorMessage.includes("payment")) {
+        title = "AI Provider Billing Issue";
+        description = `${selectedProvider === "openai" ? "OpenAI" : "Google"} reports a billing or payment issue with your account. Please check your billing status with the provider.`;
+      } else if (errorMessage.includes("timeout") || errorMessage.includes("network")) {
+        title = "Connection Issue";
+        description = `Unable to connect to ${selectedProvider === "openai" ? "OpenAI" : "Google"}. This may be a temporary network issue. Please try again in a few minutes.`;
+      }
+      
       toast({
-        title: "Analysis Failed",
-        description: error instanceof Error ? error.message : "AI analysis failed",
+        title,
+        description,
         variant: "destructive",
       });
     } finally {

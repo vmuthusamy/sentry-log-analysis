@@ -94,12 +94,35 @@ export class AnomalyDetector {
     } catch (error) {
       console.error("AI analysis failed:", error);
       
+      // Enhanced error handling for AI provider issues
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      let aiErrorType = "unknown";
+      
+      // Categorize AI provider errors
+      if (errorMessage.includes("429") || errorMessage.includes("quota") || errorMessage.includes("rate limit")) {
+        aiErrorType = "rate_limited";
+      } else if (errorMessage.includes("401") || errorMessage.includes("unauthorized") || errorMessage.includes("invalid api key")) {
+        aiErrorType = "auth_failed";
+      } else if (errorMessage.includes("403") || errorMessage.includes("billing") || errorMessage.includes("payment")) {
+        aiErrorType = "billing_issue";
+      } else if (errorMessage.includes("timeout") || errorMessage.includes("network")) {
+        aiErrorType = "network_issue";
+      } else if (errorMessage.includes("model") || errorMessage.includes("invalid request")) {
+        aiErrorType = "model_issue";
+      }
+      
+      // Re-throw with enhanced error context for proper error handling upstream
+      const enhancedError = new Error(`AI_PROVIDER_ERROR:${aiErrorType}:${errorMessage}`);
+      (enhancedError as any).originalError = error;
+      (enhancedError as any).errorType = aiErrorType;
+      (enhancedError as any).provider = this.defaultConfig.provider;
+      
       // Fall back to traditional detection
       if (traditionalResult) {
         return {
           ...traditionalResult,
-          explanation: `Traditional ML Fallback: ${traditionalResult.explanation} (AI unavailable)`,
-          recommendations: [...traditionalResult.recommendations, "AI analysis failed - using rule-based detection"]
+          explanation: `Traditional ML Fallback: ${traditionalResult.explanation} (AI ${aiErrorType})`,
+          recommendations: [...traditionalResult.recommendations, `AI analysis failed (${aiErrorType}) - using rule-based detection`]
         };
       }
 
@@ -107,8 +130,8 @@ export class AnomalyDetector {
       const ruleBasedResult = this.simpleRuleBasedDetection(logEntry);
       return {
         ...ruleBasedResult,
-        explanation: `Fallback Detection: ${ruleBasedResult.explanation} (Both AI and traditional ML unavailable)`,
-        recommendations: [...ruleBasedResult.recommendations, "Manual review required"]
+        explanation: `Fallback Detection: ${ruleBasedResult.explanation} (AI ${aiErrorType})`,
+        recommendations: [...ruleBasedResult.recommendations, "Manual review required", `AI provider issue: ${aiErrorType}`]
       };
     }
   }
