@@ -16,6 +16,7 @@ import { userAnalytics } from "./services/user-analytics";
 import { systemAnalytics } from "./services/system-analytics";
 import { requireSystemAccess } from "./middleware/system-auth";
 import { validateAnalyticsParams, validateFileUpload } from "./middleware/security-validator";
+import { processingTimeoutManager } from "./services/processing-timeout-manager";
 import multer from "multer";
 import { z } from "zod";
 import fs from "fs/promises";
@@ -1119,11 +1120,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/system/health", requireAuth, requireSystemAccess, asyncHandler(async (req: any, res: any) => {
     try {
       const healthMetrics = await systemAnalytics.getSystemHealthMetrics();
+      const processingStats = await processingTimeoutManager.getProcessingStats();
       
-      res.json(healthMetrics);
+      res.json({
+        ...healthMetrics,
+        processingTimeout: processingStats
+      });
     } catch (error) {
       console.error("System health error:", error);
       res.status(500).json({ message: "Failed to get system health metrics" });
+    }
+  }));
+
+  // Manual timeout cleanup endpoint for system users
+  app.post("/api/system/cleanup-timeouts", requireAuth, requireSystemAccess, asyncHandler(async (req: any, res: any) => {
+    try {
+      await processingTimeoutManager.cleanupStuckJobs();
+      res.json({ 
+        message: "Timeout cleanup completed successfully",
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error("Manual cleanup error:", error);
+      res.status(500).json({ message: "Failed to cleanup timeouts" });
     }
   }));
 
