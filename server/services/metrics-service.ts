@@ -209,15 +209,15 @@ export class MetricsService {
         AND ${timeClause}
     `);
 
-    const fileUploads = fileUploadStats[0] || { total: 0, success: 0, failure: 0 };
-    const analysisViews = analysisViewStats[0] || { total: 0, success: 0, failure: 0 };
-    const anomalyDetection = anomalyStats[0] || { total: 0, success: 0, failure: 0, avg_anomalies: 0 };
+    const fileUploads = fileUploadStats.rows[0] || { total: 0, success: 0, failure: 0 };
+    const analysisViews = analysisViewStats.rows[0] || { total: 0, success: 0, failure: 0 };
+    const anomalyDetection = anomalyStats.rows[0] || { total: 0, success: 0, failure: 0, avg_anomalies: 0 };
 
     // Process AI analysis by provider
     const aiByProvider: Record<string, any> = {};
     let aiTotal = 0, aiSuccess = 0, aiFailure = 0;
     
-    for (const stat of aiAnalysisStats) {
+    for (const stat of aiAnalysisStats.rows) {
       const provider = stat.ai_provider || 'unknown';
       aiByProvider[provider] = {
         total: Number(stat.total),
@@ -293,7 +293,13 @@ export class MetricsService {
     } catch (error) {
       console.error('❌ Failed to flush metrics:', error);
       // Re-add failed metrics back to buffer for retry
-      this.metricsBuffer.unshift(...metrics);
+      this.metricsBuffer.unshift(...metrics.map(m => ({
+        userId: m.userId,
+        eventType: m.eventType,
+        status: m.status,
+        metadata: m.metadata,
+        timestamp: m.timestamp
+      })));
     }
   }
 
