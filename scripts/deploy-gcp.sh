@@ -13,7 +13,7 @@ echo -e "${BLUE}🚀 Starting Sentry deployment to Google Cloud Platform${NC}"
 echo -e "${BLUE}=================================================${NC}"
 
 # Configuration
-PROJECT_ID=${1:-"your-gcp-project-id"}
+PROJECT_ID=${1:-"808363033614"}
 REGION=${2:-"us-central1"}
 SERVICE_NAME="sentry-log-analysis"
 IMAGE_NAME="gcr.io/$PROJECT_ID/sentry-log-analysis"
