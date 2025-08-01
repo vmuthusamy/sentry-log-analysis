@@ -36,6 +36,12 @@ export const logFiles = pgTable("log_files", {
   totalLogs: integer("total_logs"),
   processedAt: timestamp("processed_at"),
   errorMessage: text("error_message"),
+  // Blob storage support
+  blobStorageUrl: text("blob_storage_url"), // URL to blob storage
+  blobStorageProvider: text("blob_storage_provider"), // local, s3, gcs, azure
+  blobStorageKey: text("blob_storage_key"), // Storage key/path
+  archivedAt: timestamp("archived_at"), // When file was archived
+  archivePolicy: text("archive_policy").default("default"), // default, extended, permanent
 });
 
 export const anomalies = pgTable("anomalies", {
@@ -49,8 +55,16 @@ export const anomalies = pgTable("anomalies", {
   sourceData: jsonb("source_data").notNull(),
   aiAnalysis: jsonb("ai_analysis").notNull(),
   detectionMethod: text("detection_method").notNull().default("traditional"),
-  status: text("status").notNull().default("pending"), // pending, reviewed, false_positive
+  status: text("status").notNull().default("pending"), // pending, under_review, confirmed, false_positive, dismissed
   reviewedAt: timestamp("reviewed_at"),
+  reviewedBy: varchar("reviewed_by").references(() => users.id),
+  // Enhanced SOC analyst fields
+  rawLogEntry: text("raw_log_entry"), // Store original log line for reference
+  logLineNumber: integer("log_line_number"), // Line number in original file
+  analystNotes: text("analyst_notes"), // SOC analyst comments
+  escalationReason: text("escalation_reason"), // Why it was escalated
+  assignedTo: varchar("assigned_to").references(() => users.id), // Assigned analyst
+  priority: text("priority").default("medium"), // low, medium, high, critical
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -138,6 +152,23 @@ export const insertProcessingJobSchema = createInsertSchema(processingJobs).omit
   completedAt: true,
 });
 
+// User Settings Table
+export const userSettings = pgTable("user_settings", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().references(() => users.id).unique(),
+  storageConfig: jsonb("storage_config").notNull().default(sql`'{}'::jsonb`),
+  aiConfig: jsonb("ai_config").notNull().default(sql`'{}'::jsonb`),
+  notificationSettings: jsonb("notification_settings").notNull().default(sql`'{}'::jsonb`),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertUserSettingsSchema = createInsertSchema(userSettings).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 // Types
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -148,6 +179,8 @@ export type Anomaly = typeof anomalies.$inferSelect;
 export type InsertAnomaly = z.infer<typeof insertAnomalySchema>;
 export type ProcessingJob = typeof processingJobs.$inferSelect;
 export type InsertProcessingJob = z.infer<typeof insertProcessingJobSchema>;
+export type UserSettings = typeof userSettings.$inferSelect;
+export type InsertUserSettings = z.infer<typeof insertUserSettingsSchema>;
 
 // Export user API keys schema
 export * from "./user-api-keys-schema";
@@ -165,6 +198,17 @@ export const metricsEvents = pgTable("metrics_events", {
 export const insertMetricsEventSchema = createInsertSchema(metricsEvents);
 export type MetricsEvent = typeof metricsEvents.$inferSelect;
 export type InsertMetricsEvent = z.infer<typeof insertMetricsEventSchema>;
+
+// Storage and Archive Settings Schema
+export const storageConfigSchema = z.object({
+  defaultArchivePolicy: z.enum(["default", "extended", "permanent"]).default("default"),
+  defaultRetentionDays: z.number().default(90), // Default 90 days
+  blobStorageProvider: z.enum(["local", "s3", "gcs", "azure"]).default("local"),
+  maxFileSize: z.number().default(52428800), // 50MB default
+  autoArchiveEnabled: z.boolean().default(true),
+});
+
+export type StorageConfig = z.infer<typeof storageConfigSchema>;
 
 // AI Configuration Schema
 export const aiConfigSchema = z.object({

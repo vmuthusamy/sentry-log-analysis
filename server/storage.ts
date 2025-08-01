@@ -1,6 +1,6 @@
 import { users, logFiles, anomalies, processingJobs, type User, type InsertUser, type UpsertUser, type LogFile, type InsertLogFile, type Anomaly, type InsertAnomaly, type ProcessingJob, type InsertProcessingJob } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc, and, gte, count } from "drizzle-orm";
+import { eq, desc, and, gte, count, inArray } from "drizzle-orm";
 import session from "express-session";
 import connectPg from "connect-pg-simple";
 import { pool } from "./db";
@@ -268,6 +268,66 @@ export class DatabaseStorage implements IStorage {
     await db
       .delete(anomalies)
       .where(eq(anomalies.logFileId, logFileId));
+  }
+
+  // Get individual anomaly by ID with user verification
+  async getAnomalyById(id: string, userId: string): Promise<Anomaly | undefined> {
+    const [anomaly] = await db
+      .select()
+      .from(anomalies)
+      .where(and(eq(anomalies.id, id), eq(anomalies.userId, userId)));
+    return anomaly || undefined;
+  }
+
+  // Update anomaly with enhanced details
+  async updateAnomalyDetails(id: string, userId: string, updates: {
+    status?: string;
+    analystNotes?: string;
+    priority?: string;
+    escalationReason?: string;
+    assignedTo?: string;
+    reviewedBy?: string;
+    reviewedAt?: Date;
+  }): Promise<void> {
+    const updateData: any = {};
+    
+    if (updates.status) updateData.status = updates.status;
+    if (updates.analystNotes) updateData.analystNotes = updates.analystNotes;
+    if (updates.priority) updateData.priority = updates.priority;
+    if (updates.escalationReason) updateData.escalationReason = updates.escalationReason;
+    if (updates.assignedTo) updateData.assignedTo = updates.assignedTo;
+    if (updates.reviewedBy) updateData.reviewedBy = updates.reviewedBy;
+    if (updates.reviewedAt) updateData.reviewedAt = updates.reviewedAt;
+
+    await db
+      .update(anomalies)
+      .set(updateData)
+      .where(and(eq(anomalies.id, id), eq(anomalies.userId, userId)));
+  }
+
+  // Bulk update anomalies
+  async bulkUpdateAnomalies(anomalyIds: string[], userId: string, updates: {
+    status?: string;
+    analystNotes?: string;
+    priority?: string;
+    reviewedBy?: string;
+    reviewedAt?: Date;
+  }): Promise<void> {
+    const updateData: any = {};
+    
+    if (updates.status) updateData.status = updates.status;
+    if (updates.analystNotes) updateData.analystNotes = updates.analystNotes;
+    if (updates.priority) updateData.priority = updates.priority;
+    if (updates.reviewedBy) updateData.reviewedBy = updates.reviewedBy;
+    if (updates.reviewedAt) updateData.reviewedAt = updates.reviewedAt;
+
+    await db
+      .update(anomalies)
+      .set(updateData)
+      .where(and(
+        inArray(anomalies.id, anomalyIds),
+        eq(anomalies.userId, userId)
+      ));
   }
 }
 

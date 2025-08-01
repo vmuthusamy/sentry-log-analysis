@@ -1,20 +1,47 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Filter, Download, Search, MoreHorizontal, Brain, BarChart3, Database } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Filter, Download, Search, MoreHorizontal, Brain, BarChart3, Database, Eye, CheckSquare, X, Clock } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FullCycleTest } from "./full-cycle-test";
+import { AnomalyDetailsModal } from "./anomaly-details-modal";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { toast } from "@/hooks/use-toast";
 
 export function AnalysisSection() {
   const [riskFilter, setRiskFilter] = useState("all");
   const [timeFilter, setTimeFilter] = useState("24h");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [selectedAnomalyId, setSelectedAnomalyId] = useState<string | null>(null);
+  const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
 
   const { data: anomalies, isLoading } = useQuery({
     queryKey: ["/api/anomalies"],
+  });
+
+  // Bulk update mutation for selected anomalies
+  const bulkUpdateMutation = useMutation({
+    mutationFn: async ({ anomalyIds, updates }: { anomalyIds: string[]; updates: any }) => {
+      const response = await fetch("/api/anomalies/bulk-update", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ anomalyIds, updates }),
+      });
+      if (!response.ok) throw new Error("Failed to update anomalies");
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
+      setSelectedRows(new Set());
+      toast({ title: "Anomalies updated successfully" });
+    },
+    onError: () => {
+      toast({ title: "Failed to update anomalies", variant: "destructive" });
+    }
   });
 
   const handleExport = () => {
@@ -93,13 +120,50 @@ export function AnalysisSection() {
 
   const getStatusBadgeColor = (status: string) => {
     switch (status) {
-      case "reviewed":
-        return "bg-accent-green/20 text-accent-green";
+      case "confirmed":
+        return "bg-accent-red/20 text-accent-red";
+      case "under_review":
+        return "bg-accent-blue/20 text-accent-blue";
       case "false_positive":
         return "bg-slate-600/20 text-slate-400";
+      case "dismissed":
+        return "bg-slate-500/20 text-slate-500";
       default:
         return "bg-accent-amber/20 text-accent-amber";
     }
+  };
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case "pending": return "Pending Review";
+      case "under_review": return "Under Review";
+      case "confirmed": return "Confirmed";
+      case "false_positive": return "False Positive";
+      case "dismissed": return "Dismissed";
+      default: return status;
+    }
+  };
+
+  const handleRowSelection = (anomalyId: string, checked: boolean) => {
+    const newSelection = new Set(selectedRows);
+    if (checked) {
+      newSelection.add(anomalyId);
+    } else {
+      newSelection.delete(anomalyId);
+    }
+    setSelectedRows(newSelection);
+  };
+
+  const handleBulkStatusUpdate = (newStatus: string) => {
+    if (selectedRows.size === 0) return;
+    
+    bulkUpdateMutation.mutate({
+      anomalyIds: Array.from(selectedRows),
+      updates: { 
+        status: newStatus,
+        reviewedAt: new Date().toISOString()
+      }
+    });
   };
 
   const formatTimestamp = (timestamp: string) => {
@@ -146,7 +210,47 @@ export function AnalysisSection() {
             <h2 className="text-2xl font-bold text-white">Analysis Results</h2>
             <p className="text-slate-400 mt-1">Review detected anomalies and risk assessments</p>
           </div>
-          <div className="flex space-x-3">
+          <div className="flex space-x-3 items-center">
+            {/* Bulk Actions */}
+            {selectedRows.size > 0 && (
+              <div className="flex items-center space-x-2 mr-4">
+                <span className="text-slate-400 text-sm">
+                  {selectedRows.size} selected
+                </span>
+                <Select onValueChange={handleBulkStatusUpdate}>
+                  <SelectTrigger className="w-48 bg-dark-primary border-slate-600 text-white">
+                    <SelectValue placeholder="Bulk update status" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-dark-primary border-slate-600">
+                    <SelectItem value="under_review">
+                      <div className="flex items-center gap-2">
+                        <Clock className="h-4 w-4" />
+                        Mark as Under Review
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="confirmed">
+                      <div className="flex items-center gap-2">
+                        <CheckSquare className="h-4 w-4" />
+                        Mark as Confirmed
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="false_positive">
+                      <div className="flex items-center gap-2">
+                        <X className="h-4 w-4" />
+                        Mark as False Positive
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="dismissed">
+                      <div className="flex items-center gap-2">
+                        <X className="h-4 w-4" />
+                        Dismiss
+                      </div>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+            
             <Button variant="outline" className="border-slate-600 text-slate-300">
               <Filter className="mr-2 h-4 w-4" />
               Filter
@@ -213,9 +317,11 @@ export function AnalysisSection() {
                 onChange={(e) => setStatusFilter(e.target.value)}
               >
                 <option value="all">All</option>
-                <option value="pending">Pending</option>
-                <option value="reviewed">Reviewed</option>
+                <option value="pending">Pending Review</option>
+                <option value="under_review">Under Review</option>
+                <option value="confirmed">Confirmed</option>
                 <option value="false_positive">False Positive</option>
+                <option value="dismissed">Dismissed</option>
               </select>
             </div>
           </div>
@@ -245,7 +351,20 @@ export function AnalysisSection() {
                 <TableHeader className="bg-dark-tertiary/50">
                   <TableRow className="border-slate-700">
                     <TableHead className="text-slate-300">
-                      <input type="checkbox" className="accent-accent-blue" />
+                      <input 
+                        type="checkbox" 
+                        className="accent-accent-blue"
+                        checked={Array.isArray(anomalies) && selectedRows.size === anomalies.length && anomalies.length > 0}
+                        onChange={(e) => {
+                          if (Array.isArray(anomalies)) {
+                            if (e.target.checked) {
+                              setSelectedRows(new Set(anomalies.map((a: any) => a.id)));
+                            } else {
+                              setSelectedRows(new Set());
+                            }
+                          }
+                        }}
+                      />
                     </TableHead>
                     <TableHead className="text-slate-300">Timestamp</TableHead>
                     <TableHead className="text-slate-300">Anomaly Type</TableHead>
@@ -271,7 +390,12 @@ export function AnalysisSection() {
                     Array.isArray(anomalies) && anomalies.map((anomaly: any) => (
                       <TableRow key={anomaly.id} className="border-slate-700 hover:bg-dark-tertiary/30">
                         <TableCell>
-                          <input type="checkbox" className="accent-accent-blue" />
+                          <input 
+                            type="checkbox" 
+                            className="accent-accent-blue"
+                            checked={selectedRows.has(anomaly.id)}
+                            onChange={(e) => handleRowSelection(anomaly.id, e.target.checked)}
+                          />
                         </TableCell>
                         <TableCell className="text-white">
                           {formatTimestamp(anomaly.timestamp)}
@@ -301,17 +425,19 @@ export function AnalysisSection() {
                         </TableCell>
                         <TableCell>
                           <Badge className={getStatusBadgeColor(anomaly.status)}>
-                            {anomaly.status === "pending" ? "Pending Review" :
-                             anomaly.status === "reviewed" ? "Reviewed" : "False Positive"}
+                            {getStatusLabel(anomaly.status)}
                           </Badge>
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center space-x-2">
-                            <Button variant="ghost" size="sm" className="text-accent-blue hover:text-blue-400">
+                            <Button 
+                              variant="ghost" 
+                              size="sm" 
+                              className="text-accent-blue hover:text-blue-400"
+                              onClick={() => setSelectedAnomalyId(anomaly.id)}
+                            >
+                              <Eye className="h-4 w-4 mr-1" />
                               View Details
-                            </Button>
-                            <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">
-                              <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           </div>
                         </TableCell>
@@ -347,6 +473,13 @@ export function AnalysisSection() {
           )}
         </CardContent>
       </Card>
+
+      {/* Anomaly Details Modal */}
+      <AnomalyDetailsModal
+        anomalyId={selectedAnomalyId}
+        open={!!selectedAnomalyId}
+        onClose={() => setSelectedAnomalyId(null)}
+      />
     </div>
   );
 }

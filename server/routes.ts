@@ -316,21 +316,78 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json(anomalies);
   }));
 
-  // Update anomaly status
+  // Get individual anomaly details
+  app.get("/api/anomalies/:id", requireAuth, asyncHandler(async (req: any, res: any) => {
+    const userId = req.user!.id;
+    const { id } = req.params;
+    
+    const anomaly = await storage.getAnomalyById(id, userId);
+    if (!anomaly) {
+      return res.status(404).json({ message: "Anomaly not found" });
+    }
+    
+    res.json(anomaly);
+  }));
+
+  // Update anomaly status and details
   app.patch("/api/anomalies/:id", requireAuth, async (req, res) => {
     try {
+      const userId = req.user!.id;
       const { id } = req.params;
-      const { status } = req.body;
+      const { status, analystNotes, priority, escalationReason, assignedTo } = req.body;
       
-      if (!['pending', 'reviewed', 'false_positive'].includes(status)) {
+      if (status && !['pending', 'under_review', 'confirmed', 'false_positive', 'dismissed'].includes(status)) {
         return res.status(400).json({ message: "Invalid status" });
       }
       
-      await storage.updateAnomalyStatus(id, status);
+      if (priority && !['low', 'medium', 'high', 'critical'].includes(priority)) {
+        return res.status(400).json({ message: "Invalid priority" });
+      }
+      
+      await storage.updateAnomalyDetails(id, userId, {
+        status,
+        analystNotes,
+        priority,
+        escalationReason,
+        assignedTo,
+        reviewedBy: userId,
+        reviewedAt: new Date()
+      });
+      
       res.json({ success: true });
     } catch (error) {
       console.error("Update anomaly error:", error);
       res.status(500).json({ message: "Failed to update anomaly" });
+    }
+  });
+
+  // Bulk update anomalies
+  app.patch("/api/anomalies/bulk-update", requireAuth, async (req, res) => {
+    try {
+      const userId = req.user!.id;
+      const { anomalyIds, updates } = req.body;
+      
+      if (!Array.isArray(anomalyIds) || anomalyIds.length === 0) {
+        return res.status(400).json({ message: "Anomaly IDs array is required" });
+      }
+      
+      if (updates.status && !['pending', 'under_review', 'confirmed', 'false_positive', 'dismissed'].includes(updates.status)) {
+        return res.status(400).json({ message: "Invalid status" });
+      }
+      
+      await storage.bulkUpdateAnomalies(anomalyIds, userId, {
+        ...updates,
+        reviewedBy: userId,
+        reviewedAt: new Date()
+      });
+      
+      res.json({ 
+        success: true, 
+        message: `Updated ${anomalyIds.length} anomalies` 
+      });
+    } catch (error) {
+      console.error("Bulk update error:", error);
+      res.status(500).json({ message: "Failed to update anomalies" });
     }
   });
 
@@ -558,8 +615,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const anomalies = advancedMLDetector.analyzeLogEntries(logEntries);
       const analysisTime = Date.now() - startTime; // Calculate analysis time
 
-      // Convert to storage format
-      const anomalyInserts = anomalies.map(anomaly => ({
+      // Convert to storage format with enhanced raw log data
+      const anomalyInserts = anomalies.map((anomaly, index) => ({
         id: anomaly.id,
         logFileId: logFile.id,
         userId,
@@ -574,6 +631,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           metadata: anomaly.metadata
         },
         detectionMethod: "advanced",
+        rawLogEntry: anomaly.logEntry.rawLog || JSON.stringify(anomaly.logEntry),
+        logLineNumber: anomaly.logLineNumber || index + 1,
       }));
 
       // Store anomalies
@@ -691,8 +750,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const anomalies = traditionalDetector.analyzeLogEntries(logEntries);
       const analysisTime = Date.now() - startTime; // Calculate analysis time
 
-      // Convert to storage format
-      const anomalyInserts = anomalies.map(anomaly => ({
+      // Convert to storage format with enhanced raw log data
+      const anomalyInserts = anomalies.map((anomaly, index) => ({
         id: anomaly.id,
         logFileId: logFile.id,
         userId,
@@ -707,6 +766,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           metadata: anomaly.metadata
         },
         detectionMethod: "traditional",
+        rawLogEntry: anomaly.logEntry.rawLog || JSON.stringify(anomaly.logEntry),
+        logLineNumber: anomaly.logLineNumber || index + 1,
       }));
 
       // Store anomalies
@@ -960,6 +1021,8 @@ async function processLogFileAsync(logFileId: string, logEntries: any[], userId:
               aiAnalysis: result,
               detectionMethod: "ai",
               status: "pending",
+              rawLogEntry: logEntry.rawLog || JSON.stringify(logEntry),
+              logLineNumber: j + 1,
             });
             anomalies.push(anomaly);
           }
@@ -1059,6 +1122,8 @@ async function reprocessLogFileAsync(logFileId: string, logEntries: any[], userI
             },
             detectionMethod: "ai",
             status: "pending",
+            rawLogEntry: logEntry.rawLog || JSON.stringify(logEntry),
+            logLineNumber: j + 1,
           });
           anomalies.push(anomaly);
         }
