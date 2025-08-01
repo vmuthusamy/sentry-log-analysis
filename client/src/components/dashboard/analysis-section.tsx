@@ -29,6 +29,7 @@ export function AnalysisSection() {
       description: anomaly.description,
       riskScore: anomaly.riskScore,
       detectionMethod: anomaly.detectionMethod,
+      detectionCategory: getDetectionMethodCategory(anomaly.detectionMethod || 'traditional'),
       status: anomaly.status,
       sourceIP: anomaly.sourceData?.sourceIP || 'N/A',
       destinationIP: anomaly.sourceData?.destinationIP || 'N/A',
@@ -74,6 +75,22 @@ export function AnalysisSection() {
     return "bg-accent-green/20 text-accent-green";
   };
 
+  const getDetectionMethodCategory = (method: string) => {
+    if (method === 'traditional_ml' || method === 'traditional') return 'Traditional';
+    if (method === 'advanced_ml') return 'Advanced';
+    if (method === 'openai' || method === 'gemini' || method === 'ai') return 'GenAI';
+    return 'Unknown';
+  };
+
+  const getDetectionMethodBadgeColor = (category: string) => {
+    switch (category) {
+      case 'Traditional': return "bg-blue-500/20 text-blue-400";
+      case 'Advanced': return "bg-purple-500/20 text-purple-400";
+      case 'GenAI': return "bg-accent-green/20 text-accent-green";
+      default: return "bg-gray-500/20 text-gray-400";
+    }
+  };
+
   const getStatusBadgeColor = (status: string) => {
     switch (status) {
       case "reviewed":
@@ -90,26 +107,29 @@ export function AnalysisSection() {
   };
 
   const getDetectionMethodBadge = (method: string) => {
-    switch (method) {
-      case 'traditional':
+    const category = getDetectionMethodCategory(method);
+    const colorClass = getDetectionMethodBadgeColor(category);
+    
+    switch (category) {
+      case 'Traditional':
         return (
-          <Badge className="bg-green-100 text-green-800">
+          <Badge className={`${colorClass} border-0`}>
             <Database className="w-3 h-3 mr-1" />
-            Traditional ML
+            Traditional
           </Badge>
         );
-      case 'advanced':
+      case 'Advanced':
         return (
-          <Badge className="bg-purple-100 text-purple-800">
+          <Badge className={`${colorClass} border-0`}>
             <BarChart3 className="w-3 h-3 mr-1" />
-            Advanced ML
+            Advanced
           </Badge>
         );
-      case 'ai':
+      case 'GenAI':
         return (
-          <Badge className="bg-blue-100 text-blue-800">
+          <Badge className={`${colorClass} border-0`}>
             <Brain className="w-3 h-3 mr-1" />
-            AI-Powered
+            GenAI
           </Badge>
         );
       default:
