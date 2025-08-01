@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/hooks/useAuth";
 import { Redirect } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,30 +25,11 @@ type LoginForm = z.infer<typeof loginSchema>;
 type RegisterForm = z.infer<typeof registerSchema>;
 
 export default function AuthPage() {
-  const { user, loginMutation, registerMutation } = useAuth();
-  const [isLogin, setIsLogin] = useState(true);
+  const { isAuthenticated } = useAuth();
 
-  const loginForm = useForm<LoginForm>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: { email: "", password: "" },
-  });
-
-  const registerForm = useForm<RegisterForm>({
-    resolver: zodResolver(registerSchema),
-    defaultValues: { username: "", email: "", password: "" },
-  });
-
-  if (user) {
+  if (isAuthenticated) {
     return <Redirect to="/" />;
   }
-
-  const onLogin = (data: LoginForm) => {
-    loginMutation.mutate(data);
-  };
-
-  const onRegister = (data: RegisterForm) => {
-    registerMutation.mutate(data);
-  };
 
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-dark-primary via-dark-secondary to-slate-900">
@@ -65,103 +46,16 @@ export default function AuthPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {isLogin ? (
-              <form onSubmit={loginForm.handleSubmit(onLogin)} className="space-y-6">
-                <div>
-                  <Label htmlFor="email" className="text-slate-300">Email Address</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="admin@company.com"
-                    className="mt-2 bg-dark-tertiary border-slate-600 text-white placeholder-slate-400"
-                    {...loginForm.register("email")}
-                  />
-                  {loginForm.formState.errors.email && (
-                    <p className="text-red-400 text-sm mt-1">{loginForm.formState.errors.email.message}</p>
-                  )}
-                </div>
-                <div>
-                  <Label htmlFor="password" className="text-slate-300">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="••••••••"
-                    className="mt-2 bg-dark-tertiary border-slate-600 text-white placeholder-slate-400"
-                    {...loginForm.register("password")}
-                  />
-                  {loginForm.formState.errors.password && (
-                    <p className="text-red-400 text-sm mt-1">{loginForm.formState.errors.password.message}</p>
-                  )}
-                </div>
-                <Button 
-                  type="submit" 
-                  className="w-full bg-accent-blue hover:bg-blue-600"
-                  disabled={loginMutation.isPending}
-                >
-                  {loginMutation.isPending ? "Signing In..." : "Sign In"}
-                </Button>
-              </form>
-            ) : (
-              <form onSubmit={registerForm.handleSubmit(onRegister)} className="space-y-6">
-                <div>
-                  <Label htmlFor="username" className="text-slate-300">Username</Label>
-                  <Input
-                    id="username"
-                    type="text"
-                    placeholder="johndoe"
-                    className="mt-2 bg-dark-tertiary border-slate-600 text-white placeholder-slate-400"
-                    {...registerForm.register("username")}
-                  />
-                  {registerForm.formState.errors.username && (
-                    <p className="text-red-400 text-sm mt-1">{registerForm.formState.errors.username.message}</p>
-                  )}
-                </div>
-                <div>
-                  <Label htmlFor="register-email" className="text-slate-300">Email Address</Label>
-                  <Input
-                    id="register-email"
-                    type="email"
-                    placeholder="john@company.com"
-                    className="mt-2 bg-dark-tertiary border-slate-600 text-white placeholder-slate-400"
-                    {...registerForm.register("email")}
-                  />
-                  {registerForm.formState.errors.email && (
-                    <p className="text-red-400 text-sm mt-1">{registerForm.formState.errors.email.message}</p>
-                  )}
-                </div>
-                <div>
-                  <Label htmlFor="register-password" className="text-slate-300">Password</Label>
-                  <Input
-                    id="register-password"
-                    type="password"
-                    placeholder="••••••••"
-                    className="mt-2 bg-dark-tertiary border-slate-600 text-white placeholder-slate-400"
-                    {...registerForm.register("password")}
-                  />
-                  {registerForm.formState.errors.password && (
-                    <p className="text-red-400 text-sm mt-1">{registerForm.formState.errors.password.message}</p>
-                  )}
-                </div>
-                <Button 
-                  type="submit" 
-                  className="w-full bg-accent-blue hover:bg-blue-600"
-                  disabled={registerMutation.isPending}
-                >
-                  {registerMutation.isPending ? "Creating Account..." : "Create Account"}
-                </Button>
-              </form>
-            )}
-            
-            <div className="mt-6 text-center">
-              <p className="text-slate-400 text-sm">
-                {isLogin ? "Don't have an account? " : "Already have an account? "}
-                <button 
-                  onClick={() => setIsLogin(!isLogin)}
-                  className="text-accent-blue hover:text-blue-400 font-medium"
-                >
-                  {isLogin ? "Sign up" : "Sign in"}
-                </button>
+            <div className="text-center space-y-4">
+              <p className="text-slate-400">
+                Sign in with your Google account to access LogGuard
               </p>
+              <Button 
+                onClick={() => window.location.href = '/api/login'}
+                className="w-full bg-accent-blue hover:bg-blue-600"
+              >
+                Sign In with Google
+              </Button>
             </div>
           </CardContent>
         </Card>

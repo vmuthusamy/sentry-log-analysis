@@ -1,4 +1,4 @@
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/hooks/useAuth";
 import { Shield, ChartLine, Upload, Search, History, Settings, LogOut, FolderCog, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
@@ -9,7 +9,7 @@ interface SidebarProps {
 }
 
 export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
-  const { user, logoutMutation } = useAuth();
+  const { user } = useAuth();
   const [, setLocation] = useLocation();
 
   const menuItems = [
@@ -23,7 +23,7 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
   ];
 
   const handleLogout = () => {
-    logoutMutation.mutate();
+    window.location.href = '/api/logout';
   };
 
   return (
