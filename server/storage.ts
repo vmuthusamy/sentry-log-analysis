@@ -1,4 +1,4 @@
-import { users, logFiles, anomalies, processingJobs, type User, type InsertUser, type LogFile, type InsertLogFile, type Anomaly, type InsertAnomaly, type ProcessingJob, type InsertProcessingJob } from "@shared/schema";
+import { users, logFiles, anomalies, processingJobs, type User, type InsertUser, type UpsertUser, type LogFile, type InsertLogFile, type Anomaly, type InsertAnomaly, type ProcessingJob, type InsertProcessingJob } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and, gte, count } from "drizzle-orm";
 import session from "express-session";
@@ -12,6 +12,7 @@ export interface IStorage {
   getUserByUsername(username: string): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  upsertUser(user: UpsertUser): Promise<User>;
   
   createLogFile(logFile: InsertLogFile): Promise<LogFile>;
   getLogFile(id: string): Promise<LogFile | undefined>;
@@ -56,22 +57,37 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.username, username));
-    return user || undefined;
+    // Username field removed in OAuth schema
+    return undefined;
   }
 
   async getUserByEmail(email: string): Promise<User | undefined> {
+    if (!email) return undefined;
     const [user] = await db.select().from(users).where(eq(users.email, email));
     return user || undefined;
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
+  async createUser(user: InsertUser): Promise<User> {
+    const [newUser] = await db.insert(users).values(user).returning();
+    return newUser;
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
     const [user] = await db
       .insert(users)
-      .values(insertUser)
+      .values(userData)
+      .onConflictDoUpdate({
+        target: users.id,
+        set: {
+          ...userData,
+          updatedAt: new Date(),
+        },
+      })
       .returning();
     return user;
   }
+
+
 
   async createLogFile(logFile: InsertLogFile): Promise<LogFile> {
     const [file] = await db

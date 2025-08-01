@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AuthHeader } from "@/components/auth-header";
 import { Sidebar } from "@/components/dashboard/sidebar";
 import { OverviewSection } from "@/components/dashboard/overview-section";
 import { UploadSection } from "@/components/dashboard/upload-section";
@@ -33,10 +34,13 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-dark-primary">
-      <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
-      <div className="ml-64 min-h-screen">
-        {renderSection()}
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <AuthHeader />
+      <div className="flex">
+        <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
+        <div className="flex-1 ml-64 min-h-screen">
+          {renderSection()}
+        </div>
       </div>
     </div>
   );

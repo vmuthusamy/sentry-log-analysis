@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { setupAuth } from "./auth";
+import { setupAuth, isAuthenticated } from "./replitAuth";
 import { storage } from "./storage";
 import { db } from "./db";
 import { processingJobs } from "@shared/schema";
@@ -59,7 +59,22 @@ function requireAuth(req: any, res: any, next: any) {
   next();
 }
 
-export function registerRoutes(app: Express): Server {
+export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup authentication first
+  await setupAuth(app);
+
+  // Auth routes
+  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+
   // Trust proxy for rate limiting
   app.set('trust proxy', 1);
   
