@@ -1,14 +1,14 @@
-# Contributing to LogGuard
+# Contributing to Sentry
 
-Thank you for your interest in contributing to LogGuard! This document provides guidelines for contributing to the project.
+Thank you for your interest in contributing to Sentry! This document provides guidelines for contributing to the project.
 
 ## Getting Started
 
 1. Fork the repository on GitHub
 2. Clone your fork locally:
    ```bash
-   git clone https://github.com/your-username/logguard.git
-   cd logguard
+   git clone https://github.com/your-username/sentry.git
+   cd sentry
    ```
 3. Install dependencies:
    ```bash
@@ -199,4 +199,4 @@ Contributors will be recognized in:
 - Review documentation thoroughly
 - Contact maintainers if needed
 
-Thank you for contributing to LogGuard!
+Thank you for contributing to Sentry!

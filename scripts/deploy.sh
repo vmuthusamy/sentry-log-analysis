@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# LogGuard Deployment Script
+# Sentry Deployment Script
 # Supports GCP, Azure, and AWS deployments
 
 set -e
@@ -13,13 +13,13 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-PROJECT_NAME="logguard"
-IMAGE_NAME="logguard"
+PROJECT_NAME="sentry"
+IMAGE_NAME="sentry"
 VERSION=${1:-"latest"}
 PLATFORM=${2:-"gcp"}
 
-echo -e "${BLUE}LogGuard Deployment Script${NC}"
-echo -e "${BLUE}=========================${NC}"
+echo -e "${BLUE}Sentry Deployment Script${NC}"
+echo -e "${BLUE}========================${NC}"
 echo "Project: $PROJECT_NAME"
 echo "Version: $VERSION"
 echo "Platform: $PLATFORM"

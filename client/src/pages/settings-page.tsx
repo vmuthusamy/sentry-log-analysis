@@ -15,12 +15,12 @@ export default function SettingsPage() {
               <Link href="/">
                 <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white hover:bg-slate-700">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back to LogGuard
+                  Back to Sentry
                 </Button>
               </Link>
               <div>
                 <h1 className="text-3xl font-bold text-white">Settings</h1>
-                <p className="text-slate-400 mt-1">Manage your LogGuard configuration and preferences</p>
+                <p className="text-slate-400 mt-1">Manage your Sentry configuration and preferences</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -131,7 +131,7 @@ export default function SettingsPage() {
                 <div className="space-y-3 text-sm">
                   <div>
                     <p className="text-slate-300 font-medium">Getting Started</p>
-                    <p className="text-slate-400 text-xs mt-1">Learn how to use LogGuard effectively</p>
+                    <p className="text-slate-400 text-xs mt-1">Learn how to use Sentry effectively</p>
                   </div>
                   <div>
                     <p className="text-slate-300 font-medium">API Key Setup</p>

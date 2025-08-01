@@ -1,4 +1,4 @@
-# LogGuard - AI-Powered Log Anomaly Detection System
+# Sentry - AI-Powered Log Anomaly Detection System
 
 A comprehensive TypeScript-based web application for AI-powered security log anomaly detection, specializing in analyzing Zscaler NSS feed format logs using OpenAI's GPT-4o model.
 

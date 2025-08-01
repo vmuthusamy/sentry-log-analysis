@@ -10,7 +10,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Shield className="h-8 w-8 text-blue-600" />
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">LogGuard</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Sentry</h1>
           </div>
           <Button 
             onClick={() => window.location.href = '/api/login'}
@@ -29,7 +29,7 @@ export default function LandingPage() {
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
             Detect threats and anomalies in your security logs using advanced AI and machine learning. 
-            LogGuard combines traditional rule-based detection with cutting-edge AI analysis for comprehensive security monitoring.
+            Sentry combines traditional rule-based detection with cutting-edge AI analysis for comprehensive security monitoring.
           </p>
           <Button 
             onClick={() => window.location.href = '/api/login'}
@@ -189,7 +189,7 @@ export default function LandingPage() {
         <div className="container mx-auto text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Shield className="h-6 w-6 text-blue-400" />
-            <span className="text-xl font-semibold text-white">LogGuard</span>
+            <span className="text-xl font-semibold text-white">Sentry</span>
           </div>
           <p className="text-gray-400">
             AI-Powered Security Log Anomaly Detection © 2025

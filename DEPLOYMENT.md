@@ -1,6 +1,6 @@
-# LogGuard Deployment Guide
+# Sentry Deployment Guide
 
-This guide covers deploying LogGuard to various cloud platforms including GCP, Azure, and AWS.
+This guide covers deploying Sentry to various cloud platforms including GCP, Azure, and AWS.
 
 ## Prerequisites
 
@@ -62,11 +62,11 @@ CMD ["npm", "start"]
 
 ```bash
 # Build and push to Container Registry
-gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/logguard
+gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/sentry
 
 # Deploy to Cloud Run
-gcloud run deploy logguard \
-  --image gcr.io/YOUR_PROJECT_ID/logguard \
+gcloud run deploy sentry \
+  --image gcr.io/YOUR_PROJECT_ID/sentry \
   --platform managed \
   --region us-central1 \
   --allow-unauthenticated \
