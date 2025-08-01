@@ -41,10 +41,29 @@ export function UploadSection() {
       queryClient.invalidateQueries({ queryKey: ["/api/log-files"] });
     },
     onError: (error: Error) => {
+      // Try to parse the error for better user experience
+      let errorMessage = error.message;
+      let errorDetails = "";
+      
+      try {
+        // Check if the error contains JSON with details
+        const match = error.message.match(/\{.*\}/);
+        if (match) {
+          const errorData = JSON.parse(match[0]);
+          if (errorData.details) {
+            errorMessage = errorData.message || error.message;
+            errorDetails = errorData.details.suggestion || "";
+          }
+        }
+      } catch {
+        // If parsing fails, use the original message
+      }
+
       toast({
         title: "Upload failed",
-        description: error.message,
+        description: errorDetails ? `${errorMessage}. ${errorDetails}` : errorMessage,
         variant: "destructive",
+        duration: 8000, // Show longer for helpful error messages
       });
       setUploadProgress(0);
     },

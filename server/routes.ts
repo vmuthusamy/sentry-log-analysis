@@ -142,7 +142,14 @@ export function registerRoutes(app: Express): Server {
       // Track failed file upload
       metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'failure', validation.error);
       
-      throw new ValidationError(validation.error || "Invalid log format");
+      return res.status(400).json({ 
+        message: validation.error || "Invalid log file format",
+        details: {
+          expectedFormat: "Zscaler NSS feed format (comma or tab separated)",
+          suggestion: "Please upload a valid Zscaler log file with proper field headers.",
+          fileName: originalname
+        }
+      });
     }
 
     // Parse logs with timeout protection
@@ -153,19 +160,48 @@ export function registerRoutes(app: Express): Server {
       if (logEntries.length === 0) {
         await storage.updateLogFileStatus(logFile.id, "failed", 0, "No valid log entries found");
         await fs.unlink(filePath).catch(() => {});
-        throw new ValidationError("No valid log entries found in file");
+        metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'failure', "No valid log entries found");
+        
+        return res.status(400).json({ 
+          message: "No valid log entries found in file",
+          details: {
+            expectedFormat: "Zscaler NSS feed format (comma or tab separated)",
+            suggestion: "Please check that your file contains valid Zscaler log entries with proper field headers.",
+            fileName: originalname
+          }
+        });
       }
       
       if (logEntries.length > 100000) { // Limit to 100k entries for performance
         await storage.updateLogFileStatus(logFile.id, "failed", logEntries.length, "File contains too many log entries for processing");
         await fs.unlink(filePath).catch(() => {});
-        throw new ValidationError(`File contains ${logEntries.length} entries. Maximum allowed is 100,000 entries`);
+        metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'failure', `File too large: ${logEntries.length} entries`);
+        
+        return res.status(413).json({ 
+          message: `File contains ${logEntries.length} entries. Maximum allowed is 100,000 entries`,
+          details: {
+            currentEntries: logEntries.length,
+            maxEntries: 100000,
+            suggestion: "Please split your log file into smaller chunks or filter to fewer entries.",
+            fileName: originalname
+          }
+        });
       }
       
     } catch (parseError) {
       await storage.updateLogFileStatus(logFile.id, "failed", 0, "Failed to parse log file");
       await fs.unlink(filePath).catch(() => {});
-      throw new ProcessingError("Failed to parse log file", "log_parsing", parseError as Error);
+      metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'failure', `Parse error: ${parseError instanceof Error ? parseError.message : 'Unknown parsing error'}`);
+      
+      return res.status(400).json({ 
+        message: "Failed to parse log file",
+        details: {
+          error: parseError instanceof Error ? parseError.message : 'Unknown parsing error',
+          expectedFormat: "Zscaler NSS feed format (comma or tab separated)",
+          suggestion: "Please check that your file follows the correct Zscaler log format.",
+          fileName: originalname
+        }
+      });
     }
 
     await storage.updateLogFileStatus(logFile.id, "processing", logEntries.length);
