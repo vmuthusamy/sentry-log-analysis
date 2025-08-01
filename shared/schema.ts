@@ -9,6 +9,10 @@ export const users = pgTable("users", {
   firstName: text("first_name"),
   lastName: text("last_name"),
   profileImageUrl: text("profile_image_url"),
+  role: text("role").notNull().default("user"), // user, admin, system
+  permissions: jsonb("permissions").$type<string[]>().default([]),
+  isSystemUser: boolean("is_system_user").default(false),
+  lastLoginAt: timestamp("last_login_at"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });

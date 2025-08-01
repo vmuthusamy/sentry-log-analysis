@@ -13,6 +13,8 @@ import { AdvancedMLDetector } from "./services/advanced-ml-detector";
 import { uploadRateLimit, apiRateLimit, loginRateLimit, analysisRateLimit } from "./middleware/rate-limiter";
 import { handleMulterErrors, globalErrorHandler, notFoundHandler, asyncHandler, ValidationError, FileSizeError, ProcessingError } from "./middleware/error-handler";
 import { userAnalytics } from "./services/user-analytics";
+import { requireSystemAccess } from "./middleware/system-auth";
+import { validateAnalyticsParams, validateFileUpload } from "./middleware/security-validator";
 import multer from "multer";
 import { z } from "zod";
 import fs from "fs/promises";
@@ -89,6 +91,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching user:", error);
       res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+
+  // System access check endpoint
+  app.get('/api/auth/system-access', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      const hasSystemAccess = user.isSystemUser || 
+                             user.role === 'system' || 
+                             user.role === 'admin' ||
+                             (user.permissions && user.permissions.includes('system_analytics'));
+
+      res.json({
+        hasAccess: hasSystemAccess,
+        role: user.role,
+        permissions: user.permissions || [],
+        isSystemUser: user.isSystemUser || false
+      });
+    } catch (error) {
+      console.error("Error checking system access:", error);
+      res.status(500).json({ message: "Failed to check system access" });
     }
   });
 
@@ -981,9 +1010,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Analytics endpoints for user activity tracking
-  app.get("/api/analytics/users", requireAuth, asyncHandler(async (req: any, res: any) => {
-    // Only allow access for admin users or specific permissions
+  // Analytics endpoints for user activity tracking (SYSTEM USERS ONLY)
+  app.get("/api/analytics/users", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
+    // Only allow access for system-level users
     const userId = req.user!.id;
     
     try {
@@ -1006,7 +1035,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   }));
 
-  app.get("/api/analytics/daily", requireAuth, asyncHandler(async (req: any, res: any) => {
+  app.get("/api/analytics/daily", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
     try {
       const days = parseInt(req.query.days as string) || 30;
       const dailyMetrics = await userAnalytics.getDailyMetrics(days);
@@ -1027,7 +1056,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   }));
 
-  app.get("/api/analytics/cohorts", requireAuth, asyncHandler(async (req: any, res: any) => {
+  app.get("/api/analytics/cohorts", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
     try {
       const cohorts = await userAnalytics.getCohortAnalysis();
       
@@ -1046,7 +1075,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   }));
 
-  app.get("/api/analytics/access-logs", requireAuth, asyncHandler(async (req: any, res: any) => {
+  app.get("/api/analytics/access-logs", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
     try {
       const limit = parseInt(req.query.limit as string) || 100;
       const logs = await userAnalytics.getAccessLogs(limit);
