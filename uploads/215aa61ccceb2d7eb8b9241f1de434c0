@@ -1,0 +1,301 @@
+TimeStamp|SourceIP|DestinationIP|URL|Action|StatusCode|User-Agent|Referer|Bytes Sent|Bytes Received|Duration|Category
+2025-07-31T09:44:00|192.168.1.90|112.21.174.39|https://zcash-pool-16.io/stratum|blocked|403|Stratum/1.6.0|-|429|349|4786|Cryptocurrency
+2025-07-31T10:57:00|192.168.1.48|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|732|7538|550|E-commerce
+2025-07-31T09:25:00|192.168.1.36|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1742|29168|871|E-commerce
+2025-07-31T15:06:00|192.168.1.23|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1588|34660|624|Video Streaming
+2025-07-31T13:15:00|192.168.1.8|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1129|28781|360|Video Streaming
+2025-07-31T10:04:00|192.168.1.32|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|809|31843|921|Video Streaming
+2025-07-31T11:18:00|192.168.1.30|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|832|26174|393|Social Media
+2025-07-31T16:44:00|192.168.1.16|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|696|20767|503|Video Streaming
+2025-07-31T18:05:00|192.168.1.44|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|749|21760|786|Social Media
+2025-07-31T10:44:00|192.168.1.37|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|832|21155|555|Video Streaming
+2025-07-31T17:43:00|192.168.1.40|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1915|5817|327|Video Streaming
+2025-07-31T18:47:00|192.168.1.12|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|808|8850|844|Video Streaming
+2025-07-31T12:17:00|192.168.1.89|229.65.203.116|https://ethereum-pool-1.net/stratum|blocked|403|Stratum/1.6.0|-|534|394|1074|Cryptocurrency
+2025-07-31T12:12:00|192.168.1.45|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|703|24059|362|Social Media
+2025-07-31T08:38:00|192.168.1.9|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1533|44573|290|Social Media
+2025-07-31T17:39:00|192.168.1.23|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1269|25718|795|Video Streaming
+2025-07-31T14:45:00|192.168.1.15|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1775|15963|474|Social Media
+2025-07-31T17:36:00|192.168.1.3|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1354|16611|717|Video Streaming
+2025-07-31T18:48:00|192.168.1.131|109.70.100.1|https://dark-3625.onion/connect|blocked|403|Tor Browser/11.0|-|1352|227|749|Proxy Avoidance
+2025-07-31T10:11:00|192.168.1.4|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1882|6295|210|Social Media
+2025-07-31T12:32:00|192.168.1.10|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1439|42556|696|E-commerce
+2025-07-31T17:03:00|192.168.1.40|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|408|16679|377|E-commerce
+2025-07-31T16:41:00|192.168.1.49|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1780|30489|388|E-commerce
+2025-07-31T17:19:00|192.168.1.43|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1108|22361|207|Video Streaming
+2025-07-31T16:48:00|192.168.1.88|247.72.105.113|https://zcash-pool-9.com/stratum|blocked|403|Stratum/1.6.0|-|729|195|4387|Cryptocurrency
+2025-07-31T19:52:00|192.168.1.19|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|495|45968|990|Video Streaming
+2025-07-31T16:25:00|192.168.1.10|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1709|10440|713|Video Streaming
+2025-07-31T10:51:00|192.168.1.25|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1060|47380|999|Video Streaming
+2025-07-31T14:53:00|192.168.1.9|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1996|7884|502|Social Media
+2025-07-31T14:29:00|192.168.1.10|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1867|18477|740|Video Streaming
+2025-07-31T14:15:00|192.168.1.8|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1976|47356|374|E-commerce
+2025-07-31T11:37:00|192.168.1.2|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|795|5186|455|Video Streaming
+2025-07-31T13:35:00|192.168.1.34|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1917|35656|230|Video Streaming
+2025-07-31T16:49:00|192.168.1.1|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|744|37974|715|Video Streaming
+2025-07-31T10:43:00|192.168.1.2|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1411|46148|972|Video Streaming
+2025-07-31T08:18:00|192.168.1.13|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1769|49921|688|Social Media
+2025-07-31T16:38:00|192.168.1.89|91.72.180.115|https://monero-pool-8.com/stratum|blocked|403|Stratum/1.6.0|-|396|332|3764|Cryptocurrency
+2025-07-31T13:11:00|192.168.1.37|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1052|48729|531|Video Streaming
+2025-07-31T15:39:00|192.168.1.40|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|549|45428|220|Video Streaming
+2025-07-31T13:36:00|192.168.1.29|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|599|13689|465|Video Streaming
+2025-07-31T18:05:00|192.168.1.45|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1668|14432|987|Video Streaming
+2025-07-31T11:14:00|192.168.1.3|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|478|21314|738|Video Streaming
+2025-07-31T08:07:00|192.168.1.43|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1380|19103|406|Video Streaming
+2025-07-31T13:20:00|192.168.1.33|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|999|21434|978|E-commerce
+2025-07-31T08:44:00|192.168.1.47|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1807|27796|528|Video Streaming
+2025-07-31T18:25:00|192.168.1.29|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|619|5690|282|Video Streaming
+2025-07-31T13:02:00|192.168.1.22|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|550|20166|512|Video Streaming
+2025-07-31T17:37:00|192.168.1.22|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1577|34090|228|E-commerce
+2025-07-31T10:57:00|192.168.1.90|98.17.6.126|https://monero-pool-18.io/stratum|blocked|403|Stratum/1.6.0|-|352|340|3102|Cryptocurrency
+2025-07-31T18:31:00|192.168.1.10|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|741|42962|871|E-commerce
+2025-07-31T15:26:00|192.168.1.29|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1783|31863|940|Video Streaming
+2025-07-31T09:16:00|192.168.1.34|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|806|12106|412|Video Streaming
+2025-07-31T09:27:00|192.168.1.8|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1025|44002|733|Video Streaming
+2025-07-31T11:38:00|192.168.1.40|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|683|32601|484|E-commerce
+2025-07-31T18:41:00|192.168.1.123|109.70.100.1|https://tor-6074.onion/connect|blocked|403|Tor Browser/11.0|-|1280|876|661|Proxy Avoidance
+2025-07-31T17:09:00|192.168.1.34|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|407|9319|351|E-commerce
+2025-07-31T17:30:00|192.168.1.38|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1920|37626|319|Social Media
+2025-07-31T12:15:00|192.168.1.27|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|411|35590|858|Video Streaming
+2025-07-31T17:43:00|192.168.1.48|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|603|49738|652|Social Media
+2025-07-31T14:11:00|192.168.1.36|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1741|18071|255|Video Streaming
+2025-07-31T17:26:00|192.168.1.88|81.122.81.140|https://zcash-pool-20.net/stratum|blocked|403|Stratum/1.6.0|-|442|226|1501|Cryptocurrency
+2025-07-31T09:31:00|192.168.1.45|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|468|46672|717|E-commerce
+2025-07-31T10:53:00|192.168.1.21|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1809|22300|963|Social Media
+2025-07-31T16:08:00|192.168.1.17|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|990|48410|596|Video Streaming
+2025-07-31T14:36:00|192.168.1.27|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1765|17847|377|Video Streaming
+2025-07-31T08:15:00|192.168.1.36|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1360|46696|768|Video Streaming
+2025-07-31T09:02:00|192.168.1.4|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1813|45454|534|Video Streaming
+2025-07-31T13:12:00|192.168.1.26|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1808|33692|640|Social Media
+2025-07-31T17:35:00|192.168.1.25|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1725|9887|423|Video Streaming
+2025-07-31T19:37:00|192.168.1.21|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|867|25638|449|Social Media
+2025-07-31T19:46:00|192.168.1.30|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|631|7279|258|Video Streaming
+2025-07-31T12:20:00|192.168.1.42|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1198|22993|359|Social Media
+2025-07-31T14:13:00|192.168.1.90|4.183.198.160|https://monero-pool-4.com/stratum|blocked|403|Stratum/1.6.0|-|407|398|1183|Cryptocurrency
+2025-07-31T08:51:00|192.168.1.20|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|652|20939|680|Social Media
+2025-07-31T15:02:00|192.168.1.31|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|730|17908|877|Video Streaming
+2025-07-31T15:58:00|192.168.1.34|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1447|21302|664|Video Streaming
+2025-07-31T14:39:00|192.168.1.28|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1433|39695|648|Social Media
+2025-07-31T18:52:00|192.168.1.16|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1315|9716|425|Video Streaming
+2025-07-31T12:40:00|192.168.1.42|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|660|19331|708|E-commerce
+2025-07-31T17:39:00|192.168.1.46|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|468|42549|929|Video Streaming
+2025-07-31T10:39:00|192.168.1.33|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|423|5673|697|Video Streaming
+2025-07-31T15:42:00|192.168.1.46|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|534|32156|233|Social Media
+2025-07-31T19:00:00|192.168.1.13|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1786|28915|945|E-commerce
+2025-07-31T08:05:00|192.168.1.33|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1005|40388|367|Video Streaming
+2025-07-31T08:30:00|192.168.1.90|54.117.85.84|https://monero-pool-9.com/stratum|blocked|403|Stratum/1.6.0|-|212|301|1509|Cryptocurrency
+2025-07-31T09:55:00|192.168.1.44|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|885|49181|468|Video Streaming
+2025-07-31T16:16:00|192.168.1.35|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1752|35335|630|Video Streaming
+2025-07-31T18:49:00|192.168.1.46|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1054|13044|467|E-commerce
+2025-07-31T16:44:00|192.168.1.1|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|863|6714|612|E-commerce
+2025-07-31T14:26:00|192.168.1.7|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1134|9040|893|Social Media
+2025-07-31T13:30:00|192.168.1.33|109.70.100.1|https://dark-1129.onion/connect|blocked|403|Tor Browser/11.0|-|1152|612|316|Proxy Avoidance
+2025-07-31T16:25:00|192.168.1.11|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1197|33048|948|Video Streaming
+2025-07-31T16:46:00|192.168.1.35|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|613|13563|981|Video Streaming
+2025-07-31T08:36:00|192.168.1.34|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1025|38914|906|E-commerce
+2025-07-31T08:52:00|192.168.1.29|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1932|14731|587|Video Streaming
+2025-07-31T16:32:00|192.168.1.49|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|620|34062|291|Video Streaming
+2025-07-31T11:29:00|192.168.1.88|74.195.193.207|https://ethereum-pool-3.com/stratum|blocked|403|Stratum/1.6.0|-|522|328|2740|Cryptocurrency
+2025-07-31T15:37:00|192.168.1.42|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1538|17793|674|Social Media
+2025-07-31T18:47:00|192.168.1.20|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1888|33054|202|Video Streaming
+2025-07-31T18:59:00|192.168.1.15|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|996|49545|992|Video Streaming
+2025-07-31T13:29:00|192.168.1.36|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|476|12414|424|E-commerce
+2025-07-31T08:26:00|192.168.1.22|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|920|45526|801|E-commerce
+2025-07-31T08:06:00|192.168.1.45|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|419|33518|450|E-commerce
+2025-07-31T12:15:00|192.168.1.29|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1648|31517|686|Video Streaming
+2025-07-31T18:23:00|192.168.1.40|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|623|15966|765|Social Media
+2025-07-31T16:59:00|192.168.1.35|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1545|44283|339|Video Streaming
+2025-07-31T15:59:00|192.168.1.33|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|672|19006|648|Video Streaming
+2025-07-31T12:11:00|192.168.1.27|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|721|40518|220|Video Streaming
+2025-07-31T13:25:00|192.168.1.89|241.138.198.117|https://monero-pool-17.com/stratum|blocked|403|Stratum/1.6.0|-|203|219|2330|Cryptocurrency
+2025-07-31T14:43:00|192.168.1.6|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|883|41711|427|Video Streaming
+2025-07-31T11:38:00|192.168.1.38|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1185|47575|360|Video Streaming
+2025-07-31T08:26:00|192.168.1.6|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|926|5473|480|E-commerce
+2025-07-31T12:11:00|192.168.1.23|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1866|16370|448|E-commerce
+2025-07-31T08:45:00|192.168.1.36|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|425|39785|290|Video Streaming
+2025-07-31T18:38:00|192.168.1.50|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|815|8990|324|Social Media
+2025-07-31T08:37:00|192.168.1.16|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|462|18331|843|Video Streaming
+2025-07-31T10:22:00|192.168.1.11|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1872|44013|730|Social Media
+2025-07-31T09:19:00|192.168.1.31|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1339|12359|698|Social Media
+2025-07-31T17:19:00|192.168.1.6|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|450|28682|309|Video Streaming
+2025-07-31T16:29:00|192.168.1.38|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1093|37370|661|Social Media
+2025-07-31T13:16:00|192.168.1.88|99.237.63.220|https://monero-pool-11.com/stratum|blocked|403|Stratum/1.6.0|-|312|128|2245|Cryptocurrency
+2025-07-31T13:57:00|192.168.1.11|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1490|10606|468|Video Streaming
+2025-07-31T16:46:00|192.168.1.30|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1515|27827|427|Video Streaming
+2025-07-31T14:40:00|192.168.1.39|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|403|23320|568|Social Media
+2025-07-31T10:33:00|192.168.1.20|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|888|34406|714|E-commerce
+2025-07-31T12:48:00|192.168.1.34|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1591|26023|332|Video Streaming
+2025-07-31T08:20:00|192.168.1.165|109.70.100.1|https://dark-1795.onion/connect|blocked|403|Tor Browser/11.0|-|1408|489|717|Proxy Avoidance
+2025-07-31T11:49:00|192.168.1.16|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1220|40314|451|Video Streaming
+2025-07-31T13:00:00|192.168.1.36|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1509|22588|208|Video Streaming
+2025-07-31T09:42:00|192.168.1.48|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1004|6752|875|Video Streaming
+2025-07-31T09:56:00|192.168.1.47|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|718|35661|500|Video Streaming
+2025-07-31T15:30:00|192.168.1.16|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|856|43442|986|Video Streaming
+2025-07-31T09:46:00|192.168.1.89|38.79.118.255|https://bitcoin-pool-6.net/stratum|blocked|403|Stratum/1.6.0|-|507|132|3554|Cryptocurrency
+2025-07-31T15:42:00|192.168.1.32|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1432|36514|964|Video Streaming
+2025-07-31T10:03:00|192.168.1.40|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1620|31674|617|Video Streaming
+2025-07-31T19:46:00|192.168.1.21|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|578|6583|291|Video Streaming
+2025-07-31T13:44:00|192.168.1.22|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|975|14191|382|Video Streaming
+2025-07-31T19:11:00|192.168.1.6|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1181|39488|392|E-commerce
+2025-07-31T14:18:00|192.168.1.14|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1244|8562|398|Social Media
+2025-07-31T16:59:00|192.168.1.24|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1963|10873|972|Video Streaming
+2025-07-31T09:46:00|192.168.1.1|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1617|28072|886|Video Streaming
+2025-07-31T18:45:00|192.168.1.26|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|948|33450|742|Video Streaming
+2025-07-31T15:18:00|192.168.1.9|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|859|13848|876|Video Streaming
+2025-07-31T09:48:00|192.168.1.38|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1193|49121|632|E-commerce
+2025-07-31T16:31:00|192.168.1.88|249.186.188.192|https://bitcoin-pool-9.io/stratum|blocked|403|Stratum/1.6.0|-|287|134|2668|Cryptocurrency
+2025-07-31T10:39:00|192.168.1.33|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1988|10604|760|Video Streaming
+2025-07-31T13:50:00|192.168.1.30|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|630|32419|802|Video Streaming
+2025-07-31T16:24:00|192.168.1.5|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|951|8936|899|Social Media
+2025-07-31T08:28:00|192.168.1.26|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1709|14266|228|Social Media
+2025-07-31T12:18:00|192.168.1.32|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|593|40711|227|E-commerce
+2025-07-31T14:53:00|192.168.1.27|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1855|34344|808|E-commerce
+2025-07-31T13:46:00|192.168.1.30|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1488|7097|347|Video Streaming
+2025-07-31T08:33:00|192.168.1.12|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|708|24063|996|Social Media
+2025-07-31T16:23:00|192.168.1.29|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|754|34722|340|Video Streaming
+2025-07-31T14:56:00|192.168.1.1|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1736|16334|731|Video Streaming
+2025-07-31T18:13:00|192.168.1.49|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|405|46879|950|Video Streaming
+2025-07-31T10:00:00|192.168.1.90|188.162.97.173|https://bitcoin-pool-12.net/stratum|blocked|403|Stratum/1.6.0|-|527|197|4890|Cryptocurrency
+2025-07-31T08:01:00|192.168.1.30|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1722|18240|927|Social Media
+2025-07-31T16:46:00|192.168.1.8|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1681|47336|324|Social Media
+2025-07-31T08:25:00|192.168.1.27|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1531|48627|566|Video Streaming
+2025-07-31T15:18:00|192.168.1.40|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|634|12209|654|Social Media
+2025-07-31T09:20:00|192.168.1.33|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|640|30222|288|Video Streaming
+2025-07-31T15:41:00|192.168.1.118|185.220.102.8|https://onion-5325.onion/connect|blocked|403|Tor Browser/11.0|-|1361|498|648|Proxy Avoidance
+2025-07-31T19:58:00|192.168.1.40|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|576|27477|298|Video Streaming
+2025-07-31T11:01:00|192.168.1.38|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1965|36908|957|Social Media
+2025-07-31T19:11:00|192.168.1.14|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|822|42550|498|Video Streaming
+2025-07-31T08:28:00|192.168.1.40|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1973|26320|246|E-commerce
+2025-07-31T18:59:00|192.168.1.43|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1130|15575|265|Video Streaming
+2025-07-31T11:41:00|192.168.1.88|165.88.38.90|https://monero-pool-12.com/stratum|blocked|403|Stratum/1.6.0|-|205|292|3171|Cryptocurrency
+2025-07-31T14:45:00|192.168.1.48|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1406|25500|448|E-commerce
+2025-07-31T10:52:00|192.168.1.19|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1259|34870|905|E-commerce
+2025-07-31T11:07:00|192.168.1.34|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|541|16234|803|Video Streaming
+2025-07-31T18:09:00|192.168.1.41|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1111|21486|287|E-commerce
+2025-07-31T12:24:00|192.168.1.11|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1491|16657|228|Social Media
+2025-07-31T17:24:00|192.168.1.18|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1803|43037|420|Video Streaming
+2025-07-31T09:56:00|192.168.1.28|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1251|10105|845|E-commerce
+2025-07-31T12:42:00|192.168.1.40|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1561|48458|663|Video Streaming
+2025-07-31T16:59:00|192.168.1.36|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1114|33020|789|E-commerce
+2025-07-31T12:08:00|192.168.1.21|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1634|47625|885|Social Media
+2025-07-31T19:44:00|192.168.1.49|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1913|44758|652|E-commerce
+2025-07-31T11:09:00|192.168.1.88|147.178.84.66|https://bitcoin-pool-9.io/stratum|blocked|403|Stratum/1.6.0|-|290|336|4891|Cryptocurrency
+2025-07-31T09:05:00|192.168.1.20|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1347|46587|313|Video Streaming
+2025-07-31T10:32:00|192.168.1.40|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1595|25497|931|Video Streaming
+2025-07-31T16:45:00|192.168.1.17|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1316|31498|559|E-commerce
+2025-07-31T18:15:00|192.168.1.38|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1141|16288|502|Video Streaming
+2025-07-31T09:47:00|192.168.1.5|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|624|19778|746|Video Streaming
+2025-07-31T17:39:00|192.168.1.16|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1137|40784|728|Video Streaming
+2025-07-31T19:18:00|192.168.1.38|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1890|19048|446|Video Streaming
+2025-07-31T12:23:00|192.168.1.33|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1569|25669|965|Video Streaming
+2025-07-31T16:58:00|192.168.1.37|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1347|24809|847|Video Streaming
+2025-07-31T11:08:00|192.168.1.11|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|618|5783|462|Social Media
+2025-07-31T13:55:00|192.168.1.36|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1762|45948|954|Social Media
+2025-07-31T14:31:00|192.168.1.88|21.97.62.27|https://monero-pool-9.net/stratum|blocked|403|Stratum/1.6.0|-|305|303|4501|Cryptocurrency
+2025-07-31T16:09:00|192.168.1.31|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|890|9025|829|Video Streaming
+2025-07-31T09:54:00|192.168.1.26|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1680|7353|548|Video Streaming
+2025-07-31T15:23:00|192.168.1.10|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1644|15661|900|Social Media
+2025-07-31T08:43:00|192.168.1.19|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1980|14993|242|Social Media
+2025-07-31T08:28:00|192.168.1.44|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|650|30725|804|Video Streaming
+2025-07-31T18:36:00|192.168.1.28|199.87.154.255|https://onion-7260.onion/connect|blocked|403|Tor Browser/11.0|-|1304|747|343|Proxy Avoidance
+2025-07-31T15:51:00|192.168.1.20|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1949|12431|278|Video Streaming
+2025-07-31T10:41:00|192.168.1.18|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1221|41303|704|Video Streaming
+2025-07-31T14:42:00|192.168.1.19|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|401|17794|376|Social Media
+2025-07-31T12:44:00|192.168.1.20|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|668|25270|297|E-commerce
+2025-07-31T10:44:00|192.168.1.50|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1914|31062|897|Social Media
+2025-07-31T11:14:00|192.168.1.88|168.128.113.92|https://zcash-pool-12.io/stratum|blocked|403|Stratum/1.6.0|-|362|290|4720|Cryptocurrency
+2025-07-31T09:00:00|192.168.1.39|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1907|44786|688|E-commerce
+2025-07-31T11:56:00|192.168.1.49|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|814|28842|497|E-commerce
+2025-07-31T12:17:00|192.168.1.24|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1051|12398|736|Video Streaming
+2025-07-31T12:08:00|192.168.1.37|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1802|21771|632|Video Streaming
+2025-07-31T18:50:00|192.168.1.30|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|644|16599|952|E-commerce
+2025-07-31T17:27:00|192.168.1.37|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1843|14304|651|Video Streaming
+2025-07-31T17:07:00|192.168.1.5|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|473|35481|348|Video Streaming
+2025-07-31T11:05:00|192.168.1.7|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|669|10173|434|Social Media
+2025-07-31T12:37:00|192.168.1.5|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|539|21556|221|Video Streaming
+2025-07-31T19:46:00|192.168.1.33|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1723|22686|361|E-commerce
+2025-07-31T16:31:00|192.168.1.24|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1720|9635|304|Video Streaming
+2025-07-31T17:59:00|192.168.1.88|33.192.77.240|https://zcash-pool-5.com/stratum|blocked|403|Stratum/1.6.0|-|692|118|3144|Cryptocurrency
+2025-07-31T11:39:00|192.168.1.25|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|596|39874|789|Video Streaming
+2025-07-31T11:48:00|192.168.1.22|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1806|13702|254|Social Media
+2025-07-31T11:04:00|192.168.1.3|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1175|26498|250|E-commerce
+2025-07-31T08:21:00|192.168.1.46|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|960|49309|220|E-commerce
+2025-07-31T11:05:00|192.168.1.24|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|573|13454|528|Video Streaming
+2025-07-31T14:07:00|192.168.1.31|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1030|20037|485|Social Media
+2025-07-31T11:55:00|192.168.1.22|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1742|33940|838|Social Media
+2025-07-31T09:16:00|192.168.1.42|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1590|30745|377|Social Media
+2025-07-31T13:48:00|192.168.1.8|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1818|12007|624|Video Streaming
+2025-07-31T10:44:00|192.168.1.31|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|463|25960|634|Video Streaming
+2025-07-31T09:57:00|192.168.1.39|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|804|33144|380|E-commerce
+2025-07-31T17:54:00|192.168.1.90|199.111.123.101|https://monero-pool-2.net/stratum|blocked|403|Stratum/1.6.0|-|471|173|3292|Cryptocurrency
+2025-07-31T16:01:00|192.168.1.17|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|404|31021|734|Video Streaming
+2025-07-31T11:18:00|192.168.1.36|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|682|14051|225|E-commerce
+2025-07-31T10:18:00|192.168.1.2|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|968|45367|520|Social Media
+2025-07-31T18:04:00|192.168.1.28|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|652|40969|716|Video Streaming
+2025-07-31T14:26:00|192.168.1.46|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1506|14970|518|E-commerce
+2025-07-31T18:51:00|192.168.1.169|185.220.102.8|https://dark-3730.onion/connect|blocked|403|Tor Browser/11.0|-|928|806|769|Proxy Avoidance
+2025-07-31T09:06:00|192.168.1.28|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1914|40279|433|Video Streaming
+2025-07-31T09:03:00|192.168.1.31|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1309|16607|658|Video Streaming
+2025-07-31T18:59:00|192.168.1.15|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1754|48112|201|Video Streaming
+2025-07-31T12:19:00|192.168.1.5|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|472|48636|731|E-commerce
+2025-07-31T10:13:00|192.168.1.20|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1123|8834|952|Video Streaming
+2025-07-31T12:54:00|192.168.1.89|244.144.60.66|https://zcash-pool-20.net/stratum|blocked|403|Stratum/1.6.0|-|786|320|2001|Cryptocurrency
+2025-07-31T12:06:00|192.168.1.12|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|765|40776|887|Video Streaming
+2025-07-31T17:57:00|192.168.1.8|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|410|15180|672|Video Streaming
+2025-07-31T12:39:00|192.168.1.5|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1254|25571|532|Social Media
+2025-07-31T18:55:00|192.168.1.50|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|876|30161|836|Video Streaming
+2025-07-31T16:38:00|192.168.1.20|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1076|46816|322|Social Media
+2025-07-31T12:14:00|192.168.1.5|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1500|29913|579|Video Streaming
+2025-07-31T18:40:00|192.168.1.9|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1944|8982|611|Video Streaming
+2025-07-31T16:30:00|192.168.1.43|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1577|22165|963|E-commerce
+2025-07-31T09:49:00|192.168.1.16|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1305|5429|886|Video Streaming
+2025-07-31T19:26:00|192.168.1.27|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|924|13542|953|Video Streaming
+2025-07-31T16:25:00|192.168.1.29|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1520|38523|674|Video Streaming
+2025-07-31T14:26:00|192.168.1.90|80.7.1.72|https://bitcoin-pool-10.com/stratum|blocked|403|Stratum/1.6.0|-|565|370|4699|Cryptocurrency
+2025-07-31T16:34:00|192.168.1.40|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1254|9176|827|E-commerce
+2025-07-31T08:50:00|192.168.1.43|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|661|30334|769|E-commerce
+2025-07-31T08:48:00|192.168.1.4|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1324|36841|944|E-commerce
+2025-07-31T11:47:00|192.168.1.50|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1044|6984|503|Social Media
+2025-07-31T15:39:00|192.168.1.13|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|985|6600|301|Video Streaming
+2025-07-31T11:50:00|192.168.1.31|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|499|36492|916|Video Streaming
+2025-07-31T11:17:00|192.168.1.20|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1937|6656|567|E-commerce
+2025-07-31T12:37:00|192.168.1.46|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|687|18706|503|Video Streaming
+2025-07-31T14:58:00|192.168.1.12|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1700|11087|389|E-commerce
+2025-07-31T18:01:00|192.168.1.38|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1264|48563|239|Video Streaming
+2025-07-31T18:05:00|192.168.1.33|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1994|12609|577|E-commerce
+2025-07-31T12:07:00|192.168.1.90|89.52.38.151|https://monero-pool-2.io/stratum|blocked|403|Stratum/1.6.0|-|670|156|4713|Cryptocurrency
+2025-07-31T14:20:00|192.168.1.26|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1744|37718|373|Social Media
+2025-07-31T08:37:00|192.168.1.30|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1156|26599|892|Social Media
+2025-07-31T14:09:00|192.168.1.32|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1777|31219|685|E-commerce
+2025-07-31T19:51:00|192.168.1.35|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1764|5192|224|E-commerce
+2025-07-31T19:35:00|192.168.1.37|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1981|24235|350|E-commerce
+2025-07-31T12:39:00|192.168.1.191|185.220.101.1|https://onion-7966.onion/connect|blocked|403|Tor Browser/11.0|-|997|294|417|Proxy Avoidance
+2025-07-31T13:49:00|192.168.1.17|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1323|40071|973|Video Streaming
+2025-07-31T16:05:00|192.168.1.19|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1146|28258|310|Social Media
+2025-07-31T17:49:00|192.168.1.33|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1547|21613|670|E-commerce
+2025-07-31T09:47:00|192.168.1.20|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1274|30257|734|Video Streaming
+2025-07-31T13:04:00|192.168.1.39|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1225|10988|261|Video Streaming
+2025-07-31T12:21:00|192.168.1.88|73.25.41.100|https://ethereum-pool-15.com/stratum|blocked|403|Stratum/1.6.0|-|569|162|2008|Cryptocurrency
+2025-07-31T12:28:00|192.168.1.36|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1267|46709|929|E-commerce
+2025-07-31T15:45:00|192.168.1.13|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1700|16714|320|Video Streaming
+2025-07-31T09:29:00|192.168.1.35|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1718|28978|474|Video Streaming
+2025-07-31T15:23:00|192.168.1.14|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1265|6653|791|Video Streaming
+2025-07-31T19:41:00|192.168.1.12|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1938|28063|740|Video Streaming
+2025-07-31T13:16:00|192.168.1.31|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1574|14012|373|Social Media
+2025-07-31T11:15:00|192.168.1.50|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1324|36853|384|Video Streaming
+2025-07-31T19:01:00|192.168.1.21|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1969|44161|321|Video Streaming
+2025-07-31T17:53:00|192.168.1.7|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|898|45287|945|Video Streaming
+2025-07-31T16:12:00|192.168.1.2|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1297|23406|980|E-commerce
+2025-07-31T13:29:00|192.168.1.36|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1139|37846|737|E-commerce
+2025-07-31T10:10:00|192.168.1.90|169.243.185.41|https://zcash-pool-18.io/stratum|blocked|403|Stratum/1.6.0|-|550|255|3943|Cryptocurrency
+2025-07-31T19:40:00|192.168.1.7|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1120|8275|885|Video Streaming
+2025-07-31T14:15:00|192.168.1.3|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|524|24491|817|Social Media
+2025-07-31T12:40:00|192.168.1.42|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|1852|21699|269|Video Streaming
+2025-07-31T11:20:00|192.168.1.41|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1280|6410|926|Video Streaming
+2025-07-31T19:53:00|192.168.1.18|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1238|15743|678|Social Media
+2025-07-31T17:18:00|192.168.1.15|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|749|16599|522|Video Streaming
+2025-07-31T19:20:00|192.168.1.29|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|2000|42258|850|Social Media
+2025-07-31T08:42:00|192.168.1.23|54.239.28.85|https://amazon.com/products|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://amazon.com|1820|19105|535|E-commerce
+2025-07-31T09:44:00|192.168.1.48|172.217.14.206|https://youtube.com/watch|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://youtube.com|1514|35855|980|Video Streaming
+2025-07-31T13:56:00|192.168.1.2|13.107.42.14|https://linkedin.com/feed|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://linkedin.com|1696|31177|464|Social Media
+2025-07-31T09:16:00|192.168.1.30|54.230.50.100|https://netflix.com/browse|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64)|https://netflix.com|830|5740|388|Video Streaming

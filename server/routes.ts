@@ -219,7 +219,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     }
 
-    await storage.updateLogFileStatus(logFile.id, "processing", logEntries.length);
+    // File is initially ready for analysis, not automatically processing
 
     // Create processing job
     const processingJob = await storage.createProcessingJob({
@@ -235,14 +235,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     // Track successful file upload
     metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'success');
 
-    // Start async processing
-    processLogFileAsync(logFile.id, logEntries, userId);
+    // Update log file status to ready (no automatic GenAI processing)
+    await storage.updateLogFileStatus(logFile.id, "ready", logEntries.length);
 
     res.json({
-      logFile,
+      logFile: {
+        ...logFile,
+        status: "ready"
+      },
       processingJob,
       totalEntries: logEntries.length,
-      estimatedProcessingTime: Math.ceil(logEntries.length / 10) * 2, // rough estimate in seconds
+      message: "File uploaded successfully. You can now run Traditional ML, Advanced ML, or GenAI analysis.",
+      availableAnalyses: {
+        traditional: "Rule-based analysis (always available)",
+        advanced: "Multi-model ML analysis (always available)", 
+        genai: "AI-powered analysis (requires API key)"
+      }
     });
   }));
 
@@ -781,11 +789,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   }));
 
-  // Process logs with custom AI configuration (heavy rate limiting)
+  // Process logs with custom AI configuration (heavy rate limiting) - REQUIRES API KEY
   app.post("/api/process-logs/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
     const logFileId = req.params.id;
     const userId = req.user!.id;
     const aiConfig = req.body.aiConfig; // Optional AI configuration from frontend
+
+    // FIRST: Check if user has configured API keys for GenAI analysis
+    const { userApiKeys } = await import("@shared/schema");
+    const { eq, and } = await import("drizzle-orm");
+    
+    const provider = aiConfig?.provider || 'openai';
+    const keyRecord = await db.select().from(userApiKeys).where(
+      and(eq(userApiKeys.userId, userId), eq(userApiKeys.provider, provider))
+    );
+    
+    if (keyRecord.length === 0) {
+      return res.status(400).json({ 
+        message: `No ${provider.toUpperCase()} API key configured. Please add your API key in Settings before using GenAI analysis.`,
+        requiresApiKey: true,
+        provider,
+        suggestion: "Go to Settings → API Configuration to add your API key"
+      });
+    }
+    
+    if (keyRecord[0].testStatus !== 'success') {
+      return res.status(400).json({ 
+        message: `${provider.toUpperCase()} API key is not working. Please check your API key in Settings.`,
+        requiresValidApiKey: true,
+        provider,
+        keyStatus: keyRecord[0].testStatus,
+        error: keyRecord[0].testError,
+        suggestion: "Go to Settings → API Configuration to test and fix your API key"
+      });
+    }
 
     // Check processing limit - max 3 concurrent processing jobs per user
     const activeProcessingCount = await storage.getActiveProcessingJobsCount(userId);
@@ -816,13 +853,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const content = await fs.readFile(filePath, "utf-8");
     const logEntries = zscalerLogParser.parseLogFile(content);
 
-    // Process with custom AI configuration
-    processLogFileAsync(logFile.id, logEntries, userId, aiConfig);
+    // Decrypt and use user's API key for processing
+    const decryptedApiKey = Buffer.from(keyRecord[0].encryptedApiKey, 'base64').toString();
+    const configWithUserKey = {
+      ...aiConfig,
+      provider,
+      apiKey: decryptedApiKey
+    };
+
+    // Process with user's API key
+    processLogFileAsync(logFile.id, logEntries, userId, configWithUserKey);
 
     res.json({ 
-      message: "Reprocessing started with custom AI configuration", 
+      message: `GenAI analysis started with your ${provider.toUpperCase()} API key`, 
       logFileId,
-      aiConfig: aiConfig || "default" 
+      provider,
+      aiConfig: { ...aiConfig, provider },
+      note: "This analysis uses your personal API key and will be billed to your account"
     });
   }));
 
