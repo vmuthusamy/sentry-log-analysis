@@ -293,7 +293,8 @@ export class MetricsService {
     } catch (error) {
       console.error('❌ Failed to flush metrics:', error);
       // Re-add failed metrics back to buffer for retry
-      this.metricsBuffer.unshift(...metrics);
+      const failedMetrics = [...metrics];
+      this.metricsBuffer.unshift(...failedMetrics);
     }
   }
 

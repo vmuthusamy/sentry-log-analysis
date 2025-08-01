@@ -1,0 +1,52 @@
+# Google Cloud Build ignore file
+.git
+.gitignore
+README.md
+Dockerfile
+node_modules
+npm-debug.log
+.nyc_output
+.coverage
+.coverage-final.json
+test/
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.log
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Replit specific files
+.replit
+replit.nix
+.upm/
+replit.lock
+
+# Development files
+tsconfig.json
+*.md
+example-logs/
+attached_assets/
+uploads/*
+!uploads/.gitkeep
+
+# Build artifacts
+dist/
+build/
+coverage/
+
+# Terraform
+terraform/
+*.tfstate
+*.tfstate.backup
+terraform.tfvars
+
+# Secrets and configs that shouldn't be deployed
+secrets.json
+.env.production
