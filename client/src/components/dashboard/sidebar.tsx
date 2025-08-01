@@ -74,11 +74,13 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
           <div className="flex items-center">
             <div className="w-8 h-8 bg-accent-green rounded-full flex items-center justify-center mr-3">
               <span className="text-sm font-medium text-white">
-                {user?.username?.charAt(0)?.toUpperCase() || "U"}
+                {user?.firstName?.charAt(0)?.toUpperCase() || user?.email?.charAt(0)?.toUpperCase() || "U"}
               </span>
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-white">{user?.username || "User"}</p>
+              <p className="text-sm font-medium text-white">
+                {user?.firstName && user?.lastName ? `${user.firstName} ${user.lastName}` : user?.email || "User"}
+              </p>
               <p className="text-xs text-slate-400">Security Analyst</p>
             </div>
             <Button
@@ -86,7 +88,7 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
               size="sm"
               onClick={handleLogout}
               className="text-slate-400 hover:text-white p-2"
-              disabled={logoutMutation.isPending}
+              disabled={false}
             >
               <LogOut className="h-4 w-4" />
             </Button>
