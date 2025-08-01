@@ -907,8 +907,8 @@ async function processLogFileAsync(logFileId: string, logEntries: any[], userId:
   try {
     await storage.updateLogFileStatus(logFileId, "processing");
     
-    // Process logs in batches to avoid overwhelming the AI service
-    const batchSize = 5; // Reduced from 10 to 5 for better performance
+    // Process logs in large batches for much faster performance
+    const batchSize = 100; // Process 100 logs at once for speed
     const anomalies = [];
     
     for (let i = 0; i < logEntries.length; i += batchSize) {
@@ -919,9 +919,9 @@ async function processLogFileAsync(logFileId: string, logEntries: any[], userId:
         const results = await detector.analyzeBatch(batch);
         const batchTime = Date.now() - batchStartTime;
         
-        // Add delay between batches to prevent overwhelming services
+        // Minimal delay between large batches
         if (i + batchSize < logEntries.length) {
-          await new Promise(resolve => setTimeout(resolve, 100)); // 100ms delay
+          await new Promise(resolve => setTimeout(resolve, 50)); // 50ms delay only
         }
         
         // Track AI analysis success

@@ -185,19 +185,107 @@ export class AnomalyDetector {
   }
 
   async analyzeBatch(logEntries: LogEntry[]): Promise<AnomalyResult[]> {
-    const results: AnomalyResult[] = [];
+    // For large batches, use efficient batch analysis
+    if (logEntries.length >= 50) {
+      return this.analyzeMultipleLogsAtOnce(logEntries);
+    }
     
+    // For smaller batches, process individually but without delays
+    const results: AnomalyResult[] = [];
     for (const entry of logEntries) {
       const result = await this.analyzeLogEntry(entry);
       results.push(result);
-      
-      // Add small delay to avoid rate limiting
-      if (logEntries.length > 10) {
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
     }
     
     return results;
+  }
+
+  private async analyzeMultipleLogsAtOnce(logEntries: LogEntry[]): Promise<AnomalyResult[]> {
+    try {
+      // Build a batch prompt for multiple logs
+      const batchPrompt = this.buildBatchAnalysisPrompt(logEntries);
+      const systemPrompt = "You are an expert cybersecurity analyst. Analyze the provided batch of log entries and identify threats. Respond with JSON array only, one result per log entry in the same order.";
+      
+      const analyzeConfig = { ...this.defaultConfig };
+      const response = await this.aiService.analyze({
+        systemPrompt,
+        userPrompt: batchPrompt,
+        config: analyzeConfig,
+      });
+      
+      const results = JSON.parse(response.content || "[]");
+      
+      // Ensure we have results for each log entry
+      const processedResults: AnomalyResult[] = [];
+      for (let i = 0; i < logEntries.length; i++) {
+        const result = results[i] || {
+          isAnomaly: false,
+          riskScore: 0,
+          anomalyType: "unknown",
+          description: "Analysis failed",
+          confidence: 0,
+          explanation: "Batch analysis error",
+          recommendations: []
+        };
+        
+        processedResults.push({
+          isAnomaly: result.isAnomaly || false,
+          riskScore: Math.min(10, Math.max(0, result.riskScore || 0)),
+          anomalyType: result.anomalyType || "unknown",
+          description: result.description || "No description available",
+          confidence: Math.min(1, Math.max(0, result.confidence || 0)),
+          explanation: `Batch AI Analysis: ${result.explanation || ""}`,
+          recommendations: result.recommendations || [],
+        });
+      }
+      
+      return processedResults;
+      
+    } catch (error) {
+      console.error("Batch AI analysis failed, falling back to traditional:", error);
+      
+      // Fallback to traditional analysis for all entries
+      const fallbackResults: AnomalyResult[] = [];
+      for (const entry of logEntries) {
+        try {
+          const traditionalResult = await this.traditionalDetector.analyzeLogEntry(entry);
+          fallbackResults.push({
+            ...traditionalResult,
+            explanation: `Traditional Fallback: ${traditionalResult.explanation} (Batch AI failed)`,
+          });
+        } catch (fallbackError) {
+          // Ultimate fallback
+          const ruleResult = this.simpleRuleBasedDetection(entry);
+          fallbackResults.push({
+            ...ruleResult,
+            explanation: `Basic Rule Fallback: ${ruleResult.explanation}`,
+          });
+        }
+      }
+      
+      return fallbackResults;
+    }
+  }
+
+  private buildBatchAnalysisPrompt(logEntries: LogEntry[]): string {
+    let prompt = `Analyze this batch of ${logEntries.length} network security logs for threats and anomalies. Return a JSON array with one result object per log entry in the EXACT same order.
+
+CRITICAL THREAT PATTERNS:
+1. BLOCKED ACTIONS (403 status): Score 7+
+2. MALICIOUS DOMAINS (.ru, .biz, tor-, dark-, proxy-): Score 8+  
+3. MALWARE CATEGORIES: Score 9+
+4. SUSPICIOUS USER AGENTS (curl, automated tools): Score 8+
+5. LARGE TRANSFERS (>100KB): Score 7+
+
+Log Entries:\n`;
+
+    logEntries.forEach((entry, index) => {
+      prompt += `\n[${index}] ${entry.timestamp} | ${entry.sourceIP} | ${entry.action} | ${entry.url || 'N/A'} | ${entry.statusCode || 'N/A'} | ${entry.category || 'N/A'} | ${entry.userAgent || 'N/A'}`;
+    });
+
+    prompt += `\n\nRespond with JSON array: [{"isAnomaly": boolean, "riskScore": number (0-10), "anomalyType": string, "description": string, "confidence": number (0-1), "explanation": string, "recommendations": array}]`;
+    
+    return prompt;
   }
 
   private buildAnalysisPrompt(logEntry: LogEntry): string {
