@@ -218,7 +218,7 @@ export class MetricsService {
     let aiTotal = 0, aiSuccess = 0, aiFailure = 0;
     
     for (const stat of aiAnalysisStats.rows) {
-      const provider = stat.ai_provider || 'unknown';
+      const provider = (stat as any).ai_provider || 'unknown';
       aiByProvider[provider] = {
         total: Number(stat.total),
         success: Number(stat.success),
@@ -293,13 +293,7 @@ export class MetricsService {
     } catch (error) {
       console.error('❌ Failed to flush metrics:', error);
       // Re-add failed metrics back to buffer for retry
-      this.metricsBuffer.unshift(...metrics.map(m => ({
-        userId: m.userId,
-        eventType: m.eventType,
-        status: m.status,
-        metadata: m.metadata,
-        timestamp: m.timestamp
-      })));
+      this.metricsBuffer.unshift(...metrics);
     }
   }
 

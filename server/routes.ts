@@ -97,7 +97,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   setupAuth(app);
 
   // File upload endpoint with rate limiting
-  app.post("/api/upload", requireAuth, uploadRateLimit, upload.single("logFile"), asyncHandler(async (req, res) => {
+  app.post("/api/upload", requireAuth, uploadRateLimit, upload.single("logFile"), asyncHandler(async (req: any, res: any) => {
     if (!req.file) {
       throw new ValidationError("No file uploaded");
     }
@@ -449,14 +449,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         if (key.provider === 'openai') {
           status.openai = {
             configured: true,
-            working: key.testStatus === 'success',
-            error: key.testError || undefined
+            working: key.testStatus === 'success'
           };
         } else if (key.provider === 'gemini') {
           status.gemini = {
             configured: true,
-            working: key.testStatus === 'success',
-            error: key.testError || undefined
+            working: key.testStatus === 'success'
           };
         }
       });
@@ -612,7 +610,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const logEntries = zscalerLogParser.parseLogFile(content);
 
       // Run advanced ML detection
-      const anomalies = advancedMLDetector.analyzeLogEntries(logEntries);
+      const anomalies = advancedMLDetector.analyzeLogEntries(logEntries as any);
       const analysisTime = Date.now() - startTime; // Calculate analysis time
 
       // Convert to storage format with enhanced raw log data
@@ -620,7 +618,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         id: anomaly.id,
         logFileId: logFile.id,
         userId,
-        timestamp: new Date(anomaly.logEntry.timestamp),
+        timestamp: new Date(anomaly.logEntry.timestamp || Date.now()),
         anomalyType: anomaly.anomalyType,
         description: anomaly.description,
         riskScore: anomaly.riskScore.toString(),
@@ -631,8 +629,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           metadata: anomaly.metadata
         },
         detectionMethod: "advanced",
-        rawLogEntry: anomaly.logEntry.rawLog || JSON.stringify(anomaly.logEntry),
-        logLineNumber: anomaly.logLineNumber || index + 1,
+        rawLogEntry: (anomaly.logEntry as any).rawLog || JSON.stringify(anomaly.logEntry),
+        logLineNumber: (anomaly as any).logLineNumber || index + 1,
       }));
 
       // Store anomalies
@@ -747,7 +745,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const logEntries = zscalerLogParser.parseLogFile(content);
 
       // Run traditional anomaly detection
-      const anomalies = traditionalDetector.analyzeLogEntries(logEntries);
+      const anomalies = traditionalDetector.analyzeLogEntries(logEntries as any);
       const analysisTime = Date.now() - startTime; // Calculate analysis time
 
       // Convert to storage format with enhanced raw log data
@@ -755,7 +753,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         id: anomaly.id,
         logFileId: logFile.id,
         userId,
-        timestamp: new Date(anomaly.logEntry.timestamp),
+        timestamp: new Date(anomaly.logEntry.timestamp || Date.now()),
         anomalyType: anomaly.anomalyType,
         description: anomaly.description,
         riskScore: anomaly.riskScore.toString(),
@@ -766,8 +764,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           metadata: anomaly.metadata
         },
         detectionMethod: "traditional",
-        rawLogEntry: anomaly.logEntry.rawLog || JSON.stringify(anomaly.logEntry),
-        logLineNumber: anomaly.logLineNumber || index + 1,
+        rawLogEntry: (anomaly.logEntry as any).rawLog || JSON.stringify(anomaly.logEntry),
+        logLineNumber: (anomaly as any).logLineNumber || index + 1,
       }));
 
       // Store anomalies
