@@ -18,7 +18,7 @@ export function AnalysisSection() {
   });
 
   const handleExport = () => {
-    if (!anomalies || anomalies.length === 0) {
+    if (!anomalies || !Array.isArray(anomalies) || anomalies.length === 0) {
       return;
     }
 
@@ -45,7 +45,7 @@ export function AnalysisSection() {
       headers.join(','),
       ...exportData.map(row => 
         headers.map(header => {
-          const value = (row as any)[header];
+          const value = (row as Record<string, any>)[header];
           // Escape commas and quotes in CSV
           return typeof value === 'string' && (value.includes(',') || value.includes('"')) 
             ? `"${value.replace(/"/g, '""')}"` 
@@ -153,7 +153,7 @@ export function AnalysisSection() {
             </Button>
             <Button 
               onClick={handleExport}
-              disabled={!anomalies || anomalies.length === 0}
+              disabled={!anomalies || !Array.isArray(anomalies) || anomalies.length === 0}
               className="bg-accent-blue hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Download className="mr-2 h-4 w-4" />
