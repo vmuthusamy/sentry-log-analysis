@@ -58,13 +58,16 @@ export default function LogManagement() {
     },
   });
 
-  const getStatusBadge = (status: string) => {
+  const getStatusBadge = (status: string, errorMessage?: string) => {
     switch (status) {
       case "completed":
         return <Badge className="bg-green-100 text-green-800"><CheckCircle className="w-3 h-3 mr-1" />Completed</Badge>;
       case "processing":
         return <Badge className="bg-blue-100 text-blue-800"><RefreshCw className="w-3 h-3 mr-1 animate-spin" />Processing</Badge>;
       case "failed":
+        if (errorMessage?.includes('timeout') || errorMessage?.includes('Processing timed out')) {
+          return <Badge className="bg-yellow-100 text-yellow-800"><AlertTriangle className="w-3 h-3 mr-1" />Timed Out</Badge>;
+        }
         return <Badge className="bg-red-100 text-red-800"><AlertTriangle className="w-3 h-3 mr-1" />Failed</Badge>;
       default:
         return <Badge variant="secondary">{status}</Badge>;
@@ -146,7 +149,7 @@ export default function LogManagement() {
                             </div>
                           </div>
                           <div className="flex items-center gap-3">
-                            {getStatusBadge(file.status)}
+                            {getStatusBadge(file.status, file.errorMessage)}
                             <Button
                               size="sm"
                               variant="outline"
@@ -169,6 +172,21 @@ export default function LogManagement() {
                         {file.totalEntries && (
                           <div className="mt-2 text-sm text-slate-400">
                             {file.totalEntries.toLocaleString()} log entries
+                          </div>
+                        )}
+                        
+                        {/* Error Message Display */}
+                        {file.status === 'failed' && file.errorMessage && (
+                          <div className="mt-2 p-2 bg-red-950/50 border border-red-800/50 rounded text-xs">
+                            <div className="text-red-300 font-medium mb-1">
+                              {file.errorMessage.includes('timeout') ? 'Processing Timeout' : 'Processing Error'}
+                            </div>
+                            <div className="text-red-400">
+                              {file.errorMessage.includes('timeout') 
+                                ? 'File processing exceeded time limit. Click "Reprocess" to try again.'
+                                : file.errorMessage
+                              }
+                            </div>
                           </div>
                         )}
                         

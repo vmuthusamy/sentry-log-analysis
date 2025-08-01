@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check, Loader2, AlertTriangle, Download, Info } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { RetryUploadButton } from "./retry-upload-button";
 
 export function HistorySection() {
   const { data: logFiles, isLoading } = useQuery({
@@ -53,13 +54,16 @@ export function HistorySection() {
     }
   };
 
-  const getStatusText = (status: string) => {
+  const getStatusText = (status: string, errorMessage?: string) => {
     switch (status) {
       case "completed":
         return "Completed successfully";
       case "processing":
         return "Processing...";
       case "failed":
+        if (errorMessage?.includes('timeout') || errorMessage?.includes('Processing timed out')) {
+          return "Processing timed out - retry recommended";
+        }
         return "Failed - see details";
       case "pending":
         return "Queued for processing";
@@ -133,7 +137,7 @@ export function HistorySection() {
                         <h4 className="text-white font-semibold truncate max-w-32" title={logFile.originalName}>
                           {logFile.originalName}
                         </h4>
-                        <p className="text-slate-400 text-sm">{getStatusText(logFile.status)}</p>
+                        <p className="text-slate-400 text-sm">{getStatusText(logFile.status, logFile.errorMessage)}</p>
                       </div>
                     </div>
                     <span className="text-xs text-slate-500">
@@ -165,8 +169,16 @@ export function HistorySection() {
                       </div>
                     )}
                     {logFile.status === "failed" && logFile.errorMessage && (
-                      <div className="text-xs text-accent-red bg-dark-tertiary/50 rounded p-2">
-                        Error: {logFile.errorMessage}
+                      <div className="text-xs text-accent-red bg-red-950/30 border border-red-800/30 rounded p-2">
+                        <div className="font-medium mb-1">
+                          {logFile.errorMessage.includes('timeout') ? 'Processing Timeout' : 'Processing Error'}
+                        </div>
+                        <div className="text-red-300">
+                          {logFile.errorMessage.includes('timeout') 
+                            ? 'File processing exceeded time limit. Use the retry button below.'
+                            : logFile.errorMessage
+                          }
+                        </div>
                       </div>
                     )}
                   </div>
@@ -190,12 +202,14 @@ export function HistorySection() {
                       </>
                     ) : logFile.status === "failed" ? (
                       <>
-                        <Button 
-                          size="sm" 
-                          className="flex-1 bg-accent-blue/10 text-accent-blue hover:bg-accent-blue/20"
-                        >
-                          Retry
-                        </Button>
+                        <RetryUploadButton
+                          logFileId={logFile.id}
+                          filename={logFile.originalName}
+                          errorMessage={logFile.errorMessage}
+                          onRetryComplete={() => {
+                            // Optional: Add any specific retry completion logic
+                          }}
+                        />
                         <Button 
                           size="sm" 
                           variant="outline" 
