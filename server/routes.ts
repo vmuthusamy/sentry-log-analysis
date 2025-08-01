@@ -468,6 +468,7 @@ export function registerRoutes(app: Express): Server {
   app.post("/api/analyze-advanced-ml/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
     const logFileId = req.params.id;
     const userId = req.user!.id;
+    const startTime = Date.now(); // Start timing analysis
 
     try {
       const logFile = await storage.getLogFile(logFileId);
@@ -484,6 +485,7 @@ export function registerRoutes(app: Express): Server {
 
       // Run advanced ML detection
       const anomalies = advancedMLDetector.analyzeLogEntries(logEntries);
+      const analysisTime = Date.now() - startTime; // Calculate analysis time
 
       // Convert to storage format
       const anomalyInserts = anomalies.map(anomaly => ({
@@ -508,11 +510,25 @@ export function registerRoutes(app: Express): Server {
         await storage.createAnomaly(anomaly);
       }
 
+      // Create processing job record with analysis time
+      await storage.createProcessingJob({
+        logFileId: logFile.id,
+        userId,
+        status: "completed",
+        progress: 100,
+        analysisTimeMs: analysisTime,
+        detectionMethod: "advanced_ml",
+        anomaliesFound: anomalies.length,
+        logEntriesProcessed: logEntries.length,
+        settings: { method: "advanced_ml", models: ['statistical', 'behavioral', 'network', 'temporal', 'ensemble'] }
+      });
+
       // Track success metrics
       await metricsService.track(userId, 'analysis_success', 'advanced_ml', {
         anomalies_found: anomalies.length,
         log_entries: logEntries.length,
         file_id: logFile.id,
+        analysis_time_ms: analysisTime,
         models_used: ['statistical', 'behavioral', 'network', 'temporal', 'ensemble']
       });
 
@@ -520,6 +536,8 @@ export function registerRoutes(app: Express): Server {
         message: "Advanced ML analysis completed successfully",
         anomaliesFound: anomalies.length,
         logEntriesAnalyzed: logEntries.length,
+        analysisTimeMs: analysisTime,
+        analysisTimeSec: Math.round(analysisTime / 1000 * 100) / 100, // Rounded to 2 decimal places
         method: "Advanced ML (Multi-Model Ensemble)",
         modelsUsed: ['Statistical Analysis', 'Behavioral Profiling', 'Network Analysis', 'Time Series', 'Ensemble Learning'],
         anomalies: anomalies.slice(0, 15) // Return top 15 for preview
@@ -527,16 +545,33 @@ export function registerRoutes(app: Express): Server {
 
     } catch (error) {
       console.error("Advanced ML analysis error:", error);
+      const analysisTime = Date.now() - startTime;
+      
+      // Create failed processing job record
+      await storage.createProcessingJob({
+        logFileId,
+        userId,
+        status: "failed",
+        progress: 0,
+        analysisTimeMs: analysisTime,
+        detectionMethod: "advanced_ml",
+        anomaliesFound: 0,
+        logEntriesProcessed: 0,
+        errorMessage: error instanceof Error ? error.message : "Unknown error",
+        settings: { method: "advanced_ml" }
+      });
       
       // Track failure metrics
       await metricsService.track(userId, 'analysis_failure', 'advanced_ml', {
         error: error instanceof Error ? error.message : 'unknown',
-        file_id: logFileId
+        file_id: logFileId,
+        analysis_time_ms: analysisTime
       });
 
       res.status(500).json({ 
         message: "Advanced ML analysis failed", 
-        error: error instanceof Error ? error.message : "Unknown error" 
+        error: error instanceof Error ? error.message : "Unknown error",
+        analysisTimeMs: analysisTime
       });
     }
   }));
@@ -545,6 +580,7 @@ export function registerRoutes(app: Express): Server {
   app.post("/api/analyze-traditional/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
     const logFileId = req.params.id;
     const userId = req.user!.id;
+    const startTime = Date.now(); // Start timing analysis
 
     try {
       const logFile = await storage.getLogFile(logFileId);
@@ -561,6 +597,7 @@ export function registerRoutes(app: Express): Server {
 
       // Run traditional anomaly detection
       const anomalies = traditionalDetector.analyzeLogEntries(logEntries);
+      const analysisTime = Date.now() - startTime; // Calculate analysis time
 
       // Convert to storage format
       const anomalyInserts = anomalies.map(anomaly => ({
@@ -585,33 +622,66 @@ export function registerRoutes(app: Express): Server {
         await storage.createAnomaly(anomaly);
       }
 
+      // Create processing job record with analysis time
+      await storage.createProcessingJob({
+        logFileId: logFile.id,
+        userId,
+        status: "completed",
+        progress: 100,
+        analysisTimeMs: analysisTime,
+        detectionMethod: "traditional_ml",
+        anomaliesFound: anomalies.length,
+        logEntriesProcessed: logEntries.length,
+        settings: { method: "traditional_ml", rules: "pattern_matching_statistical" }
+      });
+
       // Track success metrics
       await metricsService.track(userId, 'analysis_success', 'traditional_ml', {
         anomalies_found: anomalies.length,
         log_entries: logEntries.length,
-        file_id: logFile.id
+        file_id: logFile.id,
+        analysis_time_ms: analysisTime
       });
 
       res.json({ 
         message: "Traditional analysis completed successfully",
         anomaliesFound: anomalies.length,
         logEntriesAnalyzed: logEntries.length,
+        analysisTimeMs: analysisTime,
+        analysisTimeSec: Math.round(analysisTime / 1000 * 100) / 100, // Rounded to 2 decimal places
         method: "Traditional ML (rule-based + statistical)",
         anomalies: anomalies.slice(0, 10) // Return top 10 for preview
       });
 
     } catch (error) {
       console.error("Traditional analysis error:", error);
+      const analysisTime = Date.now() - startTime;
+      
+      // Create failed processing job record
+      await storage.createProcessingJob({
+        logFileId,
+        userId,
+        status: "failed",
+        progress: 0,
+        analysisTimeMs: analysisTime,
+        detectionMethod: "traditional_ml",
+        anomaliesFound: 0,
+        logEntriesProcessed: 0,
+        errorMessage: error instanceof Error ? error.message : "Unknown error",
+        settings: { method: "traditional_ml" }
+      });
       
       // Track failure metrics
       await metricsService.track(userId, 'analysis_failure', 'traditional_ml', {
         error: error instanceof Error ? error.message : 'unknown',
-        file_id: logFileId
+        file_id: logFileId,
+        analysis_time_ms: analysisTime
       });
 
       res.status(500).json({ 
         message: "Traditional analysis failed", 
-        error: error instanceof Error ? error.message : "Unknown error" 
+        error: error instanceof Error ? error.message : "Unknown error",
+        analysisTimeMs: analysisTime
       });
     }
   }));

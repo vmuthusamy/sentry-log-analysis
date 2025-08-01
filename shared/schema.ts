@@ -49,6 +49,10 @@ export const processingJobs = pgTable("processing_jobs", {
   progress: integer("progress").default(0),
   startedAt: timestamp("started_at"),
   completedAt: timestamp("completed_at"),
+  analysisTimeMs: integer("analysis_time_ms"), // Analysis time in milliseconds
+  detectionMethod: text("detection_method"), // ai, advanced_ml, traditional_ml
+  anomaliesFound: integer("anomalies_found"), // Number of anomalies detected
+  logEntriesProcessed: integer("log_entries_processed"), // Total log entries analyzed
   errorMessage: text("error_message"),
   settings: jsonb("settings").notNull(),
 });
