@@ -13,6 +13,7 @@ import { AdvancedMLDetector } from "./services/advanced-ml-detector";
 import { uploadRateLimit, apiRateLimit, loginRateLimit, analysisRateLimit } from "./middleware/rate-limiter";
 import { handleMulterErrors, globalErrorHandler, notFoundHandler, asyncHandler, ValidationError, FileSizeError, ProcessingError } from "./middleware/error-handler";
 import { userAnalytics } from "./services/user-analytics";
+import { systemAnalytics } from "./services/system-analytics";
 import { requireSystemAccess } from "./middleware/system-auth";
 import { validateAnalyticsParams, validateFileUpload } from "./middleware/security-validator";
 import multer from "multer";
@@ -1010,87 +1011,119 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Analytics endpoints for user activity tracking (SYSTEM USERS ONLY)
-  app.get("/api/analytics/users", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
-    // Only allow access for system-level users
-    const userId = req.user!.id;
-    
+  // SYSTEM ANALYTICS ENDPOINTS - Complete visibility for system users
+  app.get("/api/system/analytics/overview", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
     try {
       const days = parseInt(req.query.days as string) || 30;
-      const userMetrics = await userAnalytics.getUserMetrics(days);
+      
+      const [userActivity, fileAnalytics, securityAnalytics, behaviorPatterns, systemHealth] = await Promise.all([
+        systemAnalytics.getAllUserActivity(days),
+        systemAnalytics.getFileUploadAnalytics(days),
+        systemAnalytics.getSecurityAnalytics(days),
+        systemAnalytics.getUserBehaviorPatterns(days),
+        systemAnalytics.getSystemHealthMetrics()
+      ]);
       
       res.json({
-        users: userMetrics,
+        userActivity,
+        fileAnalytics,
+        securityAnalytics,
+        behaviorPatterns,
+        systemHealth,
+        generatedAt: new Date().toISOString(),
+        periodDays: days
+      });
+    } catch (error) {
+      console.error("System analytics error:", error);
+      res.status(500).json({ message: "Failed to get system analytics" });
+    }
+  }));
+
+  app.get("/api/system/analytics/users", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
+    try {
+      const days = parseInt(req.query.days as string) || 30;
+      const userActivity = await systemAnalytics.getAllUserActivity(days);
+      
+      res.json({
+        users: userActivity,
         summary: {
-          totalUsers: userMetrics.length,
-          newUsers: userMetrics.filter(u => u.retentionStatus === 'new').length,
-          activeUsers: userMetrics.filter(u => u.isActive).length,
-          atRiskUsers: userMetrics.filter(u => u.retentionStatus === 'at_risk').length,
-          churnedUsers: userMetrics.filter(u => u.retentionStatus === 'churned').length
+          totalUsers: userActivity.length,
+          activeUsers: userActivity.filter(u => u.isActive).length,
+          newUsers: userActivity.filter(u => u.daysSinceRegistration <= 7).length,
+          heavyUsers: userActivity.filter(u => (u.totalUploads || 0) > 5).length,
+          totalFilesSizeMB: userActivity.reduce((sum, u) => sum + (u.totalFileSizeMB || 0), 0)
         }
       });
     } catch (error) {
-      console.error("Analytics error:", error);
+      console.error("User analytics error:", error);
       res.status(500).json({ message: "Failed to get user analytics" });
     }
   }));
 
-  app.get("/api/analytics/daily", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
+  app.get("/api/system/analytics/uploads", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
     try {
       const days = parseInt(req.query.days as string) || 30;
-      const dailyMetrics = await userAnalytics.getDailyMetrics(days);
+      const fileAnalytics = await systemAnalytics.getFileUploadAnalytics(days);
       
-      res.json({
-        metrics: dailyMetrics,
-        summary: {
-          totalDays: dailyMetrics.length,
-          avgNewUsers: dailyMetrics.reduce((sum, d) => sum + d.newUsers, 0) / dailyMetrics.length,
-          avgActiveUsers: dailyMetrics.reduce((sum, d) => sum + d.activeUsers, 0) / dailyMetrics.length,
-          totalUploads: dailyMetrics.reduce((sum, d) => sum + d.uploads, 0),
-          totalAnomalies: dailyMetrics.reduce((sum, d) => sum + d.anomaliesDetected, 0)
-        }
-      });
+      res.json(fileAnalytics);
     } catch (error) {
-      console.error("Daily analytics error:", error);
-      res.status(500).json({ message: "Failed to get daily analytics" });
+      console.error("File analytics error:", error);
+      res.status(500).json({ message: "Failed to get file analytics" });
     }
   }));
 
-  app.get("/api/analytics/cohorts", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
+  app.get("/api/system/analytics/security", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
     try {
-      const cohorts = await userAnalytics.getCohortAnalysis();
+      const days = parseInt(req.query.days as string) || 30;
+      const securityAnalytics = await systemAnalytics.getSecurityAnalytics(days);
       
-      res.json({
-        cohorts,
-        insights: {
-          totalCohorts: cohorts.length,
-          avgWeek1Retention: cohorts.reduce((sum: number, c: any) => sum + parseFloat(c.week_1_retention), 0) / cohorts.length,
-          avgWeek2Retention: cohorts.reduce((sum: number, c: any) => sum + parseFloat(c.week_2_retention), 0) / cohorts.length,
-          avgWeek3Retention: cohorts.reduce((sum: number, c: any) => sum + parseFloat(c.week_3_retention), 0) / cohorts.length
-        }
-      });
+      res.json(securityAnalytics);
     } catch (error) {
-      console.error("Cohort analysis error:", error);
-      res.status(500).json({ message: "Failed to get cohort analysis" });
+      console.error("Security analytics error:", error);
+      res.status(500).json({ message: "Failed to get security analytics" });
     }
   }));
 
-  app.get("/api/analytics/access-logs", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
+  app.get("/api/system/analytics/activity-timeline", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
     try {
       const limit = parseInt(req.query.limit as string) || 100;
-      const logs = await userAnalytics.getAccessLogs(limit);
+      const timeline = await systemAnalytics.getUserActivityTimeline(limit);
       
       res.json({
-        logs,
+        activities: timeline,
         summary: {
-          totalLogs: logs.length,
-          eventTypes: Array.from(new Set(logs.map(l => l.eventType))),
-          uniqueUsers: Array.from(new Set(logs.map(l => l.userId))).length
+          totalActivities: timeline.length,
+          uniqueUsers: Array.from(new Set(timeline.map(a => a.userId))).length,
+          totalFilesSizeMB: timeline.reduce((sum, a) => sum + (a.fileSizeMB || 0), 0),
+          successfulUploads: timeline.filter(a => a.status === 'completed').length
         }
       });
     } catch (error) {
-      console.error("Access logs error:", error);
-      res.status(500).json({ message: "Failed to get access logs" });
+      console.error("Activity timeline error:", error);
+      res.status(500).json({ message: "Failed to get activity timeline" });
+    }
+  }));
+
+  app.get("/api/system/analytics/behavior", requireAuth, requireSystemAccess, validateAnalyticsParams, asyncHandler(async (req: any, res: any) => {
+    try {
+      const days = parseInt(req.query.days as string) || 30;
+      const behaviorPatterns = await systemAnalytics.getUserBehaviorPatterns(days);
+      
+      res.json(behaviorPatterns);
+    } catch (error) {
+      console.error("Behavior analytics error:", error);
+      res.status(500).json({ message: "Failed to get behavior analytics" });
+    }
+  }));
+
+  app.get("/api/system/health", requireAuth, requireSystemAccess, asyncHandler(async (req: any, res: any) => {
+    try {
+      const healthMetrics = await systemAnalytics.getSystemHealthMetrics();
+      
+      res.json(healthMetrics);
+    } catch (error) {
+      console.error("System health error:", error);
+      res.status(500).json({ message: "Failed to get system health metrics" });
     }
   }));
 

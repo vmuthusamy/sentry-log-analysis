@@ -11,24 +11,30 @@ import { Users, TrendingUp, Clock, Activity, AlertTriangle, UserCheck } from "lu
 export default function AnalyticsPage() {
   const [selectedDays, setSelectedDays] = useState("30");
 
+  const { data: systemOverview, isLoading: overviewLoading } = useQuery({
+    queryKey: ["/api/system/analytics/overview", selectedDays],
+    queryFn: () => fetch(`/api/system/analytics/overview?days=${selectedDays}`).then(res => res.json())
+  });
+
   const { data: userMetrics, isLoading: userLoading } = useQuery({
-    queryKey: ["/api/analytics/users", selectedDays],
-    queryFn: () => fetch(`/api/analytics/users?days=${selectedDays}`).then(res => res.json())
+    queryKey: ["/api/system/analytics/users", selectedDays],
+    queryFn: () => fetch(`/api/system/analytics/users?days=${selectedDays}`).then(res => res.json())
   });
 
-  const { data: dailyMetrics, isLoading: dailyLoading } = useQuery({
-    queryKey: ["/api/analytics/daily", selectedDays],
-    queryFn: () => fetch(`/api/analytics/daily?days=${selectedDays}`).then(res => res.json())
+  const { data: securityAnalytics, isLoading: securityLoading } = useQuery({
+    queryKey: ["/api/system/analytics/security", selectedDays],
+    queryFn: () => fetch(`/api/system/analytics/security?days=${selectedDays}`).then(res => res.json())
   });
 
-  const { data: cohortData, isLoading: cohortLoading } = useQuery({
-    queryKey: ["/api/analytics/cohorts"],
-    queryFn: () => fetch(`/api/analytics/cohorts`).then(res => res.json())
+  const { data: activityTimeline, isLoading: timelineLoading } = useQuery({
+    queryKey: ["/api/system/analytics/activity-timeline"],
+    queryFn: () => fetch(`/api/system/analytics/activity-timeline?limit=50`).then(res => res.json())
   });
 
-  const { data: accessLogs, isLoading: logsLoading } = useQuery({
-    queryKey: ["/api/analytics/access-logs"],
-    queryFn: () => fetch(`/api/analytics/access-logs?limit=50`).then(res => res.json())
+  const { data: systemHealth, isLoading: healthLoading } = useQuery({
+    queryKey: ["/api/system/health"],
+    queryFn: () => fetch(`/api/system/health`).then(res => res.json()),
+    refetchInterval: 30000 // Refresh every 30 seconds
   });
 
   const getActivityLevelColor = (level: string) => {
@@ -51,18 +57,20 @@ export default function AnalyticsPage() {
     }
   };
 
-  const isLoading = userLoading || dailyLoading || cohortLoading || logsLoading;
+  const isLoading = overviewLoading || userLoading || securityLoading || timelineLoading || healthLoading;
 
   if (isLoading) {
     return (
-      <div className="container mx-auto p-6">
-        <div className="flex items-center justify-center h-64">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-2 text-muted-foreground">Loading analytics...</p>
+      <SystemAccessGuard requiredRole="system">
+        <div className="container mx-auto p-6">
+          <div className="flex items-center justify-center h-64">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+              <p className="mt-2 text-muted-foreground">Loading system analytics...</p>
+            </div>
           </div>
         </div>
-      </div>
+      </SystemAccessGuard>
     );
   }
 
@@ -71,8 +79,8 @@ export default function AnalyticsPage() {
       <div className="container mx-auto p-6 space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold">User Analytics</h1>
-          <p className="text-muted-foreground">Monitor user activity, retention, and platform usage</p>
+          <h1 className="text-3xl font-bold">System Analytics</h1>
+          <p className="text-muted-foreground">Complete visibility into user activity, security, and platform performance</p>
         </div>
         <Select value={selectedDays} onValueChange={setSelectedDays}>
           <SelectTrigger className="w-40">
@@ -86,8 +94,8 @@ export default function AnalyticsPage() {
         </Select>
       </div>
 
-      {/* Summary Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      {/* System Health & Summary Cards */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Users</CardTitle>
@@ -96,7 +104,7 @@ export default function AnalyticsPage() {
           <CardContent>
             <div className="text-2xl font-bold">{userMetrics?.summary?.totalUsers || 0}</div>
             <p className="text-xs text-muted-foreground">
-              {userMetrics?.summary?.newUsers || 0} new this period
+              {userMetrics?.summary?.newUsers || 0} new users
             </p>
           </CardContent>
         </Card>
@@ -107,35 +115,48 @@ export default function AnalyticsPage() {
             <UserCheck className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{userMetrics?.summary?.activeUsers || 0}</div>
+            <div className="text-2xl font-bold">{systemHealth?.activeUsers?.last24Hours || 0}</div>
             <p className="text-xs text-muted-foreground">
-              Active in last 7 days
+              Last 24 hours
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Uploads</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Data</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{dailyMetrics?.summary?.totalUploads || 0}</div>
+            <div className="text-2xl font-bold">{userMetrics?.summary?.totalFilesSizeMB?.toFixed(1) || 0} MB</div>
             <p className="text-xs text-muted-foreground">
-              Files uploaded this period
+              Files processed
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">At Risk Users</CardTitle>
+            <CardTitle className="text-sm font-medium">Success Rate</CardTitle>
+            <Activity className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{systemHealth?.errorStats?.errorRate ? (100 - systemHealth.errorStats.errorRate).toFixed(1) : 100}%</div>
+            <p className="text-xs text-muted-foreground">
+              Processing success
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Heavy Users</CardTitle>
             <AlertTriangle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{userMetrics?.summary?.atRiskUsers || 0}</div>
+            <div className="text-2xl font-bold">{userMetrics?.summary?.heavyUsers || 0}</div>
             <p className="text-xs text-muted-foreground">
-              Need engagement
+              5+ uploads
             </p>
           </CardContent>
         </Card>
@@ -144,17 +165,18 @@ export default function AnalyticsPage() {
       <Tabs defaultValue="users" className="space-y-4">
         <TabsList>
           <TabsTrigger value="users">Users</TabsTrigger>
-          <TabsTrigger value="activity">Daily Activity</TabsTrigger>
-          <TabsTrigger value="retention">Retention</TabsTrigger>
-          <TabsTrigger value="logs">Access Logs</TabsTrigger>
+          <TabsTrigger value="uploads">File Uploads</TabsTrigger>
+          <TabsTrigger value="security">Security</TabsTrigger>
+          <TabsTrigger value="timeline">Activity Timeline</TabsTrigger>
+          <TabsTrigger value="health">System Health</TabsTrigger>
         </TabsList>
 
         <TabsContent value="users" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>User Overview</CardTitle>
+              <CardTitle>All User Activity</CardTitle>
               <CardDescription>
-                User activity levels and engagement metrics
+                Complete visibility into user behavior and platform usage
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -164,18 +186,22 @@ export default function AnalyticsPage() {
                     <div className="space-y-1">
                       <p className="font-medium">{user.email}</p>
                       <div className="flex gap-2">
-                        <Badge className={getActivityLevelColor(user.activityLevel)}>
-                          {user.activityLevel}
+                        <Badge variant="outline">
+                          {user.role || 'user'}
                         </Badge>
-                        <Badge className={getRetentionColor(user.retentionStatus)}>
-                          {user.retentionStatus}
+                        <Badge className={user.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}>
+                          {user.isActive ? 'Active' : 'Inactive'}
                         </Badge>
                       </div>
+                      <p className="text-xs text-muted-foreground">
+                        Registered {user.daysSinceRegistration} days ago
+                      </p>
                     </div>
                     <div className="text-right text-sm text-muted-foreground">
-                      <p>{user.totalUploads} uploads</p>
-                      <p>{user.totalAnomaliesFound} anomalies</p>
-                      <p>{user.daysSinceRegistration} days ago</p>
+                      <p>{user.totalUploads || 0} uploads</p>
+                      <p>{user.totalAnomalies || 0} anomalies</p>
+                      <p>{user.totalFileSizeMB || 0} MB processed</p>
+                      <p>Risk: {user.avgRiskScore || 0}/10</p>
                     </div>
                   </div>
                 ))}
@@ -184,27 +210,51 @@ export default function AnalyticsPage() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="activity" className="space-y-4">
+        <TabsContent value="uploads" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Daily Activity Metrics</CardTitle>
+              <CardTitle>File Upload Analytics</CardTitle>
               <CardDescription>
-                Track daily user activity and platform usage
+                Detailed analysis of all file uploads and processing
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-2">
-                {dailyMetrics?.metrics?.slice(-14).map((day: any) => (
-                  <div key={day.date} className="flex items-center justify-between p-3 border rounded">
-                    <div className="font-medium">{new Date(day.date).toLocaleDateString()}</div>
-                    <div className="flex gap-4 text-sm">
-                      <span>👥 {day.activeUsers} active</span>
-                      <span>📁 {day.uploads} uploads</span>
-                      <span>⚠️ {day.anomaliesDetected} anomalies</span>
-                      <span>👤 {day.newUsers} new</span>
-                    </div>
+              <div className="space-y-4">
+                <div className="grid grid-cols-4 gap-4 mb-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">{systemOverview?.fileAnalytics?.summary?.totalFiles || 0}</div>
+                    <div className="text-sm text-muted-foreground">Total Files</div>
                   </div>
-                ))}
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">{systemOverview?.fileAnalytics?.summary?.totalSizeMB || 0} MB</div>
+                    <div className="text-sm text-muted-foreground">Total Size</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">{systemOverview?.fileAnalytics?.summary?.successRate || 0}%</div>
+                    <div className="text-sm text-muted-foreground">Success Rate</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold">{systemOverview?.fileAnalytics?.summary?.avgProcessingTimeSeconds || 0}s</div>
+                    <div className="text-sm text-muted-foreground">Avg Processing</div>
+                  </div>
+                </div>
+                <div className="space-y-2 max-h-96 overflow-y-auto">
+                  {systemOverview?.fileAnalytics?.uploads?.slice(0, 20).map((upload: any, index: number) => (
+                    <div key={index} className="flex items-center justify-between p-3 border rounded">
+                      <div>
+                        <div className="font-medium">{upload.fileName}</div>
+                        <div className="text-sm text-muted-foreground">{upload.userEmail}</div>
+                      </div>
+                      <div className="text-right text-sm">
+                        <div>📁 {upload.fileSizeMB} MB</div>
+                        <div>⚠️ {upload.anomaliesFound} anomalies</div>
+                        <Badge className={upload.status === 'completed' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
+                          {upload.status}
+                        </Badge>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>
