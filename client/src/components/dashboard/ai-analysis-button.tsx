@@ -72,8 +72,13 @@ export function AIAnalysisButton({
       let title = "Analysis Failed";
       let description = errorMessage;
       
+      // Check for processing limit error first
+      if (errorMessage.includes("Processing limit reached")) {
+        title = "Processing Limit Reached";
+        description = "You can only process 3 files at the same time. Please wait for current analyses to complete before starting new ones.";
+      }
       // Check for common AI provider throttling/quota issues
-      if (errorMessage.includes("429") || errorMessage.includes("quota") || errorMessage.includes("rate limit")) {
+      else if (errorMessage.includes("429") || errorMessage.includes("quota") || errorMessage.includes("rate limit")) {
         title = "AI Provider Rate Limited";
         description = `${selectedProvider === "openai" ? "OpenAI" : "Google"} is currently rate limiting requests. This is not an issue with our platform. Please wait a few minutes and try again, or try switching to the other AI provider.`;
       } else if (errorMessage.includes("401") || errorMessage.includes("unauthorized") || errorMessage.includes("invalid api key")) {

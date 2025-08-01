@@ -27,6 +27,7 @@ export interface IStorage {
   createProcessingJob(job: InsertProcessingJob): Promise<ProcessingJob>;
   getProcessingJob(id: string): Promise<ProcessingJob | undefined>;
   getProcessingJobsByUser(userId: string): Promise<ProcessingJob[]>;
+  getActiveProcessingJobsCount(userId: string): Promise<number>;
   updateProcessingJobProgress(id: string, progress: number): Promise<void>;
   updateProcessingJobStatus(id: string, status: string, errorMessage?: string): Promise<void>;
   
@@ -175,6 +176,17 @@ export class DatabaseStorage implements IStorage {
       .from(processingJobs)
       .where(eq(processingJobs.userId, userId))
       .orderBy(desc(processingJobs.startedAt));
+  }
+
+  async getActiveProcessingJobsCount(userId: string): Promise<number> {
+    const [result] = await db
+      .select({ count: count() })
+      .from(processingJobs)
+      .where(and(
+        eq(processingJobs.userId, userId),
+        eq(processingJobs.status, "processing")
+      ));
+    return result.count;
   }
 
   async updateProcessingJobProgress(id: string, progress: number): Promise<void> {

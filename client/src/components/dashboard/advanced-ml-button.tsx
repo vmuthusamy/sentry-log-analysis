@@ -42,9 +42,19 @@ export function AdvancedMLButton({
       
     } catch (error) {
       console.error("Advanced ML analysis failed:", error);
+      
+      const errorMessage = error instanceof Error ? error.message : "Advanced ML analysis failed";
+      let title = "Analysis Failed";
+      let description = errorMessage;
+      
+      if (errorMessage.includes("Processing limit reached")) {
+        title = "Processing Limit Reached";
+        description = "You can only process 3 files at the same time. Please wait for current analyses to complete before starting new ones.";
+      }
+      
       toast({
-        title: "Analysis Failed",
-        description: error instanceof Error ? error.message : "Advanced ML analysis failed",
+        title,
+        description,
         variant: "destructive",
       });
     } finally {

@@ -3,6 +3,8 @@ import { createServer, type Server } from "http";
 import { setupAuth } from "./auth";
 import { storage } from "./storage";
 import { db } from "./db";
+import { processingJobs } from "@shared/schema";
+import { eq } from "drizzle-orm";
 import { zscalerLogParser } from "./services/log-parser";
 import { anomalyDetector, AnomalyDetector } from "./services/anomaly-detector";
 import { metricsService } from "./services/metrics-service";
@@ -471,6 +473,16 @@ export function registerRoutes(app: Express): Server {
     const startTime = Date.now(); // Start timing analysis
 
     try {
+      // Check processing limit - max 3 concurrent processing jobs per user
+      const activeProcessingCount = await storage.getActiveProcessingJobsCount(userId);
+      if (activeProcessingCount >= 3) {
+        return res.status(429).json({ 
+          message: "Processing limit reached. You can only process 3 files at the same time. Please wait for current analyses to complete.", 
+          activeJobs: activeProcessingCount,
+          limit: 3
+        });
+      }
+
       const logFile = await storage.getLogFile(logFileId);
       if (!logFile || logFile.userId !== userId) {
         return res.status(404).json({ message: "Log file not found" });
@@ -511,17 +523,28 @@ export function registerRoutes(app: Express): Server {
       }
 
       // Create processing job record with analysis time
-      await storage.createProcessingJob({
+      const processingJob = await storage.createProcessingJob({
         logFileId: logFile.id,
         userId,
-        status: "completed",
-        progress: 100,
-        analysisTimeMs: analysisTime,
+        status: "processing",
+        progress: 0,
+        analysisTimeMs: null,
         detectionMethod: "advanced_ml",
-        anomaliesFound: anomalies.length,
-        logEntriesProcessed: logEntries.length,
+        anomaliesFound: null,
+        logEntriesProcessed: null,
         settings: { method: "advanced_ml", models: ['statistical', 'behavioral', 'network', 'temporal', 'ensemble'] }
       });
+
+      // Update processing job to completed with results
+      await storage.updateProcessingJobStatus(processingJob.id, "completed");
+      await db.update(processingJobs)
+        .set({ 
+          progress: 100,
+          analysisTimeMs: analysisTime,
+          anomaliesFound: anomalies.length,
+          logEntriesProcessed: logEntries.length
+        })
+        .where(eq(processingJobs.id, processingJob.id));
 
       // Track success metrics
       await metricsService.track(userId, 'analysis_success', 'advanced_ml', {
@@ -583,6 +606,16 @@ export function registerRoutes(app: Express): Server {
     const startTime = Date.now(); // Start timing analysis
 
     try {
+      // Check processing limit - max 3 concurrent processing jobs per user
+      const activeProcessingCount = await storage.getActiveProcessingJobsCount(userId);
+      if (activeProcessingCount >= 3) {
+        return res.status(429).json({ 
+          message: "Processing limit reached. You can only process 3 files at the same time. Please wait for current analyses to complete.", 
+          activeJobs: activeProcessingCount,
+          limit: 3
+        });
+      }
+
       const logFile = await storage.getLogFile(logFileId);
       if (!logFile || logFile.userId !== userId) {
         return res.status(404).json({ message: "Log file not found" });
@@ -623,17 +656,28 @@ export function registerRoutes(app: Express): Server {
       }
 
       // Create processing job record with analysis time
-      await storage.createProcessingJob({
+      const processingJob = await storage.createProcessingJob({
         logFileId: logFile.id,
         userId,
-        status: "completed",
-        progress: 100,
-        analysisTimeMs: analysisTime,
+        status: "processing",
+        progress: 0,
+        analysisTimeMs: null,
         detectionMethod: "traditional_ml",
-        anomaliesFound: anomalies.length,
-        logEntriesProcessed: logEntries.length,
+        anomaliesFound: null,
+        logEntriesProcessed: null,
         settings: { method: "traditional_ml", rules: "pattern_matching_statistical" }
       });
+
+      // Update processing job to completed with results
+      await storage.updateProcessingJobStatus(processingJob.id, "completed");
+      await db.update(processingJobs)
+        .set({ 
+          progress: 100,
+          analysisTimeMs: analysisTime,
+          anomaliesFound: anomalies.length,
+          logEntriesProcessed: logEntries.length
+        })
+        .where(eq(processingJobs.id, processingJob.id));
 
       // Track success metrics
       await metricsService.track(userId, 'analysis_success', 'traditional_ml', {
@@ -691,6 +735,16 @@ export function registerRoutes(app: Express): Server {
     const logFileId = req.params.id;
     const userId = req.user!.id;
     const aiConfig = req.body.aiConfig; // Optional AI configuration from frontend
+
+    // Check processing limit - max 3 concurrent processing jobs per user
+    const activeProcessingCount = await storage.getActiveProcessingJobsCount(userId);
+    if (activeProcessingCount >= 3) {
+      return res.status(429).json({ 
+        message: "Processing limit reached. You can only process 3 files at the same time. Please wait for current analyses to complete.", 
+        activeJobs: activeProcessingCount,
+        limit: 3
+      });
+    }
 
     const logFile = await storage.getLogFile(logFileId);
     if (!logFile || logFile.userId !== userId) {
