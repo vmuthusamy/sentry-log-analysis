@@ -174,3 +174,16 @@ Preferred communication style: Simple, everyday language.
 - Reduced cache lifetime (gcTime: 2 minutes) to prevent persistent cross-user data
 
 This comprehensive update ensures system stability under load while providing detailed performance tracking and maintaining complete data privacy between user sessions.
+
+### Detection Method Category Display (January 31, 2025)
+- **User-Friendly Categories**: Added clear detection method categories (Traditional, Advanced, GenAI) to analysis results display
+- **Visual Enhancement**: Color-coded badges with icons for each detection method:
+  - Traditional: Blue badges with Database icon for rule-based detection methods
+  - Advanced: Purple badges with BarChart3 icon for ML ensemble and statistical analysis  
+  - GenAI: Green badges with Brain icon for AI-powered analysis (OpenAI/Gemini)
+- **Category Mapping**: Automatic conversion from technical method names to user-friendly categories
+  - traditional_ml/traditional → Traditional
+  - advanced_ml → Advanced  
+  - openai/gemini/ai → GenAI
+- **Enhanced Export**: CSV exports now include detectionCategory column with clear category names
+- **UI Consistency**: Standardized color scheme and iconography across detection method displays
