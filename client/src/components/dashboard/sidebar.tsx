@@ -15,9 +15,9 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
   const menuItems = [
     { id: "overview", label: "Overview", icon: ChartLine },
     { id: "upload", label: "Upload Logs", icon: Upload },
+    { id: "management", label: "AI & Log Management", icon: FolderCog },
     { id: "analysis", label: "Analysis Results", icon: Search },
     { id: "history", label: "History", icon: History },
-    { id: "management", label: "AI & Log Management", icon: FolderCog },
     { id: "metrics", label: "Success Metrics", icon: BarChart3 },
     { id: "settings", label: "Settings", icon: Settings },
   ];

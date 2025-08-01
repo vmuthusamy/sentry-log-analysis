@@ -7,9 +7,9 @@ import { Badge } from "@/components/ui/badge";
 import { FileText, RefreshCw, Settings, Calendar, AlertTriangle, CheckCircle, Brain } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import AISettings from "./ai-settings";
 import { TraditionalAnalysisButton } from "./traditional-analysis-button";
 import { AdvancedMLButton } from "./advanced-ml-button";
+import { AIAnalysisButton } from "./ai-analysis-button";
 import { RefreshCacheButton } from "../refresh-cache-button";
 
 interface LogFile {
@@ -217,27 +217,14 @@ export default function LogManagement() {
                               <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                               AI-Powered Analysis (Requires API Keys)
                             </h4>
-                            <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-600/50">
-                              <div className="flex items-center justify-between mb-3">
-                                <div className="flex items-center gap-2">
-                                  <Brain className="h-4 w-4 text-blue-400" />
-                                  <span className="text-sm font-medium text-white">LLM Analysis</span>
-                                </div>
-                                <Badge variant="outline" className="text-xs text-blue-400 border-blue-400">
-                                  Premium
-                                </Badge>
-                              </div>
-                              <p className="text-xs text-slate-400 mb-3">
-                                Advanced AI analysis using GPT-4o or Gemini for deep behavioral insights
-                              </p>
-                              <AISettings
-                                logFileId={file.id}
-                                onAnalysisComplete={() => {
-                                  queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
-                                  queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
-                                }}
-                              />
-                            </div>
+                            <AIAnalysisButton 
+                              logFileId={file.id}
+                              filename={file.originalName}
+                              onAnalysisComplete={() => {
+                                queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
+                                queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
+                              }}
+                            />
                           </div>
                         </div>
                       </CardContent>

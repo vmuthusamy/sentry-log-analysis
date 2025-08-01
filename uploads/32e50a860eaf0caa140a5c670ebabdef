@@ -1,0 +1,151 @@
+TimeStamp|SourceIP|DestinationIP|URL|Action|StatusCode|User-Agent|Referer|Bytes Sent|Bytes Received|Duration|Category
+2025-07-31T08:53:00|192.168.1.99|62.197.70.214|https://c2-262.darknet.onion/beacon|blocked|403|curl/7.68.0|-|271|299|61|Malware
+2025-07-31T14:36:00|192.168.1.33|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1326|5404|364|Development
+2025-07-31T12:00:00|192.168.1.33|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|467|7160|284|Search Engines
+2025-07-31T12:21:00|192.168.1.33|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|952|5218|346|Development
+2025-07-31T11:04:00|192.168.1.15|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1401|5716|248|Development
+2025-07-31T14:52:00|192.168.1.8|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|543|5961|154|Development
+2025-07-31T13:12:00|192.168.1.10|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|953|3153|385|Business
+2025-07-31T11:23:00|192.168.1.10|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|1328|7511|309|News
+2025-07-31T13:35:00|192.168.1.10|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|976|7855|400|Business
+2025-07-31T16:00:00|192.168.1.10|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|698|3341|249|Business
+2025-07-31T15:45:00|192.168.1.22|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|1026|6243|138|Business
+2025-07-31T12:46:00|192.168.1.22|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1179|2150|176|Development
+2025-07-31T12:02:00|192.168.1.10|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|726|2141|174|Development
+2025-07-31T14:33:00|192.168.1.10|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|705|3104|113|Search Engines
+2025-07-31T15:01:00|192.168.1.33|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|282|4452|210|News
+2025-07-31T09:23:00|192.168.1.10|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|765|7165|178|Search Engines
+2025-07-31T14:05:00|192.168.1.8|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|1360|4917|217|Development
+2025-07-31T13:11:00|192.168.1.10|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1137|2201|182|Development
+2025-07-31T14:01:00|192.168.1.10|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|938|7006|240|Development
+2025-07-31T15:23:00|192.168.1.10|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|357|6963|391|Development
+2025-07-31T08:44:00|192.168.1.66|182.117.161.202|https://c2-934.darknet.onion/beacon|blocked|403|curl/7.68.0|-|482|201|63|Malware
+2025-07-31T14:26:00|192.168.1.15|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|401|4281|179|Development
+2025-07-31T12:17:00|192.168.1.15|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|611|4024|189|Business
+2025-07-31T09:44:00|192.168.1.10|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|1024|1377|355|Business
+2025-07-31T15:27:00|192.168.1.15|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|545|1643|249|Search Engines
+2025-07-31T13:22:00|192.168.1.8|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|620|2472|211|Development
+2025-07-31T14:45:00|192.168.1.22|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|315|7874|248|Search Engines
+2025-07-31T11:27:00|192.168.1.22|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|280|4217|253|Search Engines
+2025-07-31T10:05:00|192.168.1.33|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|605|3457|178|Development
+2025-07-31T14:23:00|192.168.1.10|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|530|7483|371|Search Engines
+2025-07-31T09:52:00|192.168.1.15|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1064|5973|149|Development
+2025-07-31T11:09:00|192.168.1.15|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|1395|2904|350|Business
+2025-07-31T14:16:00|192.168.1.22|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|1135|1584|280|Search Engines
+2025-07-31T13:22:00|192.168.1.8|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|1163|3339|325|Search Engines
+2025-07-31T15:38:00|192.168.1.15|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|1477|5412|325|News
+2025-07-31T13:38:00|192.168.1.8|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|486|2631|275|Development
+2025-07-31T08:23:00|192.168.1.15|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|1321|2261|252|News
+2025-07-31T13:48:00|192.168.1.33|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|949|3081|318|Business
+2025-07-31T13:49:00|192.168.1.33|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|489|5488|158|News
+2025-07-31T12:30:00|192.168.1.33|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|1424|3371|196|Search Engines
+2025-07-31T12:49:00|192.168.1.101|64.255.166.189|https://file-share-4861.com/upload|allowed|200|Python-requests/2.28.1|https://file-share-4861.com|489664|637|568|File Sharing
+2025-07-31T11:29:00|192.168.1.10|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|730|1915|376|News
+2025-07-31T12:52:00|192.168.1.22|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|674|6593|336|Development
+2025-07-31T11:26:00|192.168.1.33|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|1252|4336|241|Development
+2025-07-31T08:11:00|192.168.1.15|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|909|6534|369|News
+2025-07-31T12:34:00|192.168.1.8|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|866|1249|130|Development
+2025-07-31T15:55:00|192.168.1.22|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|1404|1446|348|Search Engines
+2025-07-31T15:03:00|192.168.1.33|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1135|4456|197|Development
+2025-07-31T10:26:00|192.168.1.22|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|484|7802|148|Search Engines
+2025-07-31T15:02:00|192.168.1.8|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1170|5115|281|Development
+2025-07-31T15:40:00|192.168.1.8|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|1493|1102|234|News
+2025-07-31T11:25:00|192.168.1.33|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|615|3170|304|Development
+2025-07-31T08:25:00|192.168.1.15|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|271|5185|143|Search Engines
+2025-07-31T09:12:00|192.168.1.22|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|718|5615|191|Search Engines
+2025-07-31T13:26:00|192.168.1.8|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|1429|2149|239|Business
+2025-07-31T08:20:00|192.168.1.22|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|777|5291|270|News
+2025-07-31T11:53:00|192.168.1.15|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|478|7917|272|News
+2025-07-31T08:54:00|192.168.1.22|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|887|5546|234|Search Engines
+2025-07-31T15:09:00|192.168.1.22|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|761|5029|122|News
+2025-07-31T13:41:00|192.168.1.8|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1195|4274|194|Development
+2025-07-31T13:35:00|192.168.1.99|118.74.196.62|https://file-share-4014.com/upload|allowed|200|Python-requests/2.28.1|https://file-share-4014.com|193055|455|1050|File Sharing
+2025-07-31T08:37:00|192.168.1.22|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|701|2502|375|Business
+2025-07-31T12:24:00|192.168.1.10|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|1144|5354|205|Development
+2025-07-31T08:24:00|192.168.1.22|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|1456|7940|305|Development
+2025-07-31T12:33:00|192.168.1.33|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|988|5972|103|Search Engines
+2025-07-31T15:08:00|192.168.1.8|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|288|2688|317|Search Engines
+2025-07-31T13:13:00|192.168.1.22|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|464|2125|330|Search Engines
+2025-07-31T08:50:00|192.168.1.10|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|923|5884|388|Business
+2025-07-31T15:41:00|192.168.1.10|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|787|7130|384|Business
+2025-07-31T11:36:00|192.168.1.8|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|285|2453|206|Business
+2025-07-31T12:50:00|192.168.1.33|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|1066|5784|299|Business
+2025-07-31T15:21:00|192.168.1.8|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|479|5178|245|Development
+2025-07-31T12:07:00|192.168.1.15|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|216|1390|286|Business
+2025-07-31T12:08:00|192.168.1.33|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|337|4395|328|Search Engines
+2025-07-31T11:28:00|192.168.1.22|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|226|6387|261|Development
+2025-07-31T09:29:00|192.168.1.8|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|748|4834|272|Development
+2025-07-31T15:31:00|192.168.1.22|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1363|2546|291|Development
+2025-07-31T15:59:00|192.168.1.10|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|430|5557|228|Search Engines
+2025-07-31T12:54:00|192.168.1.22|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1473|4364|346|Development
+2025-07-31T15:43:00|192.168.1.10|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|603|2670|125|Business
+2025-07-31T08:22:00|192.168.1.99|161.169.240.185|https://file-share-6651.com/upload|allowed|200|Python-requests/2.28.1|https://file-share-6651.com|318842|779|1398|File Sharing
+2025-07-31T09:59:00|192.168.1.15|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|550|2479|215|Development
+2025-07-31T14:44:00|192.168.1.22|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|408|1217|301|Development
+2025-07-31T15:33:00|192.168.1.10|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|677|3239|345|Business
+2025-07-31T08:35:00|192.168.1.10|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|478|3823|187|Development
+2025-07-31T12:08:00|192.168.1.22|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|1203|3125|138|Business
+2025-07-31T11:56:00|192.168.1.10|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1322|6742|298|Development
+2025-07-31T09:07:00|192.168.1.33|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|542|6614|119|Development
+2025-07-31T12:14:00|192.168.1.22|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|586|1033|126|News
+2025-07-31T10:22:00|192.168.1.22|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|1495|5876|241|News
+2025-07-31T13:00:00|192.168.1.8|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|872|4868|312|Development
+2025-07-31T12:22:00|192.168.1.8|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|1047|1560|333|Development
+2025-07-31T15:32:00|192.168.1.15|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|383|1173|358|Search Engines
+2025-07-31T09:18:00|192.168.1.8|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|1152|3636|276|News
+2025-07-31T12:23:00|192.168.1.10|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|369|6164|258|Development
+2025-07-31T10:48:00|192.168.1.33|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|222|2622|238|News
+2025-07-31T08:58:00|192.168.1.10|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|668|6290|346|Business
+2025-07-31T08:50:00|192.168.1.15|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|1241|3290|142|Business
+2025-07-31T14:05:00|192.168.1.8|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|493|7401|396|News
+2025-07-31T13:56:00|192.168.1.15|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1138|5501|376|Development
+2025-07-31T09:04:00|192.168.1.101|221.185.54.111|https://c2-160.darknet.onion/beacon|blocked|403|curl/7.68.0|-|215|161|144|Malware
+2025-07-31T09:19:00|192.168.1.10|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|235|2524|396|Development
+2025-07-31T09:09:00|192.168.1.10|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|1400|1840|330|Business
+2025-07-31T10:12:00|192.168.1.15|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|975|7285|128|Business
+2025-07-31T15:29:00|192.168.1.33|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|729|7525|377|Development
+2025-07-31T14:02:00|192.168.1.33|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|1158|3976|369|Search Engines
+2025-07-31T09:49:00|192.168.1.33|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|238|2239|215|Development
+2025-07-31T15:45:00|192.168.1.8|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1235|6146|269|Development
+2025-07-31T10:51:00|192.168.1.8|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|213|7813|184|Development
+2025-07-31T08:05:00|192.168.1.22|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|738|3365|311|News
+2025-07-31T08:09:00|192.168.1.15|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|658|3603|297|Business
+2025-07-31T14:30:00|192.168.1.33|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|870|5864|340|Search Engines
+2025-07-31T09:00:00|192.168.1.8|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|743|5914|272|Development
+2025-07-31T15:17:00|192.168.1.15|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|1058|1693|361|News
+2025-07-31T14:16:00|192.168.1.22|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|344|6719|315|Development
+2025-07-31T10:30:00|192.168.1.10|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|280|7885|308|Development
+2025-07-31T08:01:00|192.168.1.33|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1071|2250|355|Development
+2025-07-31T13:24:00|192.168.1.10|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|763|3364|303|Development
+2025-07-31T09:16:00|192.168.1.22|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|746|4558|103|Development
+2025-07-31T08:07:00|192.168.1.8|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|314|7220|156|Business
+2025-07-31T13:29:00|192.168.1.66|243.81.197.249|https://file-share-2480.com/upload|allowed|200|Python-requests/2.28.1|https://file-share-2480.com|279625|261|1156|File Sharing
+2025-07-31T14:22:00|192.168.1.8|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|369|2119|107|Development
+2025-07-31T10:51:00|192.168.1.15|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|518|4828|116|News
+2025-07-31T15:03:00|192.168.1.33|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|987|3215|385|Search Engines
+2025-07-31T14:02:00|192.168.1.15|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|973|5840|161|Development
+2025-07-31T12:23:00|192.168.1.15|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1020|7059|271|Development
+2025-07-31T12:32:00|192.168.1.22|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|1416|6874|182|Development
+2025-07-31T12:23:00|192.168.1.10|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|547|4570|218|Development
+2025-07-31T11:34:00|192.168.1.10|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1365|6347|146|Development
+2025-07-31T10:41:00|192.168.1.15|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|1241|6193|214|Development
+2025-07-31T14:06:00|192.168.1.15|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|971|3417|288|News
+2025-07-31T10:56:00|192.168.1.15|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|751|1970|319|Business
+2025-07-31T09:26:00|192.168.1.10|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|667|5228|371|Search Engines
+2025-07-31T15:22:00|192.168.1.10|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1166|2684|341|Development
+2025-07-31T08:30:00|192.168.1.8|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|959|3629|248|Development
+2025-07-31T09:30:00|192.168.1.8|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|904|3248|389|Search Engines
+2025-07-31T12:41:00|192.168.1.10|13.107.246.45|https://microsoft.com/office|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://microsoft.com|693|6464|270|Business
+2025-07-31T08:08:00|192.168.1.10|151.101.1.69|https://stackoverflow.com/questions|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://stackoverflow.com|1160|3306|233|Development
+2025-07-31T14:49:00|192.168.1.8|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|770|4428|107|News
+2025-07-31T11:49:00|192.168.1.10|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|715|4782|212|Search Engines
+2025-07-31T11:13:00|192.168.1.101|54.147.144.20|https://file-share-7989.com/upload|allowed|200|Python-requests/2.28.1|https://file-share-7989.com|226065|445|1627|File Sharing
+2025-07-31T15:55:00|192.168.1.10|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|221|5502|183|News
+2025-07-31T12:50:00|192.168.1.22|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|285|5559|262|News
+2025-07-31T08:11:00|192.168.1.22|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|923|6036|391|News
+2025-07-31T09:55:00|192.168.1.8|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|1129|2829|375|Search Engines
+2025-07-31T09:08:00|192.168.1.8|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|975|1780|118|News
+2025-07-31T13:38:00|192.168.1.15|172.217.14.206|https://google.com/search|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://google.com|1307|3564|319|Search Engines
+2025-07-31T11:54:00|192.168.1.33|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|507|3492|182|News
+2025-07-31T08:56:00|192.168.1.15|151.101.193.67|https://news.cnn.com/article|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://news.cnn.com|356|3857|141|News
+2025-07-31T15:39:00|192.168.1.8|140.82.114.4|https://github.com/repo|allowed|200|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36|https://github.com|1227|7497|113|Development
