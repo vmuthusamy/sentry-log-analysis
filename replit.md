@@ -8,6 +8,21 @@ Sentry is a TypeScript-based web application for AI-powered security log anomaly
 
 Preferred communication style: Simple, everyday language.
 
+## Production Development Protocol
+
+**New Feature Development Process:**
+1. **Always propose first** - Present multiple options with tradeoffs before implementing anything new
+2. **Evaluate tradeoffs together** - Discuss pros/cons of each approach with user
+3. **Get explicit approval** - Only implement after user selects preferred option
+4. **Fix critical errors immediately** - Address LSP errors, build failures, or system crashes without waiting
+5. **Focus on stability** - Prioritize system reliability over new features in production environment
+
+**Option Presentation Format:**
+- Present 2-3 viable approaches for each new feature/enhancement
+- Include: implementation complexity, performance impact, maintenance burden, user experience impact
+- Highlight recommended approach with reasoning
+- Wait for user decision before proceeding
+
 ## System Architecture
 
 ### Frontend Architecture
