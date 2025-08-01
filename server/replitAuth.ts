@@ -38,7 +38,7 @@ export function getSession() {
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
       maxAge: sessionTtl,
     },
   });
@@ -78,9 +78,23 @@ export async function setupAuth(app: Express) {
     tokens: client.TokenEndpointResponse & client.TokenEndpointResponseHelpers,
     verified: passport.AuthenticateCallback
   ) => {
-    const user = {};
+    const claims = tokens.claims();
+    if (!claims || !claims.sub) {
+      verified(new Error("Invalid token claims"));
+      return;
+    }
+    
+    const user = {
+      id: claims.sub,
+      email: claims.email as string || null,
+      firstName: claims.first_name as string || null,
+      lastName: claims.last_name as string || null,
+      profileImageUrl: claims.profile_image_url as string || null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
     updateUserSession(user, tokens);
-    await upsertUser(tokens.claims());
+    await upsertUser(claims);
     verified(null, user);
   };
 
