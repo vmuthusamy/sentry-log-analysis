@@ -1,5 +1,6 @@
-# GCP Infrastructure for LogGuard
+# Terraform configuration for Sentry on GCP
 terraform {
+  required_version = ">= 1.0"
   required_providers {
     google = {
       source  = "hashicorp/google"
@@ -8,52 +9,75 @@ terraform {
   }
 }
 
-provider "google" {
-  project = var.project_id
-  region  = var.region
-}
-
+# Variables
 variable "project_id" {
   description = "GCP Project ID"
   type        = string
 }
 
 variable "region" {
-  description = "GCP Region"
+  description = "GCP region"
   type        = string
   default     = "us-central1"
 }
 
-variable "db_user" {
-  description = "Database user"
+variable "service_name" {
+  description = "Cloud Run service name"
   type        = string
-  default     = "logguard"
+  default     = "sentry-log-analysis"
 }
 
-variable "db_password" {
-  description = "Database password"
-  type        = string
-  sensitive   = true
+# Configure the Google Cloud provider
+provider "google" {
+  project = var.project_id
+  region  = var.region
 }
 
-# Cloud SQL PostgreSQL Instance
-resource "google_sql_database_instance" "logguard_db" {
-  name             = "logguard-db"
-  database_version = "POSTGRES_15"
-  region          = var.region
-  
+# Enable required APIs
+resource "google_project_service" "apis" {
+  for_each = toset([
+    "cloudbuild.googleapis.com",
+    "run.googleapis.com",
+    "secretmanager.googleapis.com",
+    "sql-component.googleapis.com"
+  ])
+
+  service = each.value
+  project = var.project_id
+
+  disable_dependent_services = true
+}
+
+# Secret Manager for sensitive data
+resource "google_secret_manager_secret" "sentry_secrets" {
+  secret_id = "sentry-secrets"
+  project   = var.project_id
+
+  replication {
+    automatic = true
+  }
+
+  depends_on = [google_project_service.apis]
+}
+
+# Cloud SQL PostgreSQL instance (optional)
+resource "google_sql_database_instance" "sentry_db" {
+  name             = "sentry-postgres"
+  database_version = "POSTGRES_14"
+  region           = var.region
+  project          = var.project_id
+
   settings {
-    tier = "db-f1-micro"
-    
+    tier              = "db-f1-micro"
+    availability_type = "ZONAL"
+    disk_type         = "PD_SSD"
+    disk_size         = 20
+
     backup_configuration {
-      enabled                        = true
-      start_time                    = "03:00"
-      point_in_time_recovery_enabled = true
-      backup_retention_settings {
-        retained_backups = 7
-      }
+      enabled    = true
+      start_time = "03:00"
     }
-    
+
     ip_configuration {
       ipv4_enabled = true
       authorized_networks {
@@ -61,147 +85,142 @@ resource "google_sql_database_instance" "logguard_db" {
         value = "0.0.0.0/0"
       }
     }
-    
-    database_flags {
-      name  = "cloudsql.iam_authentication"
-      value = "on"
-    }
   }
-  
+
   deletion_protection = false
+  depends_on         = [google_project_service.apis]
 }
 
 # Database
-resource "google_sql_database" "logguard" {
-  name     = "logguard"
-  instance = google_sql_database_instance.logguard_db.name
+resource "google_sql_database" "sentry_database" {
+  name     = "sentry_db"
+  instance = google_sql_database_instance.sentry_db.name
+  project  = var.project_id
 }
 
-# Database User
-resource "google_sql_user" "logguard_user" {
-  name     = var.db_user
-  instance = google_sql_database_instance.logguard_db.name
-  password = var.db_password
+# Database user
+resource "google_sql_user" "sentry_user" {
+  name     = "sentry_user"
+  instance = google_sql_database_instance.sentry_db.name
+  password = random_password.db_password.result
+  project  = var.project_id
 }
 
-# Cloud Storage Bucket for logs
-resource "google_storage_bucket" "logguard_logs" {
-  name     = "${var.project_id}-logguard-logs"
+resource "random_password" "db_password" {
+  length  = 16
+  special = true
+}
+
+# Cloud Run service
+resource "google_cloud_run_service" "sentry" {
+  name     = var.service_name
   location = var.region
-  
-  lifecycle_rule {
-    condition {
-      age = 30
-    }
-    action {
-      type = "Delete"
-    }
-  }
-  
-  versioning {
-    enabled = true
-  }
-}
-
-# Cloud Run Service
-resource "google_cloud_run_service" "logguard_app" {
-  name     = "logguard-app"
-  location = var.region
+  project  = var.project_id
 
   template {
     spec {
       containers {
-        image = "gcr.io/${var.project_id}/logguard:latest"
+        image = "gcr.io/${var.project_id}/sentry-log-analysis:latest"
         
         ports {
           container_port = 5000
         }
-        
+
         env {
           name  = "NODE_ENV"
           value = "production"
         }
-        
+
         env {
-          name  = "DATABASE_URL"
-          value = "postgresql://${var.db_user}:${var.db_password}@${google_sql_database_instance.logguard_db.ip_address.0.ip_address}/logguard"
+          name  = "PORT"
+          value = "5000"
         }
-        
+
+        env {
+          name = "DATABASE_URL"
+          value_from {
+            secret_key_ref {
+              name = google_secret_manager_secret.sentry_secrets.secret_id
+              key  = "database-url"
+            }
+          }
+        }
+
+        env {
+          name = "SESSION_SECRET"
+          value_from {
+            secret_key_ref {
+              name = google_secret_manager_secret.sentry_secrets.secret_id
+              key  = "session-secret"
+            }
+          }
+        }
+
         resources {
           limits = {
             cpu    = "2"
+            memory = "4Gi"
+          }
+          requests = {
+            cpu    = "1"
             memory = "2Gi"
           }
         }
       }
+
+      container_concurrency = 80
+      timeout_seconds      = 300
     }
-    
+
     metadata {
       annotations = {
-        "run.googleapis.com/cloudsql-instances" = google_sql_database_instance.logguard_db.connection_name
-        "run.googleapis.com/cpu-throttling"     = "false"
+        "autoscaling.knative.dev/maxScale" = "10"
+        "autoscaling.knative.dev/minScale" = "1"
+        "run.googleapis.com/execution-environment" = "gen2"
+        "run.googleapis.com/cpu-throttling" = "false"
       }
     }
   }
-  
+
   traffic {
     percent         = 100
     latest_revision = true
   }
+
+  depends_on = [google_project_service.apis]
 }
 
-# IAM policy for Cloud Run
-resource "google_cloud_run_service_iam_member" "run_all_users" {
-  service  = google_cloud_run_service.logguard_app.name
-  location = google_cloud_run_service.logguard_app.location
-  role     = "roles/run.invoker"
-  member   = "allUsers"
+# IAM policy for public access
+resource "google_cloud_run_service_iam_policy" "noauth" {
+  location = google_cloud_run_service.sentry.location
+  project  = google_cloud_run_service.sentry.project
+  service  = google_cloud_run_service.sentry.name
+
+  policy_data = data.google_iam_policy.noauth.policy_data
 }
 
-# Cloud Monitoring Dashboard
-resource "google_monitoring_dashboard" "logguard_dashboard" {
-  dashboard_json = jsonencode({
-    displayName = "LogGuard Metrics"
-    
-    mosaicLayout = {
-      tiles = [
-        {
-          width  = 6
-          height = 4
-          widget = {
-            title = "File Upload Success Rate"
-            xyChart = {
-              dataSets = [{
-                timeSeriesQuery = {
-                  timeSeriesFilter = {
-                    filter = "resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"logguard-app\""
-                    aggregation = {
-                      alignmentPeriod  = "60s"
-                      perSeriesAligner = "ALIGN_RATE"
-                    }
-                  }
-                }
-              }]
-              yAxis = {
-                label = "Requests/sec"
-              }
-            }
-          }
-        }
-      ]
-    }
-  })
+data "google_iam_policy" "noauth" {
+  binding {
+    role = "roles/run.invoker"
+    members = [
+      "allUsers",
+    ]
+  }
 }
 
 # Outputs
-output "database_ip" {
-  value = google_sql_database_instance.logguard_db.ip_address.0.ip_address
+output "service_url" {
+  description = "URL of the deployed Cloud Run service"
+  value       = google_cloud_run_service.sentry.status[0].url
 }
 
-output "cloud_run_url" {
-  value = google_cloud_run_service.logguard_app.status[0].url
+output "database_connection_name" {
+  description = "Cloud SQL instance connection name"
+  value       = google_sql_database_instance.sentry_db.connection_name
 }
 
-output "bucket_name" {
-  value = google_storage_bucket.logguard_logs.name
+output "database_url" {
+  description = "Database URL for environment variables"
+  value       = "postgresql://${google_sql_user.sentry_user.name}:${random_password.db_password.result}@/${google_sql_database.sentry_database.name}?host=/cloudsql/${google_sql_database_instance.sentry_db.connection_name}"
+  sensitive   = true
 }

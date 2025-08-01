@@ -1,47 +1,69 @@
-# Google Cloud Run deployment configuration
+# GCP Cloud Run Deployment for Sentry
+# Run: gcloud run services replace gcp-deployment.yaml
+
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: logguard-app
+  name: sentry-log-analysis
   annotations:
     run.googleapis.com/ingress: all
+    run.googleapis.com/ingress-status: all
 spec:
   template:
     metadata:
       annotations:
-        run.googleapis.com/cloudsql-instances: PROJECT_ID:REGION:logguard-db
+        run.googleapis.com/execution-environment: gen2
         run.googleapis.com/cpu-throttling: "false"
+        autoscaling.knative.dev/maxScale: "10"
+        autoscaling.knative.dev/minScale: "1"
     spec:
       containerConcurrency: 80
       timeoutSeconds: 300
       containers:
-      - image: gcr.io/PROJECT_ID/logguard:latest
+      - image: gcr.io/PROJECT_ID/sentry-log-analysis:latest
         ports:
         - containerPort: 5000
         env:
         - name: NODE_ENV
           value: "production"
+        - name: PORT
+          value: "5000"
         - name: DATABASE_URL
-          value: "postgresql://USER:PASSWORD@/logguard?host=/cloudsql/PROJECT_ID:REGION:logguard-db"
-        - name: OPENAI_API_KEY
           valueFrom:
             secretKeyRef:
-              name: openai-secret
-              key: api-key
-        - name: GEMINI_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: gemini-secret
-              key: api-key
+              name: sentry-secrets
+              key: database-url
         - name: SESSION_SECRET
           valueFrom:
             secretKeyRef:
-              name: session-secret
-              key: secret
+              name: sentry-secrets
+              key: session-secret
+        - name: REPL_ID
+          valueFrom:
+            secretKeyRef:
+              name: sentry-secrets
+              key: repl-id
+        - name: REPLIT_DEPLOYMENT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: sentry-secrets
+              key: deployment-token
         resources:
           limits:
             cpu: "2"
-            memory: "2Gi"
+            memory: "4Gi"
           requests:
             cpu: "1"
-            memory: "1Gi"
+            memory: "2Gi"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 10
