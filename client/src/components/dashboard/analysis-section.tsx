@@ -17,6 +17,56 @@ export function AnalysisSection() {
     queryKey: ["/api/anomalies"],
   });
 
+  const handleExport = () => {
+    if (!anomalies || anomalies.length === 0) {
+      return;
+    }
+
+    // Prepare data for export
+    const exportData = anomalies.map((anomaly: any) => ({
+      timestamp: new Date(anomaly.timestamp).toISOString(),
+      anomalyType: anomaly.anomalyType,
+      description: anomaly.description,
+      riskScore: anomaly.riskScore,
+      detectionMethod: anomaly.detectionMethod,
+      status: anomaly.status,
+      sourceIP: anomaly.sourceData?.sourceIP || 'N/A',
+      destinationIP: anomaly.sourceData?.destinationIP || 'N/A',
+      user: anomaly.sourceData?.user || 'N/A',
+      action: anomaly.sourceData?.action || 'N/A',
+      url: anomaly.sourceData?.url || 'N/A',
+      category: anomaly.sourceData?.category || 'N/A'
+    }));
+
+    // Convert to CSV
+    const headers = Object.keys(exportData[0]);
+    const csvContent = [
+      headers.join(','),
+      ...exportData.map(row => 
+        headers.map(header => {
+          const value = (row as any)[header];
+          // Escape commas and quotes in CSV
+          return typeof value === 'string' && (value.includes(',') || value.includes('"')) 
+            ? `"${value.replace(/"/g, '""')}"` 
+            : value;
+        }).join(',')
+      )
+    ].join('\n');
+
+    // Download CSV file
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', `anomalies-export-${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   const getRiskBadgeColor = (riskScore: number) => {
     if (riskScore >= 9) return "bg-accent-red/20 text-accent-red";
     if (riskScore >= 7) return "bg-accent-amber/20 text-accent-amber";
@@ -81,9 +131,13 @@ export function AnalysisSection() {
               <Filter className="mr-2 h-4 w-4" />
               Filter
             </Button>
-            <Button className="bg-accent-blue hover:bg-blue-600">
+            <Button 
+              onClick={handleExport}
+              disabled={!anomalies || anomalies.length === 0}
+              className="bg-accent-blue hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <Download className="mr-2 h-4 w-4" />
-              Export
+              Export CSV
             </Button>
           </div>
         </div>
