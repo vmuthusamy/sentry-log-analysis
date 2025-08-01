@@ -116,41 +116,11 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getLogFilesByUser(userId: string): Promise<LogFile[]> {
-    // Get log files with the latest processing job error message if available
-    const result = await db
-      .select({
-        id: logFiles.id,
-        userId: logFiles.userId,
-        filename: logFiles.filename,
-        originalName: logFiles.originalName,
-        fileSize: logFiles.fileSize,
-        mimeType: logFiles.mimeType,
-        status: logFiles.status,
-        uploadedAt: logFiles.uploadedAt,
-        processedAt: logFiles.processedAt,
-        totalLogs: logFiles.totalLogs,
-        errorMessage: sql<string | null>`
-          COALESCE(
-            ${logFiles.errorMessage},
-            (
-              SELECT ${processingJobs.errorMessage}
-              FROM ${processingJobs}
-              WHERE ${processingJobs.logFileId} = ${logFiles.id}
-                AND ${processingJobs.status} = 'failed'
-              ORDER BY ${processingJobs.completedAt} DESC
-              LIMIT 1
-            )
-          )
-        `.as('errorMessage'),
-      })
+    return await db
+      .select()
       .from(logFiles)
       .where(eq(logFiles.userId, userId))
       .orderBy(desc(logFiles.uploadedAt));
-
-    return result.map(row => ({
-      ...row,
-      errorMessage: row.errorMessage || undefined
-    })) as LogFile[];
   }
 
   async updateLogFileStatus(id: string, status: string, totalLogs?: number, errorMessage?: string): Promise<void> {
