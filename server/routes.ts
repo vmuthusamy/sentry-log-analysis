@@ -12,6 +12,7 @@ import { TraditionalAnomalyDetector } from "./services/traditional-anomaly-detec
 import { AdvancedMLDetector } from "./services/advanced-ml-detector";
 import { uploadRateLimit, apiRateLimit, loginRateLimit, analysisRateLimit } from "./middleware/rate-limiter";
 import { handleMulterErrors, globalErrorHandler, notFoundHandler, asyncHandler, ValidationError, FileSizeError, ProcessingError } from "./middleware/error-handler";
+import { userAnalytics } from "./services/user-analytics";
 import multer from "multer";
 import { z } from "zod";
 import fs from "fs/promises";
@@ -77,6 +78,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const userId = req.user.claims.sub;
       const user = await storage.getUser(userId);
+      
+      // Track user activity
+      await userAnalytics.trackUserActivity(userId, 'user_auth_check', {
+        userAgent: req.get('User-Agent'),
+        ip: req.ip
+      });
+      
       res.json(user);
     } catch (error) {
       console.error("Error fetching user:", error);
@@ -114,6 +122,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const { originalname, filename, size, mimetype } = req.file;
     const userId = req.user!.id;
 
+    // Track file upload attempt
+    await userAnalytics.trackUserActivity(userId, 'file_upload_attempt', {
+      filename: originalname,
+      fileSize: size,
+      userAgent: req.get('User-Agent'),
+      ip: req.ip
+    });
+
     // Additional file size validation
     if (size === 0) {
       await fs.unlink(path.join("uploads", filename)); // Clean up empty file
@@ -131,10 +147,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       );
     }
 
-      // Create log file record
-      const logFile = await storage.createLogFile({
-        userId,
-        filename,
+    // Create log file record
+    const logFile = await storage.createLogFile({
+      userId,
+      filename,
         originalName: originalname,
         fileSize: size,
         mimeType: mimetype,
@@ -243,6 +259,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     // Track successful file upload
     metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'success');
+    await userAnalytics.trackUserActivity(userId, 'file_upload_success', {
+      logFileId: logFile.id,
+      filename: originalname,
+      fileSize: size,
+      logEntriesCount: logEntries.length
+    });
 
     // Update log file status to ready (no automatic GenAI processing)
     await storage.updateLogFileStatus(logFile.id, "ready", logEntries.length);
@@ -958,6 +980,90 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to get metrics" });
     }
   });
+
+  // Analytics endpoints for user activity tracking
+  app.get("/api/analytics/users", requireAuth, asyncHandler(async (req: any, res: any) => {
+    // Only allow access for admin users or specific permissions
+    const userId = req.user!.id;
+    
+    try {
+      const days = parseInt(req.query.days as string) || 30;
+      const userMetrics = await userAnalytics.getUserMetrics(days);
+      
+      res.json({
+        users: userMetrics,
+        summary: {
+          totalUsers: userMetrics.length,
+          newUsers: userMetrics.filter(u => u.retentionStatus === 'new').length,
+          activeUsers: userMetrics.filter(u => u.isActive).length,
+          atRiskUsers: userMetrics.filter(u => u.retentionStatus === 'at_risk').length,
+          churnedUsers: userMetrics.filter(u => u.retentionStatus === 'churned').length
+        }
+      });
+    } catch (error) {
+      console.error("Analytics error:", error);
+      res.status(500).json({ message: "Failed to get user analytics" });
+    }
+  }));
+
+  app.get("/api/analytics/daily", requireAuth, asyncHandler(async (req: any, res: any) => {
+    try {
+      const days = parseInt(req.query.days as string) || 30;
+      const dailyMetrics = await userAnalytics.getDailyMetrics(days);
+      
+      res.json({
+        metrics: dailyMetrics,
+        summary: {
+          totalDays: dailyMetrics.length,
+          avgNewUsers: dailyMetrics.reduce((sum, d) => sum + d.newUsers, 0) / dailyMetrics.length,
+          avgActiveUsers: dailyMetrics.reduce((sum, d) => sum + d.activeUsers, 0) / dailyMetrics.length,
+          totalUploads: dailyMetrics.reduce((sum, d) => sum + d.uploads, 0),
+          totalAnomalies: dailyMetrics.reduce((sum, d) => sum + d.anomaliesDetected, 0)
+        }
+      });
+    } catch (error) {
+      console.error("Daily analytics error:", error);
+      res.status(500).json({ message: "Failed to get daily analytics" });
+    }
+  }));
+
+  app.get("/api/analytics/cohorts", requireAuth, asyncHandler(async (req: any, res: any) => {
+    try {
+      const cohorts = await userAnalytics.getCohortAnalysis();
+      
+      res.json({
+        cohorts,
+        insights: {
+          totalCohorts: cohorts.length,
+          avgWeek1Retention: cohorts.reduce((sum: number, c: any) => sum + parseFloat(c.week_1_retention), 0) / cohorts.length,
+          avgWeek2Retention: cohorts.reduce((sum: number, c: any) => sum + parseFloat(c.week_2_retention), 0) / cohorts.length,
+          avgWeek3Retention: cohorts.reduce((sum: number, c: any) => sum + parseFloat(c.week_3_retention), 0) / cohorts.length
+        }
+      });
+    } catch (error) {
+      console.error("Cohort analysis error:", error);
+      res.status(500).json({ message: "Failed to get cohort analysis" });
+    }
+  }));
+
+  app.get("/api/analytics/access-logs", requireAuth, asyncHandler(async (req: any, res: any) => {
+    try {
+      const limit = parseInt(req.query.limit as string) || 100;
+      const logs = await userAnalytics.getAccessLogs(limit);
+      
+      res.json({
+        logs,
+        summary: {
+          totalLogs: logs.length,
+          eventTypes: Array.from(new Set(logs.map(l => l.eventType))),
+          uniqueUsers: Array.from(new Set(logs.map(l => l.userId))).length
+        }
+      });
+    } catch (error) {
+      console.error("Access logs error:", error);
+      res.status(500).json({ message: "Failed to get access logs" });
+    }
+  }));
 
   // Health check endpoint for deployment
   app.get("/api/health", (req, res) => {

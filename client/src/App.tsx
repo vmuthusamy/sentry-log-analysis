@@ -7,6 +7,7 @@ import { useAuth } from "./hooks/useAuth";
 import HomePage from "@/pages/home-page";
 import LandingPage from "@/pages/landing-page";
 import SettingsPage from "@/pages/settings-page";
+import AnalyticsPage from "@/pages/analytics-page";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
         <>
           <Route path="/" component={HomePage} />
           <Route path="/settings" component={SettingsPage} />
+          <Route path="/analytics" component={AnalyticsPage} />
         </>
       )}
       <Route component={NotFound} />

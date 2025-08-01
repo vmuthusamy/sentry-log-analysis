@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { LogOut, Settings, Shield } from "lucide-react";
+import { LogOut, Settings, Shield, BarChart3 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 export function AuthHeader() {
@@ -63,6 +63,13 @@ export function AuthHeader() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56" align="end" forceMount>
+              <DropdownMenuItem 
+                onClick={() => window.location.href = '/analytics'}
+                className="cursor-pointer"
+              >
+                <BarChart3 className="mr-2 h-4 w-4" />
+                Analytics
+              </DropdownMenuItem>
               <DropdownMenuItem 
                 onClick={() => window.location.href = '/settings'}
                 className="cursor-pointer"
