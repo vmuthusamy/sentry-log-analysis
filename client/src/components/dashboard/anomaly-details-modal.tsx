@@ -32,7 +32,7 @@ export function AnomalyDetailsModal({ anomalyId, open, onClose }: AnomalyDetails
 
   const updateAnomalyMutation = useMutation({
     mutationFn: async (updates: any) => {
-      return await apiRequest(`/api/anomalies/${anomalyId}`, "PATCH", updates);
+      return await apiRequest("PATCH", `/api/anomalies/${anomalyId}`, updates);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
