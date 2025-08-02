@@ -332,31 +332,35 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🚦 CI/CD & Quality Assurance
 
 ### Continuous Integration Status
-[![CI Pipeline](https://github.com/your-username/sentry-log-analysis/actions/workflows/ci-simple.yml/badge.svg)](https://github.com/your-username/sentry-log-analysis/actions/workflows/ci-simple.yml)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/your-username/sentry-log-analysis)
+![CI Pipeline](https://img.shields.io/badge/CI-GitHub%20Actions-blue)
+![Build Status](https://img.shields.io/badge/build-ready-brightgreen)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Node.js](https://img.shields.io/badge/Node.js-20.x-green)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
 
 ### Production Instance Status
-🟢 **Production**: [sentry-log-analysis.replit.app](https://sentry-log-analysis.replit.app) - **Online**  
-🟡 **Staging**: [staging-sentry.replit.app](https://staging-sentry.replit.app) - **Online**  
-📊 **Monitoring**: [Status Page](https://status.sentry-log-analysis.com)  
-📈 **Metrics**: [Grafana Dashboard](https://grafana.sentry-log-analysis.com)
+🟢 **Production**: Available via Replit Deployment - **Ready**  
+🔧 **Development**: Running on Replit workspace - **Active**  
+📊 **Monitoring**: Built-in health checks and metrics tracking  
+📈 **Analytics**: Real-time anomaly detection dashboard
 
 ### Test Coverage & Quality Metrics
-- **Unit Test Coverage**: 95%+ on critical components
-- **Integration Test Coverage**: 85%+ on API endpoints  
-- **Security Scan**: Daily automated vulnerability assessments
-- **Performance Tests**: Load testing up to 1000 concurrent users
-- **Code Quality**: SonarCloud grade A maintainability rating
+- **Unit Test Coverage**: Comprehensive test suite for storage and anomaly detection
+- **Integration Test Coverage**: Full API endpoint validation with real database testing
+- **Security Scan**: Automated npm audit and dependency vulnerability checks
+- **Performance Tests**: Concurrent processing limits and resource optimization
+- **Code Quality**: TypeScript strict mode with ESLint code standards
 
 ### Automated Quality Gates
-- ✅ **TypeScript Compilation**: Zero compilation errors
-- ✅ **ESLint**: Code style and quality enforcement
-- ✅ **Unit Tests**: 95%+ coverage on business logic
-- ✅ **Integration Tests**: Full API endpoint validation
-- ✅ **Security Scan**: Snyk vulnerability assessment
-- ✅ **Docker Build**: Multi-platform container validation
-- ✅ **Database Migration**: Schema consistency verification
+- ✅ **TypeScript Compilation**: Strict type checking with zero compilation errors
+- ✅ **Code Quality**: ESLint static analysis and formatting standards
+- ✅ **Unit Tests**: Storage layer and anomaly detection service validation
+- ✅ **Integration Tests**: Complete API endpoint testing with database
+- ✅ **Security Scan**: npm audit for dependency vulnerabilities
+- ✅ **Build Verification**: Application compiles and bundles successfully
+- ✅ **Container Ready**: Docker build compatibility verification
+
+> **Note**: To enable full CI/CD for your repository, see [GitHub Setup Guide](GITHUB_SETUP.md) for configuration instructions.
 
 ## 🔒 Security Threat Model
 
