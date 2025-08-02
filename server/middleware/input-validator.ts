@@ -50,10 +50,10 @@ export const userInputSchema = z.object({
     .min(1)
     .max(255)
     .refine((name) => {
-      // Only allow alphanumeric, dots, hyphens, underscores
-      return /^[a-zA-Z0-9._-]+\.(txt|log)$/.test(name);
+      // Only allow alphanumeric, dots, hyphens, underscores with .txt or .log extension
+      return /^[a-zA-Z0-9._-]+\.(txt|log)$/i.test(name);
     }, {
-      message: "Invalid filename format"
+      message: "Invalid filename format. Only letters, numbers, dots, hyphens, underscores, and .txt/.log extensions are allowed."
     }),
   
   // JSON object validation

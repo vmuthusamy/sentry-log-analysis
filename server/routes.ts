@@ -57,8 +57,10 @@ const upload = multer({
       return cb(new Error('Filename too long'));
     }
     
-    if (!/^[a-zA-Z0-9._-]+$/.test(file.originalname.replace(/\.(txt|log)$/, ''))) {
-      return cb(new Error('Filename contains invalid characters'));
+    // Check for valid characters in filename (allow alphanumeric, dots, hyphens, underscores)
+    const nameWithoutExt = file.originalname.replace(/\.(txt|log)$/i, '');
+    if (!/^[a-zA-Z0-9._-]+$/.test(nameWithoutExt)) {
+      return cb(new Error('Filename contains invalid characters. Only letters, numbers, dots, hyphens, and underscores are allowed.'));
     }
     
     cb(null, true);
