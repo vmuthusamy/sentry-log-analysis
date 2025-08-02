@@ -52,13 +52,28 @@ jobs:
       env:
         DATABASE_URL: postgresql://postgres:postgres@localhost:5432/logguard_test
     
-    - name: Run tests
-      run: npm test --if-present
+    - name: Run all tests
+      run: |
+        if [ -f "vitest.config.ts" ]; then
+          npx vitest run
+        else
+          npm test --if-present
+        fi
       env:
         DATABASE_URL: postgresql://postgres:postgres@localhost:5432/logguard_test
         NODE_ENV: test
         SESSION_SECRET: test_secret
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    
+    - name: Run file upload and user limit tests
+      run: |
+        if [ -f "vitest.config.ts" ]; then
+          npx vitest run tests/unit/file-upload-validation.test.ts tests/unit/user-file-limit.test.ts tests/integration/file-upload-api.test.ts tests/integration/user-file-limit-api.test.ts
+        fi
+      env:
+        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/logguard_test
+        NODE_ENV: test
+        SESSION_SECRET: test_secret
 
   build:
     runs-on: ubuntu-latest

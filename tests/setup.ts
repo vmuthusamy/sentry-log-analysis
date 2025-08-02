@@ -1,14 +1,29 @@
-import { beforeAll, afterAll } from 'vitest';
+// Test setup file for Vitest
+import { vi } from 'vitest';
 
-// Set test environment
+// Mock environment variables for testing
+process.env.DATABASE_URL = 'postgresql://postgres:postgres@localhost:5432/sentry_test';
+process.env.SESSION_SECRET = 'test-session-secret';
 process.env.NODE_ENV = 'test';
-process.env.DATABASE_URL = process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/sentry_test';
-process.env.SESSION_SECRET = process.env.SESSION_SECRET || 'test-session-secret';
 
-beforeAll(async () => {
-  // Global test setup
+// Global test setup
+import { beforeEach } from 'vitest';
+
+beforeEach(() => {
+  // Clear all mocks before each test
+  vi.clearAllMocks();
 });
 
-afterAll(async () => {
-  // Global test cleanup
-});
+// Console spy to reduce noise in test output
+global.console = {
+  ...console,
+  // Uncomment to silence logs during testing
+  // log: vi.fn(),
+  // warn: vi.fn(),
+  // error: vi.fn(),
+};
+
+// Mock fetch for browser environment compatibility
+global.fetch = vi.fn();
+
+export {};

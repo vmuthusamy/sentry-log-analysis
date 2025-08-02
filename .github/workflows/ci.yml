@@ -60,16 +60,40 @@ jobs:
       run: |
         npm run db:push
     
-    - name: Run tests
+    - name: Run unit tests
       env:
         DATABASE_URL: postgresql://postgres:postgres@localhost:5432/sentry_test
         SESSION_SECRET: test-session-secret-for-ci
         NODE_ENV: test
       run: |
         if [ -f "vitest.config.ts" ]; then
-          npx vitest run || echo "Tests completed with some failures"
+          npx vitest run tests/unit/ || echo "Unit tests completed with some failures"
         else
-          echo "No test config found, skipping tests"
+          echo "No test config found, skipping unit tests"
+        fi
+    
+    - name: Run integration tests
+      env:
+        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/sentry_test
+        SESSION_SECRET: test-session-secret-for-ci
+        NODE_ENV: test
+      run: |
+        if [ -f "vitest.config.ts" ]; then
+          npx vitest run tests/integration/ || echo "Integration tests completed with some failures"
+        else
+          echo "No test config found, skipping integration tests"
+        fi
+    
+    - name: Run file upload limit tests
+      env:
+        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/sentry_test
+        SESSION_SECRET: test-session-secret-for-ci
+        NODE_ENV: test
+      run: |
+        if [ -f "vitest.config.ts" ]; then
+          npx vitest run tests/unit/file-upload-validation.test.ts tests/unit/user-file-limit.test.ts tests/integration/file-upload-api.test.ts tests/integration/user-file-limit-api.test.ts || echo "File upload limit tests completed with some failures"
+        else
+          echo "No test config found, skipping file upload limit tests"
         fi
     
     - name: Generate test coverage (optional)
