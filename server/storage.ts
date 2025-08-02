@@ -42,6 +42,15 @@ export interface IStorage {
   getAnomaliesByUser(userId: string, limit?: number): Promise<Anomaly[]>;
   getHighRiskAnomalies(userId: string, threshold: number): Promise<Anomaly[]>;
   updateAnomalyStatus(id: string, status: string): Promise<void>;
+  updateAnomalyDetails(id: string, userId: string, updates: {
+    status?: string;
+    analystNotes?: string;
+    priority?: string;
+    escalationReason?: string;
+    assignedTo?: string;
+    reviewedBy?: string;
+    reviewedAt?: Date;
+  }): Promise<void>;
   
   createProcessingJob(job: InsertProcessingJob): Promise<ProcessingJob>;
   getProcessingJob(id: string): Promise<ProcessingJob | undefined>;
@@ -213,6 +222,8 @@ export class DatabaseStorage implements IStorage {
       })
       .where(eq(anomalies.id, id));
   }
+
+
 
   async createProcessingJob(job: InsertProcessingJob): Promise<ProcessingJob> {
     const [result] = await db
