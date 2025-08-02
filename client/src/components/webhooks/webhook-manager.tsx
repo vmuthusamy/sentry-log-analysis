@@ -16,7 +16,8 @@ import { useToast } from '@/hooks/use-toast';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Webhook, Settings, Trash2, TestTube, Plus, ExternalLink } from 'lucide-react';
+import { Webhook, Settings, Trash2, TestTube, Plus, ExternalLink, Globe, Copy } from 'lucide-react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 const webhookFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -344,78 +345,150 @@ export function WebhookManager() {
         </Dialog>
       </div>
 
-      <div className="grid gap-4">
-        {webhooks.length === 0 ? (
-          <Card>
-            <CardContent className="flex flex-col items-center justify-center py-6">
-              <Webhook className="h-12 w-12 text-muted-foreground mb-4" />
-              <h3 className="font-medium mb-2">No webhooks configured</h3>
-              <p className="text-sm text-muted-foreground text-center mb-4">
-                Set up webhooks to automatically trigger external workflows when anomalies are detected
+      {/* Webhook Table */}
+      <Card className="bg-dark-secondary border-slate-700">
+        <CardContent className="p-0">
+          {webhooks.length === 0 ? (
+            <div className="p-12 text-center">
+              <Webhook className="h-12 w-12 text-slate-500 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-white mb-2">No Webhooks Configured</h3>
+              <p className="text-sm text-slate-400 mb-4">
+                Set up your first webhook to automate responses to security anomalies
               </p>
               <Button onClick={() => setIsCreateDialogOpen(true)}>
                 <Plus className="h-4 w-4 mr-2" />
                 Create Your First Webhook
               </Button>
-            </CardContent>
-          </Card>
-        ) : (
-          (webhooks as any[]).map((webhook: any) => (
-            <Card key={webhook.id}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <div>
-                  <CardTitle className="flex items-center gap-2">
-                    <Webhook className="h-4 w-4" />
-                    {webhook.name}
-                    <Badge variant={webhook.isActive ? 'default' : 'secondary'}>
-                      {webhook.isActive ? 'Active' : 'Inactive'}
-                    </Badge>
-                    <Badge variant="outline">{webhook.provider}</Badge>
-                  </CardTitle>
-                  <CardDescription className="flex items-center gap-1">
-                    <ExternalLink className="h-3 w-3" />
-                    {webhook.webhookUrl.slice(0, 50)}...
-                  </CardDescription>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => testMutation.mutate(webhook.id)}
-                    disabled={testMutation.isPending}
-                  >
-                    <TestTube className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleEdit(webhook)}
-                  >
-                    <Settings className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => deleteMutation.mutate(webhook.id)}
-                    disabled={deleteMutation.isPending}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-sm text-muted-foreground">
-                  <p>Triggers: Risk ≥ {webhook.triggerConditions?.minRiskScore || 'any'}</p>
-                  {webhook.lastTriggered && (
-                    <p>Last triggered: {new Date(webhook.lastTriggered).toLocaleString()}</p>
-                  )}
-                  <p>Total triggers: {webhook.totalTriggers || 0}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))
-        )}
-      </div>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader className="bg-dark-tertiary/50">
+                  <TableRow className="border-slate-700">
+                    <TableHead className="text-slate-300">Status</TableHead>
+                    <TableHead className="text-slate-300">Name</TableHead>
+                    <TableHead className="text-slate-300">Provider</TableHead>
+                    <TableHead className="text-slate-300">Webhook URL</TableHead>
+                    <TableHead className="text-slate-300">Trigger Conditions</TableHead>
+                    <TableHead className="text-slate-300">Statistics</TableHead>
+                    <TableHead className="text-slate-300">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {(webhooks as any[]).map((webhook: any) => (
+                    <TableRow key={webhook.id} className="border-slate-700 hover:bg-dark-tertiary/30">
+                      <TableCell>
+                        <Badge 
+                          className={webhook.isActive 
+                            ? "bg-accent-green/20 text-accent-green border-0" 
+                            : "bg-slate-700/50 text-slate-400 border-0"
+                          }
+                        >
+                          {webhook.isActive ? 'Active' : 'Inactive'}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-white font-medium">
+                        <div className="flex items-center gap-2">
+                          <Globe className="h-4 w-4 text-slate-400" />
+                          {webhook.name}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="secondary" className="bg-slate-700 text-slate-300 border-0">
+                          {webhook.provider}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="max-w-xs">
+                        <div className="bg-dark-primary p-2 rounded border border-slate-600">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-slate-400 flex items-center">
+                              <ExternalLink className="h-3 w-3 mr-1" />
+                              Webhook URL
+                            </span>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => navigator.clipboard.writeText(webhook.webhookUrl)}
+                              className="text-slate-400 hover:text-white p-1"
+                            >
+                              <Copy className="h-3 w-3" />
+                            </Button>
+                          </div>
+                          <pre className="text-xs text-slate-300 font-mono whitespace-pre-wrap break-all bg-slate-900/50 p-2 rounded border mt-1">
+                            {webhook.webhookUrl}
+                          </pre>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="space-y-1 text-sm">
+                          <div className="text-slate-300">
+                            Risk Score: ≥ {webhook.triggerConditions?.minRiskScore || 'any'}
+                          </div>
+                          {webhook.triggerConditions?.priorities && (
+                            <div className="text-slate-400">
+                              Priorities: {webhook.triggerConditions.priorities.join(', ')}
+                            </div>
+                          )}
+                          {webhook.triggerConditions?.anomalyTypes && webhook.triggerConditions.anomalyTypes.length > 0 && (
+                            <div className="text-slate-400">
+                              Types: {webhook.triggerConditions.anomalyTypes.slice(0, 2).join(', ')}
+                              {webhook.triggerConditions.anomalyTypes.length > 2 && '...'}
+                            </div>
+                          )}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="space-y-1 text-sm">
+                          <div className="text-slate-300">
+                            Triggers: {webhook.totalTriggers || 0}
+                          </div>
+                          {webhook.lastTriggered ? (
+                            <div className="text-slate-400">
+                              Last: {new Date(webhook.lastTriggered).toLocaleDateString()}
+                            </div>
+                          ) : (
+                            <div className="text-slate-500">Never triggered</div>
+                          )}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex items-center space-x-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => testMutation.mutate(webhook.id)}
+                            disabled={testMutation.isPending}
+                            className="text-accent-blue hover:text-blue-400 border-slate-600"
+                          >
+                            <TestTube className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleEdit(webhook)}
+                            className="text-slate-400 hover:text-white border-slate-600"
+                          >
+                            <Settings className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => deleteMutation.mutate(webhook.id)}
+                            disabled={deleteMutation.isPending}
+                            className="text-red-400 hover:text-red-300 border-slate-600"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }
