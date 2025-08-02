@@ -1183,9 +1183,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create new webhook integration
-  app.post('/api/webhooks', isAuthenticated, validateInput(webhookValidationSchema), async (req: any, res) => {
+  app.post('/api/webhooks', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
+      console.log('Creating webhook for user:', userId);
+      console.log('Request body:', req.body);
+      
       const { insertWebhookIntegrationSchema } = await import('@shared/schema');
       
       // Validate request body
@@ -1193,15 +1196,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         ...req.body,
         userId
       });
+      console.log('Validated webhook data:', validatedData);
 
       const webhook = await storage.createWebhookIntegration(validatedData);
+      console.log('Created webhook:', webhook);
       res.status(201).json(webhook);
     } catch (error) {
       if (error instanceof z.ZodError) {
+        console.error('Webhook validation error:', error.errors);
         return res.status(400).json({ message: 'Invalid webhook data', errors: error.errors });
       }
       console.error('Error creating webhook:', error);
-      res.status(500).json({ message: 'Failed to create webhook' });
+      res.status(500).json({ message: 'Failed to create webhook', error: error.message });
     }
   });
 

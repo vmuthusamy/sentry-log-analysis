@@ -413,7 +413,7 @@ export class DatabaseStorage implements IStorage {
       .update(webhookIntegrations)
       .set({
         lastTriggered: new Date(),
-        totalTriggers: 1, // Will be properly incremented
+        totalTriggers: sql`${webhookIntegrations.totalTriggers} + 1`,
       })
       .where(eq(webhookIntegrations.id, id));
   }
