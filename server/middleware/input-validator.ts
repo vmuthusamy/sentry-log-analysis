@@ -71,11 +71,11 @@ const SQL_INJECTION_PATTERNS = [
   // Basic SQL injection patterns
   /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE|UNION|SCRIPT)\b)/i,
   /(\b(OR|AND)\b\s+\d+\s*=\s*\d+)/i,
-  /(;|\|\||&&|\/\*|\*\/|--|#|xp_)/i,
+  /(\|\||&&|\/\*|\*\/|--|#|xp_)/i,
   /(\b(WAITFOR|DELAY|BENCHMARK|SLEEP)\b)/i,
   /(\b(CHAR|NCHAR|VARCHAR|NVARCHAR|CAST|CONVERT)\b\s*\()/i,
   /(\b(INFORMATION_SCHEMA|SYSOBJECTS|SYSCOLUMNS|MSysObjects)\b)/i,
-  /((\%27)|(\')|(\')|(%2D)|(-)|(%2B)|(\+))/i,
+  // Removed overly broad pattern that flagged legitimate hyphens in UUIDs
   /((\%3D)|(=))[^\n]*((\%27)|(\')|(\')|(\%3B)|(;))/i,
   /\w*((\%27)|(\')|(\')|(\%3B)|(;))/i,
   /((\%27)|(\')|(\')|(\%3B)|(;))\s*((\%6F)|o|(\%4F))((\%72)|r|(\%52))/i,
