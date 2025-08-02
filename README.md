@@ -135,6 +135,286 @@ A comprehensive TypeScript-based web application for AI-powered security log ano
 - **User Activity**: Upload frequency and analysis patterns
 - **Webhook Metrics**: Delivery success rates and failure analysis
 
+## 🏗️ High-Level System Architecture
+
+### Current Architecture Overview
+
+Sentry operates as a full-stack TypeScript application with integrated AI analysis capabilities, designed for high-throughput security log processing and real-time anomaly detection.
+
+```mermaid
+graph TB
+    subgraph "Client Layer"
+        WEB[React Web App]
+        PWA[Progressive Web App]
+    end
+    
+    subgraph "API Gateway Layer"
+        LB[Load Balancer]
+        API[Express.js API Server]
+        AUTH[OAuth/Session Auth]
+        RATE[Rate Limiter]
+    end
+    
+    subgraph "Application Layer"
+        UPLOAD[File Upload Service]
+        PARSER[Log Parser Service]
+        ANALYZER[Analysis Engine]
+        WEBHOOK[Webhook Service]
+        NOTIFY[Notification Service]
+    end
+    
+    subgraph "Processing Layer"
+        QUEUE[Background Job Queue]
+        WORKER1[Analysis Worker 1]
+        WORKER2[Analysis Worker 2]
+        WORKER3[Analysis Worker 3]
+    end
+    
+    subgraph "AI/ML Layer"
+        TRAD[Traditional ML]
+        ENSEMBLE[ML Ensemble]
+        OPENAI[OpenAI GPT-4o]
+        GEMINI[Google Gemini]
+    end
+    
+    subgraph "Storage Layer"
+        DB[(PostgreSQL)]
+        BLOB[File Storage]
+        CACHE[Redis Cache]
+        SESSION[Session Store]
+    end
+    
+    subgraph "External Integrations"
+        ZAPIER[Zapier Webhooks]
+        SLACK[Slack Notifications]
+        EMAIL[Email Alerts]
+        CUSTOM[Custom Endpoints]
+    end
+    
+    WEB --> LB
+    PWA --> LB
+    LB --> API
+    API --> AUTH
+    API --> RATE
+    
+    API --> UPLOAD
+    API --> WEBHOOK
+    API --> NOTIFY
+    
+    UPLOAD --> PARSER
+    PARSER --> QUEUE
+    QUEUE --> WORKER1
+    QUEUE --> WORKER2
+    QUEUE --> WORKER3
+    
+    WORKER1 --> ANALYZER
+    WORKER2 --> ANALYZER
+    WORKER3 --> ANALYZER
+    
+    ANALYZER --> TRAD
+    ANALYZER --> ENSEMBLE
+    ANALYZER --> OPENAI
+    ANALYZER --> GEMINI
+    
+    UPLOAD --> BLOB
+    API --> DB
+    API --> CACHE
+    AUTH --> SESSION
+    
+    WEBHOOK --> ZAPIER
+    WEBHOOK --> SLACK
+    WEBHOOK --> EMAIL
+    WEBHOOK --> CUSTOM
+    
+    style WEB fill:#e3f2fd
+    style API fill:#fff3e0
+    style ANALYZER fill:#f3e5f5
+    style DB fill:#e8f5e8
+```
+
+### Distributed Systems & Queuing Architecture
+
+#### Current Implementation (Single Node)
+- **Synchronous Processing**: File upload → immediate analysis → results
+- **In-Memory Queue**: Background jobs handled by Node.js event loop
+- **Session Storage**: PostgreSQL-backed session management
+- **File Storage**: Local filesystem with blob storage readiness
+
+#### Proposed Distributed Architecture
+
+```mermaid
+graph TB
+    subgraph "Load Balancer Tier"
+        LB[NGINX/CloudFlare]
+    end
+    
+    subgraph "API Tier (Horizontal Scale)"
+        API1[API Server 1]
+        API2[API Server 2]
+        API3[API Server 3]
+    end
+    
+    subgraph "Queue Infrastructure"
+        REDIS[(Redis Cluster)]
+        BULL[Bull Queue Manager]
+        subgraph "Message Queues"
+            Q1[File Processing Queue]
+            Q2[Analysis Queue]
+            Q3[Webhook Queue]
+            Q4[Notification Queue]
+        end
+    end
+    
+    subgraph "Worker Tier (Auto-Scale)"
+        subgraph "File Workers"
+            FW1[File Worker 1]
+            FW2[File Worker 2]
+        end
+        subgraph "Analysis Workers"
+            AW1[Analysis Worker 1]
+            AW2[Analysis Worker 2]
+            AW3[Analysis Worker 3]
+        end
+        subgraph "Webhook Workers"
+            WW1[Webhook Worker 1]
+            WW2[Webhook Worker 2]
+        end
+    end
+    
+    subgraph "Storage Tier"
+        PG[(PostgreSQL Cluster)]
+        BLOB[Object Storage<br/>AWS S3/GCS]
+        CACHE[Redis Cache]
+    end
+    
+    subgraph "AI Services"
+        OPENAI_API[OpenAI API]
+        GEMINI_API[Google Gemini API]
+        ML_SERVICE[Custom ML Service]
+    end
+    
+    LB --> API1
+    LB --> API2
+    LB --> API3
+    
+    API1 --> REDIS
+    API2 --> REDIS
+    API3 --> REDIS
+    
+    REDIS --> Q1
+    REDIS --> Q2
+    REDIS --> Q3
+    REDIS --> Q4
+    
+    Q1 --> FW1
+    Q1 --> FW2
+    Q2 --> AW1
+    Q2 --> AW2
+    Q2 --> AW3
+    Q3 --> WW1
+    Q3 --> WW2
+    
+    FW1 --> BLOB
+    FW2 --> BLOB
+    AW1 --> OPENAI_API
+    AW2 --> GEMINI_API
+    AW3 --> ML_SERVICE
+    
+    API1 --> PG
+    API2 --> PG
+    API3 --> PG
+    API1 --> CACHE
+    API2 --> CACHE
+    API3 --> CACHE
+    
+    style LB fill:#ffebee
+    style REDIS fill:#fff3e0
+    style PG fill:#e8f5e8
+    style BLOB fill:#f3e5f5
+```
+
+### User Story Workflow - Technical Implementation
+
+#### 1. **File Upload Journey**
+```
+User Upload → API Validation → Blob Storage → Queue Job → Worker Processing
+```
+
+**Technical Flow:**
+1. **Frontend**: React form with drag-drop, file validation (size/type)
+2. **API Layer**: Multer middleware, security scanning, rate limiting
+3. **Storage**: Temporary local storage → planned blob storage migration
+4. **Queue**: Redis-backed job queue for async processing
+5. **Worker**: Background analysis with AI model selection
+
+#### 2. **Analysis Pipeline**
+```
+Raw Logs → Parser → Analysis Engine → Risk Scoring → Anomaly Storage
+```
+
+**Technical Components:**
+- **Parser Service**: Zscaler NSS format specialist with regex validation
+- **Analysis Engine**: Multi-model orchestrator with fallback strategies
+- **Scoring Algorithm**: Weighted risk calculation (0-10 scale) with confidence metrics
+- **Database**: Anomaly storage with full-text search and indexing
+
+#### 3. **SOC Analyst Workflow**
+```
+Alert Generation → Dashboard Display → Analyst Action → Status Update → Webhook Trigger
+```
+
+**Technical Implementation:**
+- **Real-time Updates**: WebSocket connections for live dashboard updates
+- **State Management**: React Query with optimistic updates
+- **Bulk Operations**: Database transactions for mass anomaly updates
+- **Audit Trail**: Complete action logging for compliance tracking
+
+#### 4. **Webhook Automation System**
+```
+Trigger Event → Queue Job → Worker Processing → External API Call → Response Handling
+```
+
+**Technical Architecture:**
+- **Event System**: Database triggers and application events
+- **Queue Management**: Separate webhook queue with retry logic
+- **Delivery Tracking**: Success/failure metrics with detailed logging
+- **Rate Limiting**: Per-integration throttling to respect external API limits
+
+### Scaling Considerations
+
+#### Current Bottlenecks
+- **File Processing**: Synchronous upload processing limits throughput
+- **AI Analysis**: Sequential model calls create latency
+- **Database**: Single PostgreSQL instance for all operations
+- **Sessions**: Server-tied sessions limit horizontal scaling
+
+#### Proposed Solutions
+- **Async Processing**: Redis queue with worker pools
+- **AI Optimization**: Parallel model calls with circuit breakers
+- **Database Sharding**: User-based partitioning for anomalies
+- **Stateless Sessions**: JWT tokens with refresh mechanism
+
+### Production Deployment Architecture
+
+#### Cloud-Native Stack (Recommended)
+```
+Frontend: Vercel/Netlify → CDN distribution
+API: GCP Cloud Run → Auto-scaling containers
+Queue: GCP Cloud Tasks → Managed job processing  
+Database: GCP Cloud SQL → Managed PostgreSQL
+Storage: GCP Cloud Storage → Object storage
+AI: Vertex AI → Managed ML services
+```
+
+#### Container Orchestration (Alternative)
+```
+Frontend: Docker → Kubernetes pods
+API: Docker → Kubernetes deployment
+Workers: Docker → Kubernetes jobs
+Database: Kubernetes StatefulSet
+Queue: Redis Kubernetes operator
+```
+
 ## 🔄 System Data Flow Diagram
 
 ### File Upload → Analysis → SOC Workflow Process
