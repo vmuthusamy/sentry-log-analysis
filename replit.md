@@ -36,6 +36,13 @@ Preferred communication style: Simple, everyday language.
 - ✅ Built automated test scripts to catch authentication strategy and TypeScript errors
 - ✅ Verified authentication endpoints no longer return upload middleware errors
 
+**File Upload Regression Fix - COMPLETED (August 2, 2025):**
+- ✅ Fixed file upload routing regression where /api/logs/upload was returning HTML instead of JSON
+- ✅ Added proper /api/logs/upload endpoint with consistent authentication middleware (isAuthenticated)
+- ✅ Unified authentication middleware usage across all endpoints to prevent future inconsistencies
+- ✅ Verified both /api/upload and /api/logs/upload now return proper 401 JSON responses when not authenticated
+- ✅ Confirmed file upload endpoints are working correctly with proper rate limiting and validation
+
 **Documentation & Repository Cleanup - COMPLETED:**
 - ✅ Removed placeholder image URLs that caused GitHub camo proxy issues
 - ✅ Replaced placeholder screenshots with comprehensive feature descriptions

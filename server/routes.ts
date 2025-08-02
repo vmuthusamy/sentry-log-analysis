@@ -67,12 +67,8 @@ const upload = multer({
   },
 });
 
-function requireAuth(req: any, res: any, next: any) {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ message: "Authentication required" });
-  }
-  next();
-}
+// Use consistent authentication middleware
+const requireAuth = isAuthenticated;
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication first
@@ -398,6 +394,170 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     // File is initially ready for analysis, not automatically processing
+
+    // Create processing job
+    const processingJob = await storage.createProcessingJob({
+      logFileId: logFile.id,
+      userId,
+      status: "queued",
+      settings: {
+        sensitivity: "high",
+        threshold: 7.0,
+      },
+    });
+
+    // Track successful file upload
+    metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'success');
+    await userAnalytics.trackUserActivity(userId, 'file_upload_success', {
+      logFileId: logFile.id,
+      filename: originalname,
+      fileSize: size,
+      logEntriesCount: logEntries.length
+    });
+
+    // Update log file status to ready (no automatic GenAI processing)
+    await storage.updateLogFileStatus(logFile.id, "ready", logEntries.length);
+
+    res.json({
+      logFile: {
+        ...logFile,
+        status: "ready"
+      },
+      processingJob,
+      totalEntries: logEntries.length,
+      message: "File uploaded successfully. You can now run Traditional ML, Advanced ML, or GenAI analysis.",
+      availableAnalyses: {
+        traditional: "Rule-based analysis (always available)",
+        advanced: "Multi-model ML analysis (always available)", 
+        genai: "AI-powered analysis (requires API key)"
+      }
+    });
+  }));
+
+  // Add alias for /api/logs/upload endpoint (matching frontend expectations)
+  app.post("/api/logs/upload", isAuthenticated, uploadRateLimit, upload.single("logFile"), validateInput(z.object({})), asyncHandler(async (req: any, res: any) => {
+    // This is an alias for the /api/upload endpoint to maintain compatibility
+    if (!req.file) {
+      throw new ValidationError("No file uploaded");
+    }
+
+    const { originalname, filename, size, mimetype } = req.file;
+    const userId = req.user!.id;
+
+    // Track file upload attempt
+    await userAnalytics.trackUserActivity(userId, 'file_upload_attempt', {
+      filename: originalname,
+      fileSize: size,
+      userAgent: req.get('User-Agent'),
+      ip: req.ip
+    });
+
+    // Additional file size validation
+    if (size === 0) {
+      await fs.unlink(path.join("uploads", filename)); // Clean up empty file
+      throw new ValidationError("Empty file is not allowed");
+    }
+
+    // Check file size against user limits (could be user-tier based)
+    const maxSizeBytes = 10 * 1024 * 1024; // 10MB
+    if (size > maxSizeBytes) {
+      await fs.unlink(path.join("uploads", filename)); // Clean up oversized file
+      throw new FileSizeError(
+        `File size ${Math.round(size / (1024 * 1024))}MB exceeds limit of ${Math.round(maxSizeBytes / (1024 * 1024))}MB`,
+        size,
+        maxSizeBytes
+      );
+    }
+
+    // Check user file count limit (10 files per user)
+    const userFileCount = await storage.getUserFileCount(userId);
+    const maxFilesPerUser = 10;
+    if (userFileCount >= maxFilesPerUser) {
+      await fs.unlink(path.join("uploads", filename)); // Clean up file
+      throw new ValidationError(
+        `You have reached the maximum limit of ${maxFilesPerUser} files. Please delete some files before uploading new ones.`
+      );
+    }
+
+    // Create log file record
+    const logFile = await storage.createLogFile({
+      userId,
+      filename,
+        originalName: originalname,
+        fileSize: size,
+        mimeType: mimetype,
+        status: "pending",
+      });
+
+    // Read and validate file content with error handling
+    const filePath = path.join("uploads", filename);
+    let content: string;
+    
+    try {
+      content = await fs.readFile(filePath, 'utf-8');
+    } catch (readError) {
+      await fs.unlink(filePath).catch(() => {}); // Clean up file, ignore errors
+      throw new ProcessingError("Failed to read uploaded file", "file_read", readError as Error);
+    }
+
+    // Validate file content isn't suspiciously large when parsed
+    if (content.length > 100 * 1024 * 1024) { // 100MB of text content
+      await fs.unlink(filePath).catch(() => {});
+      throw new ValidationError("File content too large after parsing (max 100MB text)");
+    }
+
+    // Parse and validate log content
+    let logEntries: any[];
+    try {
+      logEntries = zscalerLogParser.parse(content);
+      
+      // Validate we have some log entries
+      if (!logEntries || logEntries.length === 0) {
+        await storage.updateLogFileStatus(logFile.id, "failed", 0, "No valid log entries found");
+        await fs.unlink(filePath).catch(() => {});
+        
+        return res.status(400).json({ 
+          message: "No valid log entries found in file",
+          details: {
+            entriesFound: 0,
+            expectedFormat: "Zscaler NSS feed format (comma, semicolon, tab or pipe separated)",
+            suggestion: "Please ensure your log file contains valid Zscaler log entries.",
+            fileName: originalname
+          }
+        });
+      }
+
+      // Validate log entry count (prevent abuse)
+      if (logEntries.length > 100000) {
+        await storage.updateLogFileStatus(logFile.id, "failed", logEntries.length, "Too many log entries");
+        await fs.unlink(filePath).catch(() => {});
+        
+        return res.status(400).json({ 
+          message: "File contains too many log entries",
+          details: {
+            currentEntries: logEntries.length,
+            maxEntries: 100000,
+            suggestion: "Please split your log file into smaller chunks or filter to fewer entries.",
+            fileName: originalname
+          }
+        });
+      }
+      
+    } catch (parseError) {
+      await storage.updateLogFileStatus(logFile.id, "failed", 0, "Failed to parse log file");
+      await fs.unlink(filePath).catch(() => {});
+      metricsService.trackFileUpload(userId, logFile.id, originalname, size, 'failure', `Parse error: ${parseError instanceof Error ? parseError.message : 'Unknown parsing error'}`);
+      
+      return res.status(400).json({ 
+        message: "Failed to parse log file",
+        details: {
+          error: parseError instanceof Error ? parseError.message : 'Unknown parsing error',
+          expectedFormat: "Zscaler NSS feed format (comma, semicolon, tab or pipe separated)",
+          suggestion: "Please check that your file follows the correct Zscaler log format.",
+          fileName: originalname
+        }
+      });
+    }
 
     // Create processing job
     const processingJob = await storage.createProcessingJob({
