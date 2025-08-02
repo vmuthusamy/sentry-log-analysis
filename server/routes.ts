@@ -411,8 +411,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { id } = req.params;
       const { status, analystNotes, priority, escalationReason, assignedTo, reviewedAt } = req.body;
       
-      console.log('Updating anomaly:', id, 'by user:', userId);
-      console.log('Update data:', req.body);
+      console.log('🔄 Updating anomaly:', id, 'by user:', userId);
+      console.log('📝 Update data:', req.body);
       
       if (status && !['pending', 'under_review', 'confirmed', 'false_positive', 'dismissed'].includes(status)) {
         return res.status(400).json({ message: "Invalid status" });
@@ -439,14 +439,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
           const { WebhookService } = await import('../services/webhook-service');
           const webhookService = new WebhookService();
           await webhookService.triggerWebhooksForAnomaly(updatedAnomaly, userId);
-          console.log('Webhooks triggered for updated anomaly:', id);
+          console.log('✅ Webhooks triggered for updated anomaly:', id);
+        } else {
+          console.log('⚠️ Could not retrieve updated anomaly for webhook trigger');
         }
       } catch (webhookError) {
-        console.error('Error triggering webhooks:', webhookError);
+        console.error('❌ Error triggering webhooks:', webhookError);
         // Don't fail the main request if webhook fails
       }
       
-      console.log('Anomaly updated successfully');
+      console.log('✅ Anomaly updated successfully:', id);
       res.json({ success: true });
     } catch (error) {
       console.error("Update anomaly error:", error);
