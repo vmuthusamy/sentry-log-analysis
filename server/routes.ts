@@ -1225,10 +1225,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     aiConfig: z.object({
       provider: z.enum(['openai', 'gemini']).optional(),
       model: z.string().max(100).optional(),
+      tier: z.enum(['premium', 'standard', 'economy']).optional(),
       temperature: z.number().min(0).max(2).optional(),
       maxTokens: z.number().min(1).max(8000).optional()
     }).optional()
   })), asyncHandler(async (req: any, res: any) => {
+    console.log('🔍 Process logs request:', {
+      logFileId: req.params.id,
+      userId: req.user.claims.sub,
+      body: req.body,
+      aiConfig: req.body.aiConfig
+    });
     const logFileId = req.params.id;
     const userId = req.user.claims.sub;
     const aiConfig = req.body.aiConfig; // Optional AI configuration from frontend
