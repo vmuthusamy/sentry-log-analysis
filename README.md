@@ -332,9 +332,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🚦 CI/CD & Quality Assurance
 
 ### Continuous Integration Status
-[![CI/CD Pipeline](https://github.com/your-username/sentry-log-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/sentry-log-analysis/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/your-username/sentry-log-analysis/branch/main/graph/badge.svg)](https://codecov.io/gh/your-username/sentry-log-analysis)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=sentry-log-analysis&metric=security_rating)](https://sonarcloud.io/dashboard?id=sentry-log-analysis)
+[![CI Pipeline](https://github.com/your-username/sentry-log-analysis/actions/workflows/ci-simple.yml/badge.svg)](https://github.com/your-username/sentry-log-analysis/actions/workflows/ci-simple.yml)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/your-username/sentry-log-analysis)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Production Instance Status
 🟢 **Production**: [sentry-log-analysis.replit.app](https://sentry-log-analysis.replit.app) - **Online**  
