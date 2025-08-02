@@ -405,9 +405,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }));
 
   // Update anomaly status and details
-  app.patch("/api/anomalies/:id", requireAuth, async (req, res) => {
+  app.patch("/api/anomalies/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user.claims.sub;
       const { id } = req.params;
       const { status, analystNotes, priority, escalationReason, assignedTo, reviewedAt } = req.body;
       
@@ -431,6 +431,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         reviewedBy: userId,
         reviewedAt: reviewedAt ? new Date(reviewedAt) : new Date()
       });
+      
+      // Trigger webhooks for the updated anomaly
+      try {
+        const updatedAnomaly = await storage.getAnomalyById(id, userId);
+        if (updatedAnomaly) {
+          const { WebhookService } = await import('../services/webhook-service');
+          const webhookService = new WebhookService();
+          await webhookService.triggerWebhooksForAnomaly(updatedAnomaly, userId);
+          console.log('Webhooks triggered for updated anomaly:', id);
+        }
+      } catch (webhookError) {
+        console.error('Error triggering webhooks:', webhookError);
+        // Don't fail the main request if webhook fails
+      }
       
       console.log('Anomaly updated successfully');
       res.json({ success: true });

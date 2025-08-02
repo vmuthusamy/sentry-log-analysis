@@ -162,7 +162,7 @@ export class WebhookService {
       if (response.ok) {
         // Update webhook statistics
         await storage.updateWebhookStats(webhook.id);
-        console.log(`Webhook ${webhook.name} triggered successfully for anomaly ${anomaly.id}`);
+        console.log(`✅ Webhook ${webhook.name} triggered successfully for anomaly ${anomaly.id} to ${webhook.webhookUrl}`);
       } else {
         console.error(`Webhook ${webhook.name} failed with status ${response.status}`);
       }
