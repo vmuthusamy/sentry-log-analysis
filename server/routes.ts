@@ -436,7 +436,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       try {
         const updatedAnomaly = await storage.getAnomalyById(id, userId);
         if (updatedAnomaly) {
-          const { WebhookService } = await import('../services/webhook-service');
+          const { WebhookService } = await import('./services/webhook-service.js');
           const webhookService = new WebhookService();
           await webhookService.triggerWebhooksForAnomaly(updatedAnomaly, userId);
           console.log('✅ Webhooks triggered for updated anomaly:', id);
