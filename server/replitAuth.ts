@@ -84,18 +84,28 @@ export async function setupAuth(app: Express) {
       return;
     }
     
-    const user = {
+    const userSessionData = {
+      claims: claims,
+      access_token: tokens.access_token,
+      refresh_token: tokens.refresh_token,
+      expires_at: claims?.exp,
+    };
+    
+    const upsertData = {
       id: claims.sub,
       email: claims.email as string || null,
       firstName: claims.first_name as string || null,
       lastName: claims.last_name as string || null,
       profileImageUrl: claims.profile_image_url as string || null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      role: "user",
+      permissions: null,
+      isSystemUser: false,
+      lastLoginAt: new Date(),
     };
-    updateUserSession(user, tokens);
-    await upsertUser(claims);
-    verified(null, user);
+    
+    updateUserSession(userSessionData, tokens);
+    await upsertUser(upsertData);
+    verified(null, userSessionData);
   };
 
   for (const domain of process.env

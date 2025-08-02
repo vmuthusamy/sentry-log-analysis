@@ -273,3 +273,22 @@ export const aiConfigSchema = z.object({
 });
 
 export type AIConfig = z.infer<typeof aiConfigSchema>;
+
+// Dashboard statistics type
+export interface DashboardStats {
+  totalLogs: number;
+  anomaliesDetected: number;
+  averageRiskScore: number;
+  recentAnomalies: Array<{
+    id: string;
+    anomalyType: string;
+    riskScore: string;
+    timestamp: Date;
+  }>;
+  highRiskAnomalies: Array<{
+    id: string;
+    anomalyType: string;
+    riskScore: string;
+    timestamp: Date;
+  }>;
+}

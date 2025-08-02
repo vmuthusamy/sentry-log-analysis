@@ -124,7 +124,7 @@ export function ErrorDisplay({ error, onRetry, onDismiss }: ErrorDisplayProps) {
                 variant="outline" 
                 size="sm" 
                 onClick={onRetry}
-                disabled={error.retryAfter && error.retryAfter > 0}
+                disabled={!!error.retryAfter && error.retryAfter > 0}
               >
                 {error.retryAfter && error.retryAfter > 0 ? (
                   <>
