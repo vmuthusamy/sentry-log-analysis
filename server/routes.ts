@@ -259,7 +259,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     const { originalname, filename, size, mimetype } = req.file;
-    const userId = req.user!.id;
+    const userId = req.user.claims.sub;
 
     // Track file upload attempt
     await userAnalytics.trackUserActivity(userId, 'file_upload_attempt', {
@@ -442,7 +442,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     const { originalname, filename, size, mimetype } = req.file;
-    const userId = req.user!.id;
+    const userId = req.user.claims.sub;
 
     // Track file upload attempt
     await userAnalytics.trackUserActivity(userId, 'file_upload_attempt', {
@@ -601,7 +601,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get user stats
   app.get("/api/stats", requireAuth, async (req, res) => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user.claims.sub;
       console.log(`📊 Stats request for user: ${userId}`);
       
       const stats = await storage.getStats(userId);
@@ -627,7 +627,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get log files
   app.get("/api/log-files", requireAuth, async (req, res) => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user.claims.sub;
       const logFiles = await storage.getLogFilesByUser(userId);
       res.json(logFiles);
     } catch (error) {
@@ -638,7 +638,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Get anomalies with rate limiting for AI analysis
   app.get("/api/anomalies", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
-    const userId = req.user!.id;
+    const userId = req.user.claims.sub;
     const { logFileId, limit } = req.query;
     
     let anomalies;
@@ -662,7 +662,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Get individual anomaly details
   app.get("/api/anomalies/:id", requireAuth, asyncHandler(async (req: any, res: any) => {
-    const userId = req.user!.id;
+    const userId = req.user.claims.sub;
     const { id } = req.params;
     
     // Validate ID format
@@ -736,7 +736,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     updates: anomalyValidationSchema
   })), async (req, res) => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user.claims.sub;
       const { anomalyIds, updates } = req.body;
       
       if (!Array.isArray(anomalyIds) || anomalyIds.length === 0) {
@@ -766,7 +766,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get processing jobs
   app.get("/api/processing-jobs", requireAuth, async (req, res) => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user.claims.sub;
       const jobs = await storage.getProcessingJobsByUser(userId);
       res.json(jobs);
     } catch (error) {
@@ -806,7 +806,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get user API key status
   app.get("/api/user-api-keys/status", requireAuth, async (req, res) => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user.claims.sub;
       const { userApiKeys } = await import("@shared/schema");
       const { eq } = await import("drizzle-orm");
       
@@ -841,7 +841,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Save user API key
   app.post("/api/user-api-keys", requireAuth, validateInput(userApiKeyValidationSchema), async (req, res) => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user.claims.sub;
       const { provider, apiKey } = req.body;
       
       if (!provider || !apiKey) {
@@ -893,7 +893,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Test user API key
   app.post("/api/user-api-keys/:provider/test", requireAuth, validateInput(z.object({})), async (req, res) => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user.claims.sub;
       const { provider } = req.params;
       
       const { userApiKeys } = await import("@shared/schema");
@@ -955,7 +955,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Advanced ML anomaly detection endpoint
   app.post("/api/analyze-advanced-ml/:id", requireAuth, analysisRateLimit, validateInput(z.object({})), asyncHandler(async (req: any, res: any) => {
     const logFileId = req.params.id;
-    const userId = req.user!.id;
+    const userId = req.user.claims.sub;
     const startTime = Date.now(); // Start timing analysis
 
     try {
@@ -1090,7 +1090,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Traditional anomaly detection (no LLM) endpoint
   app.post("/api/analyze-traditional/:id", requireAuth, analysisRateLimit, validateInput(z.object({})), asyncHandler(async (req: any, res: any) => {
     const logFileId = req.params.id;
-    const userId = req.user!.id;
+    const userId = req.user.claims.sub;
     const startTime = Date.now(); // Start timing analysis
 
     try {
@@ -1230,7 +1230,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }).optional()
   })), asyncHandler(async (req: any, res: any) => {
     const logFileId = req.params.id;
-    const userId = req.user!.id;
+    const userId = req.user.claims.sub;
     const aiConfig = req.body.aiConfig; // Optional AI configuration from frontend
 
     // FIRST: Check if user has configured API keys for GenAI analysis
@@ -1314,7 +1314,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get metrics endpoint
   app.get("/api/metrics", requireAuth, async (req, res) => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user.claims.sub;
       const { timeRange } = req.query;
       
       const metrics = await metricsService.getMetricsSummary(
