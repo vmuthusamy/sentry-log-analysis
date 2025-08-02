@@ -57,6 +57,8 @@ export class WebhookService {
         this.shouldTriggerWebhook(webhook, anomaly)
       );
 
+      console.log(`🎯 Found ${triggeredWebhooks.length} webhooks to trigger for anomaly ${anomaly.id}`);
+
       // Trigger each webhook
       for (const webhook of triggeredWebhooks) {
         await this.sendWebhook(webhook, anomaly, logFile, user);
