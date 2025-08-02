@@ -135,110 +135,196 @@ A comprehensive TypeScript-based web application for AI-powered security log ano
 - **User Activity**: Upload frequency and analysis patterns
 - **Webhook Metrics**: Delivery success rates and failure analysis
 
-## 🏗️ High-Level System Architecture
+## 🏗️ System Architecture
 
-### Current Architecture Overview
+### Current Implementation (Single Node)
 
-Sentry operates as a full-stack TypeScript application with integrated AI analysis capabilities, designed for high-throughput security log processing and real-time anomaly detection.
+Sentry currently operates as a monolithic full-stack TypeScript application running on a single Node.js process with integrated AI analysis capabilities.
 
 ```mermaid
 graph TB
-    subgraph "Client Layer"
-        WEB[React Web App]
-        PWA[Progressive Web App]
+    subgraph "Frontend (React)"
+        UI[React Components]
+        FORMS[Upload Forms]
+        DASH[Dashboard Views]
+        STATE[React Query State]
     end
     
-    subgraph "API Gateway Layer"
-        LB[Load Balancer]
-        API[Express.js API Server]
-        AUTH[OAuth/Session Auth]
-        RATE[Rate Limiter]
+    subgraph "Backend (Express.js)"
+        API[Express Server]
+        AUTH[Passport OAuth]
+        ROUTES[API Routes]
+        MIDDLEWARE[Security Middleware]
     end
     
-    subgraph "Application Layer"
-        UPLOAD[File Upload Service]
-        PARSER[Log Parser Service]
-        ANALYZER[Analysis Engine]
+    subgraph "Services (Synchronous)"
+        UPLOAD[Multer File Upload]
+        PARSER[Zscaler Log Parser]
+        ANALYZER[AI Analysis Service]
         WEBHOOK[Webhook Service]
-        NOTIFY[Notification Service]
     end
     
-    subgraph "Processing Layer"
-        QUEUE[Background Job Queue]
-        WORKER1[Analysis Worker 1]
-        WORKER2[Analysis Worker 2]
-        WORKER3[Analysis Worker 3]
+    subgraph "Storage (Local)"
+        DB[(PostgreSQL Database)]
+        FILES[Local File System]
+        SESSIONS[Session Store]
     end
     
-    subgraph "AI/ML Layer"
-        TRAD[Traditional ML]
-        ENSEMBLE[ML Ensemble]
+    subgraph "External APIs"
         OPENAI[OpenAI GPT-4o]
         GEMINI[Google Gemini]
-    end
-    
-    subgraph "Storage Layer"
-        DB[(PostgreSQL)]
-        BLOB[File Storage]
-        CACHE[Redis Cache]
-        SESSION[Session Store]
-    end
-    
-    subgraph "External Integrations"
         ZAPIER[Zapier Webhooks]
-        SLACK[Slack Notifications]
-        EMAIL[Email Alerts]
-        CUSTOM[Custom Endpoints]
     end
     
-    WEB --> LB
-    PWA --> LB
-    LB --> API
+    UI --> API
+    FORMS --> UPLOAD
+    DASH --> STATE
+    STATE --> ROUTES
+    
     API --> AUTH
-    API --> RATE
+    API --> MIDDLEWARE
+    ROUTES --> UPLOAD
+    ROUTES --> ANALYZER
+    ROUTES --> WEBHOOK
     
-    API --> UPLOAD
-    API --> WEBHOOK
-    API --> NOTIFY
-    
+    UPLOAD --> FILES
     UPLOAD --> PARSER
-    PARSER --> QUEUE
-    QUEUE --> WORKER1
-    QUEUE --> WORKER2
-    QUEUE --> WORKER3
-    
-    WORKER1 --> ANALYZER
-    WORKER2 --> ANALYZER
-    WORKER3 --> ANALYZER
-    
-    ANALYZER --> TRAD
-    ANALYZER --> ENSEMBLE
+    PARSER --> ANALYZER
     ANALYZER --> OPENAI
     ANALYZER --> GEMINI
+    ANALYZER --> DB
     
-    UPLOAD --> BLOB
+    AUTH --> SESSIONS
     API --> DB
-    API --> CACHE
-    AUTH --> SESSION
-    
     WEBHOOK --> ZAPIER
-    WEBHOOK --> SLACK
-    WEBHOOK --> EMAIL
-    WEBHOOK --> CUSTOM
     
-    style WEB fill:#e3f2fd
+    style UI fill:#e3f2fd
     style API fill:#fff3e0
     style ANALYZER fill:#f3e5f5
     style DB fill:#e8f5e8
 ```
 
-### Distributed Systems & Queuing Architecture
+### Current User Flow - Technical Implementation
 
-#### Current Implementation (Single Node)
-- **Synchronous Processing**: File upload → immediate analysis → results
-- **In-Memory Queue**: Background jobs handled by Node.js event loop
-- **Session Storage**: PostgreSQL-backed session management
-- **File Storage**: Local filesystem with blob storage readiness
+#### 1. **File Upload Process (Synchronous)**
+```
+User Selects File → React Validation → API Upload → Multer Processing → Immediate Analysis
+```
+
+**Current Technical Flow:**
+1. **Frontend**: React form validates file size (≤10MB) and user limit (≤10 files)
+2. **Upload**: Multer middleware saves to local `uploads/` directory
+3. **Security**: File content validation and security scanning
+4. **Processing**: Immediate synchronous analysis starts
+5. **Response**: User gets immediate feedback on upload success/failure
+
+#### 2. **Analysis Pipeline (Sequential)**
+```
+File Upload → Parse Logs → Select AI Model → API Call → Store Results → Return to User
+```
+
+**Current Implementation:**
+- **Parser**: Synchronous Zscaler NSS log parsing with regex validation
+- **AI Selection**: User chooses Traditional ML, Advanced ML, OpenAI, or Skip LLM
+- **API Calls**: Sequential calls to OpenAI/Gemini APIs (blocking)
+- **Storage**: Direct PostgreSQL insert of anomalies and results
+- **Response**: Analysis results returned immediately to frontend
+
+#### 3. **SOC Analyst Workflow (Real-time)**
+```
+Dashboard Load → Fetch Anomalies → Display Table → Analyst Action → Update Database → Refresh UI
+```
+
+**Current Frontend/Backend Interaction:**
+- **Frontend**: React Query fetches anomalies with filtering
+- **Backend**: Express routes with SQL queries for anomaly management
+- **State Management**: Optimistic updates with React Query mutations
+- **Real-time**: Polling-based updates (no WebSockets currently)
+
+#### 4. **Webhook System (Synchronous)**
+```
+Analyst Confirms → Trigger Check → HTTP Request → External API → Response Logging
+```
+
+**Current Webhook Implementation:**
+- **Trigger**: Database update triggers in-memory webhook check
+- **Delivery**: Synchronous HTTP requests to external endpoints
+- **Retry**: Basic retry logic with exponential backoff
+- **Logging**: Success/failure tracking in PostgreSQL
+
+### Current Frontend Architecture
+
+#### React Component Structure
+```
+src/
+├── components/
+│   ├── dashboard/
+│   │   ├── upload-section.tsx     # File upload with drag-drop
+│   │   ├── anomaly-table.tsx      # Data grid with filtering
+│   │   └── stats-cards.tsx        # Dashboard metrics
+│   ├── webhooks/
+│   │   ├── webhook-form.tsx       # Integration setup
+│   │   └── webhook-list.tsx       # Management interface
+│   └── ui/                        # Shadcn components
+├── pages/
+│   ├── Dashboard.tsx              # Main app interface
+│   ├── Analysis.tsx               # Anomaly review page
+│   └── Landing.tsx                # Public homepage
+└── lib/
+    ├── queryClient.ts             # API request handling
+    └── utils.ts                   # Helper functions
+```
+
+#### State Management Pattern
+- **Server State**: TanStack React Query for API data
+- **Form State**: React Hook Form with Zod validation
+- **UI State**: Local component state with useState
+- **Authentication**: Replit OAuth with session-based auth
+
+### Current Backend Architecture
+
+#### Express.js Server Structure
+```
+server/
+├── routes/
+│   ├── auth.ts                    # OAuth endpoints
+│   ├── upload.ts                  # File upload handling
+│   ├── anomalies.ts               # Anomaly CRUD operations
+│   └── webhooks.ts                # Integration management
+├── services/
+│   ├── anomaly-detector.ts        # AI analysis orchestration
+│   ├── log-parser.ts              # Zscaler log processing
+│   ├── webhook-service.ts         # External API calls
+│   └── security-validator.ts      # File security checks
+├── middleware/
+│   ├── auth.ts                    # Session validation
+│   ├── rate-limiter.ts            # Request throttling
+│   └── file-validator.ts          # Upload validation
+└── storage.ts                     # Database operations
+```
+
+#### Processing Flow (Synchronous)
+1. **Request**: Express route receives API call
+2. **Middleware**: Authentication, rate limiting, validation
+3. **Service**: Business logic processing (blocking)
+4. **Database**: Direct PostgreSQL operations
+5. **Response**: Immediate result return to client
+
+### Current Limitations & Bottlenecks
+
+#### Performance Constraints
+- **File Processing**: Blocks request thread during analysis
+- **AI Calls**: Sequential API calls create latency spikes
+- **Concurrent Users**: Limited by single Node.js process
+- **File Storage**: Local filesystem not suitable for scaling
+
+#### Scaling Challenges
+- **Memory Usage**: All processing happens in main thread
+- **Session Affinity**: PostgreSQL sessions tie users to specific instance
+- **Error Recovery**: Process crashes affect all users
+- **Resource Limits**: Single server resource constraints
+
+### Future Architecture & Scaling Improvements
 
 #### Proposed Distributed Architecture
 
@@ -333,70 +419,53 @@ graph TB
     style BLOB fill:#f3e5f5
 ```
 
-### User Story Workflow - Technical Implementation
+#### Future User Flow Improvements
 
-#### 1. **File Upload Journey**
+##### 1. **Asynchronous File Processing**
 ```
-User Upload → API Validation → Blob Storage → Queue Job → Worker Processing
-```
-
-**Technical Flow:**
-1. **Frontend**: React form with drag-drop, file validation (size/type)
-2. **API Layer**: Multer middleware, security scanning, rate limiting
-3. **Storage**: Temporary local storage → planned blob storage migration
-4. **Queue**: Redis-backed job queue for async processing
-5. **Worker**: Background analysis with AI model selection
-
-#### 2. **Analysis Pipeline**
-```
-Raw Logs → Parser → Analysis Engine → Risk Scoring → Anomaly Storage
+User Upload → Queue Job → Background Processing → User Notification → Analysis Results
 ```
 
-**Technical Components:**
-- **Parser Service**: Zscaler NSS format specialist with regex validation
-- **Analysis Engine**: Multi-model orchestrator with fallback strategies
-- **Scoring Algorithm**: Weighted risk calculation (0-10 scale) with confidence metrics
-- **Database**: Anomaly storage with full-text search and indexing
-
-#### 3. **SOC Analyst Workflow**
+##### 2. **Parallel AI Analysis**
 ```
-Alert Generation → Dashboard Display → Analyst Action → Status Update → Webhook Trigger
+File → Multiple Workers → Concurrent AI Calls → Result Aggregation → Risk Scoring
 ```
 
-**Technical Implementation:**
-- **Real-time Updates**: WebSocket connections for live dashboard updates
-- **State Management**: React Query with optimistic updates
-- **Bulk Operations**: Database transactions for mass anomaly updates
-- **Audit Trail**: Complete action logging for compliance tracking
-
-#### 4. **Webhook Automation System**
+##### 3. **Real-time SOC Dashboard**
 ```
-Trigger Event → Queue Job → Worker Processing → External API Call → Response Handling
+WebSocket Connection → Live Updates → Instant Notifications → Collaborative Features
 ```
 
-**Technical Architecture:**
-- **Event System**: Database triggers and application events
-- **Queue Management**: Separate webhook queue with retry logic
-- **Delivery Tracking**: Success/failure metrics with detailed logging
-- **Rate Limiting**: Per-integration throttling to respect external API limits
+##### 4. **Scalable Webhook System**
+```
+Event → Queue → Worker Pool → Rate-Limited Delivery → Retry Logic → Success Tracking
+```
 
-### Scaling Considerations
+#### Scaling Migration Strategy
 
-#### Current Bottlenecks
-- **File Processing**: Synchronous upload processing limits throughput
-- **AI Analysis**: Sequential model calls create latency
-- **Database**: Single PostgreSQL instance for all operations
-- **Sessions**: Server-tied sessions limit horizontal scaling
+##### Phase 1: Queue Implementation
+- Implement Redis-backed job queues
+- Move file processing to background workers
+- Add job status tracking for users
 
-#### Proposed Solutions
-- **Async Processing**: Redis queue with worker pools
-- **AI Optimization**: Parallel model calls with circuit breakers
-- **Database Sharding**: User-based partitioning for anomalies
-- **Stateless Sessions**: JWT tokens with refresh mechanism
+##### Phase 2: Horizontal Scaling
+- Stateless API servers with JWT tokens
+- Load balancer configuration
+- Database connection pooling
 
-### Production Deployment Architecture
+##### Phase 3: Microservices
+- Split analysis engine into separate service
+- Dedicated webhook service
+- Event-driven architecture
 
-#### Cloud-Native Stack (Recommended)
+### Production Deployment Options
+
+#### Current Deployment (Replit)
+```
+Single Instance: Replit → PostgreSQL → Local Storage
+```
+
+#### Cloud-Native Migration (Recommended)
 ```
 Frontend: Vercel/Netlify → CDN distribution
 API: GCP Cloud Run → Auto-scaling containers
@@ -406,7 +475,7 @@ Storage: GCP Cloud Storage → Object storage
 AI: Vertex AI → Managed ML services
 ```
 
-#### Container Orchestration (Alternative)
+#### Container Orchestration (Enterprise)
 ```
 Frontend: Docker → Kubernetes pods
 API: Docker → Kubernetes deployment
