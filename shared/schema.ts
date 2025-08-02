@@ -88,11 +88,28 @@ export const processingJobs = pgTable("processing_jobs", {
   settings: jsonb("settings").notNull(),
 });
 
+// Webhook integrations for external workflow automation
+export const webhookIntegrations = pgTable("webhook_integrations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().references(() => users.id),
+  name: varchar("name").notNull(), // User-friendly name
+  provider: text("provider").notNull().default("zapier"), // zapier, make, custom, etc.
+  webhookUrl: text("webhook_url").notNull(),
+  isActive: boolean("is_active").default(true),
+  triggerConditions: jsonb("trigger_conditions").notNull(), // Risk level, keywords, etc.
+  payloadTemplate: jsonb("payload_template"), // Custom payload structure
+  lastTriggered: timestamp("last_triggered"),
+  totalTriggers: integer("total_triggers").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
   logFiles: many(logFiles),
   anomalies: many(anomalies),
   processingJobs: many(processingJobs),
+  webhookIntegrations: many(webhookIntegrations),
 }));
 
 export const logFilesRelations = relations(logFiles, ({ one, many }) => ({
@@ -126,6 +143,13 @@ export const processingJobsRelations = relations(processingJobs, ({ one }) => ({
   }),
 }));
 
+export const webhookIntegrationsRelations = relations(webhookIntegrations, ({ one }) => ({
+  user: one(users, {
+    fields: [webhookIntegrations.userId],
+    references: [users.id],
+  }),
+}));
+
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
@@ -143,6 +167,18 @@ export const insertLogFileSchema = createInsertSchema(logFiles).omit({
   uploadedAt: true,
   processedAt: true,
 });
+
+export const insertWebhookIntegrationSchema = createInsertSchema(webhookIntegrations).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+  lastTriggered: true,
+  totalTriggers: true,
+});
+
+// Type exports
+export type WebhookIntegration = typeof webhookIntegrations.$inferSelect;
+export type InsertWebhookIntegration = typeof webhookIntegrations.$inferInsert;
 
 export const insertAnomalySchema = createInsertSchema(anomalies).omit({
   id: true,

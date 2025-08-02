@@ -1146,6 +1146,97 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   }));
 
+  // WEBHOOK INTEGRATION ENDPOINTS
+  // Get user's webhook integrations
+  app.get('/api/webhooks', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const webhooks = await storage.getWebhookIntegrationsByUser(userId);
+      res.json(webhooks);
+    } catch (error) {
+      console.error('Error fetching webhooks:', error);
+      res.status(500).json({ message: 'Failed to fetch webhooks' });
+    }
+  });
+
+  // Create new webhook integration
+  app.post('/api/webhooks', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { insertWebhookIntegrationSchema } = await import('@shared/schema');
+      
+      // Validate request body
+      const validatedData = insertWebhookIntegrationSchema.parse({
+        ...req.body,
+        userId
+      });
+
+      const webhook = await storage.createWebhookIntegration(validatedData);
+      res.status(201).json(webhook);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: 'Invalid webhook data', errors: error.errors });
+      }
+      console.error('Error creating webhook:', error);
+      res.status(500).json({ message: 'Failed to create webhook' });
+    }
+  });
+
+  // Update webhook integration
+  app.put('/api/webhooks/:id', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const webhookId = req.params.id;
+      
+      // Check if webhook belongs to user
+      const existingWebhook = await storage.getWebhookIntegration(webhookId);
+      if (!existingWebhook || existingWebhook.userId !== userId) {
+        return res.status(404).json({ message: 'Webhook not found' });
+      }
+
+      const updatedWebhook = await storage.updateWebhookIntegration(webhookId, req.body);
+      res.json(updatedWebhook);
+    } catch (error) {
+      console.error('Error updating webhook:', error);
+      res.status(500).json({ message: 'Failed to update webhook' });
+    }
+  });
+
+  // Delete webhook integration
+  app.delete('/api/webhooks/:id', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const webhookId = req.params.id;
+      
+      // Check if webhook belongs to user
+      const existingWebhook = await storage.getWebhookIntegration(webhookId);
+      if (!existingWebhook || existingWebhook.userId !== userId) {
+        return res.status(404).json({ message: 'Webhook not found' });
+      }
+
+      await storage.deleteWebhookIntegration(webhookId);
+      res.status(204).send();
+    } catch (error) {
+      console.error('Error deleting webhook:', error);
+      res.status(500).json({ message: 'Failed to delete webhook' });
+    }
+  });
+
+  // Test webhook
+  app.post('/api/webhooks/:id/test', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const webhookId = req.params.id;
+      const { webhookService } = await import('./services/webhook-service');
+      
+      const result = await webhookService.testWebhook(webhookId, userId);
+      res.json(result);
+    } catch (error) {
+      console.error('Error testing webhook:', error);
+      res.status(500).json({ message: 'Failed to test webhook' });
+    }
+  });
+
   // Health check endpoint for deployment
   app.get("/api/health", (req, res) => {
     res.json({ 

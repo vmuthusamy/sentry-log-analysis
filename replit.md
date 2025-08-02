@@ -62,6 +62,14 @@ Preferred communication style: Simple, everyday language.
 - **Risk Scoring**: 0-10 scale risk assessment with 75-95% confidence levels.
 - **Detection Methods**: Rule-based, statistical modeling, ML ensemble, AI-powered.
 
+### Webhook Integration System
+- **External Automation**: Zapier-first webhook integration with support for multiple providers (Make, custom endpoints).
+- **Alert Fatigue Solution**: Configurable trigger conditions (risk score thresholds, anomaly types, priority levels, keywords).
+- **Real-time Notifications**: Automatic webhook triggers when anomalies match analyst-defined criteria.
+- **Structured Payloads**: Rich JSON payloads with anomaly details, log context, user information, and metadata.
+- **Testing & Reliability**: Built-in webhook testing, delivery confirmation, and failure handling.
+- **Future-ready**: Generic foundation allows easy extension to other automation platforms.
+
 ## External Dependencies
 
 ### Core Infrastructure
