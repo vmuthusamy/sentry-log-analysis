@@ -17,7 +17,7 @@ import {
   type InsertWebhookIntegration
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc, and, gte, count, inArray } from "drizzle-orm";
+import { eq, desc, and, gte, count, inArray, sql } from "drizzle-orm";
 import session from "express-session";
 import connectPg from "connect-pg-simple";
 import { pool } from "./db";

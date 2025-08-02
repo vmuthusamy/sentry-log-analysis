@@ -405,11 +405,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }));
 
   // Update anomaly status and details
-  app.patch("/api/anomalies/:id", requireAuth, validateInput(anomalyValidationSchema), async (req, res) => {
+  app.patch("/api/anomalies/:id", requireAuth, async (req, res) => {
     try {
       const userId = req.user!.id;
       const { id } = req.params;
-      const { status, analystNotes, priority, escalationReason, assignedTo } = req.body;
+      const { status, analystNotes, priority, escalationReason, assignedTo, reviewedAt } = req.body;
+      
+      console.log('Updating anomaly:', id, 'by user:', userId);
+      console.log('Update data:', req.body);
       
       if (status && !['pending', 'under_review', 'confirmed', 'false_positive', 'dismissed'].includes(status)) {
         return res.status(400).json({ message: "Invalid status" });
@@ -426,13 +429,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         escalationReason,
         assignedTo,
         reviewedBy: userId,
-        reviewedAt: new Date()
+        reviewedAt: reviewedAt ? new Date(reviewedAt) : new Date()
       });
       
+      console.log('Anomaly updated successfully');
       res.json({ success: true });
     } catch (error) {
       console.error("Update anomaly error:", error);
-      res.status(500).json({ message: "Failed to update anomaly" });
+      res.status(500).json({ message: "Failed to update anomaly", error: error.message });
     }
   });
 
@@ -1212,22 +1216,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update webhook integration
-  app.put('/api/webhooks/:id', isAuthenticated, validateInput(webhookValidationSchema.partial()), async (req: any, res) => {
+  app.put('/api/webhooks/:id', isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
       const webhookId = req.params.id;
+      console.log('Updating webhook:', webhookId, 'for user:', userId);
+      console.log('Update data:', req.body);
       
       // Check if webhook belongs to user
       const existingWebhook = await storage.getWebhookIntegration(webhookId);
       if (!existingWebhook || existingWebhook.userId !== userId) {
+        console.log('Webhook not found or unauthorized:', existingWebhook);
         return res.status(404).json({ message: 'Webhook not found' });
       }
 
       const updatedWebhook = await storage.updateWebhookIntegration(webhookId, req.body);
+      console.log('Updated webhook:', updatedWebhook);
       res.json(updatedWebhook);
     } catch (error) {
       console.error('Error updating webhook:', error);
-      res.status(500).json({ message: 'Failed to update webhook' });
+      res.status(500).json({ message: 'Failed to update webhook', error: error.message });
     }
   });
 

@@ -39,8 +39,13 @@ export function AnomalyDetailsModal({ anomalyId, open, onClose }: AnomalyDetails
       toast({ title: "Anomaly updated successfully" });
       onClose();
     },
-    onError: () => {
-      toast({ title: "Failed to update anomaly", variant: "destructive" });
+    onError: (error) => {
+      console.error("Anomaly update error:", error);
+      toast({ 
+        title: "Failed to update anomaly", 
+        description: error instanceof Error ? error.message : "Unknown error occurred",
+        variant: "destructive" 
+      });
     }
   });
 
