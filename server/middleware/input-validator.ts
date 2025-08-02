@@ -139,6 +139,12 @@ export function validateInput(schema: ZodSchema) {
       next();
     } catch (error) {
       if (error instanceof z.ZodError) {
+        console.log('🚨 Validation error:', {
+          url: req.url,
+          method: req.method,
+          body: req.body,
+          errors: error.errors
+        });
         return res.status(400).json({
           message: 'Input validation failed',
           errors: error.errors.map(err => ({
@@ -148,6 +154,12 @@ export function validateInput(schema: ZodSchema) {
         });
       }
       
+      console.log('🚨 Security validation failed:', {
+        url: req.url,
+        method: req.method,
+        body: req.body,
+        error: error instanceof Error ? error.message : error
+      });
       return res.status(400).json({
         message: 'Invalid input detected',
         error: 'Security validation failed'
