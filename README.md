@@ -317,8 +317,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Issues**: [GitHub Issues](https://github.com/your-username/sentry-log-analysis/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/sentry-log-analysis/discussions)
+- **Issues**: Report bugs and request features via GitHub Issues
+- **Discussions**: Community support and development discussions
 - **Documentation**: This README and inline code comments
 
 ## 🙏 Acknowledgments
@@ -341,8 +341,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### Production Instance Status
 🟢 **Production**: Available via Replit Deployment - **Ready**  
 🔧 **Development**: Running on Replit workspace - **Active**  
-📊 **Monitoring**: Built-in health checks and metrics tracking  
-📈 **Analytics**: Real-time anomaly detection dashboard
+📊 **Health Checks**: Built-in application health monitoring  
+📈 **Analytics**: Integrated anomaly detection and reporting
 
 ### Test Coverage & Quality Metrics
 - **Unit Test Coverage**: Comprehensive test suite for storage and anomaly detection
