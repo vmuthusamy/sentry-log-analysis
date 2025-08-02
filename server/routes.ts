@@ -12,6 +12,14 @@ import { TraditionalAnomalyDetector } from "./services/traditional-anomaly-detec
 import { AdvancedMLDetector } from "./services/advanced-ml-detector";
 import { uploadRateLimit, apiRateLimit, loginRateLimit, analysisRateLimit } from "./middleware/rate-limiter";
 import { handleMulterErrors, globalErrorHandler, notFoundHandler, asyncHandler, ValidationError, FileSizeError, ProcessingError } from "./middleware/error-handler";
+import { 
+  validateInput, 
+  webhookValidationSchema, 
+  anomalyValidationSchema, 
+  userApiKeyValidationSchema,
+  fileUploadValidationSchema,
+  sanitizeString 
+} from "./middleware/input-validator";
 import { userAnalytics } from "./services/user-analytics";
 import { systemAnalytics } from "./services/system-analytics";
 import { requireSystemAccess } from "./middleware/system-auth";
@@ -145,7 +153,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   setupAuth(app);
 
   // File upload endpoint with rate limiting
-  app.post("/api/upload", requireAuth, uploadRateLimit, upload.single("logFile"), asyncHandler(async (req: any, res: any) => {
+  app.post("/api/upload", requireAuth, uploadRateLimit, upload.single("logFile"), validateInput(z.object({})), asyncHandler(async (req: any, res: any) => {
     if (!req.file) {
       throw new ValidationError("No file uploaded");
     }
@@ -379,7 +387,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }));
 
   // Get individual anomaly details
-  app.get("/api/anomalies/:id", requireAuth, asyncHandler(async (req: any, res: any) => {
+  app.get("/api/anomalies/:id", requireAuth, validateInput(z.object({})), asyncHandler(async (req: any, res: any) => {
     const userId = req.user!.id;
     const { id } = req.params;
     
@@ -392,7 +400,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }));
 
   // Update anomaly status and details
-  app.patch("/api/anomalies/:id", requireAuth, async (req, res) => {
+  app.patch("/api/anomalies/:id", requireAuth, validateInput(anomalyValidationSchema), async (req, res) => {
     try {
       const userId = req.user!.id;
       const { id } = req.params;
@@ -424,7 +432,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Bulk update anomalies
-  app.patch("/api/anomalies/bulk-update", requireAuth, async (req, res) => {
+  app.patch("/api/anomalies/bulk-update", requireAuth, validateInput(z.object({
+    anomalyIds: z.array(z.string().uuid()).max(100),
+    updates: anomalyValidationSchema
+  })), async (req, res) => {
     try {
       const userId = req.user!.id;
       const { anomalyIds, updates } = req.body;
@@ -529,7 +540,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Save user API key
-  app.post("/api/user-api-keys", requireAuth, async (req, res) => {
+  app.post("/api/user-api-keys", requireAuth, validateInput(userApiKeyValidationSchema), async (req, res) => {
     try {
       const userId = req.user!.id;
       const { provider, apiKey } = req.body;
@@ -581,7 +592,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Test user API key
-  app.post("/api/user-api-keys/:provider/test", requireAuth, async (req, res) => {
+  app.post("/api/user-api-keys/:provider/test", requireAuth, validateInput(z.object({})), async (req, res) => {
     try {
       const userId = req.user!.id;
       const { provider } = req.params;
@@ -643,7 +654,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Advanced ML anomaly detection endpoint
-  app.post("/api/analyze-advanced-ml/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
+  app.post("/api/analyze-advanced-ml/:id", requireAuth, analysisRateLimit, validateInput(z.object({})), asyncHandler(async (req: any, res: any) => {
     const logFileId = req.params.id;
     const userId = req.user!.id;
     const startTime = Date.now(); // Start timing analysis
@@ -778,7 +789,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }));
 
   // Traditional anomaly detection (no LLM) endpoint
-  app.post("/api/analyze-traditional/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
+  app.post("/api/analyze-traditional/:id", requireAuth, analysisRateLimit, validateInput(z.object({})), asyncHandler(async (req: any, res: any) => {
     const logFileId = req.params.id;
     const userId = req.user!.id;
     const startTime = Date.now(); // Start timing analysis
@@ -911,7 +922,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }));
 
   // Process logs with custom AI configuration (heavy rate limiting) - REQUIRES API KEY
-  app.post("/api/process-logs/:id", requireAuth, analysisRateLimit, asyncHandler(async (req: any, res: any) => {
+  app.post("/api/process-logs/:id", requireAuth, analysisRateLimit, validateInput(z.object({
+    aiConfig: z.object({
+      provider: z.enum(['openai', 'gemini']).optional(),
+      model: z.string().max(100).optional(),
+      temperature: z.number().min(0).max(2).optional(),
+      maxTokens: z.number().min(1).max(8000).optional()
+    }).optional()
+  })), asyncHandler(async (req: any, res: any) => {
     const logFileId = req.params.id;
     const userId = req.user!.id;
     const aiConfig = req.body.aiConfig; // Optional AI configuration from frontend
@@ -1148,7 +1166,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // WEBHOOK INTEGRATION ENDPOINTS
   // Get user's webhook integrations
-  app.get('/api/webhooks', isAuthenticated, async (req: any, res) => {
+  app.get('/api/webhooks', isAuthenticated, validateInput(z.object({})), async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
       const webhooks = await storage.getWebhookIntegrationsByUser(userId);
@@ -1160,7 +1178,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create new webhook integration
-  app.post('/api/webhooks', isAuthenticated, async (req: any, res) => {
+  app.post('/api/webhooks', isAuthenticated, validateInput(webhookValidationSchema), async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
       const { insertWebhookIntegrationSchema } = await import('@shared/schema');
@@ -1183,7 +1201,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update webhook integration
-  app.put('/api/webhooks/:id', isAuthenticated, async (req: any, res) => {
+  app.put('/api/webhooks/:id', isAuthenticated, validateInput(webhookValidationSchema.partial()), async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
       const webhookId = req.params.id;
@@ -1203,7 +1221,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Delete webhook integration
-  app.delete('/api/webhooks/:id', isAuthenticated, async (req: any, res) => {
+  app.delete('/api/webhooks/:id', isAuthenticated, validateInput(z.object({})), async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
       const webhookId = req.params.id;
@@ -1223,7 +1241,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Test webhook
-  app.post('/api/webhooks/:id/test', isAuthenticated, async (req: any, res) => {
+  app.post('/api/webhooks/:id/test', isAuthenticated, validateInput(z.object({})), async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
       const webhookId = req.params.id;
