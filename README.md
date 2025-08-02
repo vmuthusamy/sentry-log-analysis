@@ -180,8 +180,8 @@ NODE_ENV=development
 
 1. **Clone the repository**:
 ```bash
-git clone https://github.com/your-username/sentry-log-analysis.git
-cd sentry-log-analysis
+git clone https://github.com/<your-username>/<your-repo-name>.git
+cd <your-repo-name>
 ```
 
 2. **Install dependencies**:
@@ -217,7 +217,7 @@ NODE_ENV=production npm start
 ## 📁 Project Structure
 
 ```
-sentry/
+your-repo-name/
 ├── client/                     # React frontend application
 │   ├── src/
 │   │   ├── components/         # Reusable UI components
