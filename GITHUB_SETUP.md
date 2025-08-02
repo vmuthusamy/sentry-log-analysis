@@ -85,11 +85,15 @@ Edit `.github/workflows/ci-simple.yml` to:
 
 ### Example Repository URLs
 
-If your repository is at `https://github.com/johnsmith/sentry-security-logs`, update:
+If your repository is at `https://github.com/johnsmith/sentry-security-logs`, update the README.md:
 
 ```markdown
+### Continuous Integration Status
 [![CI Pipeline](https://github.com/johnsmith/sentry-security-logs/actions/workflows/ci-simple.yml/badge.svg)](https://github.com/johnsmith/sentry-security-logs/actions/workflows/ci-simple.yml)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/johnsmith/sentry-security-logs)
 ```
+
+Replace both instances of `johnsmith/sentry-security-logs` with your actual `username/repository-name`.
 
 ### Troubleshooting
 

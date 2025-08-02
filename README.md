@@ -360,7 +360,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - ✅ **Build Verification**: Application compiles and bundles successfully
 - ✅ **Container Ready**: Docker build compatibility verification
 
-> **Note**: To enable full CI/CD for your repository, see [GitHub Setup Guide](GITHUB_SETUP.md) for configuration instructions.
+> **Note**: To enable full CI/CD for your GitHub repository, see [GitHub Setup Guide](GITHUB_SETUP.md) for configuration instructions.
 
 ## 🔒 Security Threat Model
 
@@ -511,31 +511,46 @@ Sentry processes sensitive security log data and requires comprehensive threat m
 - Regular security assessments and penetration testing
 - Vulnerability disclosure and patch management process
 
-## 📸 Application Screenshots
+## 📸 Application Interface
 
-### Dashboard Overview
-![Dashboard Overview](https://via.placeholder.com/800x600/1a1a1a/ffffff?text=Sentry+Dashboard+-+Upload+Analysis+History+Overview)
-*Main dashboard showing upload statistics, recent anomalies, and system health metrics*
+### Core Features Overview
 
-### File Upload Interface
-![Upload Interface](https://via.placeholder.com/800x600/1a1a1a/ffffff?text=Sentry+Upload+-+Drag+Drop+Multiple+Files+Analysis+Options)
-*Drag-and-drop file upload with analysis method selection and real-time progress*
+**🏠 Dashboard Interface**
+- Real-time anomaly detection statistics and trends
+- Upload history with processing status indicators
+- Risk score distribution charts and analytics
+- Recent activity feed with filtered anomaly alerts
 
-### Analysis Method Selection
-![Analysis Options](https://via.placeholder.com/800x600/1a1a1a/ffffff?text=Traditional+ML+%7C+Advanced+ML+%7C+AI-Powered+Analysis)
-*Three analysis methods: Traditional ML, Advanced ML ensemble, and AI-powered detection*
+**📤 File Upload System**
+- Drag-and-drop interface supporting multiple log files
+- Analysis method selection: Traditional ML, Advanced ML, AI-Powered
+- Real-time upload progress with file validation
+- Batch processing with concurrent file handling
 
-### Anomaly Analysis Results
-![Analysis Results](https://via.placeholder.com/800x600/1a1a1a/ffffff?text=Anomaly+Results+-+Risk+Scores+Confidence+Details+Actions)
-*Comprehensive anomaly detection results with risk scoring, filtering, and analyst workflow tools*
+**🔍 Analysis Method Selection**
+- **Traditional ML**: Rule-based pattern detection for crypto mining, Tor access, auth failures
+- **Advanced ML**: Statistical modeling with behavioral analysis and time-series detection
+- **AI-Powered**: OpenAI GPT-4o and Google Gemini integration for sophisticated threat analysis
 
-### Webhook Integration Management
-![Webhook Management](https://via.placeholder.com/800x600/1a1a1a/ffffff?text=Webhook+Integrations+-+Zapier+Make+Custom+Triggers)
-*Webhook automation setup with trigger conditions, delivery statistics, and external integration testing*
+**📊 Anomaly Analysis Results**
+- Comprehensive results dashboard with risk scoring (1-10 scale)
+- Confidence levels and detailed threat descriptions
+- Filtering by risk score, anomaly type, and detection method
+- Analyst workflow tools for status updates and priority management
 
-### User Settings & Profile
-![Settings Screen](https://via.placeholder.com/800x600/1a1a1a/ffffff?text=User+Settings+-+Profile+Preferences+API+Keys+Security)
-*User account management with profile settings, API key configuration, and security preferences*
+**🔗 Webhook Integration Management**
+- Zapier and Make.com integration setup
+- Custom trigger conditions with risk score thresholds
+- Delivery statistics and success/failure tracking
+- Test webhook functionality with real-time validation
+
+**⚙️ User Settings & Security**
+- Replit OAuth profile management
+- API key configuration for external services
+- Security preferences and access controls
+- Audit trail for user actions and anomaly updates
+
+> **Note**: Screenshots are available in the live application. Deploy to Replit to explore the full interface with real-time data processing.
 
 ---
 
