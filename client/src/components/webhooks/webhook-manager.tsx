@@ -440,7 +440,11 @@ export function WebhookManager() {
                       <TableCell>
                         <div className="space-y-1 text-sm">
                           <div className="text-slate-300">
-                            Triggers: {webhook.totalTriggers || 0}
+                            Total: {webhook.totalTriggers || 0}
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <span className="text-accent-green">✓ {webhook.successfulTriggers || 0}</span>
+                            <span className="text-red-400">✗ {webhook.failedTriggers || 0}</span>
                           </div>
                           {webhook.lastTriggered ? (
                             <div className="text-slate-400">

@@ -40,15 +40,15 @@ export default function AuthPage() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-accent-blue/10 rounded-full mx-auto mb-4">
               <Shield className="h-8 w-8 text-accent-blue" />
             </div>
-            <CardTitle className="text-2xl font-bold text-white">LogGuard</CardTitle>
+            <CardTitle className="text-2xl font-bold text-white">Sentry</CardTitle>
             <CardDescription className="text-slate-400">
-              AI-Powered Anomaly Detection
+              AI-Powered Security Log Analysis
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="text-center space-y-4">
               <p className="text-slate-400">
-                Sign in with your Google account to access LogGuard
+                Sign in with your Google account to access Sentry
               </p>
               <Button 
                 onClick={() => window.location.href = '/api/login'}

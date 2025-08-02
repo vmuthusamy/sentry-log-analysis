@@ -70,6 +70,17 @@ export const anomalies = pgTable("anomalies", {
   assignedTo: varchar("assigned_to").references(() => users.id), // Assigned analyst
   priority: text("priority").default("medium"), // low, medium, high, critical
   createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// System metrics for tracking anomaly update actions
+export const systemMetrics = pgTable("system_metrics", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  metricType: text("metric_type").notNull(), // "anomaly_update", "webhook_success", "webhook_failure", etc.
+  metricName: text("metric_name").notNull(),
+  value: integer("value").notNull().default(1),
+  metadata: jsonb("metadata"), // Additional context (userId, anomalyId, webhookId, etc.)
+  recordedAt: timestamp("recorded_at").defaultNow(),
 });
 
 export const processingJobs = pgTable("processing_jobs", {
@@ -100,6 +111,10 @@ export const webhookIntegrations = pgTable("webhook_integrations", {
   payloadTemplate: jsonb("payload_template"), // Custom payload structure
   lastTriggered: timestamp("last_triggered"),
   totalTriggers: integer("total_triggers").default(0),
+  successfulTriggers: integer("successful_triggers").default(0), // Successful webhook deliveries
+  failedTriggers: integer("failed_triggers").default(0), // Failed webhook deliveries
+  lastSuccessfulTrigger: timestamp("last_successful_trigger"),
+  lastFailedTrigger: timestamp("last_failed_trigger"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });

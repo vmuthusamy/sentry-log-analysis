@@ -4,6 +4,7 @@ import {
   anomalies, 
   processingJobs, 
   webhookIntegrations,
+  systemMetrics,
   type User, 
   type InsertUser, 
   type UpsertUser, 
@@ -355,6 +356,15 @@ export class DatabaseStorage implements IStorage {
       .update(anomalies)
       .set(updateData)
       .where(and(eq(anomalies.id, id), eq(anomalies.userId, userId)));
+
+    // Record anomaly update metric
+    await this.recordMetric('anomaly_update', 'anomaly_details_updated', 1, {
+      anomalyId: id,
+      userId,
+      updatedFields: Object.keys(updates),
+      status: updates.status,
+      priority: updates.priority
+    });
   }
 
   // Bulk update anomalies
@@ -419,14 +429,37 @@ export class DatabaseStorage implements IStorage {
     return webhook;
   }
 
-  async updateWebhookStats(id: string): Promise<void> {
+  async updateWebhookStats(id: string, success: boolean = true): Promise<void> {
+    const now = new Date();
+    const updateData: any = {
+      lastTriggered: now,
+      totalTriggers: sql`${webhookIntegrations.totalTriggers} + 1`,
+    };
+
+    if (success) {
+      updateData.successfulTriggers = sql`${webhookIntegrations.successfulTriggers} + 1`;
+      updateData.lastSuccessfulTrigger = now;
+    } else {
+      updateData.failedTriggers = sql`${webhookIntegrations.failedTriggers} + 1`;
+      updateData.lastFailedTrigger = now;
+    }
+
     await db
       .update(webhookIntegrations)
-      .set({
-        lastTriggered: new Date(),
-        totalTriggers: sql`${webhookIntegrations.totalTriggers} + 1`,
-      })
+      .set(updateData)
       .where(eq(webhookIntegrations.id, id));
+  }
+
+  // System metrics tracking
+  async recordMetric(metricType: string, metricName: string, value: number = 1, metadata?: any): Promise<void> {
+    await db
+      .insert(systemMetrics)
+      .values({
+        metricType,
+        metricName,
+        value,
+        metadata
+      });
   }
 
   async deleteWebhookIntegration(id: string): Promise<void> {

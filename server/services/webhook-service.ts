@@ -162,13 +162,17 @@ export class WebhookService {
       });
 
       if (response.ok) {
-        // Update webhook statistics
-        await storage.updateWebhookStats(webhook.id);
+        // Update webhook statistics - success
+        await storage.updateWebhookStats(webhook.id, true);
         console.log(`✅ Webhook ${webhook.name} triggered successfully for anomaly ${anomaly.id} to ${webhook.webhookUrl}`);
       } else {
+        // Update webhook statistics - failure
+        await storage.updateWebhookStats(webhook.id, false);
         console.error(`Webhook ${webhook.name} failed with status ${response.status}`);
       }
     } catch (error) {
+      // Update webhook statistics - failure due to error
+      await storage.updateWebhookStats(webhook.id, false);
       console.error(`Error sending webhook ${webhook.name}:`, error);
     }
   }
