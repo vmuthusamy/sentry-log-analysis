@@ -36,7 +36,7 @@ const advancedMLDetector = new AdvancedMLDetector();
 const upload = multer({
   dest: "uploads/",
   limits: {
-    fileSize: 50 * 1024 * 1024, // 50MB limit for security
+    fileSize: 10 * 1024 * 1024, // 10MB limit for security and performance
     files: 1, // Only one file at a time
   },
   fileFilter: (req, file, cb) => {
@@ -154,6 +154,78 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   setupAuth(app);
 
+  /**
+   * @api {post} /api/upload Upload log file for analysis
+   * @apiName UploadLogFile
+   * @apiGroup Files
+   * @apiDescription Upload a log file for security analysis. Supports Zscaler NSS feed format.
+   * 
+   * @apiHeader {String} Content-Type multipart/form-data
+   * @apiHeader {String} Authorization Bearer token (handled by session)
+   * 
+   * @apiParam {File} logFile Log file to upload (required)
+   * @apiParam {String} [analysisMethod=traditional] Analysis method: traditional, advanced, ai, skip-llm
+   * 
+   * @apiParamExample {multipart} Request-Example:
+   *     Content-Type: multipart/form-data
+   *     
+   *     logFile: [binary file data]
+   *     analysisMethod: traditional
+   * 
+   * @apiSuccess {Boolean} success Upload success status
+   * @apiSuccess {String} message Success message
+   * @apiSuccess {Object} file File information
+   * @apiSuccess {String} file.id Unique file identifier
+   * @apiSuccess {String} file.filename Original filename
+   * @apiSuccess {Number} file.size File size in bytes
+   * @apiSuccess {String} file.analysisMethod Selected analysis method
+   * @apiSuccess {String} file.uploadedAt Upload timestamp
+   * 
+   * @apiSuccessExample {json} Success-Response:
+   *     HTTP/1.1 200 OK
+   *     {
+   *       "success": true,
+   *       "message": "File uploaded successfully and queued for analysis",
+   *       "file": {
+   *         "id": "abc123",
+   *         "filename": "security.log",
+   *         "size": 1048576,
+   *         "analysisMethod": "traditional",
+   *         "uploadedAt": "2024-01-01T10:00:00Z"
+   *       }
+   *     }
+   * 
+   * @apiError (400) InvalidFileType Only .txt and .log files are allowed
+   * @apiError (400) FileTooLarge File size exceeds 10MB limit
+   * @apiError (400) EmptyFile Empty files are not allowed
+   * @apiError (400) InvalidFormat Log file format not recognized
+   * @apiError (400) TooManyEntries File contains more than 100,000 log entries
+   * @apiError (413) PayloadTooLarge Request entity too large (>10MB)
+   * @apiError (429) TooManyRequests Rate limit exceeded (10 uploads per 15 minutes)
+   * 
+   * @apiErrorExample {json} File-Too-Large:
+   *     HTTP/1.1 400 Bad Request
+   *     {
+   *       "message": "File size 15MB exceeds limit of 10MB"
+   *     }
+   * 
+   * @apiErrorExample {json} Invalid-File-Type:
+   *     HTTP/1.1 400 Bad Request
+   *     {
+   *       "message": "Only .txt and .log files are allowed"
+   *     }
+   * 
+   * @apiNote File Size Limits:
+   *   - Maximum file size: 10MB (10,485,760 bytes)
+   *   - Maximum log entries: 100,000 entries per file
+   *   - Supported formats: .txt, .log files only
+   *   - Supported content: Zscaler NSS feed format
+   * 
+   * @apiNote Rate Limits:
+   *   - 10 file uploads per 15 minutes per user
+   *   - 3 concurrent file processing per user
+   *   - General API: 100 requests per 15 minutes per user
+   */
   // File upload endpoint with rate limiting
   app.post("/api/upload", requireAuth, uploadRateLimit, upload.single("logFile"), validateInput(z.object({})), asyncHandler(async (req: any, res: any) => {
     if (!req.file) {
@@ -178,7 +250,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     // Check file size against user limits (could be user-tier based)
-    const maxSizeBytes = 50 * 1024 * 1024; // 50MB
+    const maxSizeBytes = 10 * 1024 * 1024; // 10MB
     if (size > maxSizeBytes) {
       await fs.unlink(path.join("uploads", filename)); // Clean up oversized file
       throw new FileSizeError(

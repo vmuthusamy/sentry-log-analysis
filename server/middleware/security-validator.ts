@@ -33,8 +33,8 @@ export class SecurityValidator {
     /\xFF\xD8\xFF/g, // JPEG header
   ];
 
-  // Maximum file size (50MB)
-  private static MAX_FILE_SIZE = 50 * 1024 * 1024;
+  // Maximum file size (10MB)
+  private static MAX_FILE_SIZE = 10 * 1024 * 1024;
   
   // Maximum line length to prevent buffer overflow
   private static MAX_LINE_LENGTH = 10000;

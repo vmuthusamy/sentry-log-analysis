@@ -84,10 +84,10 @@ export function UploadSection() {
         return;
       }
 
-      if (file.size > 100 * 1024 * 1024) { // 100MB
+      if (file.size > 10 * 1024 * 1024) { // 10MB
         toast({
           title: "File too large",
-          description: "Please select a file smaller than 100MB",
+          description: "Please select a file smaller than 10MB",
           variant: "destructive",
         });
         return;

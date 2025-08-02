@@ -259,7 +259,7 @@ export const storageConfigSchema = z.object({
   defaultArchivePolicy: z.enum(["default", "extended", "permanent"]).default("default"),
   defaultRetentionDays: z.number().default(90), // Default 90 days
   blobStorageProvider: z.enum(["local", "s3", "gcs", "azure"]).default("local"),
-  maxFileSize: z.number().default(52428800), // 50MB default
+  maxFileSize: z.number().default(10485760), // 10MB default
   autoArchiveEnabled: z.boolean().default(true),
 });
 
