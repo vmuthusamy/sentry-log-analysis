@@ -135,6 +135,123 @@ A comprehensive TypeScript-based web application for AI-powered security log ano
 - **User Activity**: Upload frequency and analysis patterns
 - **Webhook Metrics**: Delivery success rates and failure analysis
 
+## 🔄 System Data Flow Diagram
+
+### File Upload → Analysis → SOC Workflow Process
+
+```mermaid
+graph TD
+    A[👤 User] -->|Upload Log File| B[🔐 Authentication Check]
+    B -->|Valid Session| C[📏 File Validation]
+    B -->|Invalid| Z1[❌ Auth Error]
+    
+    C -->|Size ≤10MB & Count ≤10| D[🔍 Security Scan]
+    C -->|Validation Failed| Z2[❌ File Error]
+    
+    D -->|Clean File| E[📝 Parse Zscaler Logs]
+    D -->|Security Risk| Z3[❌ Security Error]
+    
+    E -->|Structured Data| F{🧠 Analysis Method}
+    
+    F -->|Traditional| G[📊 Rule-Based Detection]
+    F -->|Advanced ML| H[🤖 ML Ensemble Pipeline]
+    F -->|AI-Powered| I[🎯 OpenAI/Gemini Analysis]
+    F -->|Skip LLM| J[📋 Basic Processing]
+    
+    G --> K[📊 Risk Scoring 0-10]
+    H --> K
+    I --> K
+    J --> K
+    
+    K -->|Risk Score + Confidence| L[💾 Store Anomalies]
+    L --> M{🚨 Alert Triggers}
+    
+    M -->|High Risk ≥7| N[📢 Generate Alert]
+    M -->|Medium Risk 4-6| O[⚠️ Queue for Review]
+    M -->|Low Risk <4| P[📝 Log Only]
+    
+    N --> Q[👨‍💼 SOC Analyst Dashboard]
+    O --> Q
+    
+    Q --> R{🔍 Analyst Actions}
+    
+    R -->|Confirm Threat| S[🚩 Mark as Confirmed]
+    R -->|False Positive| T[✅ Mark as Benign]
+    R -->|Needs Investigation| U[🔎 Set Investigating]
+    R -->|Add Context| V[📝 Add Notes/Tags]
+    
+    S --> W{🔗 Webhook Configured}
+    T --> X[📊 Update Statistics]
+    U --> Y[⏰ Set Reminder]
+    V --> Q
+    
+    W -->|Yes| AA[🌐 Trigger Webhook]
+    W -->|No| AB[📧 Internal Alert]
+    
+    AA --> AC{🔧 Automation Platform}
+    AC -->|Zapier| AD[⚡ Zapier Workflow]
+    AC -->|Custom| AE[🔗 Custom Endpoint]
+    AC -->|Slack| AF[💬 Slack Notification]
+    AC -->|Email| AG[📧 Email Alert]
+    
+    AD --> AH[🎯 External Action]
+    AE --> AH
+    AF --> AH
+    AG --> AH
+    
+    style A fill:#e1f5fe
+    style Q fill:#fff3e0
+    style AA fill:#f3e5f5
+    style AH fill:#e8f5e8
+```
+
+### Key Process Flows
+
+#### 1. **File Upload Security Pipeline**
+```
+User Upload → Authentication → File Limits (10MB/10 files) → Security Scan → Processing Queue
+```
+
+#### 2. **Multi-Tier Analysis Engine**
+```
+Raw Logs → Parser → [Traditional|ML|AI|Skip] → Risk Scoring → Anomaly Detection
+```
+
+#### 3. **SOC Analyst Workflow**
+```
+Alert Generation → Analyst Review → [Confirm|Investigate|Dismiss] → Action/Webhook
+```
+
+#### 4. **Automated Response System**
+```
+Confirmed Threat → Webhook Trigger → [Zapier|Custom|Slack|Email] → External Action
+```
+
+### Security Checkpoints
+
+- 🔐 **Authentication**: Session-based user verification
+- 📏 **File Limits**: 10MB per file, 10 files per user maximum
+- 🛡️ **Security Scan**: Malware and injection attack prevention
+- 🔍 **Content Validation**: Zscaler NSS format verification
+- ⚡ **Rate Limiting**: Upload and API request throttling
+
+### SOC Analyst Workflow States
+
+| Status | Description | Available Actions |
+|--------|-------------|-------------------|
+| `new` | Newly detected anomaly | Confirm, Investigate, Dismiss |
+| `investigating` | Under analyst review | Confirm, Dismiss, Add Notes |
+| `confirmed` | Verified threat | Archive, Trigger Webhooks |
+| `false_positive` | Benign activity | Archive, Update ML Model |
+| `archived` | Completed investigation | View Only |
+
+### Webhook Integration Triggers
+
+- **High Risk Anomalies** (Risk Score ≥ 7): Immediate webhook trigger
+- **Confirmed Threats**: SOC analyst confirmation triggers automation
+- **Bulk Operations**: Mass updates can trigger batch notifications
+- **Custom Filters**: User-defined criteria for webhook activation
+
 ## 🔧 Frontend UX Routes
 
 ### Public Routes

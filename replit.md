@@ -65,6 +65,15 @@ Preferred communication style: Simple, everyday language.
 - ✅ Added CI_PIPELINE_UPDATES.md documentation for pipeline changes
 - ✅ Integrated file upload security validation into production quality gates
 
+**Data Flow Diagram Documentation - COMPLETED (August 2, 2025):**
+- ✅ Added comprehensive Data Flow Diagram to README.md showing complete user journey
+- ✅ Visualized file upload → analysis → SOC workflow → webhook automation process
+- ✅ Documented security checkpoints including authentication, file limits, and validation
+- ✅ Created detailed SOC analyst workflow states and available actions at each stage
+- ✅ Mapped webhook integration triggers and automation platform connections
+- ✅ Enhanced system architecture documentation with visual process flows
+- ✅ Provided clear understanding of how requests flow through the entire system
+
 **Production Development Protocol
 
 **New Feature Development Process:**
