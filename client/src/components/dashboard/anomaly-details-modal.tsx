@@ -262,11 +262,11 @@ export function AnomalyDetailsModal({ anomalyId, open, onClose }: AnomalyDetails
                       <SelectTrigger className="bg-dark-primary border-slate-600 text-white">
                         <SelectValue placeholder="Select status" />
                       </SelectTrigger>
-                      <SelectContent className="bg-dark-primary border-slate-600">
-                        <SelectItem value="under_review">Under Review</SelectItem>
-                        <SelectItem value="confirmed">Confirmed Threat</SelectItem>
-                        <SelectItem value="false_positive">False Positive</SelectItem>
-                        <SelectItem value="dismissed">Dismissed</SelectItem>
+                      <SelectContent className="bg-slate-800 border-slate-600 text-white">
+                        <SelectItem value="under_review" className="text-white hover:bg-slate-700 focus:bg-slate-700">Under Review</SelectItem>
+                        <SelectItem value="confirmed" className="text-white hover:bg-slate-700 focus:bg-slate-700">Confirmed Threat</SelectItem>
+                        <SelectItem value="false_positive" className="text-white hover:bg-slate-700 focus:bg-slate-700">False Positive</SelectItem>
+                        <SelectItem value="dismissed" className="text-white hover:bg-slate-700 focus:bg-slate-700">Dismissed</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -279,11 +279,11 @@ export function AnomalyDetailsModal({ anomalyId, open, onClose }: AnomalyDetails
                       <SelectTrigger className="bg-dark-primary border-slate-600 text-white">
                         <SelectValue placeholder="Select priority" />
                       </SelectTrigger>
-                      <SelectContent className="bg-dark-primary border-slate-600">
-                        <SelectItem value="low">Low</SelectItem>
-                        <SelectItem value="medium">Medium</SelectItem>
-                        <SelectItem value="high">High</SelectItem>
-                        <SelectItem value="critical">Critical</SelectItem>
+                      <SelectContent className="bg-slate-800 border-slate-600 text-white">
+                        <SelectItem value="low" className="text-white hover:bg-slate-700 focus:bg-slate-700">Low</SelectItem>
+                        <SelectItem value="medium" className="text-white hover:bg-slate-700 focus:bg-slate-700">Medium</SelectItem>
+                        <SelectItem value="high" className="text-white hover:bg-slate-700 focus:bg-slate-700">High</SelectItem>
+                        <SelectItem value="critical" className="text-white hover:bg-slate-700 focus:bg-slate-700">Critical</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

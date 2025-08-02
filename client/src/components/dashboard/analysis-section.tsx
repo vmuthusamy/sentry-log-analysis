@@ -248,26 +248,26 @@ export function AnalysisSection() {
                   <SelectTrigger className="w-48 bg-dark-primary border-slate-600 text-white">
                     <SelectValue placeholder="Bulk update status" />
                   </SelectTrigger>
-                  <SelectContent className="bg-dark-primary border-slate-600">
-                    <SelectItem value="under_review">
+                  <SelectContent className="bg-slate-800 border-slate-600 text-white">
+                    <SelectItem value="under_review" className="text-white hover:bg-slate-700 focus:bg-slate-700">
                       <div className="flex items-center gap-2">
                         <Clock className="h-4 w-4" />
                         Mark as Under Review
                       </div>
                     </SelectItem>
-                    <SelectItem value="confirmed">
+                    <SelectItem value="confirmed" className="text-white hover:bg-slate-700 focus:bg-slate-700">
                       <div className="flex items-center gap-2">
                         <CheckSquare className="h-4 w-4" />
                         Mark as Confirmed
                       </div>
                     </SelectItem>
-                    <SelectItem value="false_positive">
+                    <SelectItem value="false_positive" className="text-white hover:bg-slate-700 focus:bg-slate-700">
                       <div className="flex items-center gap-2">
                         <X className="h-4 w-4" />
                         Mark as False Positive
                       </div>
                     </SelectItem>
-                    <SelectItem value="dismissed">
+                    <SelectItem value="dismissed" className="text-white hover:bg-slate-700 focus:bg-slate-700">
                       <div className="flex items-center gap-2">
                         <X className="h-4 w-4" />
                         Dismiss
@@ -393,12 +393,12 @@ export function AnalysisSection() {
                         }}
                       />
                     </TableHead>
+                    <TableHead className="text-slate-300">Raw Log</TableHead>
                     <TableHead className="text-slate-300">Timestamp</TableHead>
                     <TableHead className="text-slate-300">Anomaly Type</TableHead>
                     <TableHead className="text-slate-300">Risk Score</TableHead>
                     <TableHead className="text-slate-300">Detection Method</TableHead>
                     <TableHead className="text-slate-300">Source</TableHead>
-                    <TableHead className="text-slate-300">Raw Log</TableHead>
                     <TableHead className="text-slate-300">Status</TableHead>
                     <TableHead className="text-slate-300">Actions</TableHead>
                   </TableRow>
@@ -424,32 +424,6 @@ export function AnalysisSection() {
                             checked={selectedRows.has(anomaly.id)}
                             onChange={(e) => handleRowSelection(anomaly.id, e.target.checked)}
                           />
-                        </TableCell>
-                        <TableCell className="text-white">
-                          {formatTimestamp(anomaly.timestamp)}
-                        </TableCell>
-                        <TableCell>
-                          <div>
-                            <div className="text-white font-medium">
-                              {anomaly.anomalyType.replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}
-                            </div>
-                            <div className="text-slate-400 text-sm">{anomaly.description}</div>
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          <Badge className={getRiskBadgeColor(parseFloat(anomaly.riskScore))}>
-                            {parseFloat(anomaly.riskScore).toFixed(1)} {
-                              parseFloat(anomaly.riskScore) >= 9 ? "Critical" :
-                              parseFloat(anomaly.riskScore) >= 7 ? "High" :
-                              parseFloat(anomaly.riskScore) >= 4 ? "Medium" : "Low"
-                            }
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
-                          {getDetectionMethodBadge(anomaly.detectionMethod || 'traditional')}
-                        </TableCell>
-                        <TableCell className="text-slate-300">
-                          {anomaly.sourceData?.sourceIP || "Unknown"}
                         </TableCell>
                         <TableCell className="max-w-xs">
                           <div className="flex items-center space-x-2">
@@ -511,6 +485,32 @@ export function AnalysisSection() {
                               )}
                             </div>
                           </div>
+                        </TableCell>
+                        <TableCell className="text-white">
+                          {formatTimestamp(anomaly.timestamp)}
+                        </TableCell>
+                        <TableCell>
+                          <div>
+                            <div className="text-white font-medium">
+                              {anomaly.anomalyType.replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}
+                            </div>
+                            <div className="text-slate-400 text-sm">{anomaly.description}</div>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <Badge className={getRiskBadgeColor(parseFloat(anomaly.riskScore))}>
+                            {parseFloat(anomaly.riskScore).toFixed(1)} {
+                              parseFloat(anomaly.riskScore) >= 9 ? "Critical" :
+                              parseFloat(anomaly.riskScore) >= 7 ? "High" :
+                              parseFloat(anomaly.riskScore) >= 4 ? "Medium" : "Low"
+                            }
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          {getDetectionMethodBadge(anomaly.detectionMethod || 'traditional')}
+                        </TableCell>
+                        <TableCell className="text-slate-300">
+                          {anomaly.sourceData?.sourceIP || "Unknown"}
                         </TableCell>
                         <TableCell>
                           <Badge className={getStatusBadgeColor(anomaly.status)}>
