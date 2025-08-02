@@ -1,197 +1,334 @@
-# Sentry - AI-Powered Log Anomaly Detection System
+# Sentry - AI-Powered Security Log Analysis Platform
 
-A comprehensive TypeScript-based web application for AI-powered security log anomaly detection, specializing in analyzing Zscaler NSS feed format logs using OpenAI's GPT-4o model.
+A comprehensive TypeScript-based web application for AI-powered security log anomaly detection. Sentry specializes in analyzing security logs, particularly Zscaler NSS feed format, using advanced AI models to identify threats and anomalies with high accuracy and confidence.
 
-## Features
+## 🚀 Features
 
-- **AI-Powered Analysis**: Uses OpenAI GPT-4o for intelligent threat detection and anomaly scoring
-- **Secure Authentication**: Session-based user authentication with PostgreSQL session storage
-- **File Upload & Processing**: Secure upload of .txt and .log files with validation and processing
-- **Real-time Dashboard**: Comprehensive analytics dashboard with upload, analysis, history, and overview sections
-- **Risk Scoring**: 0-10 scale risk assessment with confidence levels and detailed threat analysis
-- **Log Format Support**: Specialized parser for Zscaler NSS feed format (comma and tab-separated)
+### Core Analytics Features
+- **Multi-Method Threat Detection**: Traditional ML, Advanced ML ensemble, and AI-powered analysis
+- **Real-time Anomaly Detection**: Intelligent threat identification with 0-10 risk scoring
+- **SOC Analyst Workflow**: Enhanced anomaly management with status tracking, priorities, and notes
+- **Webhook Automation**: Zapier/Make integration for automated threat response workflows
+- **Dashboard Analytics**: Comprehensive system monitoring and user activity tracking
 
-## Tech Stack
+### Security & Authentication
+- **OAuth Integration**: Secure Replit authentication with Google SSO
+- **Session Management**: PostgreSQL-backed secure session storage
+- **Role-based Access**: User permissions and system-level access controls
+- **Input Validation**: Multi-layer security with SQL injection protection
 
-### Frontend
-- **React 18** with TypeScript for type-safe component development
-- **Tailwind CSS** + **Shadcn UI** for modern, responsive design
-- **Wouter** for lightweight client-side routing
-- **TanStack React Query** for server state management and caching
-- **React Hook Form** + **Zod** for type-safe form validation
+### File Processing & Analysis
+- **Secure Upload System**: Validated .txt/.log file processing with size limits
+- **Zscaler NSS Support**: Specialized parser for security log formats
+- **Concurrent Processing**: Multi-file analysis with rate limiting
+- **Blob Storage Ready**: Scalable file storage architecture
 
-### Backend
-- **Node.js** + **Express.js** for RESTful API development
-- **TypeScript** throughout for type safety
-- **Passport.js** with local strategy for authentication
-- **Multer** for secure file upload handling
-- **OpenAI API** integration for AI-powered log analysis
+## 🏗️ Architecture
 
-### Database & Storage
-- **PostgreSQL** with Neon serverless driver
-- **Drizzle ORM** for type-safe database operations
-- **Express-session** with PostgreSQL session store
-- **Connect-pg-simple** for session persistence
+### Frontend Stack
+- **React 18** + TypeScript for type-safe development
+- **Tailwind CSS** + **Shadcn UI** for modern responsive design
+- **Wouter** for client-side routing
+- **TanStack React Query** for server state management
+- **React Hook Form** + **Zod** for form validation
 
-### AI & Analysis
-- **OpenAI GPT-4o** for advanced log analysis and threat detection
-- **Custom Log Parser** for Zscaler NSS feed format
-- **Risk Scoring Algorithm** with confidence levels
-- **Pattern Recognition** for various attack types and anomalies
+### Backend Stack
+- **Node.js** + **Express.js** RESTful API
+- **Drizzle ORM** + **PostgreSQL** for data persistence
+- **Passport.js** with OpenID Connect for authentication
+- **OpenAI API** + **Google Gemini** for AI analysis
+- **Webhook Service** for external integrations
 
-## Getting Started
+### Database Schema
+- **Users**: OAuth profiles and permissions
+- **Log Files**: Upload metadata and processing status
+- **Anomalies**: Threat detections with analyst workflow
+- **Processing Jobs**: Analysis job tracking and metrics
+- **Webhook Integrations**: External automation configurations
+- **System Metrics**: Performance and usage analytics
+
+## 📋 API Documentation
+
+### Authentication Endpoints
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| `GET` | `/api/login` | Initiate OAuth login flow | ❌ |
+| `GET` | `/api/callback` | OAuth callback handler | ❌ |
+| `GET` | `/api/logout` | Logout and clear session | ❌ |
+| `GET` | `/api/auth/user` | Get current user profile | ✅ |
+
+### File Management Endpoints
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| `POST` | `/api/upload` | Upload log files for analysis | ✅ |
+| `GET` | `/api/log-files` | List user's uploaded files | ✅ |
+| `GET` | `/api/log-files/:id` | Get specific file details | ✅ |
+| `DELETE` | `/api/log-files/:id` | Delete uploaded file | ✅ |
+| `POST` | `/api/log-files/:id/reprocess` | Reprocess file with new settings | ✅ |
+
+### Anomaly Detection Endpoints
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| `GET` | `/api/anomalies` | List all user anomalies with filtering | ✅ |
+| `GET` | `/api/anomalies/:id` | Get specific anomaly details | ✅ |
+| `PATCH` | `/api/anomalies/:id` | Update anomaly (status, priority, notes) | ✅ |
+| `POST` | `/api/anomalies/bulk-update` | Bulk update multiple anomalies | ✅ |
+| `GET` | `/api/anomalies/log/:logFileId` | Get anomalies for specific log file | ✅ |
+
+### Analytics & Dashboard Endpoints
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| `GET` | `/api/stats` | User dashboard statistics | ✅ |
+| `GET` | `/api/processing-jobs` | List analysis job history | ✅ |
+| `GET` | `/api/processing-jobs/:id` | Get specific job details | ✅ |
+
+### Webhook Integration Endpoints
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| `GET` | `/api/webhooks` | List user's webhook integrations | ✅ |
+| `POST` | `/api/webhooks` | Create new webhook integration | ✅ |
+| `GET` | `/api/webhooks/:id` | Get specific webhook details | ✅ |
+| `PATCH` | `/api/webhooks/:id` | Update webhook configuration | ✅ |
+| `DELETE` | `/api/webhooks/:id` | Delete webhook integration | ✅ |
+| `POST` | `/api/webhooks/:id/test` | Test webhook delivery | ✅ |
+
+### System Health Endpoints
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| `GET` | `/health` | System health check | ❌ |
+| `GET` | `/api/health` | API health status | ❌ |
+
+## 🎯 Product Features → API Mapping
+
+### 1. User Authentication & Profile Management
+- **Login Flow**: `/api/login` → `/api/callback` → `/api/auth/user`
+- **Session Management**: Handled via express-session with PostgreSQL storage
+- **User Profile**: `GET /api/auth/user` returns complete OAuth profile
+
+### 2. Log File Upload & Processing
+- **File Upload**: `POST /api/upload` with validation and security checks
+- **Processing Queue**: Creates processing job via background service
+- **File Management**: `GET /api/log-files` for upload history and status
+- **Reprocessing**: `POST /api/log-files/:id/reprocess` with different AI models
+
+### 3. AI-Powered Anomaly Detection
+- **Analysis Trigger**: Automatic on upload completion
+- **Multi-Model Support**: Traditional ML, Advanced ML, OpenAI GPT-4o, Google Gemini
+- **Risk Scoring**: 0-10 scale with confidence percentages
+- **Result Retrieval**: `GET /api/anomalies` with filtering and pagination
+
+### 4. SOC Analyst Workflow
+- **Anomaly Review**: `PATCH /api/anomalies/:id` for status updates
+- **Priority Management**: Set critical/high/medium/low priorities
+- **Analyst Notes**: Add investigation notes and escalation reasons
+- **Bulk Operations**: `POST /api/anomalies/bulk-update` for mass actions
+
+### 5. Webhook Automation System
+- **Integration Setup**: `POST /api/webhooks` for Zapier/Make connections
+- **Trigger Configuration**: Risk score thresholds, anomaly types, priorities
+- **Delivery Tracking**: Success/failure metrics with detailed logging
+- **Alert Filtering**: Prevent alert fatigue with precise conditions
+
+### 6. Dashboard Analytics
+- **System Statistics**: `GET /api/stats` for logs processed, anomalies found
+- **Performance Metrics**: Processing job analytics and AI analysis timing
+- **User Activity**: Upload frequency and analysis patterns
+- **Webhook Metrics**: Delivery success rates and failure analysis
+
+## 🔧 Frontend UX Routes
+
+### Public Routes
+- `/` - Landing page with feature overview
+- `/auth` - Login/signup page (redirects to OAuth)
+
+### Protected Application Routes
+- `/` - Dashboard overview (post-login)
+- `/upload` - File upload interface
+- `/analysis` - Anomaly analysis and filtering
+- `/history` - Upload and processing history
+- `/webhooks` - Webhook integration management
+- `/profile` - User account settings
+
+### Component-Level Features
+- **Anomaly Details Modal**: Deep-dive analysis with raw log viewing
+- **Bulk Selection**: Multi-anomaly operations in analysis table
+- **Real-time Updates**: Live processing status and webhook notifications
+- **Dark Mode**: Consistent dark theme across all interfaces
+
+## 🚀 Getting Started
 
 ### Prerequisites
-
-- Node.js 18+ 
+- Node.js 18+
 - PostgreSQL database
-- OpenAI API key
+- OpenAI API key (optional - for AI analysis)
+- Google Gemini API key (optional - for alternative AI analysis)
 
-### Environment Variables
+### Environment Setup
 
-Create a `.env` file with the following variables:
-
+Create a `.env` file:
 ```env
-DATABASE_URL=your_postgresql_connection_string
-OPENAI_API_KEY=your_openai_api_key
-SESSION_SECRET=your_session_secret_key
+DATABASE_URL=postgresql://user:password@localhost:5432/sentry
+OPENAI_API_KEY=sk-your-openai-key
+GOOGLE_API_KEY=your-google-gemini-key
+SESSION_SECRET=your-secure-session-secret
+REPL_ID=your-replit-app-id
+REPLIT_DOMAINS=your-domain.replit.app
 NODE_ENV=development
 ```
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository**:
 ```bash
-git clone https://github.com/yourusername/logguard.git
-cd logguard
+git clone https://github.com/your-username/sentry-log-analysis.git
+cd sentry-log-analysis
 ```
 
-2. Install dependencies:
+2. **Install dependencies**:
 ```bash
 npm install
 ```
 
-3. Set up the database:
+3. **Set up database**:
 ```bash
 npm run db:push
 ```
 
-4. Start the development server:
+4. **Start development server**:
 ```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:5000`
+Access the application at `http://localhost:5000`
 
 ### Production Deployment
 
-#### Environment Setup
-- Set `NODE_ENV=production`
-- Configure production database URL
-- Set up proper session secrets
-- Configure CORS for your domain
+#### Using Replit Autoscale
+1. Connect your GitHub repository to Replit
+2. Configure environment variables in Replit Secrets
+3. Deploy using Replit's autoscale deployment system
 
-#### Build and Deploy
+#### Manual Deployment
 ```bash
 npm run build
-npm start
+NODE_ENV=production npm start
 ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-logguard/
-├── client/                 # Frontend React application
+sentry/
+├── client/                     # React frontend application
 │   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/          # Application pages
-│   │   ├── hooks/          # Custom React hooks
-│   │   └── lib/            # Client utilities
-├── server/                 # Backend Express application
-│   ├── services/           # Business logic services
-│   │   ├── anomaly-detector.ts
-│   │   └── log-parser.ts
-│   ├── auth.ts            # Authentication setup
-│   ├── db.ts              # Database connection
-│   ├── routes.ts          # API routes
-│   └── storage.ts         # Data access layer
-├── shared/                # Shared TypeScript schemas
-└── uploads/               # Temporary file storage
+│   │   ├── components/         # Reusable UI components
+│   │   │   ├── dashboard/      # Dashboard-specific components
+│   │   │   ├── webhooks/       # Webhook management UI
+│   │   │   └── ui/             # Shadcn UI components
+│   │   ├── pages/              # Application pages/routes
+│   │   ├── hooks/              # Custom React hooks
+│   │   └── lib/                # Client utilities and helpers
+├── server/                     # Express backend application
+│   ├── services/               # Business logic services
+│   │   ├── anomaly-detector.ts # AI-powered analysis engine
+│   │   ├── log-parser.ts       # Zscaler NSS log parser
+│   │   ├── webhook-service.ts  # External integration handler
+│   │   └── metrics-service.ts  # Analytics and tracking
+│   ├── middleware/             # Express middleware
+│   ├── routes/                 # Modular API route handlers
+│   ├── db.ts                   # Database connection setup
+│   ├── storage.ts              # Data access layer (ORM)
+│   └── index.ts                # Application entry point
+├── shared/                     # Shared TypeScript schemas
+│   ├── schema.ts               # Drizzle database schemas
+│   └── types.ts                # Shared type definitions
+├── uploads/                    # Temporary file storage
+└── terraform/                  # Infrastructure as code (GCP)
 ```
 
-## API Documentation
+## 🔍 AI Analysis Capabilities
 
-### Authentication Endpoints
-- `POST /api/register` - User registration
-- `POST /api/login` - User login
-- `POST /api/logout` - User logout
-- `GET /api/user` - Get current user
+### Threat Detection Types
+- **Cryptocurrency Mining**: Detection of mining-related traffic and domains
+- **Tor/Dark Web Access**: Anonymous network usage patterns
+- **Data Exfiltration**: Unusual upload volumes and suspicious destinations
+- **Command & Control**: C2 communication patterns and beaconing
+- **Privilege Escalation**: Unusual permission changes and access attempts
+- **Geographic Anomalies**: Impossible travel and suspicious locations
+- **Time-based Anomalies**: Off-hours activity and unusual timing patterns
+- **Authentication Failures**: Brute force and credential stuffing attempts
 
-### Log Management Endpoints
-- `POST /api/upload` - Upload log files
-- `GET /api/log-files` - Get user's log files
-- `GET /api/log-files/:id` - Get specific log file
+### Analysis Methods
+1. **Traditional Detection**: Rule-based pattern matching for known threats
+2. **Advanced ML**: Multi-model ensemble with statistical analysis
+3. **AI-Powered**: OpenAI GPT-4o and Google Gemini for contextual analysis
+4. **Behavioral Analysis**: User behavior profiling and deviation detection
 
-### Anomaly Detection Endpoints
-- `GET /api/anomalies` - Get user's anomalies
-- `GET /api/anomalies/log/:logFileId` - Get anomalies for specific log file
-- `PUT /api/anomalies/:id/status` - Update anomaly status
+## 🔒 Security Features
 
-### Analytics Endpoints
-- `GET /api/stats` - Get user's dashboard statistics
+### Input Security
+- **File Validation**: Type, size, and content validation for uploads
+- **SQL Injection Protection**: Parameterized queries and input sanitization
+- **Rate Limiting**: Per-user API rate limits and concurrent processing controls
+- **Input Sanitization**: Zod schema validation for all API endpoints
 
-## AI Analysis Capabilities
+### Authentication Security
+- **OAuth 2.0**: Secure authentication via Replit's OpenID Connect provider
+- **Session Security**: HTTP-only cookies with secure flags
+- **CSRF Protection**: Built-in protection against cross-site request forgery
+- **Session Storage**: PostgreSQL-backed session persistence
 
-The system analyzes logs for:
+### Infrastructure Security
+- **Environment Isolation**: Secure environment variable management
+- **Database Security**: Connection pooling and prepared statements
+- **HTTPS Enforcement**: TLS encryption for all communications
+- **Audit Logging**: Comprehensive security event tracking
 
-- **Authentication Anomalies**: Unusual login patterns, failed authentication attempts
-- **Geographic Anomalies**: Suspicious location-based access patterns
-- **Traffic Anomalies**: Abnormal data volumes, unusual destinations
-- **Behavioral Anomalies**: Deviations from normal user patterns
-- **Threat Signatures**: Known attack patterns and indicators
-- **Time-based Anomalies**: Activities outside normal hours
-- **Privilege Escalations**: Unusual permission changes or access attempts
+## 📊 Monitoring & Analytics
 
-## Log Format Support
+### System Metrics
+- **Processing Performance**: Analysis job timing and throughput
+- **AI Model Usage**: Token consumption and response times
+- **Webhook Delivery**: Success rates and failure analysis
+- **User Activity**: Upload patterns and analysis frequency
 
-### Zscaler NSS Feed Format
-The system supports both comma-separated and tab-separated Zscaler NSS logs with fields including:
-- Timestamp
-- User information
-- Source/Destination IPs
-- URLs and domains
-- Traffic volumes
-- Security classifications
-- Response codes
+### Error Handling
+- **Graceful Degradation**: Fallback options when AI services are unavailable
+- **Retry Logic**: Automatic retry for transient failures
+- **Error Logging**: Structured logging with correlation IDs
+- **User Feedback**: Clear error messages and resolution guidance
 
-## Security Features
+## 🤝 Contributing
 
-- **Secure File Upload**: Type and size validation, temporary storage
-- **Session Management**: HTTP-only cookies, secure session storage
-- **Input Validation**: Zod schemas for all API inputs
-- **Authentication**: Secure password hashing with scrypt
-- **Database Security**: Parameterized queries via Drizzle ORM
+1. Fork the repository on GitHub
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
-## Contributing
+### Development Guidelines
+- Follow TypeScript best practices
+- Add tests for new features
+- Update documentation for API changes
+- Ensure LSP diagnostics pass before committing
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Commit changes: `git commit -am 'Add your feature'`
-4. Push to branch: `git push origin feature/your-feature`
-5. Submit a pull request
-
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Support
+## 🆘 Support
 
-For issues and questions:
-- Create an issue on GitHub
-- Contact: support@logguard.com
+- **Issues**: [GitHub Issues](https://github.com/your-username/sentry-log-analysis/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/your-username/sentry-log-analysis/discussions)
+- **Documentation**: This README and inline code comments
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
-- OpenAI for GPT-4o model capabilities
-- Zscaler for NSS feed format documentation
-- The open-source community for the excellent tools and libraries used
+- **OpenAI** for GPT-4o model capabilities and comprehensive API
+- **Google** for Gemini AI model access and documentation
+- **Replit** for the development platform and deployment infrastructure
+- **Zscaler** for NSS feed format documentation and security insights
+- **Open Source Community** for the excellent tools and libraries that make this project possible
+
+---
+
+**Built with ❤️ using TypeScript, React, and AI-powered security analysis**
