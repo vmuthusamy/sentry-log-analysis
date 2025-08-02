@@ -452,7 +452,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ success: true });
     } catch (error) {
       console.error("Update anomaly error:", error);
-      res.status(500).json({ message: "Failed to update anomaly", error: error.message });
+      res.status(500).json({ message: "Failed to update anomaly", error: error instanceof Error ? error.message : 'Unknown error' });
     }
   });
 
@@ -1227,7 +1227,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'Invalid webhook data', errors: error.errors });
       }
       console.error('Error creating webhook:', error);
-      res.status(500).json({ message: 'Failed to create webhook', error: error.message });
+      res.status(500).json({ message: 'Failed to create webhook', error: error instanceof Error ? error.message : 'Unknown error' });
     }
   });
 
@@ -1251,7 +1251,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(updatedWebhook);
     } catch (error) {
       console.error('Error updating webhook:', error);
-      res.status(500).json({ message: 'Failed to update webhook', error: error.message });
+      res.status(500).json({ message: 'Failed to update webhook', error: error instanceof Error ? error.message : 'Unknown error' });
     }
   });
 
