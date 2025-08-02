@@ -14,8 +14,8 @@ Get Sentry up and running in minutes! This guide provides the fastest path to de
 ### Option 2: Docker Deployment
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/<your-repo-name>.git
-cd <your-repo-name>
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
 
 # Set up environment
 cp .env.example .env

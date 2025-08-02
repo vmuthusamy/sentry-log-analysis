@@ -45,7 +45,7 @@ gcloud auth configure-docker
 ### Clone and Prepare the Code
 ```bash
 # If you haven't already, clone the repository
-git clone <your-repo-url>
+git clone https://github.com/your-username/your-repo-name.git
 cd sentry
 
 # Copy environment template
