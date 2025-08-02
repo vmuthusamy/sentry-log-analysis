@@ -36,6 +36,7 @@ export interface IStorage {
   createLogFile(logFile: InsertLogFile): Promise<LogFile>;
   getLogFile(id: string): Promise<LogFile | undefined>;
   getLogFilesByUser(userId: string): Promise<LogFile[]>;
+  getUserFileCount(userId: string): Promise<number>;
   updateLogFileStatus(id: string, status: string, totalLogs?: number, errorMessage?: string): Promise<void>;
   
   createAnomaly(anomaly: InsertAnomaly): Promise<Anomaly>;
@@ -159,6 +160,14 @@ export class DatabaseStorage implements IStorage {
       .from(logFiles)
       .where(eq(logFiles.userId, userId))
       .orderBy(desc(logFiles.uploadedAt));
+  }
+
+  async getUserFileCount(userId: string): Promise<number> {
+    const result = await db
+      .select({ count: count() })
+      .from(logFiles)
+      .where(eq(logFiles.userId, userId));
+    return result[0]?.count || 0;
   }
 
   async updateLogFileStatus(id: string, status: string, totalLogs?: number, errorMessage?: string): Promise<void> {

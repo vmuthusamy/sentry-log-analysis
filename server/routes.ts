@@ -133,6 +133,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get user file count endpoint
+  app.get('/api/user/file-count', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const fileCount = await storage.getUserFileCount(userId);
+      const maxFiles = 10;
+      
+      res.json({
+        count: fileCount,
+        limit: maxFiles,
+        canUpload: fileCount < maxFiles,
+        remaining: Math.max(0, maxFiles - fileCount)
+      });
+    } catch (error) {
+      console.error("Error fetching user file count:", error);
+      res.status(500).json({ message: "Failed to fetch file count" });
+    }
+  });
+
   // Trust proxy for rate limiting
   app.set('trust proxy', 1);
   
@@ -200,6 +219,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
    * @apiError (400) EmptyFile Empty files are not allowed
    * @apiError (400) InvalidFormat Log file format not recognized
    * @apiError (400) TooManyEntries File contains more than 100,000 log entries
+   * @apiError (400) FileCountLimitReached User has reached maximum of 10 files
    * @apiError (413) PayloadTooLarge Request entity too large (>10MB)
    * @apiError (429) TooManyRequests Rate limit exceeded (10 uploads per 15 minutes)
    * 
@@ -215,11 +235,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
    *       "message": "Only .txt and .log files are allowed"
    *     }
    * 
+   * @apiErrorExample {json} File-Count-Limit-Reached:
+   *     HTTP/1.1 400 Bad Request
+   *     {
+   *       "message": "You have reached the maximum limit of 10 files. Please delete some files before uploading new ones."
+   *     }
+   * 
    * @apiNote File Size Limits:
    *   - Maximum file size: 10MB (10,485,760 bytes)
    *   - Maximum log entries: 100,000 entries per file
    *   - Supported formats: .txt, .log files only
    *   - Supported content: Zscaler NSS feed format
+   * 
+   * @apiNote User Limits:
+   *   - Maximum files per user: 10 files total
+   *   - Users must delete existing files before uploading new ones at limit
    * 
    * @apiNote Rate Limits:
    *   - 10 file uploads per 15 minutes per user
@@ -257,6 +287,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         `File size ${Math.round(size / (1024 * 1024))}MB exceeds limit of ${Math.round(maxSizeBytes / (1024 * 1024))}MB`,
         size,
         maxSizeBytes
+      );
+    }
+
+    // Check user file count limit (10 files per user)
+    const userFileCount = await storage.getUserFileCount(userId);
+    const maxFilesPerUser = 10;
+    if (userFileCount >= maxFilesPerUser) {
+      await fs.unlink(path.join("uploads", filename)); // Clean up file
+      throw new ValidationError(
+        `You have reached the maximum limit of ${maxFilesPerUser} files. Please delete some files before uploading new ones.`
       );
     }
 

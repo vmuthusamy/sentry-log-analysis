@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,15 @@ export function UploadSection() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
+
+  // Get user file count to enforce 10 file limit
+  const { data: userFiles = [] } = useQuery({
+    queryKey: ["/api/log-files"],
+  });
+
+  const userFileCount = userFiles.length;
+  const maxFilesPerUser = 10;
+  const canUpload = userFileCount < maxFilesPerUser;
 
   const uploadMutation = useMutation({
     mutationFn: async (file: File) => {
@@ -72,6 +81,19 @@ export function UploadSection() {
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      // Check file count limit first
+      if (!canUpload) {
+        toast({
+          title: "File limit reached",
+          description: `You have reached the maximum limit of ${maxFilesPerUser} files. Please delete some files before uploading new ones.`,
+          variant: "destructive",
+        });
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+        return;
+      }
+
       const validTypes = [".txt", ".log"];
       const fileExtension = file.name.toLowerCase().substring(file.name.lastIndexOf("."));
       
@@ -156,8 +178,16 @@ export function UploadSection() {
                 Choose Files
               </Button>
               <p className="text-xs text-slate-500 mt-4">
-                Maximum file size: 100MB • Supported formats: .txt, .log
+                Maximum file size: 10MB • Supported formats: .txt, .log
               </p>
+              <div className="mt-2 flex items-center justify-center gap-2 text-sm">
+                <span className={`${canUpload ? 'text-green-400' : 'text-orange-400'}`}>
+                  {userFileCount}/{maxFilesPerUser} files used
+                </span>
+                {!canUpload && (
+                  <span className="text-red-400">• Limit reached</span>
+                )}
+              </div>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -218,8 +248,8 @@ export function UploadSection() {
             <div className="text-center">
               <Button
                 onClick={handleUpload}
-                disabled={!selectedFile || uploadMutation.isPending}
-                className="bg-accent-blue hover:bg-blue-600 px-8 py-3"
+                disabled={!selectedFile || uploadMutation.isPending || !canUpload}
+                className="bg-accent-blue hover:bg-blue-600 px-8 py-3 disabled:opacity-50"
               >
                 {uploadMutation.isPending ? (
                   <>

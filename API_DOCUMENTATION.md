@@ -26,6 +26,11 @@ Upload a log file for security analysis with comprehensive validation and size l
 - Files larger than 10MB will be rejected with HTTP 400
 - Empty files (0 bytes) are not allowed
 
+#### User File Limits
+- **Maximum files per user**: 10 files total
+- Users must delete existing files before uploading new ones when at limit
+- File count is checked before upload processing
+
 #### Supported File Types
 - `.txt` files (text/plain MIME type)
 - `.log` files (text/plain or application/octet-stream MIME type)
@@ -119,6 +124,14 @@ Upload a log file for security analysis with comprehensive validation and size l
 }
 ```
 
+#### File Count Limit Reached
+**HTTP Status:** `400 Bad Request`
+```json
+{
+  "message": "You have reached the maximum limit of 10 files. Please delete some files before uploading new ones."
+}
+```
+
 #### Rate Limit Exceeded
 **HTTP Status:** `429 Too Many Requests`
 ```json
@@ -200,6 +213,67 @@ The system primarily supports **Zscaler NSS (Network Security Service) feed form
 - User Agent
 - Category/Classification
 
+## GET /api/user/file-count
+
+Get the current file count and upload eligibility for the authenticated user.
+
+### Request
+
+**Endpoint:** `GET /api/user/file-count`
+
+**Authentication:** Required (Session-based)
+
+### Success Response
+
+**HTTP Status:** `200 OK`
+
+```json
+{
+  "count": 5,
+  "limit": 10,
+  "canUpload": true,
+  "remaining": 5
+}
+```
+
+### Response Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `count` | Number | Current number of files for the user |
+| `limit` | Number | Maximum files allowed per user (10) |
+| `canUpload` | Boolean | Whether user can upload more files |
+| `remaining` | Number | Number of additional files user can upload |
+
+### Error Response
+
+**HTTP Status:** `500 Internal Server Error`
+```json
+{
+  "message": "Failed to fetch file count"
+}
+```
+
+### Example Request
+
+```bash
+curl -X GET https://your-app.replit.app/api/user/file-count \
+  -H "Cookie: your-session-cookie"
+```
+
+### Example with JavaScript
+
+```javascript
+fetch('/api/user/file-count', {
+  credentials: 'include'
+})
+.then(response => response.json())
+.then(data => {
+  console.log(`User has ${data.count}/${data.limit} files`);
+  console.log(`Can upload: ${data.canUpload}`);
+});
+```
+
 ### Performance Considerations
 
 - Files are processed asynchronously to prevent blocking
@@ -207,3 +281,4 @@ The system primarily supports **Zscaler NSS (Network Security Service) feed form
 - Memory usage is optimized for files up to 10MB
 - Processing timeout: 5 minutes per file
 - Concurrent processing limited to prevent resource exhaustion
+- User file limits prevent database overflow and improve performance
