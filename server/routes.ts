@@ -387,9 +387,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }));
 
   // Get individual anomaly details
-  app.get("/api/anomalies/:id", requireAuth, validateInput(z.object({})), asyncHandler(async (req: any, res: any) => {
+  app.get("/api/anomalies/:id", requireAuth, asyncHandler(async (req: any, res: any) => {
     const userId = req.user!.id;
     const { id } = req.params;
+    
+    // Validate ID format
+    if (!id || typeof id !== 'string' || id.length < 10) {
+      return res.status(400).json({ message: "Invalid anomaly ID format" });
+    }
     
     const anomaly = await storage.getAnomalyById(id, userId);
     if (!anomaly) {

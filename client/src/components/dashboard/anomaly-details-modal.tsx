@@ -24,20 +24,15 @@ export function AnomalyDetailsModal({ anomalyId, open, onClose }: AnomalyDetails
   const [analystNotes, setAnalystNotes] = useState("");
   const [priority, setPriority] = useState("");
 
-  const { data: anomaly, isLoading } = useQuery({
+  const { data: anomaly, isLoading, error } = useQuery({
     queryKey: ["/api/anomalies", anomalyId],
     enabled: !!anomalyId && open,
+    retry: false,
   });
 
   const updateAnomalyMutation = useMutation({
     mutationFn: async (updates: any) => {
-      const response = await fetch(`/api/anomalies/${anomalyId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updates),
-      });
-      if (!response.ok) throw new Error("Failed to update anomaly");
-      return response.json();
+      return await apiRequest(`/api/anomalies/${anomalyId}`, "PATCH", updates);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/anomalies"] });
@@ -67,8 +62,6 @@ export function AnomalyDetailsModal({ anomalyId, open, onClose }: AnomalyDetails
     return "bg-accent-green/20 text-accent-green";
   };
 
-  if (!anomaly && !isLoading) return null;
-
   const getDetectionMethodBadge = (method: string) => {
     if (method === 'traditional_ml' || method === 'traditional') {
       return (
@@ -97,8 +90,6 @@ export function AnomalyDetailsModal({ anomalyId, open, onClose }: AnomalyDetails
     return <Badge variant="secondary">{method}</Badge>;
   };
 
-  if (!anomaly && !isLoading) return null;
-
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-dark-secondary border-slate-700">
@@ -114,6 +105,17 @@ export function AnomalyDetailsModal({ anomalyId, open, onClose }: AnomalyDetails
             <div className="animate-pulse bg-dark-tertiary h-4 rounded w-3/4"></div>
             <div className="animate-pulse bg-dark-tertiary h-4 rounded w-1/2"></div>
             <div className="animate-pulse bg-dark-tertiary h-20 rounded"></div>
+          </div>
+        ) : error ? (
+          <div className="text-center py-8">
+            <AlertTriangle className="h-12 w-12 text-accent-red mx-auto mb-4" />
+            <h3 className="text-white text-lg font-semibold mb-2">Failed to Load Anomaly Details</h3>
+            <p className="text-slate-400 mb-4">
+              {error instanceof Error ? error.message : 'Unable to fetch anomaly information'}
+            </p>
+            <Button onClick={() => window.location.reload()} variant="outline">
+              Retry
+            </Button>
           </div>
         ) : anomaly ? (
           <div className="space-y-6">
