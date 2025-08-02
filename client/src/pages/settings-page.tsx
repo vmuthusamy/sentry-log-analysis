@@ -1,4 +1,5 @@
 import { APIKeySettings } from "@/components/dashboard/api-key-settings";
+import { WebhookManager } from "@/components/webhooks/webhook-manager";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Settings, User, Shield, Bell, ArrowLeft } from "lucide-react";
@@ -37,6 +38,22 @@ export default function SettingsPage() {
           <div className="lg:col-span-2 space-y-6">
             {/* API Configuration */}
             <APIKeySettings />
+
+            {/* Webhook Integrations */}
+            <Card className="bg-dark-secondary border-slate-700">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <Bell className="h-5 w-5" />
+                  Webhook Integrations
+                </CardTitle>
+                <p className="text-sm text-slate-400">
+                  Automate responses to security anomalies with external workflow tools
+                </p>
+              </CardHeader>
+              <CardContent>
+                <WebhookManager />
+              </CardContent>
+            </Card>
 
             {/* Account Settings */}
             <Card className="bg-dark-secondary border-slate-700">

@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -58,14 +59,24 @@ export function WebhookManager() {
   // Fetch webhooks
   const { data: webhooks = [], isLoading } = useQuery({
     queryKey: ['/api/webhooks'],
+    queryFn: async () => {
+      const response = await fetch('/api/webhooks');
+      if (!response.ok) throw new Error('Failed to fetch webhooks');
+      return response.json();
+    },
   });
 
   // Create webhook mutation
   const createMutation = useMutation({
-    mutationFn: (data: WebhookFormData) => apiRequest('/api/webhooks', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    }),
+    mutationFn: async (data: WebhookFormData) => {
+      const response = await fetch('/api/webhooks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error('Failed to create webhook');
+      return response.json();
+    },
     onSuccess: () => {
       toast({ title: 'Webhook created successfully' });
       queryClient.invalidateQueries({ queryKey: ['/api/webhooks'] });
@@ -83,11 +94,15 @@ export function WebhookManager() {
 
   // Update webhook mutation
   const updateMutation = useMutation({
-    mutationFn: ({ id, data }: { id: string; data: Partial<WebhookFormData> }) =>
-      apiRequest(`/api/webhooks/${id}`, {
+    mutationFn: async ({ id, data }: { id: string; data: Partial<WebhookFormData> }) => {
+      const response = await fetch(`/api/webhooks/${id}`, {
         method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
-      }),
+      });
+      if (!response.ok) throw new Error('Failed to update webhook');
+      return response.json();
+    },
     onSuccess: () => {
       toast({ title: 'Webhook updated successfully' });
       queryClient.invalidateQueries({ queryKey: ['/api/webhooks'] });
@@ -104,7 +119,11 @@ export function WebhookManager() {
 
   // Delete webhook mutation
   const deleteMutation = useMutation({
-    mutationFn: (id: string) => apiRequest(`/api/webhooks/${id}`, { method: 'DELETE' }),
+    mutationFn: async (id: string) => {
+      const response = await fetch(`/api/webhooks/${id}`, { method: 'DELETE' });
+      if (!response.ok) throw new Error('Failed to delete webhook');
+      return response.ok;
+    },
     onSuccess: () => {
       toast({ title: 'Webhook deleted successfully' });
       queryClient.invalidateQueries({ queryKey: ['/api/webhooks'] });
@@ -120,8 +139,12 @@ export function WebhookManager() {
 
   // Test webhook mutation
   const testMutation = useMutation({
-    mutationFn: (id: string) => apiRequest(`/api/webhooks/${id}/test`, { method: 'POST' }),
-    onSuccess: (data) => {
+    mutationFn: async (id: string) => {
+      const response = await fetch(`/api/webhooks/${id}/test`, { method: 'POST' });
+      if (!response.ok) throw new Error('Failed to test webhook');
+      return response.json();
+    },
+    onSuccess: (data: any) => {
       toast({
         title: data.success ? 'Webhook test successful' : 'Webhook test failed',
         description: data.message,
@@ -337,7 +360,7 @@ export function WebhookManager() {
             </CardContent>
           </Card>
         ) : (
-          webhooks.map((webhook: any) => (
+          (webhooks as any[]).map((webhook: any) => (
             <Card key={webhook.id}>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <div>

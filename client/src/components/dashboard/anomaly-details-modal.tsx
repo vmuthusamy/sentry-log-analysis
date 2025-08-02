@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Brain, BarChart3, Database, User, Clock, AlertTriangle, FileText, MessageSquare } from "lucide-react";
+import { QuickWebhookSetup } from "@/components/webhooks/quick-webhook-setup";
 import { queryClient } from "@/lib/queryClient";
 import { apiRequest } from "@/lib/queryClient";
 import { toast } from "@/hooks/use-toast";
@@ -302,6 +303,10 @@ export function AnomalyDetailsModal({ anomalyId, open, onClose }: AnomalyDetails
                   >
                     {updateAnomalyMutation.isPending ? "Updating..." : "Update Anomaly"}
                   </Button>
+                  <QuickWebhookSetup 
+                    anomalyType={(anomaly as any)?.anomalyType}
+                    riskScore={parseFloat((anomaly as any)?.riskScore || '0')}
+                  />
                   <Button variant="outline" onClick={onClose} className="border-slate-600 text-slate-300">
                     Close
                   </Button>

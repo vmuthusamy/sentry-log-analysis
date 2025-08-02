@@ -94,17 +94,23 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createUser(user: InsertUser): Promise<User> {
-    const [newUser] = await db.insert(users).values([user]).returning();
+    const [newUser] = await db.insert(users).values(user).returning();
     return newUser;
   }
 
   async upsertUser(userData: UpsertUser): Promise<User> {
     const [user] = await db
       .insert(users)
-      .values([userData])
+      .values(userData)
       .onConflictDoUpdate({
         target: users.id,
-        set: userData,
+        set: {
+          email: userData.email,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          profileImageUrl: userData.profileImageUrl,
+          updatedAt: new Date(),
+        },
       })
       .returning();
     return user;
@@ -369,7 +375,7 @@ export class DatabaseStorage implements IStorage {
   async createWebhookIntegration(webhook: InsertWebhookIntegration): Promise<WebhookIntegration> {
     const [newWebhook] = await db
       .insert(webhookIntegrations)
-      .values([webhook])
+      .values(webhook)
       .returning();
     return newWebhook;
   }
