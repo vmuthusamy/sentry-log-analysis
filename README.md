@@ -484,6 +484,160 @@ Database: Kubernetes StatefulSet
 Queue: Redis Kubernetes operator
 ```
 
+### Enhanced Security & Defensive Measures
+
+#### Additional REST API Protections (Future Implementation)
+
+**Input Validation & Sanitization**
+- Request payload size limits (prevent large JSON attacks)
+- Parameter type validation with strict schemas
+- Path traversal protection for file operations
+- Request header validation and Content-Type enforcement
+
+**API Security Hardening**
+- CORS configuration with specific allowed origins
+- API versioning strategy for breaking changes
+- Request timeout enforcement (30s default, 2min for AI analysis)
+- Response rate limiting per endpoint type
+
+**Enhanced Authentication & Authorization**
+- JWT token rotation with refresh mechanism
+- Role-based access control (Admin, Analyst, Viewer)
+- API key management for service-to-service calls
+- Session hijacking prevention with IP validation
+
+**Anomaly Data Protection**
+- Cross-user data access prevention with ownership checks
+- Status transition validation (prevent invalid state changes)
+- Bulk operation limits (max 100 anomalies per request)
+- Audit logging for all sensitive operations
+
+**Webhook Security Enhancements**
+- Webhook URL validation and domain allowlisting
+- Cryptographic signature verification (HMAC-SHA256)
+- Delivery timeout controls with circuit breakers
+- Per-integration rate limiting and retry policies
+
+### Multi-Format Log Support Architecture
+
+#### Current Limitation
+The system currently supports only Zscaler NSS feed format with fixed parsing rules and field positions.
+
+#### Proposed Multi-Parser System
+
+**Parser Abstraction Layer**
+```typescript
+interface LogParser {
+  formatName: string;
+  version: string;
+  detect(content: string): { confidence: number; format: string };
+  parse(content: string): LogEntry[];
+  validate(entry: LogEntry): ValidationResult;
+  getSchema(): LogSchema;
+}
+
+class ParserRegistry {
+  private parsers: Map<string, LogParser> = new Map();
+  
+  register(parser: LogParser): void;
+  detect(content: string): LogParser | null;
+  getSupportedFormats(): string[];
+}
+```
+
+**Supported Log Formats (Planned)**
+- **Zscaler NSS**: Current implementation (Web, Firewall, DNS logs)
+- **Palo Alto Networks**: PAN-OS traffic and threat logs
+- **Fortinet FortiGate**: Security event logs
+- **Cisco ASA**: Firewall and VPN logs
+- **AWS CloudTrail**: API activity logs
+- **Azure Security Center**: Security alert logs
+- **Generic Syslog**: RFC3164/RFC5424 compliant logs
+- **Custom CSV/JSON**: User-defined format specifications
+
+**Implementation Components**
+
+**Frontend Enhancements**
+- Format detection and selection UI
+- Format-specific upload validation
+- Dynamic field mapping interface
+- Format preview with sample parsing
+
+**Backend Parser System**
+```typescript
+// Auto-detection pipeline
+const detectionPipeline = [
+  new ZscalerDetector(),
+  new PaloAltoDetector(), 
+  new FortiGateDetector(),
+  new SyslogDetector(),
+  new GenericDetector()
+];
+
+// Format-specific processing
+class LogProcessingService {
+  async processFile(file: File): Promise<ProcessingResult> {
+    const parser = await this.detectFormat(file);
+    const entries = await parser.parse(file.content);
+    const validated = await this.validateEntries(entries, parser);
+    return this.analyzeEntries(validated, parser.getSchema());
+  }
+}
+```
+
+**AI Model Adaptations**
+- Format-specific analysis prompts for OpenAI/Gemini
+- Schema-aware anomaly detection algorithms
+- Format-specific risk scoring models
+- Contextual field interpretation
+
+**Database Schema Extensions**
+```sql
+-- Log format tracking
+ALTER TABLE log_files ADD COLUMN format_name VARCHAR(50);
+ALTER TABLE log_files ADD COLUMN format_version VARCHAR(20);
+ALTER TABLE log_files ADD COLUMN parser_metadata JSONB;
+
+-- Format-specific anomaly context
+ALTER TABLE anomalies ADD COLUMN log_format VARCHAR(50);
+ALTER TABLE anomalies ADD COLUMN format_specific_data JSONB;
+```
+
+**Configuration Management**
+- Parser plugin system for easy format additions
+- Format-specific configuration files
+- Field mapping customization per organization
+- Format validation rule management
+
+#### Implementation Complexity: **Medium-High**
+
+**Phase 1: Parser Infrastructure (4-6 weeks)**
+- Abstract parser interface implementation
+- Auto-detection mechanism
+- Plugin architecture for new formats
+
+**Phase 2: Core Format Support (6-8 weeks)**
+- Palo Alto Networks parser
+- Fortinet FortiGate parser
+- Generic Syslog parser
+
+**Phase 3: Advanced Features (4-6 weeks)**
+- Custom format definitions
+- Field mapping interface
+- Format-specific AI prompts
+
+**Benefits**
+- **Market Expansion**: Support for diverse security infrastructure
+- **Vendor Flexibility**: Reduce dependency on single log source
+- **Enterprise Adoption**: Multi-vendor environment compatibility
+- **Competitive Advantage**: Comprehensive log format coverage
+
+**Technical Challenges**
+- **Performance**: Parser selection and processing overhead
+- **Maintenance**: Multiple parser codebases to maintain
+- **AI Training**: Format-specific model optimization
+- **Testing**: Comprehensive format validation across vendors
+
 ## 🔄 System Data Flow Diagram
 
 ### File Upload → Analysis → SOC Workflow Process
