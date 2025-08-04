@@ -1318,8 +1318,86 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   }));
 
+  // Enhanced analytics endpoints using the new Analytics Tracker
+  app.get("/api/analytics/summary", isAuthenticated, async (req: any, res) => {
+    try {
+      const { hours, days, minutes } = req.query;
+      const timeframe = {
+        hours: hours ? parseInt(hours as string) : undefined,
+        days: days ? parseInt(days as string) : undefined,
+        minutes: minutes ? parseInt(minutes as string) : undefined
+      };
+      
+      const { analyticsTracker } = await import("./services/analytics-tracker");
+      const summary = await analyticsTracker.getActivitySummary(timeframe);
+      
+      res.json(summary);
+    } catch (error) {
+      console.error('Error getting analytics summary:', error);
+      res.status(500).json({ message: 'Failed to get analytics summary' });
+    }
+  });
+
+  app.get("/api/analytics/cross-user", isAuthenticated, async (req: any, res) => {
+    try {
+      const { hours, days, minutes } = req.query;
+      const timeframe = {
+        hours: hours ? parseInt(hours as string) : undefined,
+        days: days ? parseInt(days as string) : undefined,
+        minutes: minutes ? parseInt(minutes as string) : undefined
+      };
+      
+      const { analyticsTracker } = await import("./services/analytics-tracker");
+      const crossUserAnalysis = await analyticsTracker.getCrossUserAnalysis(timeframe);
+      
+      res.json(crossUserAnalysis);
+    } catch (error) {
+      console.error('Error getting cross-user analysis:', error);
+      res.status(500).json({ message: 'Failed to get cross-user analysis' });
+    }
+  });
+
+  app.get("/api/analytics/detailed", isAuthenticated, async (req: any, res) => {
+    try {
+      const { hours, days, minutes, limit } = req.query;
+      const timeframe = {
+        hours: hours ? parseInt(hours as string) : undefined,
+        days: days ? parseInt(days as string) : undefined,
+        minutes: minutes ? parseInt(minutes as string) : undefined
+      };
+      const limitNum = limit ? parseInt(limit as string) : 50;
+      
+      const { analyticsTracker } = await import("./services/analytics-tracker");
+      const detailedActivity = await analyticsTracker.getDetailedAnalysisActivity(timeframe, limitNum);
+      
+      res.json(detailedActivity);
+    } catch (error) {
+      console.error('Error getting detailed analysis activity:', error);
+      res.status(500).json({ message: 'Failed to get detailed analysis activity' });
+    }
+  });
+
+  app.get("/api/analytics/methods", isAuthenticated, async (req: any, res) => {
+    try {
+      const { hours, days, minutes } = req.query;
+      const timeframe = {
+        hours: hours ? parseInt(hours as string) : undefined,
+        days: days ? parseInt(days as string) : undefined,
+        minutes: minutes ? parseInt(minutes as string) : undefined
+      };
+      
+      const { analyticsTracker } = await import("./services/analytics-tracker");
+      const methodBreakdown = await analyticsTracker.getAnalysisByMethod(timeframe);
+      
+      res.json(methodBreakdown);
+    } catch (error) {
+      console.error('Error getting analysis by method:', error);
+      res.status(500).json({ message: 'Failed to get analysis by method' });
+    }
+  });
+
   // Get metrics endpoint
-  app.get("/api/metrics", requireAuth, async (req, res) => {
+  app.get("/api/metrics", isAuthenticated, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
       const { timeRange } = req.query;

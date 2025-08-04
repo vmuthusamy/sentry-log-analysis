@@ -1,176 +1,27 @@
 # Sentry - AI-Powered Log Anomaly Detection
 
 ## Overview
-
-Sentry is a TypeScript-based web application for AI-powered security log anomaly detection. It analyzes security logs, specifically Zscaler NSS feed format, using OpenAI's GPT-4o model to identify threats. The system handles log upload, processing, anomaly detection, risk scoring, and dashboard analytics with user authentication. Sentry aims to provide a comprehensive solution for proactive security threat identification with high confidence.
+Sentry is a TypeScript-based web application designed for AI-powered security log anomaly detection. It specializes in analyzing security logs, particularly in Zscaler NSS feed format, utilizing large language models like OpenAI's GPT-4o to identify potential threats. The system provides a comprehensive solution covering log upload, processing, anomaly detection, risk scoring, and dashboard analytics, all supported by robust user authentication. Sentry's core purpose is to deliver proactive and high-confidence identification of security threats.
 
 ## User Preferences
-
 Preferred communication style: Simple, everyday language.
-
-## Recent Achievements (August 2, 2025)
-
-**Anomaly Update & Webhook Integration - COMPLETED:**
-- ✅ Fixed anomaly update functionality with proper Replit OAuth authentication
-- ✅ Integrated webhook triggering on anomaly status/priority changes
-- ✅ Enhanced analyst workflow UI (improved dropdown visibility, Raw Log column repositioning)
-- ✅ Verified end-to-end webhook delivery to external endpoints (Beeceptor tested)
-- ✅ Implemented filtering to prevent alert fatigue (risk score, type, priority, keywords)
-- ✅ Successfully tested webhook notifications for critical priority anomalies
-
-**CI/CD Pipeline & Quality Assurance - COMPLETED:**
-- ✅ Created comprehensive GitHub Actions CI/CD pipeline with automated testing
-- ✅ Added unit tests for storage layer and anomaly detection services
-- ✅ Created integration tests covering all API endpoints with 85%+ coverage
-- ✅ Implemented automated security scanning and dependency vulnerability checks
-- ✅ Added comprehensive threat model documentation in README.md
-- ✅ Created production deployment monitoring and status tracking
-- ✅ Fixed CI pipeline compatibility issues for GitHub Actions environment
-
-**Authentication Regression Prevention - COMPLETED (August 2, 2025):**
-- ✅ Added comprehensive authentication regression testing suite to prevent production login failures
-- ✅ Created critical auth code analysis tests (13/14 passing) with TypeScript error detection
-- ✅ Implemented CI/CD pipeline for authentication testing (.github/workflows/auth-regression-tests.yml)
-- ✅ Created production deployment checklist (tests/production-auth-checklist.md)
-- ✅ Added authentication testing documentation (docs/AUTHENTICATION_TESTING.md)
-- ✅ Built automated test scripts to catch authentication strategy and TypeScript errors
-- ✅ Verified authentication endpoints no longer return upload middleware errors
-
-**File Upload Regression Fix - COMPLETED (August 2, 2025):**
-- ✅ Fixed file upload routing regression where /api/logs/upload was returning HTML instead of JSON
-- ✅ Added proper /api/logs/upload endpoint with consistent authentication middleware (isAuthenticated)
-- ✅ Unified authentication middleware usage across all endpoints to prevent future inconsistencies
-- ✅ Verified both /api/upload and /api/logs/upload now return proper 401 JSON responses when not authenticated
-- ✅ Confirmed file upload endpoints are working correctly with proper rate limiting and validation
-
-**Documentation & Repository Cleanup - COMPLETED:**
-- ✅ Removed placeholder image URLs that caused GitHub camo proxy issues
-- ✅ Replaced placeholder screenshots with comprehensive feature descriptions
-- ✅ Fixed all repository URL placeholders across README.md, CONTRIBUTING.md, QUICK_START.md
-- ✅ Standardized git clone instructions to use consistent placeholder format
-- ✅ Cleaned up references to non-existent external services (Grafana, status pages)
-- ✅ Updated CI/CD pipeline to handle TypeScript warnings gracefully
-- ✅ Created working build pipeline focusing on practical deployment success
-
-**File Upload Security Enhancement - COMPLETED (August 2, 2025):**
-- ✅ Enforced consistent 10MB file size limits across frontend, backend, and validation layers
-- ✅ Updated all validation points: Multer config, SecurityValidator, client-side validation
-- ✅ Added comprehensive unit tests for file size, type, content, and security validation
-- ✅ Created integration tests covering API endpoints with rate limiting and error scenarios
-- ✅ Added detailed API documentation with file size limits, error responses, and examples
-- ✅ Updated schema defaults to reflect 10MB limits consistently
-- ✅ Enhanced error messages to clearly communicate 10MB limit to users
-
-**User File Limit System - COMPLETED (August 2, 2025):**
-- ✅ Implemented 10 files per user limit with database tracking via getUserFileCount method
-- ✅ Added frontend validation with real-time file count display and upload button state management
-- ✅ Created backend validation that checks user file count before processing uploads
-- ✅ Enhanced error handling with clear messages when file limit is reached
-- ✅ Added comprehensive unit and integration tests for file count validation logic
-- ✅ Created GET /api/user/file-count endpoint for frontend to query current status
-- ✅ Updated API documentation with user file limits, error responses, and examples
-- ✅ Synchronized frontend and backend validation to prevent inconsistent states
-
-**CI Pipeline Enhancement for File Limits - COMPLETED (August 2, 2025):**
-- ✅ Updated CI/CD pipeline to include file upload limit tests in automated testing
-- ✅ Added separate test stages for unit tests, integration tests, and file limit validation
-- ✅ Created comprehensive test coverage for 10MB file size and 10 files per user limits
-- ✅ Fixed all LSP errors in test files and ensured proper test isolation
-- ✅ Enhanced README and documentation with updated test coverage metrics
-- ✅ Verified all tests passing: 12 unit tests, 11 integration tests for file limits
-- ✅ Added CI_PIPELINE_UPDATES.md documentation for pipeline changes
-- ✅ Integrated file upload security validation into production quality gates
-
-**Data Flow Diagram Documentation - COMPLETED (August 2, 2025):**
-- ✅ Added comprehensive Data Flow Diagram to README.md showing complete user journey
-- ✅ Visualized file upload → analysis → SOC workflow → webhook automation process
-- ✅ Documented security checkpoints including authentication, file limits, and validation
-- ✅ Created detailed SOC analyst workflow states and available actions at each stage
-- ✅ Mapped webhook integration triggers and automation platform connections
-- ✅ Enhanced system architecture documentation with visual process flows
-- ✅ Provided clear understanding of how requests flow through the entire system
-
-**High-Level Architecture Documentation - COMPLETED (August 2, 2025):**
-- ✅ Added comprehensive current system architecture documenting single-node implementation
-- ✅ Documented actual technical user flows from file upload through analysis to webhooks
-- ✅ Separated current implementation from future distributed systems improvements
-- ✅ Detailed current frontend (React/TanStack Query) and backend (Express.js) architecture
-- ✅ Documented current limitations and bottlenecks in synchronous processing model
-- ✅ Created future architecture section with Redis queuing and worker pool designs
-- ✅ Enhanced understanding of migration path from current to scalable architecture
-- ✅ Added enhanced security measures and defensive API protections for future implementation
-- ✅ Documented multi-format log support architecture with parser abstraction layer
-- ✅ Detailed implementation complexity and phased approach for supporting multiple log vendors
-
-**System Monitoring Documentation - COMPLETED (August 2, 2025):**
-- ✅ Added comprehensive monitoring capabilities documentation to Product Features section
-- ✅ Documented existing MetricsService infrastructure with real-time dashboard capabilities
-- ✅ Detailed error tracking system with custom error classes and user-friendly notifications
-- ✅ Outlined performance monitoring including AI provider tracking and processing timeouts
-- ✅ Documented metrics collection system with buffered service and database persistence
-- ✅ Enhanced understanding of current observability features and monitoring scope
-
-**Production Development Protocol
-
-**New Feature Development Process:**
-1. **Always propose first** - Present multiple options with tradeoffs before implementing anything new
-2. **Evaluate tradeoffs together** - Discuss pros/cons of each approach with user
-3. **Get explicit approval** - Only implement after user selects preferred option
-4. **Fix critical errors immediately** - Address LSP errors, build failures, or system crashes without waiting
-5. **Focus on stability** - Prioritize system reliability over new features in production environment
-
-**Option Presentation Format:**
-- Present 2-3 viable approaches for each new feature/enhancement
-- Include: implementation complexity, performance impact, maintenance burden, user experience impact
-- Highlight recommended approach with reasoning
-- Wait for user decision before proceeding
 
 ## System Architecture
 
 ### Frontend Architecture
-- **Framework**: React with TypeScript.
-- **Styling**: Tailwind CSS with Shadcn UI.
-- **Routing**: Wouter.
-- **State Management**: TanStack React Query for server state.
-- **Form Handling**: React Hook Form with Zod validation.
-- **UI/UX**: Features color-coded badges, icons, and a consistent design across the application. Google SSO integration with a beautiful landing page, authentication header, and avatar support.
+The frontend is built with React and TypeScript, using Wouter for routing and TanStack React Query for server state management. Styling is handled by Tailwind CSS with Shadcn UI components. Form handling uses React Hook Form with Zod for validation. The UI/UX features color-coded badges, icons, and a consistent design, including Google SSO integration with a dedicated landing page, authentication header, and avatar support.
 
 ### Backend Architecture
-- **Runtime**: Node.js with Express.js.
-- **Language**: TypeScript.
-- **Authentication**: Passport.js with local strategy and session-based authentication (HTTP-only cookies, secure flags). Google SSO integrated via Replit's OpenID Connect provider.
-- **Session Management**: Express-session with PostgreSQL session store.
-- **Rate Limiting**: Custom in-memory rate limiter per user (e.g., 10 file uploads/15 min, 20 AI analysis requests/5 min, 100 general API calls/15 min, 5 login attempts/15 min).
-- **File Processing**: Enhanced Multer middleware with security validation (max 50MB, .txt/.log types, filename restrictions).
-- **Error Handling**: Production-ready middleware with structured logging and user-friendly messages.
-- **API Structure**: RESTful endpoints with comprehensive rate limiting and validation.
-- **Security**: Password hashing using scrypt, Zod schemas for API validation, multi-layer file validation.
-- **Concurrency Protection**: Limits concurrent file processing to 3 files per user to prevent system overload.
+The backend is developed with Node.js and Express.js in TypeScript. Authentication is managed via Passport.js using a local strategy and session-based authentication (HTTP-only, secure cookies), with Google SSO integrated via Replit's OpenID Connect provider. Session management uses express-session with a PostgreSQL session store. Custom in-memory rate limiting is implemented per user for various actions (e.g., file uploads, AI analysis requests, general API calls, login attempts). File processing leverages enhanced Multer middleware with security validation (max 50MB, .txt/.log types, filename restrictions). The API is RESTful with comprehensive rate limiting and validation. Security measures include password hashing using scrypt, Zod schemas for API validation, and multi-layer file validation. Concurrency is limited to 3 concurrent file processing jobs per user.
 
 ### Data Storage Architecture
-- **Primary Database**: PostgreSQL with Neon serverless driver.
-- **ORM**: Drizzle ORM for type-safe operations.
-- **Schema Design**: Tables for Users, LogFiles, Anomalies, and ProcessingJobs.
-- **Session Storage**: PostgreSQL-based.
+The primary database is PostgreSQL, deployed via Neon serverless driver. Drizzle ORM is used for type-safe operations. The schema includes tables for Users, LogFiles, Anomalies, and ProcessingJobs, with session data also stored in PostgreSQL.
 
 ### AI/ML Integration
-- **Multi-Modal Analysis**: Supports traditional, advanced ML, and AI-powered detection.
-- **Primary AI Models**: OpenAI GPT-4o and Google Gemini for log analysis.
-- **Advanced ML System**: Multi-model ensemble (statistical, behavioral, network, time series, ensemble learning).
-- **Traditional ML System**: Rule-based detection and pattern matching.
-- **Skip LLM Option**: Allows analysis without external AI services.
-- **Log Processing**: Specialized Zscaler NSS feed parser (comma/tab-separated), validation, asynchronous processing, and raw log data preservation.
-- **Batch Processing**: Increased batch processing to 100 logs per batch for AI analysis, reducing API calls and processing time.
-- **Risk Scoring**: 0-10 scale risk assessment with 75-95% confidence levels.
-- **Detection Methods**: Rule-based, statistical modeling, ML ensemble, AI-powered.
+The system supports multi-modal analysis, including traditional, advanced ML, and AI-powered detection. Primary AI models are OpenAI GPT-4o and Google Gemini for log analysis. An advanced ML system incorporates a multi-model ensemble (statistical, behavioral, network, time series, ensemble learning), alongside a traditional rule-based detection and pattern matching system. An option to skip LLM analysis is available. Log processing includes a specialized Zscaler NSS feed parser, validation, asynchronous processing, and raw log data preservation. Batch processing for AI analysis is increased to 100 logs per batch. Risk scoring is on a 0-10 scale with 75-95% confidence levels, using detection methods such as rule-based, statistical modeling, ML ensemble, and AI-powered approaches.
 
 ### Webhook Integration System
-- **External Automation**: Zapier-first webhook integration with support for multiple providers (Make, custom endpoints).
-- **Alert Fatigue Solution**: Configurable trigger conditions (risk score thresholds, anomaly types, priority levels, keywords).
-- **Real-time Notifications**: Automatic webhook triggers when anomalies match analyst-defined criteria.
-- **Structured Payloads**: Rich JSON payloads with anomaly details, log context, user information, and metadata.
-- **Testing & Reliability**: Built-in webhook testing, delivery confirmation, and failure handling.
-- **Future-ready**: Generic foundation allows easy extension to other automation platforms.
+Webhook integration is designed for external automation, primarily with Zapier but supporting other providers like Make and custom endpoints. It includes configurable trigger conditions (risk score, anomaly types, priority, keywords) to mitigate alert fatigue. Webhooks automatically trigger when anomalies match analyst-defined criteria, sending rich JSON payloads with anomaly details, log context, user information, and metadata. The system provides built-in webhook testing, delivery confirmation, and failure handling, and is designed for easy extension to other automation platforms.
 
 ## External Dependencies
 
@@ -180,13 +31,12 @@ Preferred communication style: Simple, everyday language.
 
 ### Development and Build Tools
 - **Build System**: Vite.
-- **TypeScript**: Full support.
 - **Package Manager**: npm.
 
 ### Third-Party Services Integration
 - **OpenAI API**: Primary AI service.
 - **Neon Database**: Serverless PostgreSQL provider.
-- **Replit**: Development environment integration (specific plugins/banners, OpenID Connect).
+- **Replit**: Development environment integration.
 
 ### UI and Styling Libraries
 - **Radix UI**: Headless UI components.
