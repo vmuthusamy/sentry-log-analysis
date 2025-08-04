@@ -509,7 +509,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     // Parse and validate log content
     let logEntries: any[];
     try {
-      logEntries = zscalerLogParser.parse(content);
+      logEntries = zscalerLogParser.parseLogFile(content);
       
       // Validate we have some log entries
       if (!logEntries || logEntries.length === 0) {
@@ -521,8 +521,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
           details: {
             entriesFound: 0,
             expectedFormat: "Zscaler NSS feed format (comma, semicolon, tab or pipe separated)",
-            suggestion: "Please ensure your log file contains valid Zscaler log entries.",
-            fileName: originalname
+            suggestion: "Please check your file format. Common issues: wrong delimiter, header rows, or non-Zscaler format.",
+            fileName: originalname,
+            fileSize: `${Math.round(size / 1024)} KB`,
+            troubleshooting: "Try uploading one of the example files first to verify the system is working."
           }
         });
       }
@@ -1320,6 +1322,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Enhanced analytics endpoints using the new Analytics Tracker
   app.get("/api/analytics/summary", isAuthenticated, async (req: any, res) => {
+    const startTime = Date.now();
     try {
       const { hours, days, minutes } = req.query;
       const timeframe = {
@@ -1331,10 +1334,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { analyticsTracker } = await import("./services/analytics-tracker");
       const summary = await analyticsTracker.getActivitySummary(timeframe);
       
-      res.json(summary);
+      res.json({
+        ...summary,
+        meta: {
+          queryTime: `${Date.now() - startTime}ms`,
+          requestedBy: (req.user as any)?.claims?.sub,
+          timestamp: new Date().toISOString()
+        }
+      });
     } catch (error) {
       console.error('Error getting analytics summary:', error);
-      res.status(500).json({ message: 'Failed to get analytics summary' });
+      res.status(500).json({ 
+        message: 'Failed to get analytics summary',
+        queryTime: `${Date.now() - startTime}ms`
+      });
     }
   });
 
@@ -1649,14 +1662,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Health check endpoint for deployment
-  app.get("/api/health", (req, res) => {
-    res.json({ 
-      status: "healthy", 
-      timestamp: new Date().toISOString(),
-      service: "sentry-log-analysis",
-      version: "1.0.0"
-    });
+  // Enhanced health check endpoint for deployment
+  app.get("/api/health", async (req, res) => {
+    const startTime = Date.now();
+    try {
+      // Quick database check  
+      const { users } = await import("@shared/schema");
+      const dbCheck = await db.select().from(users).limit(1);
+      const responseTime = Date.now() - startTime;
+      
+      res.json({ 
+        status: "healthy", 
+        timestamp: new Date().toISOString(),
+        service: "sentry-log-analysis",
+        version: "1.0.0",
+        database: "connected",
+        responseTime: `${responseTime}ms`,
+        uptime: process.uptime(),
+        memory: {
+          used: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
+          total: Math.round(process.memoryUsage().heapTotal / 1024 / 1024)
+        }
+      });
+    } catch (error) {
+      res.status(503).json({ 
+        status: "unhealthy", 
+        timestamp: new Date().toISOString(),
+        service: "sentry-log-analysis",
+        version: "1.0.0",
+        database: "disconnected",
+        error: "Database connection failed"
+      });
+    }
   });
 
   const httpServer = createServer(app);
